@@ -4,5 +4,10 @@
   "description": "A fluent validator written in TypeScript",
   "main": "dist/index.js",
   "author": "Markus Bohl <markus.bohl@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "tslint": "^4.0.2",
+    "tslint-microsoft-contrib": "^2.0.13",
+    "typescript": "^2.0.10"
+  }
 }
