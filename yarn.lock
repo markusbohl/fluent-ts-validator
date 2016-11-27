@@ -972,7 +972,15 @@ gulp:
     v8flags "^2.0.2"
     vinyl-fs "^0.3.0"
 
-gulp-util@^3.0.0:
+gulp-tslint:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/gulp-tslint/-/gulp-tslint-7.0.1.tgz#8bde32161df9ca784d7eb8d9bdb12c75c0b276e9"
+  dependencies:
+    gulp-util "~3.0.7"
+    map-stream "~0.1.0"
+    through "~2.3.8"
+
+gulp-util@^3.0.0, gulp-util@~3.0.7:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.7.tgz#78925c4b8f8b49005ac01a011c557e6218941cbb"
   dependencies:
@@ -1421,6 +1429,10 @@ map-cache@^0.2.0:
 map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-1.0.1.tgz#d933ceb9205d82bdcf4886f6742bdc2b4dea146d"
+
+map-stream@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/map-stream/-/map-stream-0.1.0.tgz#e56aa94c4c8055a16404a0674b78f215f7c8e194"
 
 meow@^3.3.0:
   version "3.7.0"
@@ -1971,6 +1983,10 @@ supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
 
+through@~2.3.8:
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
 through2@^0.6.1:
   version "0.6.5"
   resolved "https://registry.yarnpkg.com/through2/-/through2-0.6.5.tgz#41ab9c67b29d57209071410e1d7a7a968cd3ad48"
@@ -2044,10 +2060,6 @@ tslint:
     resolve "^1.1.7"
     underscore.string "^3.3.4"
     update-notifier "^1.0.2"
-
-tslint-microsoft-contrib:
-  version "2.0.13"
-  resolved "https://registry.yarnpkg.com/tslint-microsoft-contrib/-/tslint-microsoft-contrib-2.0.13.tgz#30ed7e1a03261eea091354eaca3afe7b25e04ca7"
 
 typescript:
   version "2.0.10"

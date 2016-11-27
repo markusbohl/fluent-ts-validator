@@ -1,4 +1,5 @@
 import gulp from "gulp";
+import tslint from "gulp-tslint";
 import {
     exec
 } from "child_process";
@@ -16,3 +17,11 @@ gulp.task("tdd", () => {
 
     return gulp.watch(_watchables, ["test"]);
 });
+
+gulp.task("tslint", () =>
+    gulp.src("src/**/*.ts")
+        .pipe(tslint({
+            formatter: "verbose"
+        }))
+        .pipe(tslint.report())
+);
