@@ -1,0 +1,8 @@
+{
+  "name": "fluent-ts-validator",
+  "version": "0.1.0",
+  "description": "A fluent validator written in TypeScript",
+  "main": "dist/index.js",
+  "author": "Markus Bohl <markus.bohl@gmail.com>",
+  "license": "MIT"
+}
