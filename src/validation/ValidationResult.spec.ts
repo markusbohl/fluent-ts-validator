@@ -7,9 +7,11 @@ import { ValidationFailure } from "./ValidationFailure";
 
 describe("ValidationResult", () => {
     let result: ValidationResult;
+    let failure: ValidationFailure;
 
     beforeEach(() => {
         result = new ValidationResult();
+        failure = new ValidationFailure(null, null, null);
     });
 
     describe("isValid()", () => {
@@ -18,16 +20,12 @@ describe("ValidationResult", () => {
         });
 
         it("should return false if a failure has been added", () => {
-            let failure = new ValidationFailure("propertyName", "errorMessage");
-
             result.addFailure(failure);
 
             expect(result.isValid()).toBeFalsy();
         });
 
         it("should continue to return false even after clearing the returned array", () => {
-            let failure = new ValidationFailure("propertyName", "errorMessage");
-
             result.addFailure(failure);
             result.getFailures().pop();
 
@@ -41,8 +39,6 @@ describe("ValidationResult", () => {
         });
 
         it("should return a copy of the interal array", () => {
-            let failure = new ValidationFailure("propertyName", "errorMessage");
-
             result.addFailure(failure);
             result.getFailures().pop();
 
@@ -52,8 +48,6 @@ describe("ValidationResult", () => {
 
     describe("addFailure()", () => {
         it("should add a failure to the result", () => {
-            let failure = new ValidationFailure("propertyName", "errorMessage");
-
             result.addFailure(failure);
 
             expect(result.getFailures()).toContain(failure);
