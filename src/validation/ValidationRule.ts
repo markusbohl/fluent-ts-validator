@@ -10,13 +10,21 @@ const SUCCESSFUL_OUTCOME = new RuleApplicationOutcome();
 
 export class ValidationRule<T, TProperty> {
 
+    private propertyName: string;
     private errorCode: string;
     private errorMessage: string;
     private severity: Severity;
     private condition: ValidationCondition<T>;
     private callback: (failure: ValidationFailure) => void;
 
-    constructor(private lambdaExpression: (input: T) => TProperty, private validator: PropertyValidator<TProperty>) { }
+    constructor(private lambdaExpression: (input: T) => TProperty, private validator: PropertyValidator<TProperty>) {
+        // the best way I could think of to get hold of the propertyName was via regex
+        // (the identified propertyName will be used later to specify where a validation failure came from)
+        // obviously, something like a native nameof-function in TypeScript would be way nicer
+        // unfortunately, it does not exist yet
+        let regexArray = lambdaExpression.toString().match("return\\s+\\w+\\.(\\w+)");
+        this.propertyName = regexArray && regexArray.length > 1 ? regexArray[1] : null;
+     }
 
     setErrorCode(errorCode: string) {
         this.errorCode = errorCode;
@@ -50,7 +58,7 @@ export class ValidationRule<T, TProperty> {
             return SUCCESSFUL_OUTCOME;
         }
 
-        let failure = new ValidationFailure(input, null, propertyValue, this.errorCode, this.errorMessage, this.severity);
+        let failure = new ValidationFailure(input, this.propertyName, propertyValue, this.errorCode, this.errorMessage, this.severity);
 
         if (this.callback) {
             this.callback(failure);
