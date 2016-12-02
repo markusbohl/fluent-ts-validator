@@ -62,8 +62,30 @@ describe("ValidationRule", () => {
             let failure = rule.apply(toBeValidated).getValidationFailure();
 
             expect(failure.target).toBe(toBeValidated);
+            expect(failure.propertyName).toBe("property");
             expect(failure.attemptedValue).toBe("invalid property value");
             expect(failure.severity).toBe(Severity.ERROR);
+        });
+
+        it("should provide property name in validation failure in case of invalid input", () => {
+            let validator: PropertyValidator<number> = new PropertyValidator();
+            let rule: ValidationRule<TestClass, number> = new ValidationRule((input: TestClass) => { return input.leOtherProperty1; }, validator);
+            let toBeValidated = new TestClass("invalid property value");
+            spyOn(validator, "isValid").and.returnValue(false);
+
+            let failure = rule.apply(toBeValidated).getValidationFailure();
+
+            expect(failure.propertyName).toBe("leOtherProperty1");
+        });
+
+        it("should provide null for property name in case of 'flat' input", () => {
+            let validator: PropertyValidator<number> = new PropertyValidator();
+            let rule: ValidationRule<number, number> = new ValidationRule((input: number) => { return input; }, validator);
+            spyOn(validator, "isValid").and.returnValue(false);
+
+            let failure = rule.apply(42).getValidationFailure();
+
+            expect(failure.propertyName).toBe(null);
         });
     });
 
@@ -77,7 +99,10 @@ describe("ValidationRule", () => {
             let result = rule.apply(toBeValidated);
 
             expect(callback).toHaveBeenCalledWith(jasmine.objectContaining({
-                target: toBeValidated
+                target: toBeValidated,
+                propertyName: "property",
+                attemptedValue: "invalid property value",
+                severity: Severity.ERROR
             }));
         });
     });
@@ -153,6 +178,7 @@ describe("ValidationRule", () => {
 
 class TestClass {
     readonly property: string;
+    readonly leOtherProperty1: number = 0;
 
     constructor(property: string) {
         this.property = property;
