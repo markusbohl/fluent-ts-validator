@@ -1,7 +1,6 @@
 "use strict";
 
 import { RuleBuilder } from "./RuleBuilder";
-import { ValidationMethods } from "../validation/ValidationsMethods";
 
 export class TypedRuleBuilder<T, TProperty> implements RuleBuilder<T, TProperty> {
 
