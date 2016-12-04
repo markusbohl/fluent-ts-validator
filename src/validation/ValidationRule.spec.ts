@@ -14,7 +14,7 @@ describe("ValidationRule", () => {
     let validator: PropertyValidator<string>;
 
     beforeEach(() => {
-        validator = new PropertyValidator();
+        validator = { isValid(input: string) { return true; } };
         rule = new ValidationRule((input: TestClass) => { return input.property; }, validator);
     });
 
@@ -68,7 +68,7 @@ describe("ValidationRule", () => {
         });
 
         it("should provide property name in validation failure in case of invalid input", () => {
-            let validator: PropertyValidator<number> = new PropertyValidator();
+            let validator: PropertyValidator<number> = { isValid(input: number) { return true; } };
             let rule: ValidationRule<TestClass, number> = new ValidationRule((input: TestClass) => { return input.leOtherProperty1; }, validator);
             let toBeValidated = new TestClass("invalid property value");
             spyOn(validator, "isValid").and.returnValue(false);
@@ -79,7 +79,7 @@ describe("ValidationRule", () => {
         });
 
         it("should provide null for property name in case of 'flat' input", () => {
-            let validator: PropertyValidator<number> = new PropertyValidator();
+            let validator: PropertyValidator<number> = { isValid(input: number) { return true; } };
             let rule: ValidationRule<number, number> = new ValidationRule((input: number) => { return input; }, validator);
             spyOn(validator, "isValid").and.returnValue(false);
 

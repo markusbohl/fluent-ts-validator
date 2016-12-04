@@ -1,10 +1,6 @@
 "use strict";
 
-import { ValidationResult } from "../validation/ValidationResult";
+export interface PropertyValidator<TProperty> {
 
-export class PropertyValidator<TProperty> {
-
-    isValid(input: TProperty): boolean {
-        return true;
-    }
+    isValid(input: TProperty): boolean;
 }

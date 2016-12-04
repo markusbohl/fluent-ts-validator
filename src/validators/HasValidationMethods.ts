@@ -7,7 +7,7 @@ import {
     IsFQDNOptions
 } from "./ValidationTypeOptions";
 
-export interface ValidationMethods {
+export interface HasValidationMethods {
 
     /**
      * Checks if value is defined ("!==undefined").
