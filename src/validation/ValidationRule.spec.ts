@@ -11,16 +11,28 @@ import { ValidationCondition } from "./ValidationCondition";
 
 describe("ValidationRule", () => {
     let rule: ValidationRule<TestClass, string>;
-    let validator: PropertyValidator<string>;
 
     beforeEach(() => {
-        validator = { isValid(input: string) { return true; } };
-        rule = new ValidationRule((input: TestClass) => { return input.property; }, validator);
+        rule = new ValidationRule((input: TestClass) => { return input.property; });
+    });
+
+    describe("setValidator()", () => {
+        it("should set validator which is used for validation process", () => {
+            let validator: PropertyValidator<string> = getPositiveValidator();
+            spyOn(validator, "isValid");
+            rule.setValidator(validator);
+
+            rule.apply(new TestClass("property value"));
+
+            expect(validator.isValid).toHaveBeenCalledWith("property value");
+        });
     });
 
     describe("apply()", () => {
         it("should invoke validator with result from lambda expression", () => {
+            let validator: PropertyValidator<string> = getNegativeValidator();
             spyOn(validator, "isValid");
+            rule.setValidator(validator);
 
             let result = rule.apply(new TestClass("valid property value"));
 
@@ -28,7 +40,7 @@ describe("ValidationRule", () => {
         });
 
         it("should return successful validation outcome for valid input", () => {
-            spyOn(validator, "isValid").and.returnValue(true);
+            rule.setValidator(getPositiveValidator());
 
             let result = rule.apply(new TestClass("valid property value"));
 
@@ -36,7 +48,7 @@ describe("ValidationRule", () => {
         });
 
         it("should return successful validation outcome when validation was performed due to specified validation condition", () => {
-            spyOn(validator, "isValid");
+            rule.setValidator(getPositiveValidator());
             let validation: ValidationCondition<TestClass> = {
                 shouldDoValidation(input: TestClass) { return false; }
             };
@@ -48,7 +60,7 @@ describe("ValidationRule", () => {
         });
 
         it("should return failure outcome for invalid input", () => {
-            spyOn(validator, "isValid").and.returnValue(false);
+            rule.setValidator(getNegativeValidator());
 
             let result = rule.apply(new TestClass("invalid property value"));
 
@@ -56,7 +68,7 @@ describe("ValidationRule", () => {
         });
 
         it("should provide details about the validation failure in case of invalid input", () => {
-            spyOn(validator, "isValid").and.returnValue(false);
+            rule.setValidator(getNegativeValidator());
             let toBeValidated = new TestClass("invalid property value");
 
             let failure = rule.apply(toBeValidated).getValidationFailure();
@@ -68,10 +80,9 @@ describe("ValidationRule", () => {
         });
 
         it("should provide property name in validation failure in case of invalid input", () => {
-            let validator: PropertyValidator<number> = { isValid(input: number) { return true; } };
-            let rule: ValidationRule<TestClass, number> = new ValidationRule((input: TestClass) => { return input.leOtherProperty1; }, validator);
+            let rule: ValidationRule<TestClass, number> = new ValidationRule((input: TestClass) => { return input.leOtherProperty1; });
             let toBeValidated = new TestClass("invalid property value");
-            spyOn(validator, "isValid").and.returnValue(false);
+            rule.setValidator(getNegativeValidator());
 
             let failure = rule.apply(toBeValidated).getValidationFailure();
 
@@ -79,9 +90,8 @@ describe("ValidationRule", () => {
         });
 
         it("should provide null for property name in case of 'flat' input", () => {
-            let validator: PropertyValidator<number> = { isValid(input: number) { return true; } };
-            let rule: ValidationRule<number, number> = new ValidationRule((input: number) => { return input; }, validator);
-            spyOn(validator, "isValid").and.returnValue(false);
+            let rule: ValidationRule<number, number> = new ValidationRule((input: number) => { return input; });
+            rule.setValidator(getNegativeValidator());
 
             let failure = rule.apply(42).getValidationFailure();
 
@@ -93,7 +103,7 @@ describe("ValidationRule", () => {
         it("should invoke registered callback function in case of validation failure", () => {
             let callback = jasmine.createSpy("callback");
             let toBeValidated = new TestClass("invalid property value");
-            spyOn(validator, "isValid").and.returnValue(false);
+            rule.setValidator(getNegativeValidator());
             rule.onFailure(callback);
 
             let result = rule.apply(toBeValidated);
@@ -109,7 +119,7 @@ describe("ValidationRule", () => {
 
     describe("setErrorCode()", () => {
         it("should set errorCode for use in validation failure", () => {
-            spyOn(validator, "isValid").and.returnValue(false);
+            rule.setValidator(getNegativeValidator());
             rule.setErrorCode("error-code");
 
             let result = rule.apply(new TestClass("invalid property value"));
@@ -120,7 +130,7 @@ describe("ValidationRule", () => {
 
     describe("setErrorMessage()", () => {
         it("should set errorMessage for use in validation failure", () => {
-            spyOn(validator, "isValid").and.returnValue(false);
+            rule.setValidator(getNegativeValidator());
             rule.setErrorMessage("error-message");
 
             let result = rule.apply(new TestClass("invalid property value"));
@@ -131,7 +141,7 @@ describe("ValidationRule", () => {
 
     describe("setSeverity()", () => {
         it("should set severity for use in validation failure", () => {
-            spyOn(validator, "isValid").and.returnValue(false);
+            rule.setValidator(getNegativeValidator());
             rule.setSeverity(Severity.INFO);
 
             let result = rule.apply(new TestClass("invalid property value"));
@@ -142,7 +152,9 @@ describe("ValidationRule", () => {
 
     describe("setCondition()", () => {
         it("should allow validation if no validation condition is set", () => {
+            let validator: PropertyValidator<string> = getPositiveValidator();
             spyOn(validator, "isValid");
+            rule.setValidator(validator);
             rule.setCondition(null);
 
             rule.apply(new TestClass("some value"));
@@ -151,7 +163,9 @@ describe("ValidationRule", () => {
         });
 
         it("should allow validation if validation condition evaluates to true", () => {
+            let validator: PropertyValidator<string> = getPositiveValidator();
             spyOn(validator, "isValid");
+            rule.setValidator(validator);
             let validation: ValidationCondition<TestClass> = {
                 shouldDoValidation(input: TestClass) { return true; }
             };
@@ -163,7 +177,9 @@ describe("ValidationRule", () => {
         });
 
         it("should not allow validation if validation condition evaluates to false", () => {
+            let validator: PropertyValidator<string> = getPositiveValidator();
             spyOn(validator, "isValid");
+            rule.setValidator(validator);
             let validation: ValidationCondition<TestClass> = {
                 shouldDoValidation(input: TestClass) { return false; }
             };
@@ -183,4 +199,12 @@ class TestClass {
     constructor(property: string) {
         this.property = property;
     }
+}
+
+function getPositiveValidator<T>(): PropertyValidator<T> {
+    return { isValid(input: T) { return true; } };
+}
+
+function getNegativeValidator<T>(): PropertyValidator<T> {
+    return { isValid(input: T) { return false; } };
 }

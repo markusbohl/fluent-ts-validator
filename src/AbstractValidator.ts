@@ -1,10 +1,11 @@
 "use strict";
 
-import { RuleBuilder } from "./builder/RuleBuilder";
+import { ValidationOptionsBuilder } from "./builder/ValidationOptionsBuilder";
+import { ValidatorBuilder } from "./builder/ValidatorBuilder";
 
 export abstract class AbstractValidator<T> {
 
-    ruleFor<T, TProperty>(lambdaExpression: (input: T) => TProperty): RuleBuilder<T, TProperty> {
+    protected ruleFor<T, TProperty>(lambdaExpression: (input: T) => TProperty): ValidatorBuilder<T, TProperty> {
         return null;
     }
 }
