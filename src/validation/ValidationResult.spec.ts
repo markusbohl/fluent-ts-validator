@@ -52,5 +52,12 @@ describe("ValidationResult", () => {
 
             expect(result.getFailures()).toContain(failure);
         });
+
+        it("should not add a null to the result", () => {
+            result.addFailure(null);
+
+            expect(result.getFailures().length).toBe(0);
+            expect(result.getFailures()).not.toContain(null);
+        });
     });
 });

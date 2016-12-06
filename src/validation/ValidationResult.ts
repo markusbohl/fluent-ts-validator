@@ -11,7 +11,9 @@ export class ValidationResult {
     }
 
     addFailure(failure: ValidationFailure): void {
-        this.failures.push(failure);
+        if (failure) {
+            this.failures.push(failure);
+        }
     }
 
     getFailures(): ValidationFailure[] {
