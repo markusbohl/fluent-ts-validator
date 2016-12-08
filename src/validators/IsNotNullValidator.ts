@@ -6,7 +6,7 @@ import { PropertyValidator } from "./PropertyValidator";
  * Validates if a value is defined (!== undefined, !== null).
  * 
  * @export
- * @class IsDefinedValidator
+ * @class IsNotNullValidator
  * @implements {PropertyValidator<any>}
  */
 export class IsNotNullValidator implements PropertyValidator<any> {
