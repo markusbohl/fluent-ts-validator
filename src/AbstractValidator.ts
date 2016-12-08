@@ -2,7 +2,7 @@
 
 import {
     ValidationResult
-} from "./shared";
+} from "./";
 
 import {
     ValidationRule

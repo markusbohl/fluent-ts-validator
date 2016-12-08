@@ -16,7 +16,6 @@ import {
     ValidationOptionsBuilder
 } from "./";
 
-
 export class ValidationOptionsBuilderImpl<T> implements ValidationOptionsBuilder<T> {
 
     constructor(private validationRule: ValidationRule<T, any>) {}

@@ -1,4 +1,5 @@
 "use strict";
 
-export * from "./AbstractValidator";
 export * from "./shared";
+export * from "./AbstractValidator";
+export * from "./ValidationResult";

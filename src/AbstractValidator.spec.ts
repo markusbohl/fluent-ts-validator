@@ -4,11 +4,11 @@
 
 import {
     Severity,
-    ValidationResult,
     ValidationFailure
 } from "./shared";
 
 import {
+    ValidationResult,
     AbstractValidator
 } from "./";
 
