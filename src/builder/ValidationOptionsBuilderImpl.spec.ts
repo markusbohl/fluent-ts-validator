@@ -6,6 +6,7 @@ import { ValidationOptionsBuilder } from "./ValidationOptionsBuilder";
 import { ValidationOptionsBuilderImpl } from "./ValidationOptionsBuilderImpl";
 import { ValidationCondition } from "../validation/ValidationCondition";
 import { WhenCondition } from "../validation/WhenCondition";
+import { UnlessCondition } from "../validation/UnlessCondition";
 import { ValidationFailure } from "../validation/ValidationFailure";
 import { ValidationRule } from "../validation/ValidationRule";
 import { Severity } from "../validation/Severity";
@@ -68,20 +69,31 @@ describe("ValidationOptionsBuilderImpl", () => {
         });
     });
 
-    describe("withCondition()", () => {
-        it("should set validation condition to validation rule", () => {
+    describe("when()", () => {
+        it("should set a WhenCondition to the validation rule", () => {
             spyOn(validationRule, "setCondition");
-            let condition = new WhenCondition<TestClass>((input: TestClass) => { return true; });
+            validationOptionsBuilder.when((input: TestClass) => { return true; });
 
-            validationOptionsBuilder.withCondition(condition);
-
-            expect(validationRule.setCondition).toHaveBeenCalledWith(condition);
+            expect(validationRule.setCondition).toHaveBeenCalledWith(jasmine.any(WhenCondition));
         });
 
         it("should return current builder instance", () => {
-            let condition = new WhenCondition<TestClass>((input: TestClass) => { return true; });
+            let result = validationOptionsBuilder.when((input: TestClass) => { return true; });
 
-            let result = validationOptionsBuilder.withCondition(condition);
+            expect(result).toBe(validationOptionsBuilder);
+        });
+    });
+
+    describe("unless()", () => {
+        it("should set a UnlessCondition to the validation rule", () => {
+            spyOn(validationRule, "setCondition");
+            validationOptionsBuilder.unless((input: TestClass) => { return true; });
+
+            expect(validationRule.setCondition).toHaveBeenCalledWith(jasmine.any(UnlessCondition));
+        });
+
+        it("should return current builder instance", () => {
+            let result = validationOptionsBuilder.unless((input: TestClass) => { return true; });
 
             expect(result).toBe(validationOptionsBuilder);
         });

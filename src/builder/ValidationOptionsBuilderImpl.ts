@@ -4,6 +4,8 @@ import { ValidationOptionsBuilder } from "./ValidationOptionsBuilder";
 import { ValidationCondition } from "../validation/ValidationCondition";
 import { ValidationFailure } from "../validation/ValidationFailure";
 import { ValidationRule } from "../validation/ValidationRule";
+import { WhenCondition } from "../validation/WhenCondition";
+import { UnlessCondition } from "../validation/UnlessCondition";
 import { Severity } from "../validation/Severity";
 
 
@@ -26,8 +28,13 @@ export class ValidationOptionsBuilderImpl<T> implements ValidationOptionsBuilder
         return this;
     }
 
-    withCondition(condition: ValidationCondition<T>): ValidationOptionsBuilder<T> {
-        this.validationRule.setCondition(condition);
+    when(expression: (input: T) => boolean): ValidationOptionsBuilder<T> {
+        this.validationRule.setCondition(new WhenCondition(expression));
+        return this;
+    }
+
+    unless(expression: (input: T) => boolean): ValidationOptionsBuilder<T> {
+        this.validationRule.setCondition(new UnlessCondition(expression));
         return this;
     }
 
