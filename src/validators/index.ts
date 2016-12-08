@@ -10,3 +10,7 @@ export * from "./IsEqualValidator";
 export * from "./IsNotEqualValidator";
 
 export * from "./IsBooleanValidator";
+export * from "./IsDateValidator";
+export * from "./IsStringValidator";
+export * from "./IsArrayValidator";
+export * from "./IsNumberValidator";
