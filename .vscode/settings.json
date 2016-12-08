@@ -1,4 +1,5 @@
 // Platzieren Sie Ihre Einstellungen in dieser Datei, um Standard- und Benutzereinstellungen zu überschreiben.
 {
-    "eslint.enable": false
+    "eslint.enable": false,
+    "typescript.tsdk": "./node_modules/typescript/lib"
 }
