@@ -2,8 +2,13 @@
 
 "use strict";
 
-import { ValidationResult } from "./ValidationResult";
-import { ValidationFailure } from "./ValidationFailure";
+import {
+    ValidationFailure
+} from "../shared";
+
+import {
+    ValidationResult
+} from "./";
 
 describe("ValidationResult", () => {
     let result: ValidationResult;

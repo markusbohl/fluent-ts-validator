@@ -3,7 +3,7 @@
 "use strict";
 
 import { RuleApplicationOutcome } from "./RuleApplicationOutcome";
-import { ValidationFailure } from "./ValidationFailure";
+import { ValidationFailure } from "../shared/ValidationFailure";
 
 describe("RuleApplicationOutcome", () => {
 

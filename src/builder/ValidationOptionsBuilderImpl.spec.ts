@@ -2,14 +2,22 @@
 
 "use strict";
 
-import { ValidationOptionsBuilder } from "./ValidationOptionsBuilder";
-import { ValidationOptionsBuilderImpl } from "./ValidationOptionsBuilderImpl";
-import { ValidationCondition } from "../validation/ValidationCondition";
-import { WhenCondition } from "../validation/WhenCondition";
-import { UnlessCondition } from "../validation/UnlessCondition";
-import { ValidationFailure } from "../validation/ValidationFailure";
-import { ValidationRule } from "../validation/ValidationRule";
-import { Severity } from "../validation/Severity";
+import {
+    Severity,
+    ValidationFailure
+} from "../shared";
+
+import {
+    ValidationRule,
+    ValidationCondition,
+    UnlessCondition,
+    WhenCondition
+} from "../validation";
+
+import {
+    ValidationOptionsBuilder,
+    ValidationOptionsBuilderImpl
+} from "./";
 
 describe("ValidationOptionsBuilderImpl", () => {
 

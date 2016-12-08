@@ -1,10 +1,18 @@
 "use strict";
 
-import { ValidationOptionsBuilder } from "./builder/ValidationOptionsBuilder";
-import { ValidatorBuilder } from "./builder/ValidatorBuilder";
-import { ValidatorBuilderImpl } from "./builder/ValidatorBuilderImpl";
-import { ValidationResult } from "./validation/ValidationResult";
-import { ValidationRule } from "./validation/ValidationRule";
+import {
+    ValidationResult
+} from "./shared";
+
+import {
+    ValidationRule
+} from "./validation";
+
+import {
+    ValidatorBuilder,
+    ValidatorBuilderImpl,
+    ValidationOptionsBuilder
+} from "./builder";
 
 export abstract class AbstractValidator<T> {
 

@@ -1,6 +1,8 @@
 "use strict";
 
-import { ValidationOptionsBuilder } from "./ValidationOptionsBuilder";
+import {
+    ValidationOptionsBuilder
+} from "./";
 
 export interface ValidatorBuilder<T, TProperty> {
     isNotNull(): ValidationOptionsBuilder<T>;

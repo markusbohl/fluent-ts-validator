@@ -2,12 +2,20 @@
 
 "use strict";
 
-import { ValidationRule } from "./ValidationRule";
-import { ValidationFailure } from "./ValidationFailure";
-import { Severity } from "./Severity";
-import { PropertyValidator } from "../validators/PropertyValidator";
-import { RuleApplicationOutcome } from "./RuleApplicationOutcome";
-import { ValidationCondition } from "./ValidationCondition";
+import {
+    Severity,
+    ValidationFailure
+} from "../shared";
+
+import {
+    PropertyValidator
+} from "../validators";
+
+import {
+    ValidationRule,
+    ValidationCondition,
+    RuleApplicationOutcome
+} from "./";
 
 describe("ValidationRule", () => {
     let rule: ValidationRule<TestClass, string>;

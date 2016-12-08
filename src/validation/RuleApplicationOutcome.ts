@@ -1,6 +1,6 @@
 "use strict";
 
-import { ValidationFailure } from "./ValidationFailure";
+import { ValidationFailure } from "../shared/ValidationFailure";
 
 export class RuleApplicationOutcome {
 

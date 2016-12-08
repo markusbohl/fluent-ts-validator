@@ -1,8 +1,13 @@
 "use strict";
 
-import { Severity } from "../validation/Severity";
-import { ValidationCondition } from "../validation/ValidationCondition";
-import { ValidationFailure } from "../validation/ValidationFailure";
+import {
+    Severity,
+    ValidationFailure
+} from "../shared";
+
+import {
+    ValidationCondition
+} from "../validation";
 
 export interface ValidationOptionsBuilder<T> {
     withErrorCode(errorCode: string): ValidationOptionsBuilder<T>;

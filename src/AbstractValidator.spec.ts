@@ -2,10 +2,15 @@
 
 "use strict";
 
-import { AbstractValidator } from "./AbstractValidator";
-import { Severity } from "./validation/Severity";
-import { ValidationResult } from "./validation/ValidationResult";
-import { ValidationFailure } from "./validation/ValidationFailure";
+import {
+    Severity,
+    ValidationResult,
+    ValidationFailure
+} from "./shared";
+
+import {
+    AbstractValidator
+} from "./";
 
 let validationFailure: ValidationFailure = null;
 

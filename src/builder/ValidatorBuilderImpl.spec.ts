@@ -2,13 +2,19 @@
 
 "use strict";
 
+import {
+    ValidationRule
+} from "../validation";
+
+import {
+    IsNotNullValidator,
+    IsEmptyValidator,
+    IsEqualValidator,
+    IsNotEqualValidator
+} from "../validators";
+
 import { ValidatorBuilder } from "./ValidatorBuilder";
 import { ValidatorBuilderImpl } from "./ValidatorBuilderImpl";
-import { ValidationRule } from "../validation/ValidationRule";
-import { IsNotNullValidator } from "../validators/IsNotNullValidator";
-import { IsEqualValidator } from "../validators/IsEqualValidator";
-import { IsNotEqualValidator } from "../validators/IsNotEqualValidator";
-import { IsEmptyValidator } from "../validators/IsEmptyValidator";
 
 describe("ValidatorBuilderImpl", () => {
 

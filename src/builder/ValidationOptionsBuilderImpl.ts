@@ -1,12 +1,20 @@
 "use strict";
 
-import { ValidationOptionsBuilder } from "./ValidationOptionsBuilder";
-import { ValidationCondition } from "../validation/ValidationCondition";
-import { ValidationFailure } from "../validation/ValidationFailure";
-import { ValidationRule } from "../validation/ValidationRule";
-import { WhenCondition } from "../validation/WhenCondition";
-import { UnlessCondition } from "../validation/UnlessCondition";
-import { Severity } from "../validation/Severity";
+import {
+    Severity,
+    ValidationFailure
+} from "../shared";
+
+import {
+    ValidationRule,
+    ValidationCondition,
+    UnlessCondition,
+    WhenCondition
+} from "../validation";
+
+import {
+    ValidationOptionsBuilder
+} from "./";
 
 
 export class ValidationOptionsBuilderImpl<T> implements ValidationOptionsBuilder<T> {

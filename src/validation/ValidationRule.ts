@@ -1,12 +1,18 @@
 "use strict";
 
-import { PropertyValidator } from "../validators/PropertyValidator";
-import { RuleApplicationOutcome } from "./RuleApplicationOutcome";
-import { ValidationFailure } from "./ValidationFailure";
-import { Severity } from "./Severity";
+import {
+    Severity,
+    ValidationFailure
+} from "../shared";
+
+import {
+    PropertyValidator
+} from "../validators";
+
+import {RuleApplicationOutcome } from "./RuleApplicationOutcome";
 import { ValidationCondition } from "./ValidationCondition";
 
-const SUCCESSFUL_OUTCOME = new RuleApplicationOutcome();
+const successfulOutcome = new RuleApplicationOutcome();
 
 export class ValidationRule<T, TProperty> {
 
@@ -54,13 +60,13 @@ export class ValidationRule<T, TProperty> {
     apply(input: T): RuleApplicationOutcome {
 
         if (this.condition && !this.condition.shouldDoValidation(input)) {
-            return SUCCESSFUL_OUTCOME;
+            return successfulOutcome;
         }
 
         let propertyValue = this.lambdaExpression(input);
 
         if (this.validator.isValid(propertyValue)) {
-            return SUCCESSFUL_OUTCOME;
+            return successfulOutcome;
         }
 
         let failure = new ValidationFailure(input, this.propertyName, propertyValue, this.errorCode, this.errorMessage, this.severity);

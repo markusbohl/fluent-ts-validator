@@ -2,8 +2,10 @@
 
 "use strict";
 
-import { ValidationFailure } from "./ValidationFailure";
-import { Severity } from "../validation/Severity";
+import {
+    Severity,
+    ValidationFailure
+} from "../shared";
 
 describe("ValidationFailure", () => {
     describe("constructor", () => {

@@ -1,6 +1,6 @@
 "use strict";
 
-import { Severity } from "../validation/Severity";
+import { Severity } from "../shared/Severity";
 
 export class ValidationFailure {
 

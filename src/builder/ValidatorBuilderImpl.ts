@@ -1,13 +1,21 @@
 "use strict";
 
-import { ValidationOptionsBuilder } from "./ValidationOptionsBuilder";
-import { ValidationOptionsBuilderImpl } from "./ValidationOptionsBuilderImpl";
-import { ValidatorBuilder } from "./ValidatorBuilder";
-import { ValidationRule } from "../validation/ValidationRule";
-import { IsNotNullValidator } from "../validators/IsNotNullValidator";
-import { IsEqualValidator } from "../validators/IsEqualValidator";
-import { IsNotEqualValidator } from "../validators/IsNotEqualValidator";
-import { IsEmptyValidator } from "../validators/IsEmptyValidator";
+import {
+    ValidationRule
+} from "../validation";
+
+import {
+    IsNotNullValidator,
+    IsEmptyValidator,
+    IsEqualValidator,
+    IsNotEqualValidator
+} from "../validators";
+
+import {
+    ValidatorBuilder,
+    ValidationOptionsBuilder,
+    ValidationOptionsBuilderImpl
+} from "./";
 
 export class ValidatorBuilderImpl<T, TProperty> implements ValidatorBuilder<T, TProperty> {
 
