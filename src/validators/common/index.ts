@@ -10,8 +10,8 @@ export * from "./IsNotEqualValidator";
 export * from "./IsInValidator";
 export * from "./IsNotInValidator";
 
+export * from "./IsArrayValidator";
 export * from "./IsBooleanValidator";
 export * from "./IsDateValidator";
-export * from "./IsStringValidator";
-export * from "./IsArrayValidator";
 export * from "./IsNumberValidator";
+export * from "./IsStringValidator";
