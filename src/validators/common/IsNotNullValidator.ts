@@ -3,7 +3,7 @@
 import { PropertyValidator } from "../PropertyValidator";
 
 /**
- * Validates if a value is defined (!== undefined, !== null).
+ * Validates if a value is not null (!== undefined, !== null).
  * 
  * @export
  * @class IsNotNullValidator
