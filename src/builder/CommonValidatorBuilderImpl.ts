@@ -26,13 +26,13 @@ import {
 } from "../validators/common";
 
 import {
-    ValidatorBuilder,
+    CommonValidatorBuilder,
     ValidationOptionsBuilder,
     ValidationOptionsBuilderImpl
 } from "./";
 
 
-export class ValidatorBuilderImpl<T, TProperty> implements ValidatorBuilder<T, TProperty> {
+export class CommonValidatorBuilderImpl<T, TProperty> implements CommonValidatorBuilder<T, TProperty> {
 
     constructor(private validationRule: ValidationRule<T, TProperty>) { }
 

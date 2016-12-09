@@ -4,7 +4,7 @@ import {
     ValidationOptionsBuilder
 } from "./";
 
-export interface ValidatorBuilder<T, TProperty> {
+export interface CommonValidatorBuilder<T, TProperty> {
     isDefined(): ValidationOptionsBuilder<T>;
     isNull(): ValidationOptionsBuilder<T>;
     isNotNull(): ValidationOptionsBuilder<T>;

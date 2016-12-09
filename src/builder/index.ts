@@ -1,6 +1,6 @@
 "use strict";
 
-export * from "./ValidatorBuilder";
-export * from "./ValidatorBuilderImpl";
+export * from "./CommonValidatorBuilder";
+export * from "./CommonValidatorBuilderImpl";
 export * from "./ValidationOptionsBuilder";
 export * from "./ValidationOptionsBuilderImpl";
