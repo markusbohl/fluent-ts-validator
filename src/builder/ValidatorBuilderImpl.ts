@@ -9,7 +9,7 @@ import {
     IsEmptyValidator,
     IsEqualValidator,
     IsNotEqualValidator
-} from "../validators";
+} from "../validators/common";
 
 import {
     ValidatorBuilder,

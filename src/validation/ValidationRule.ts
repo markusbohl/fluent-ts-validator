@@ -7,7 +7,7 @@ import {
 
 import {
     PropertyValidator
-} from "../validators";
+} from "../validators/PropertyValidator";
 
 import {RuleApplicationOutcome } from "./RuleApplicationOutcome";
 import { ValidationCondition } from "./ValidationCondition";

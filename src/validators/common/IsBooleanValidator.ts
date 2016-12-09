@@ -1,6 +1,6 @@
 "use strict";
 
-import { PropertyValidator } from "./PropertyValidator";
+import { PropertyValidator } from "../PropertyValidator";
 
 /**
  * Validates if given value is a real boolean.

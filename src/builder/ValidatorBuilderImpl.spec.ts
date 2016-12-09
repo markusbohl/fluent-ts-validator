@@ -11,7 +11,7 @@ import {
     IsEmptyValidator,
     IsEqualValidator,
     IsNotEqualValidator
-} from "../validators";
+} from "../validators/common";
 
 import { ValidatorBuilder } from "./ValidatorBuilder";
 import { ValidatorBuilderImpl } from "./ValidatorBuilderImpl";

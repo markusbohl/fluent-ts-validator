@@ -1,9 +1,10 @@
 "use strict";
 
 import {
-    PropertyValidator,
     IsEmptyValidator
 } from "./";
+
+import { PropertyValidator } from "../PropertyValidator";
 
 /**
  * Validates if given value is not empty (!== '', !== null, !== undefined)

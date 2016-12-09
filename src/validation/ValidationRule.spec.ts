@@ -9,7 +9,7 @@ import {
 
 import {
     PropertyValidator
-} from "../validators";
+} from "../validators/PropertyValidator";
 
 import {
     ValidationRule,

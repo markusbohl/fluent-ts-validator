@@ -1,6 +1,6 @@
 "use strict";
 
-import { PropertyValidator } from "./PropertyValidator";
+import { PropertyValidator } from "../PropertyValidator";
 
 /**
  * Validates if a value does not match ("!==") the comparison.

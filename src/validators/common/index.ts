@@ -1,7 +1,5 @@
 "use strict";
 
-export * from "./PropertyValidator";
-
 export * from "./IsNullValidator";
 export * from "./IsNotNullValidator";
 export * from "./IsEmptyValidator";
