@@ -8,6 +8,7 @@ describe("IsLessThanValidator", () => {
     describe("isValid()", () => {
         let isLessThanValidator: IsLessThanValidator;
         const threshold = 100;
+
         beforeEach(() => {
             isLessThanValidator = new IsLessThanValidator(threshold);
         });

@@ -7,7 +7,12 @@ import {
 } from "../validation";
 
 import {
-    IsPositiveValidator
+    IsPositiveValidator,
+    IsNegativeValidator,
+    IsGreaterThanValidator,
+    IsGreaterThanOrEqualValidator,
+    IsLessThanValidator,
+    IsLessThanOrEqualValidator
 } from "../validators/number-based";
 
 import {
@@ -34,6 +39,76 @@ describe("NumberValidatorBuilderImpl", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isPositive();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isNegative()", () => {
+        it("should set IsNegativeValidator to validation rule", () => {
+            validatorBuilder.isNegative();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsNegativeValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isNegative();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isGreaterThan()", () => {
+        it("should set IsGreaterThanValidator to validation rule", () => {
+            validatorBuilder.isGreaterThan(42);
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsGreaterThanValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isGreaterThan(42);
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isGreaterThanOrEqual()", () => {
+        it("should set IsGreaterThanOrEqualValidator to validation rule", () => {
+            validatorBuilder.isGreaterThanOrEqual(42);
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsGreaterThanOrEqualValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isGreaterThanOrEqual(42);
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isLessThan()", () => {
+        it("should set IsLessThanValidator to validation rule", () => {
+            validatorBuilder.isLessThan(42);
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLessThanValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isLessThan(42);
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isLessThanOrEqual()", () => {
+        it("should set IsLessThanOrEqualValidator to validation rule", () => {
+            validatorBuilder.isLessThanOrEqual(42);
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLessThanOrEqualValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isLessThanOrEqual(42);
 
             expect(result).not.toBeNull();
         });
