@@ -34,13 +34,13 @@ import {
 
 export class CommonValidatorBuilderImpl<T, TProperty> implements CommonValidatorBuilder<T, TProperty> {
 
-    constructor(private validationRule: ValidationRule<T, TProperty>) { }
+    constructor(protected validationRule: ValidationRule<T, TProperty>) { }
 
-    private addToRule(validator: PropertyValidator<TProperty>) {
+    protected addToRule(validator: PropertyValidator<TProperty>) {
         this.validationRule.setValidator(validator);
     }
 
-    private newValidationOptionsBuilder(): ValidationOptionsBuilder<T> {
+    protected newValidationOptionsBuilder(): ValidationOptionsBuilder<T> {
         return new ValidationOptionsBuilderImpl(this.validationRule);
     }
 
