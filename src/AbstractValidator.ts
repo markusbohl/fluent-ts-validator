@@ -21,7 +21,7 @@ export abstract class AbstractValidator<T> {
 
     protected ruleFor<T>(lambdaExpression: (input: T) => number): CommonValidatorBuilder<T, number> & NumberValidatorBuilder<T>;
     protected ruleFor<T, TProperty>(lambdaExpression: (input: T) => TProperty): CommonValidatorBuilder<T, TProperty>;
-    protected ruleFor<T, TProperty>(lambdaExpression: (input: T) => TProperty): CommonValidatorBuilder<T, TProperty> {
+    protected ruleFor<T, TProperty>(lambdaExpression: (input: T) => TProperty): ValidatorBuilder<T, TProperty> {
         let rule: ValidationRule<T, TProperty> = new ValidationRule(lambdaExpression);
         this.rules.push(rule);
 

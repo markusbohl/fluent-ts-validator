@@ -145,6 +145,29 @@ describe("AbstractValidator", () => {
         });
     });
 
+    describe("TestFunctionOverloadingValidator.validate()", () => {
+        it("should work with number-specific validation rules (valid case)", () => {
+            let validator = new TestFunctionOverloadingValidator();
+            let person = new TestPerson();
+            person.age = 20;
+
+            let result = validator.validate(person);
+
+            expect(result.isValid()).toBeTruthy();
+        });
+
+        it("should work with number-specific validation rules (invalid case)", () => {
+            let validator = new TestFunctionOverloadingValidator();
+            let person = new TestPerson();
+            person.age = 16;
+
+            let result = validator.validate(person);
+
+            expect(result.isValid()).toBeFalsy();
+            expect(result.getFailures()[0].errorMessage).toBe("too young");
+        });
+    });
+
     describe("AbstractValidator", () => {
         describe("ruleFor()", () => {
             it("should not throw exception while instanitating validator", () => {
