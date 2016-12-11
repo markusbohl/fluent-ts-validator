@@ -1,8 +1,7 @@
 "use strict";
 
 import {
-    ValidationOptionsBuilder,
-    CommonValidatorBuilder
+    ValidationOptionsBuilder
 } from "./";
 
 export interface NumberValidatorBuilder<T> {

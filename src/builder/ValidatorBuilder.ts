@@ -35,13 +35,26 @@ import {
 } from "../validators/number-based";
 
 import {
+    IsBeforeValidator,
+    IsSameAsValidator,
+    IsAfterValidator,
+    IsSameOrBeforeValidator,
+    IsSameOrAfterValidator,
+    IsBetweenValidator
+} from "../validators/date-based";
+
+import {
     CommonValidatorBuilder,
     NumberValidatorBuilder,
+    DateValidatorBuilder,
     ValidationOptionsBuilder,
     ValidationOptionsBuilderImpl
 } from "./";
 
-export class ValidatorBuilder<T, TProperty> implements CommonValidatorBuilder<T, TProperty>, NumberValidatorBuilder<T> {
+export class ValidatorBuilder<T, TProperty> implements
+    CommonValidatorBuilder<T, TProperty>,
+    NumberValidatorBuilder<T>,
+    DateValidatorBuilder<T> {
 
     constructor(private validationRule: ValidationRule<T, any>) { }
 
@@ -188,4 +201,39 @@ export class ValidatorBuilder<T, TProperty> implements CommonValidatorBuilder<T,
     * Date-based validation rules
     * ===========================
     */
+    isBefore(date: Date): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsBeforeValidator(date));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isSameAs(date: Date): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsSameAsValidator(date));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isAfter(date: Date): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsAfterValidator(date));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isSameOrBefore(date: Date): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsSameOrBeforeValidator(date));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isSameOrAfter(date: Date): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsSameOrAfterValidator(date));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isBetween(date1: Date, date2: Date, lowerBoundary: "(" | "[" = "(", upperBoundary: ")" | "]" = ")"): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsBetweenValidator(date1, date2, lowerBoundary, upperBoundary));
+
+        return this.newValidationOptionsBuilder();
+    }
 } 
