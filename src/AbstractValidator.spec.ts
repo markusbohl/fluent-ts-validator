@@ -14,6 +14,13 @@ import {
 
 let validationFailure: ValidationFailure = null;
 
+class TestPerson {
+    name: string;
+    age: number;
+    address: string;
+    email: string;
+}
+
 class TestValidator extends AbstractValidator<TestPerson> {
     constructor() {
         super();
@@ -30,11 +37,12 @@ class TestValidator extends AbstractValidator<TestPerson> {
     }
 }
 
-class TestPerson {
-    name: string;
-    age: number;
-    address: string;
-    email: string;
+class TestFunctionOverloadingValidator extends AbstractValidator<TestPerson> {
+    constructor() {
+        super();
+        this.ruleFor((input: TestPerson) => { return input.age; }).isGreaterThanOrEqual(18)
+            .withErrorMessage("too young");
+    }
 }
 
 describe("AbstractValidator", () => {
@@ -134,6 +142,20 @@ describe("AbstractValidator", () => {
             let result: ValidationResult = validator.validate(person);
 
             expect(result.isValid()).toBeFalsy();
+        });
+    });
+
+    describe("AbstractValidator", () => {
+        describe("ruleFor()", () => {
+            it("should not throw exception while instanitating validator", () => {
+                try {
+                    let validator = new TestFunctionOverloadingValidator();
+
+                    expect(validator).toBeDefined();
+                } catch (error) {
+                    fail(error);
+                }
+            });
         });
     });
 });

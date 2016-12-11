@@ -26,21 +26,31 @@ import {
 } from "../validators/common";
 
 import {
+    IsPositiveValidator,
+    IsNegativeValidator,
+    IsGreaterThanValidator,
+    IsGreaterThanOrEqualValidator,
+    IsLessThanValidator,
+    IsLessThanOrEqualValidator
+} from "../validators/number-based";
+
+import {
     CommonValidatorBuilder,
+    NumberValidatorBuilder,
     ValidationOptionsBuilder,
     ValidationOptionsBuilderImpl
 } from "./";
 
 
-export class CommonValidatorBuilderImpl<T, TProperty> implements CommonValidatorBuilder<T, TProperty> {
+export class ValidatorBuilder<T, TProperty> implements CommonValidatorBuilder<T, TProperty>, NumberValidatorBuilder<T> {
 
-    constructor(protected validationRule: ValidationRule<T, TProperty>) { }
+    constructor(private validationRule: ValidationRule<T, any>) { }
 
-    protected addToRule(validator: PropertyValidator<TProperty>) {
+    private addToRule(validator: PropertyValidator<any>) {
         this.validationRule.setValidator(validator);
     }
 
-    protected newValidationOptionsBuilder(): ValidationOptionsBuilder<T> {
+    private newValidationOptionsBuilder(): ValidationOptionsBuilder<T> {
         return new ValidationOptionsBuilderImpl(this.validationRule);
     }
 
@@ -124,6 +134,42 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements CommonValidator
 
     isString(): ValidationOptionsBuilder<T> {
         this.addToRule(new IsStringValidator());
+
+        return this.newValidationOptionsBuilder();
+    }
+
+        isPositive(): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsPositiveValidator());
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isNegative(): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsNegativeValidator());
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isGreaterThan(threshold: number): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsGreaterThanValidator(threshold));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isGreaterThanOrEqual(threshold: number): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsGreaterThanOrEqualValidator(threshold));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isLessThan(threshold: number): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsLessThanValidator(threshold));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isLessThanOrEqual(threshold: number): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsLessThanOrEqualValidator(threshold));
 
         return this.newValidationOptionsBuilder();
     }

@@ -10,7 +10,7 @@ import {
 
 import {
     CommonValidatorBuilder,
-    CommonValidatorBuilderImpl,
+    ValidatorBuilder,
     NumberValidatorBuilder,
     ValidationOptionsBuilder
 } from "./builder";
@@ -19,13 +19,13 @@ export abstract class AbstractValidator<T> {
 
     private rules: any[] = [];
 
-    protected ruleFor<T>(lambdaExpression: (input: T) => number): NumberValidatorBuilder<T>;
+    protected ruleFor<T>(lambdaExpression: (input: T) => number): CommonValidatorBuilder<T, number> & NumberValidatorBuilder<T>;
     protected ruleFor<T, TProperty>(lambdaExpression: (input: T) => TProperty): CommonValidatorBuilder<T, TProperty>;
     protected ruleFor<T, TProperty>(lambdaExpression: (input: T) => TProperty): CommonValidatorBuilder<T, TProperty> {
         let rule: ValidationRule<T, TProperty> = new ValidationRule(lambdaExpression);
         this.rules.push(rule);
 
-        return new CommonValidatorBuilderImpl<T, TProperty>(rule);
+        return new ValidatorBuilder<T, TProperty>(rule);
     }
 
     validate(input: T): ValidationResult {

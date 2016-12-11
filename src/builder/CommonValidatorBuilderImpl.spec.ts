@@ -23,10 +23,12 @@ import {
     IsStringValidator
 } from "../validators/common";
 
-import { CommonValidatorBuilder } from "./CommonValidatorBuilder";
-import { CommonValidatorBuilderImpl } from "./CommonValidatorBuilderImpl";
+import {
+    ValidatorBuilder,
+    CommonValidatorBuilder
+} from "./";
 
-describe("ValidatorBuilderImpl", () => {
+describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
 
     let validationRule: ValidationRule<TestClass, string>;
     let validatorBuilder: CommonValidatorBuilder<TestClass, string>;
@@ -34,7 +36,7 @@ describe("ValidatorBuilderImpl", () => {
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
         spyOn(validationRule, "setValidator");
-        validatorBuilder = new CommonValidatorBuilderImpl(validationRule);
+        validatorBuilder = new ValidatorBuilder(validationRule);
     });
 
     describe("isDefined()", () => {

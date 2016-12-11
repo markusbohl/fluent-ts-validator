@@ -16,18 +16,18 @@ import {
 } from "../validators/number-based";
 
 import {
-    NumberValidatorBuilder,
-    NumberValidatorBuilderImpl
+    ValidatorBuilder,
+    NumberValidatorBuilder
 } from "./";
 
-describe("NumberValidatorBuilderImpl", () => {
+describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
     let validationRule: ValidationRule<TestClass, number>;
     let validatorBuilder: NumberValidatorBuilder<TestClass>;
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
         spyOn(validationRule, "setValidator");
-        validatorBuilder = new NumberValidatorBuilderImpl(validationRule);
+        validatorBuilder = new ValidatorBuilder(validationRule);
     });
 
     describe("isPositive()", () => {
