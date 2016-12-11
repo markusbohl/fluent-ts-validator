@@ -10,9 +10,9 @@ import {
     IsPositiveValidator,
     IsNegativeValidator,
     IsGreaterThanValidator,
-    IsGreaterThanOrEqualValidator,
+    IsGreaterThanOrEqualToValidator,
     IsLessThanValidator,
-    IsLessThanOrEqualValidator
+    IsLessThanOrEqualToValidator
 } from "../validators/number-based";
 
 import {
@@ -76,7 +76,7 @@ describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
         it("should set IsGreaterThanOrEqualValidator to validation rule", () => {
             validatorBuilder.isGreaterThanOrEqual(42);
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsGreaterThanOrEqualValidator));
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsGreaterThanOrEqualToValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -104,7 +104,7 @@ describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
         it("should set IsLessThanOrEqualValidator to validation rule", () => {
             validatorBuilder.isLessThanOrEqual(42);
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLessThanOrEqualValidator));
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLessThanOrEqualToValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {

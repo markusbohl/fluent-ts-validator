@@ -29,9 +29,9 @@ import {
     IsPositiveValidator,
     IsNegativeValidator,
     IsGreaterThanValidator,
-    IsGreaterThanOrEqualValidator,
+    IsGreaterThanOrEqualToValidator,
     IsLessThanValidator,
-    IsLessThanOrEqualValidator
+    IsLessThanOrEqualToValidator
 } from "../validators/number-based";
 
 import {
@@ -40,7 +40,6 @@ import {
     ValidationOptionsBuilder,
     ValidationOptionsBuilderImpl
 } from "./";
-
 
 export class ValidatorBuilder<T, TProperty> implements CommonValidatorBuilder<T, TProperty>, NumberValidatorBuilder<T> {
 
@@ -54,6 +53,11 @@ export class ValidatorBuilder<T, TProperty> implements CommonValidatorBuilder<T,
         return new ValidationOptionsBuilderImpl(this.validationRule);
     }
 
+    /*
+    * =======================
+    * Common validation rules
+    * =======================
+    */
     isDefined(): ValidationOptionsBuilder<T> {
         this.addToRule(new IsDefinedValidator());
 
@@ -138,7 +142,12 @@ export class ValidatorBuilder<T, TProperty> implements CommonValidatorBuilder<T,
         return this.newValidationOptionsBuilder();
     }
 
-        isPositive(): ValidationOptionsBuilder<T> {
+    /*
+    * =============================
+    * Number-based validation rules
+    * =============================
+    */
+    isPositive(): ValidationOptionsBuilder<T> {
         this.addToRule(new IsPositiveValidator());
 
         return this.newValidationOptionsBuilder();
@@ -157,7 +166,7 @@ export class ValidatorBuilder<T, TProperty> implements CommonValidatorBuilder<T,
     }
 
     isGreaterThanOrEqual(threshold: number): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsGreaterThanOrEqualValidator(threshold));
+        this.addToRule(new IsGreaterThanOrEqualToValidator(threshold));
 
         return this.newValidationOptionsBuilder();
     }
@@ -169,8 +178,14 @@ export class ValidatorBuilder<T, TProperty> implements CommonValidatorBuilder<T,
     }
 
     isLessThanOrEqual(threshold: number): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsLessThanOrEqualValidator(threshold));
+        this.addToRule(new IsLessThanOrEqualToValidator(threshold));
 
         return this.newValidationOptionsBuilder();
     }
+
+    /*
+    * ===========================
+    * Date-based validation rules
+    * ===========================
+    */
 } 

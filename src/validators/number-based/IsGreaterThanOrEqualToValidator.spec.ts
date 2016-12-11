@@ -2,31 +2,31 @@
 
 "use strict";
 
-import { IsGreaterThanOrEqualValidator } from "./IsGreaterThanOrEqualValidator";
+import { IsGreaterThanOrEqualToValidator } from "./IsGreaterThanOrEqualToValidator";
 
-describe("IsGreaterThanOrEqualValidator", () => {
+describe("IsGreaterThanOrEqualToValidator", () => {
     describe("isValid()", () => {
-        let isGreaterThanOrEqualValidator: IsGreaterThanOrEqualValidator;
+        let isGreaterThanOrEqualToValidator: IsGreaterThanOrEqualToValidator;
         const threshold = 100;
 
         beforeEach(() => {
-            isGreaterThanOrEqualValidator = new IsGreaterThanOrEqualValidator(threshold);
+            isGreaterThanOrEqualToValidator = new IsGreaterThanOrEqualToValidator(threshold);
         });
 
         it("should return true if given number is equal to the threshold value", () => {
-            let result = isGreaterThanOrEqualValidator.isValid(100);
+            let result = isGreaterThanOrEqualToValidator.isValid(100);
 
             expect(result).toBeTruthy();
         });
 
         it("should return true if given number is greater than the threshold value", () => {
-            let result = isGreaterThanOrEqualValidator.isValid(101);
+            let result = isGreaterThanOrEqualToValidator.isValid(101);
 
             expect(result).toBeTruthy();
         });
 
         it("should return false if given number is less than the threshold value", () => {
-            let result = isGreaterThanOrEqualValidator.isValid(99);
+            let result = isGreaterThanOrEqualToValidator.isValid(99);
 
             expect(result).toBeFalsy();
         });
