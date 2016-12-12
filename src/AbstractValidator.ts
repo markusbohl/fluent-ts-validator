@@ -44,4 +44,10 @@ export abstract class AbstractValidator<T> {
 
         return result;
     }
+
+    validateAsync(input: T): Promise<ValidationResult> {
+        return new Promise<ValidationResult>((resolve) => {
+            resolve(this.validate(input));
+        });
+    }
 }
