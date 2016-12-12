@@ -46,20 +46,20 @@ class TestFunctionOverloadingValidator extends AbstractValidator<TestPerson> {
 }
 
 describe("AbstractValidator", () => {
+    let validator: TestValidator;
+    let person: TestPerson;
+
+    beforeEach(() => {
+        validationFailure = null;
+        validator = new TestValidator();
+        person = new TestPerson();
+        person.name = "Franz";
+        person.age = 18;
+        person.address = "other address";
+        person.email = "mail@example.com";
+    });
+
     describe("TestValidator.validate()", () => {
-        let validator: TestValidator;
-        let person: TestPerson;
-
-        beforeEach(() => {
-            validationFailure = null;
-            validator = new TestValidator();
-            person = new TestPerson();
-            person.name = "Franz";
-            person.age = 18;
-            person.address = "other address";
-            person.email = "mail@example.com";
-        });
-
         it("should return a positive validation result for a valid instance", () => {
             let result: ValidationResult = validator.validate(person);
 
@@ -145,7 +145,42 @@ describe("AbstractValidator", () => {
         });
     });
 
-    describe("TestFunctionOverloadingValidator.validate()", () => {
+    describe("TestValidator.validateAsync()", () => {
+        it("should return a positive validation result through a Promise", (done) => {
+            let promise: Promise<ValidationResult> = validator.validateAsync(person);
+
+            promise.then((result: ValidationResult) => {
+                expect(result.isValid()).toBeTruthy();
+                done();
+            });
+        });
+
+        it("should return a negative validation result through a Promise", (done) => {
+            person.name = null;
+            let promise: Promise<ValidationResult> = validator.validateAsync(person);
+
+            promise.then((result: ValidationResult) => {
+                expect(result.isValid()).toBeFalsy();
+                done();
+            });
+        });
+    });
+});
+
+describe("TestFunctionOverloadingValidator", () => {
+    describe("ruleFor()", () => {
+        it("should not throw exception while instanitating validator", () => {
+            try {
+                let validator = new TestFunctionOverloadingValidator();
+
+                expect(validator).toBeDefined();
+            } catch (error) {
+                fail(error);
+            }
+        });
+    });
+
+    describe("validate()", () => {
         it("should work with number-specific validation rules (valid case)", () => {
             let validator = new TestFunctionOverloadingValidator();
             let person = new TestPerson();
@@ -165,20 +200,6 @@ describe("AbstractValidator", () => {
 
             expect(result.isValid()).toBeFalsy();
             expect(result.getFailures()[0].errorMessage).toBe("too young");
-        });
-    });
-
-    describe("AbstractValidator", () => {
-        describe("ruleFor()", () => {
-            it("should not throw exception while instanitating validator", () => {
-                try {
-                    let validator = new TestFunctionOverloadingValidator();
-
-                    expect(validator).toBeDefined();
-                } catch (error) {
-                    fail(error);
-                }
-            });
         });
     });
 });
