@@ -43,7 +43,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
-        spyOn(validationRule, "setValidator");
+        spyOn(validationRule, "setValidator").and.callThrough();
         validatorBuilder = new ValidatorBuilder(validationRule);
     });
 
@@ -238,6 +238,42 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isString();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("must()", () => {
+        it("should set custom validation logic to validation rule", () => {
+            let validationExpression = (input: string) => { return input === "foobar"; };
+
+            validatorBuilder.must(validationExpression);
+
+            expect(validationRule.setValidator).toHaveBeenCalled();
+        });
+
+        it("should actually apply custom validation logic and succeed", () => {
+            validatorBuilder.must((input: string) => {
+                return input === "foobar";
+            });
+
+            let outcome = validationRule.apply(new TestClass("foobar"));
+
+            expect(outcome.isSuccess()).toBeTruthy();
+        });
+
+        it("should actually apply custom validation logic and fail", () => {
+            validatorBuilder.must((input: string) => {
+                return input === "barfoo";
+            });
+
+            let outcome = validationRule.apply(new TestClass("foobar"));
+
+            expect(outcome.isSuccess()).toBeFalsy();
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.must((input: string) => { return input === "foobar"; });
 
             expect(result).not.toBeNull();
         });

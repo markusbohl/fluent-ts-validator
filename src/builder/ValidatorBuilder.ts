@@ -162,6 +162,21 @@ export class ValidatorBuilder<T, TProperty> implements
     }
 
     /*
+    * ======================
+    * Custom validation rule
+    * ======================
+    */
+    must(validationExpression: (input: TProperty) => boolean): ValidationOptionsBuilder<T> {
+        this.addToRule({
+            isValid: function (input: TProperty): boolean {
+                return validationExpression(input);
+            }
+        });
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    /*
     * =============================
     * Number-based validation rules
     * =============================

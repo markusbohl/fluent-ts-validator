@@ -19,4 +19,5 @@ export interface CommonValidatorBuilder<T, TProperty> {
     isDate(): ValidationOptionsBuilder<T>;
     isNumber(): ValidationOptionsBuilder<T>;
     isString(): ValidationOptionsBuilder<T>;
+    must(validationExpression: (input: TProperty) => boolean): ValidationOptionsBuilder<T>;
 }
