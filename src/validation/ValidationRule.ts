@@ -9,7 +9,7 @@ import {
     PropertyValidator
 } from "../validators/PropertyValidator";
 
-import {RuleApplicationOutcome } from "./RuleApplicationOutcome";
+import { RuleApplicationOutcome } from "./RuleApplicationOutcome";
 import { ValidationCondition } from "./ValidationCondition";
 
 const successfulOutcome = new RuleApplicationOutcome();
