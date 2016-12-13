@@ -12,16 +12,26 @@ import {
     ValidatorBuilder,
     CommonValidatorBuilder,
     NumberValidatorBuilder,
+    StringValidatorBuilder,
     DateValidatorBuilder,
     ValidationOptionsBuilder
 } from "./builder";
 
+/**
+ * Abstract base class for all custom validators.
+ * 
+ * @export
+ * @abstract
+ * @class AbstractValidator
+ * @template T
+ */
 export abstract class AbstractValidator<T> {
 
     private rules: any[] = [];
 
     protected ruleFor<T>(lambdaExpression: (input: T) => number): CommonValidatorBuilder<T, number> & NumberValidatorBuilder<T>;
     protected ruleFor<T>(lambdaExpression: (input: T) => Date): CommonValidatorBuilder<T, Date> & DateValidatorBuilder<T>;
+    protected ruleFor<T>(lambdaExpression: (input: T) => string): CommonValidatorBuilder<T, string> & StringValidatorBuilder<T>;
     protected ruleFor<T, TProperty>(lambdaExpression: (input: T) => TProperty): CommonValidatorBuilder<T, TProperty>;
     protected ruleFor<T, TProperty>(lambdaExpression: (input: T) => TProperty): ValidatorBuilder<T, TProperty> {
         let rule: ValidationRule<T, TProperty> = new ValidationRule(lambdaExpression);

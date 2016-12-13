@@ -28,6 +28,14 @@ import {
     CommonValidatorBuilder
 } from "./";
 
+class TestClass {
+    property: string;
+
+    constructor(property: string) {
+        this.property = property;
+    }
+}
+
 describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
 
     let validationRule: ValidationRule<TestClass, string>;
@@ -235,11 +243,3 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         });
     });
 });
-
-class TestClass {
-    property: string;
-
-    constructor(property: string) {
-        this.property = property;
-    }
-}

@@ -20,6 +20,14 @@ import {
     DateValidatorBuilder
 } from "./";
 
+class TestClass {
+    property: Date;
+
+    constructor(property: Date) {
+        this.property = property;
+    }
+}
+
 describe("ValidatorBuilder -> DateValidatorBuilder implementation", () => {
     let validationRule: ValidationRule<TestClass, Date>;
     let validatorBuilder: DateValidatorBuilder<TestClass>;
@@ -117,11 +125,3 @@ describe("ValidatorBuilder -> DateValidatorBuilder implementation", () => {
         });
     });
 });
-
-class TestClass {
-    property: Date;
-
-    constructor(property: Date) {
-        this.property = property;
-    }
-}

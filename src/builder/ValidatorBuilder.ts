@@ -44,9 +44,14 @@ import {
 } from "../validators/date-based";
 
 import {
+    IsBooleanStringValidator
+} from "../validators/string-based";
+
+import {
     CommonValidatorBuilder,
     NumberValidatorBuilder,
     DateValidatorBuilder,
+    StringValidatorBuilder,
     ValidationOptionsBuilder,
     ValidationOptionsBuilderImpl
 } from "./";
@@ -54,7 +59,8 @@ import {
 export class ValidatorBuilder<T, TProperty> implements
     CommonValidatorBuilder<T, TProperty>,
     NumberValidatorBuilder<T>,
-    DateValidatorBuilder<T> {
+    DateValidatorBuilder<T>,
+    StringValidatorBuilder<T> {
 
     constructor(private validationRule: ValidationRule<T, any>) { }
 
@@ -233,6 +239,17 @@ export class ValidatorBuilder<T, TProperty> implements
 
     isBetween(date1: Date, date2: Date, lowerBoundary: "(" | "[" = "(", upperBoundary: ")" | "]" = ")"): ValidationOptionsBuilder<T> {
         this.addToRule(new IsBetweenValidator(date1, date2, lowerBoundary, upperBoundary));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    /*
+    * =============================
+    * String-based validation rules
+    * =============================
+    */
+    isBooleanString(): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsBooleanStringValidator());
 
         return this.newValidationOptionsBuilder();
     }

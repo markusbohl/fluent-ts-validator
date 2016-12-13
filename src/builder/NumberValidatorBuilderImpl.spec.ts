@@ -20,6 +20,14 @@ import {
     NumberValidatorBuilder
 } from "./";
 
+class TestClass {
+    property: number;
+
+    constructor(property: number) {
+        this.property = property;
+    }
+}
+
 describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
     let validationRule: ValidationRule<TestClass, number>;
     let validatorBuilder: NumberValidatorBuilder<TestClass>;
@@ -114,11 +122,3 @@ describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
         });
     });
 });
-
-class TestClass {
-    property: number;
-
-    constructor(property: number) {
-        this.property = property;
-    }
-}
