@@ -5,6 +5,11 @@ import {
 } from "../validation";
 
 import {
+    AlphaLocale,
+    AlphanumericLocale
+} from "../shared";
+
+import {
     PropertyValidator
 } from "../validators/PropertyValidator";
 
@@ -44,7 +49,11 @@ import {
 } from "../validators/date-based";
 
 import {
-    IsBooleanStringValidator
+    IsBooleanStringValidator,
+    IsDateStringValidator,
+    IsNumericStringValidator,
+    IsAlphaValidator,
+    IsAlphanumericValidator
 } from "../validators/string-based";
 
 import {
@@ -265,6 +274,30 @@ export class ValidatorBuilder<T, TProperty> implements
     */
     isBooleanString(): ValidationOptionsBuilder<T> {
         this.addToRule(new IsBooleanStringValidator());
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isDateString(): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsDateStringValidator());
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isNumericString(): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsNumericStringValidator());
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isAlphaString(locale?: AlphaLocale): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsAlphaValidator(locale));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isAlphanumericString(locale?: AlphanumericLocale): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsAlphanumericValidator(locale));
 
         return this.newValidationOptionsBuilder();
     }

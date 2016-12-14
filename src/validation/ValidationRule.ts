@@ -34,7 +34,6 @@ export class ValidationRule<T, TProperty> {
      }
 
      setValidator(validator: PropertyValidator<TProperty>) {
-         console.log(validator);
          this.validator = validator;
      }
 
@@ -65,8 +64,6 @@ export class ValidationRule<T, TProperty> {
         }
 
         let propertyValue = this.lambdaExpression(input);
-
-        console.log(this.validator);
 
         if (this.validator.isValid(propertyValue)) {
             return successfulOutcome;
