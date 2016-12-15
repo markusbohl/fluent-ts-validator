@@ -2,7 +2,7 @@
 
 import {
     ValidationFailure
-} from "./shared";
+} from "./";
 
 export class ValidationResult {
 

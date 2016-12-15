@@ -1,13 +1,10 @@
-/// <reference path="../node_modules/@types/jasmine/index.d.ts" />
+/// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
 
 "use strict";
 
 import {
+    ValidationResult,
     ValidationFailure
-} from "./shared";
-
-import {
-    ValidationResult
 } from "./";
 
 describe("ValidationResult", () => {

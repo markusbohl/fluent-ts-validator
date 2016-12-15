@@ -5,6 +5,7 @@ import {
 } from "../validation";
 
 import {
+    Validatable,
     AlphaLocale,
     AlphanumericLocale
 } from "../shared";
@@ -61,6 +62,7 @@ import {
     NumberValidatorBuilder,
     DateValidatorBuilder,
     StringValidatorBuilder,
+    CustomValidatorAppender,
     ValidationOptionsBuilder,
     ValidationOptionsBuilderImpl
 } from "./";
@@ -69,7 +71,8 @@ export class ValidatorBuilder<T, TProperty> implements
     CommonValidatorBuilder<T, TProperty>,
     NumberValidatorBuilder<T>,
     DateValidatorBuilder<T>,
-    StringValidatorBuilder<T> {
+    StringValidatorBuilder<T>,
+    CustomValidatorAppender<T, TProperty> {
 
     constructor(private validationRule: ValidationRule<T, any>) { }
 
@@ -301,4 +304,20 @@ export class ValidatorBuilder<T, TProperty> implements
 
         return this.newValidationOptionsBuilder();
     }
-} 
+
+
+    /*
+    * =======================
+    * Custom validation rules
+    * =======================
+    */
+    setValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T> {
+        this.addToRule({
+            isValid: function(input: TProperty): boolean {
+                return validator.validate(input).isValid();
+            }
+        });
+
+        return this.newValidationOptionsBuilder();
+    }
+}

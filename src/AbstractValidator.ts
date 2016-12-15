@@ -1,8 +1,9 @@
 "use strict";
 
 import {
+    Validatable,
     ValidationResult
-} from "./";
+} from "./shared";
 
 import {
     ValidationRule
@@ -25,7 +26,7 @@ import {
  * @class AbstractValidator
  * @template T
  */
-export abstract class AbstractValidator<T> {
+export abstract class AbstractValidator<T> implements Validatable<T> {
 
     private rules: any[] = [];
 
