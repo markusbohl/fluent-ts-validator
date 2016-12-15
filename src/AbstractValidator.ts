@@ -6,7 +6,8 @@ import {
 } from "./shared";
 
 import {
-    ValidationRule
+    ValidationRule,
+    RuleApplicationOutcome
 } from "./validation";
 
 import {
@@ -58,7 +59,28 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
 
     validateAsync(input: T): Promise<ValidationResult> {
         return new Promise<ValidationResult>((resolve) => {
-            resolve(this.validate(input));
+            let promises = new Array<Promise<RuleApplicationOutcome>>();
+
+            this.rules.forEach((element: any) => {
+                let rule = element as ValidationRule<T, any>;
+                promises.push(this.applyRuleAsync(rule, input));
+            });
+
+            Promise.all(promises).then((outcomes: RuleApplicationOutcome[]) => {
+                let result = new ValidationResult();
+                outcomes.forEach((outcome: RuleApplicationOutcome) => {
+                    if (outcome.isFailure()) {
+                        result.addFailure(outcome.getValidationFailure());
+                    }
+                });
+                resolve(result);
+            });
+        });
+    }
+
+    private applyRuleAsync(rule: ValidationRule<T, any>, input: T): Promise<RuleApplicationOutcome> {
+        return new Promise((resolve) => {
+            resolve(rule.apply(input));
         });
     }
 }
