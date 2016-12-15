@@ -62,7 +62,6 @@ import {
     NumberValidatorBuilder,
     DateValidatorBuilder,
     StringValidatorBuilder,
-    CustomValidatorAppender,
     ValidationOptionsBuilder,
     ValidationOptionsBuilderImpl
 } from "./";
@@ -71,8 +70,7 @@ export class ValidatorBuilder<T, TProperty> implements
     CommonValidatorBuilder<T, TProperty>,
     NumberValidatorBuilder<T>,
     DateValidatorBuilder<T>,
-    StringValidatorBuilder<T>,
-    CustomValidatorAppender<T, TProperty> {
+    StringValidatorBuilder<T> {
 
     constructor(private validationRule: ValidationRule<T, any>) { }
 

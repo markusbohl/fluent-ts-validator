@@ -4,6 +4,10 @@ import {
     ValidationOptionsBuilder
 } from "./";
 
+import {
+    Validatable
+} from "../shared";
+
 export interface CommonValidatorBuilder<T, TProperty> {
     isDefined(): ValidationOptionsBuilder<T>;
     isNull(): ValidationOptionsBuilder<T>;
@@ -20,4 +24,5 @@ export interface CommonValidatorBuilder<T, TProperty> {
     isNumber(): ValidationOptionsBuilder<T>;
     isString(): ValidationOptionsBuilder<T>;
     must(validationExpression: (input: TProperty) => boolean): ValidationOptionsBuilder<T>;
+    setValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T>;
 }
