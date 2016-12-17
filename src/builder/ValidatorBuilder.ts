@@ -7,7 +7,11 @@ import {
 import {
     Validatable,
     AlphaLocale,
-    AlphanumericLocale
+    AlphanumericLocale,
+    CurrencyOptions,
+    EmailOptions,
+    FqdnOptions,
+    UuidVersion
 } from "../shared";
 
 import {
@@ -50,11 +54,19 @@ import {
 } from "../validators/date-based";
 
 import {
+    ContainsValidator,
     IsBooleanStringValidator,
     IsDateStringValidator,
     IsNumericStringValidator,
     IsAlphaValidator,
-    IsAlphanumericValidator
+    IsAlphanumericValidator,
+    IsAsciiValidator,
+    IsBase64Validator,
+    IsCurrencyValidator,
+    IsDecimalStringValidator,
+    IsEmailValidator,
+    IsFQDNValidator,
+    IsUUIDValidator
 } from "../validators/string-based";
 
 import {
@@ -303,6 +315,53 @@ export class ValidatorBuilder<T, TProperty> implements
         return this.newValidationOptionsBuilder();
     }
 
+    contains(seed: string): ValidationOptionsBuilder<T> {
+        this.addToRule(new ContainsValidator(seed));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isAscii(): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsAsciiValidator());
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isBase64(): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsBase64Validator());
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isCurrency(options?: CurrencyOptions): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsCurrencyValidator(options));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isDecimalString(): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsDecimalStringValidator());
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isEmail(options?: EmailOptions): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsEmailValidator(options));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isFQDN(options?: FqdnOptions): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsFQDNValidator(options));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isUUID(version?: UuidVersion): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsUUIDValidator(version));
+
+        return this.newValidationOptionsBuilder();
+    }
 
     /*
     * =======================
@@ -311,7 +370,7 @@ export class ValidatorBuilder<T, TProperty> implements
     */
     setValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T> {
         this.addToRule({
-            isValid: function(input: TProperty): boolean {
+            isValid: function (input: TProperty): boolean {
                 return validator.validate(input).isValid();
             }
         });

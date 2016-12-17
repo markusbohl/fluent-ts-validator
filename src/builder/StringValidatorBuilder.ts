@@ -6,13 +6,25 @@ import {
 
 import {
     AlphaLocale,
-    AlphanumericLocale
+    AlphanumericLocale,
+    CurrencyOptions,
+    EmailOptions,
+    FqdnOptions,
+    UuidVersion
 } from "../shared";
 
 export interface StringValidatorBuilder<T> {
-    isBooleanString(): ValidationOptionsBuilder<T>;
-    isDateString(): ValidationOptionsBuilder<T>;
-    isNumericString(): ValidationOptionsBuilder<T>;
-    isAlphaString(locale?: AlphaLocale): ValidationOptionsBuilder<T>;
+    contains(seed: string): ValidationOptionsBuilder<T>;
     isAlphanumericString(locale?: AlphanumericLocale): ValidationOptionsBuilder<T>;
+    isAlphaString(locale?: AlphaLocale): ValidationOptionsBuilder<T>;
+    isAscii(): ValidationOptionsBuilder<T>;
+    isBase64(): ValidationOptionsBuilder<T>;
+    isBooleanString(): ValidationOptionsBuilder<T>;
+    isCurrency(options?: CurrencyOptions): ValidationOptionsBuilder<T>;
+    isDateString(): ValidationOptionsBuilder<T>;
+    isDecimalString(): ValidationOptionsBuilder<T>;
+    isEmail(options?: EmailOptions): ValidationOptionsBuilder<T>;
+    isFQDN(options?: FqdnOptions): ValidationOptionsBuilder<T>;
+    isNumericString(): ValidationOptionsBuilder<T>;
+    isUUID(version?: UuidVersion): ValidationOptionsBuilder<T>;
 }
