@@ -4,7 +4,7 @@ import { PropertyValidator } from "../PropertyValidator";
 
 /**
  * Validates if a value is not null (!== undefined, !== null).
- * 
+ *
  * @export
  * @class IsNotNullValidator
  * @implements {PropertyValidator<any>}
@@ -12,6 +12,6 @@ import { PropertyValidator } from "../PropertyValidator";
 export class IsNotNullValidator implements PropertyValidator<any> {
 
     isValid(input: any): boolean {
-        return input;
+        return input !== null && typeof input !== "undefined";
     }
 }

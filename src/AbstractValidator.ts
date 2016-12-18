@@ -7,6 +7,7 @@ import {
 
 import {
     ValidationRule,
+    CollectionValidationRule,
     RuleApplicationOutcome
 } from "./validation";
 
@@ -42,6 +43,17 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
         return new ValidatorBuilder<T, TProperty>(rule);
     }
 
+    protected ruleForEach(lambdaExpression: (input: T) => number[]): CommonValidatorBuilder<T, number> & NumberValidatorBuilder<T>;
+    protected ruleForEach(lambdaExpression: (input: T) => Date[]): CommonValidatorBuilder<T, Date> & DateValidatorBuilder<T>;
+    protected ruleForEach(lambdaExpression: (input: T) => string[]): CommonValidatorBuilder<T, string> & StringValidatorBuilder<T>;
+    protected ruleForEach<TProperty>(lambdaExpression: (input: T) => TProperty[]): CommonValidatorBuilder<T, TProperty>;
+    protected ruleForEach<TProperty>(lambdaExpression: (input: T) => TProperty[]): ValidatorBuilder<T, TProperty> {
+        let rule: ValidationRule<T, TProperty[]> = new CollectionValidationRule(lambdaExpression);
+        this.rules.push(rule);
+
+        return new ValidatorBuilder<T, TProperty>(rule);
+    }
+
     validate(input: T): ValidationResult {
         let result = new ValidationResult();
 
@@ -49,7 +61,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
             let outcome = rule.apply(input);
 
             if (outcome.isFailure()) {
-                result.addFailure(outcome.getValidationFailure());
+                result.addFailures(outcome.getValidationFailures());
             }
         });
 
@@ -86,7 +98,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
         let result = new ValidationResult();
         outcomes.forEach((outcome: RuleApplicationOutcome) => {
             if (outcome.isFailure()) {
-                result.addFailure(outcome.getValidationFailure());
+                result.addFailures(outcome.getValidationFailures());
             }
         });
         return result;

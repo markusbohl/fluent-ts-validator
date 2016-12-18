@@ -1,6 +1,7 @@
 "use strict";
 
 export * from "./ValidationRule";
+export * from "./CollectionValidationRule";
 export * from "./RuleApplicationOutcome";
 
 export * from "./ValidationCondition";
