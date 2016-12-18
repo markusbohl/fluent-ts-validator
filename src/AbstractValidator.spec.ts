@@ -203,3 +203,61 @@ describe("TestFunctionOverloadingValidator", () => {
         });
     });
 });
+
+class TestAddressbook {
+    contacts: TestPerson[];
+}
+
+class AddressbookValidator extends AbstractValidator<TestAddressbook> {
+    constructor() {
+        super();
+        this.ruleForEach((input: TestAddressbook) => { return input.contacts; }).isNotNull();
+    }
+}
+
+describe("AddressbookValidator", () => {
+    let validator: AddressbookValidator;
+    let addressbook: TestAddressbook;
+    let person1: TestPerson;
+    let person2: TestPerson;
+
+    beforeEach(() => {
+        validator = new AddressbookValidator();
+        addressbook = new TestAddressbook();
+        person1 = new TestPerson();
+        person2 = new TestPerson();
+    });
+
+    describe("validate()", () => {
+        it("should return a positive result if none of the elements in the given array is null", () => {
+            addressbook.contacts = [person1, person2];
+
+            let result = validator.validate(addressbook);
+
+            expect(result.isValid()).toBeTruthy();
+        });
+
+        it("should return a negative result if at least one of the elements in the given array is null", () => {
+            addressbook.contacts = [person1, person2, null];
+
+            let result = validator.validate(addressbook);
+
+            expect(result.isValid()).toBeFalsy();
+        });
+
+        it("should return a detailed result if at least one of the elements in the given array is null", () => {
+            addressbook.contacts = [person1, person2, null];
+
+            let result = validator.validate(addressbook);
+
+            expect(result.getFailures()).toContain(jasmine.objectContaining({
+                target: addressbook,
+                propertyName: "contacts",
+                attemptedValue: null,
+                errorCode: undefined,
+                errorMessage: undefined,
+                severity: Severity.ERROR
+            }));
+        });
+    });
+});

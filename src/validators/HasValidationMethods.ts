@@ -1,39 +1,32 @@
 "use strict";
 
-import {
-    IsCurrencyOptions,
-    IsURLOptions,
-    IsEmailOptions,
-    IsFQDNOptions
-} from "./ValidationTypeOptions";
-
 export interface HasValidationMethods {
 
     /**
      * Checks if value is defined ("!==undefined").
      */
     isDefined(value: any): boolean;
-    /** 
+    /**
      * Checks if value matches ("===") the comparison.
     */
     equals<T>(value: T, comparison: T): boolean;
-    /** 
+    /**
      * Checks if value does not match ("!==") the comparison.
      */
     notEquals<T>(value: T, comparison: T): boolean;
-    /** 
+    /**
      * Checks if given value is empty (=== '', === null, === undefined).
      */
     isEmpty(value: any): boolean;
-    /** 
+    /**
      * Checks if given value is not empty (!== '', !== null, !== undefined).
      */
     isNotEmpty(value: any): boolean;
-    /** 
+    /**
      * Checks if given value is in a array of allowed values.
      */
     isIn<T>(value: T, possibleValues: Array<T>): boolean;
-    /** 
+    /**
      * Checks if given value not in a array of allowed values.
      */
     isNotIn<T>(value: T, possibleValues: Array<T>): boolean;
@@ -165,17 +158,17 @@ export interface HasValidationMethods {
     /**
      * Checks if the string is a valid currency amount.
      */
-    isCurrency(str: string, options: IsCurrencyOptions): boolean;
+    isCurrency(str: string, options: any): boolean;
 
     /**
      * Checks if the string is an email.
      */
-    isEmail(str: string, options: IsEmailOptions): boolean;
+    isEmail(str: string, options: any): boolean;
 
     /**
      * Checks if the string is a fully qualified domain name (e.g. domain.com).
      */
-    isFQDN(str: string, options: IsFQDNOptions): boolean;
+    isFQDN(str: string, options: any): boolean;
 
     /**
      * Checks if the string contains any full-width chars.
@@ -250,7 +243,7 @@ export interface HasValidationMethods {
     /**
      * Checks if the string is an url.
      */
-    isURL(str: string, options: IsURLOptions): boolean;
+    isURL(str: string, options: any): boolean;
 
     /**
      * Checks if the string is a UUID (version 3, 4 or 5).

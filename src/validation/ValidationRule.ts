@@ -16,26 +16,26 @@ const successfulOutcome = new RuleApplicationOutcome();
 
 export class ValidationRule<T, TProperty> {
 
-    private validator: PropertyValidator<TProperty>;
-    private propertyName: string;
-    private errorCode: string;
-    private errorMessage: string;
-    private severity: Severity;
-    private condition: ValidationCondition<T>;
-    private callback: (failure: ValidationFailure) => void;
+    protected validator: PropertyValidator<TProperty>;
+    protected propertyName: string;
+    protected errorCode: string;
+    protected errorMessage: string;
+    protected severity: Severity;
+    protected condition: ValidationCondition<T>;
+    protected callback: (failure: ValidationFailure) => void;
 
-    constructor(private lambdaExpression: (input: T) => TProperty) {
+    constructor(protected lambdaExpression: (input: T) => TProperty) {
         // the best way I could think of to get hold of the propertyName was via regex
         // (the identified propertyName will be used later to specify where a validation failure came from)
         // obviously, something like a native nameof-function in TypeScript would be way nicer
         // unfortunately, it does not exist yet
         let regexArray = lambdaExpression.toString().match("return\\s+\\w+\\.(\\w+)");
         this.propertyName = regexArray && regexArray.length > 1 ? regexArray[1] : null;
-     }
+    }
 
-     setValidator(validator: PropertyValidator<TProperty>) {
-         this.validator = validator;
-     }
+    setValidator(validator: PropertyValidator<TProperty>) {
+        this.validator = validator;
+    }
 
     setErrorCode(errorCode: string) {
         this.errorCode = errorCode;
@@ -58,23 +58,34 @@ export class ValidationRule<T, TProperty> {
     }
 
     apply(input: T): RuleApplicationOutcome {
-
-        if (this.condition && !this.condition.shouldDoValidation(input)) {
-            return successfulOutcome;
-        }
-
         let propertyValue = this.lambdaExpression(input);
 
-        if (this.validator.isValid(propertyValue)) {
+        if (this.isValid(input, propertyValue)) {
             return successfulOutcome;
         }
 
-        let failure = new ValidationFailure(input, this.propertyName, propertyValue, this.errorCode, this.errorMessage, this.severity);
+        let failure = this.createValidationFailure(input, propertyValue);
 
+        this.invokeCallbackWith(failure);
+
+        return new RuleApplicationOutcome(failure);
+    }
+
+    protected isValid(input: T, propertyValue: TProperty): boolean {
+        return this.isNoValidationRequired(input) || this.validator.isValid(propertyValue);
+    }
+
+    protected isNoValidationRequired(input: T): boolean {
+        return this.condition && !this.condition.shouldDoValidation(input);
+    }
+
+    protected createValidationFailure(input: T, propertyValue: TProperty): ValidationFailure {
+        return new ValidationFailure(input, this.propertyName, propertyValue, this.errorCode, this.errorMessage, this.severity);
+    }
+
+    protected invokeCallbackWith(failure: ValidationFailure) {
         if (this.callback) {
             this.callback(failure);
         }
-
-        return new RuleApplicationOutcome(failure);
     }
 }

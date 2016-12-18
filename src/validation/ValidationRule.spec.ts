@@ -79,7 +79,7 @@ describe("ValidationRule", () => {
             rule.setValidator(getNegativeValidator());
             let toBeValidated = new TestClass("invalid property value");
 
-            let failure = rule.apply(toBeValidated).getValidationFailure();
+            let failure = rule.apply(toBeValidated).getValidationFailures()[0];
 
             expect(failure.target).toBe(toBeValidated);
             expect(failure.propertyName).toBe("property");
@@ -92,7 +92,7 @@ describe("ValidationRule", () => {
             let toBeValidated = new TestClass("invalid property value");
             rule.setValidator(getNegativeValidator());
 
-            let failure = rule.apply(toBeValidated).getValidationFailure();
+            let failure = rule.apply(toBeValidated).getValidationFailures()[0];
 
             expect(failure.propertyName).toBe("leOtherProperty1");
         });
@@ -101,7 +101,7 @@ describe("ValidationRule", () => {
             let rule: ValidationRule<number, number> = new ValidationRule((input: number) => { return input; });
             rule.setValidator(getNegativeValidator());
 
-            let failure = rule.apply(42).getValidationFailure();
+            let failure = rule.apply(42).getValidationFailures()[0];
 
             expect(failure.propertyName).toBe(null);
         });
@@ -132,7 +132,7 @@ describe("ValidationRule", () => {
 
             let result = rule.apply(new TestClass("invalid property value"));
 
-            expect(result.getValidationFailure().errorCode).toBe("error-code");
+            expect(result.getValidationFailures()[0].errorCode).toBe("error-code");
         });
     });
 
@@ -143,7 +143,7 @@ describe("ValidationRule", () => {
 
             let result = rule.apply(new TestClass("invalid property value"));
 
-            expect(result.getValidationFailure().errorMessage).toBe("error-message");
+            expect(result.getValidationFailures()[0].errorMessage).toBe("error-message");
         });
     });
 
@@ -154,7 +154,7 @@ describe("ValidationRule", () => {
 
             let result = rule.apply(new TestClass("invalid property value"));
 
-            expect(result.getValidationFailure().severity).toBe(Severity.INFO);
+            expect(result.getValidationFailures()[0].severity).toBe(Severity.INFO);
         });
     });
 
@@ -174,10 +174,10 @@ describe("ValidationRule", () => {
             let validator: PropertyValidator<string> = getPositiveValidator();
             spyOn(validator, "isValid");
             rule.setValidator(validator);
-            let validation: ValidationCondition<TestClass> = {
+            let condition: ValidationCondition<TestClass> = {
                 shouldDoValidation(input: TestClass) { return true; }
             };
-            rule.setCondition(validation);
+            rule.setCondition(condition);
 
             rule.apply(new TestClass("some value"));
 

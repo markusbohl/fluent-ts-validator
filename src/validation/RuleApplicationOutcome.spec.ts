@@ -13,45 +13,76 @@ describe("RuleApplicationOutcome", () => {
         failure = new ValidationFailure(null, null, null);
     });
 
+    describe("RuleApplicationOutcome()", () => {
+        it("should add an optional validation failure to the internal collection of failures", () => {
+            let outcome = new RuleApplicationOutcome(failure);
+
+            expect(outcome.isFailure()).toBeTruthy();
+            expect(outcome.getValidationFailures()).toContain(failure);
+        });
+
+        it("should not add a null to the internal collection of failures", () => {
+            let outcome = new RuleApplicationOutcome(null);
+
+            expect(outcome.isFailure()).toBeFalsy();
+            expect(outcome.getValidationFailures()).not.toContain(null);
+        });
+    });
+
     describe("isSuccess()", () => {
-        it("should return true if no validation failure is set", () => {
+        it("should return true if no validation failure has been added", () => {
             let outcome = new RuleApplicationOutcome();
 
             expect(outcome.isSuccess()).toBeTruthy();
         });
 
-        it("should return false if a validation failure is set", () => {
-            let outcome = new RuleApplicationOutcome(failure);
+        it("should return false if at least one validation failure has been added", () => {
+            let outcome = new RuleApplicationOutcome();
+
+            outcome.addValidationFailure(failure);
 
             expect(outcome.isSuccess()).toBeFalsy();
         });
     });
 
     describe("isFailure()", () => {
-        it("should return false if no validation failure is set", () => {
+        it("should return false if no validation failure has been added", () => {
             let outcome = new RuleApplicationOutcome();
 
             expect(outcome.isFailure()).toBeFalsy();
         });
 
-        it("should return true if a validation failure is set", () => {
-            let outcome = new RuleApplicationOutcome(failure);
+        it("should return true if a validation failure has been added", () => {
+            let outcome = new RuleApplicationOutcome();
+
+            outcome.addValidationFailure(failure);
 
             expect(outcome.isFailure()).toBeTruthy();
         });
     });
 
-    describe("getValidationFailure()", () => {
-        it("should return null if no validation failure has been set", () => {
+    describe("getValidationFailures()", () => {
+        it("should return empty array if no validation failure has been added", () => {
             let outcome = new RuleApplicationOutcome();
 
-            expect(outcome.getValidationFailure()).toBeNull();
+            expect(outcome.getValidationFailures().length).toBe(0);
         });
 
-        it("should return the provided validation failure", () => {
-            let outcome = new RuleApplicationOutcome(failure);
+        it("should return provided validation failures", () => {
+            let outcome = new RuleApplicationOutcome();
 
-            expect(outcome.getValidationFailure()).toBe(failure);
+            outcome.addValidationFailure(failure);
+
+            expect(outcome.getValidationFailures()).toContain(failure);
+        });
+
+        it("should return clone of internal array to be protected against manipulation", () => {
+            let outcome = new RuleApplicationOutcome();
+
+            outcome.addValidationFailure(failure);
+            outcome.getValidationFailures().pop();
+
+            expect(outcome.getValidationFailures()).toContain(failure);
         });
     });
 });

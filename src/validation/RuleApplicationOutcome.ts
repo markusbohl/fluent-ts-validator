@@ -4,23 +4,27 @@ import { ValidationFailure } from "../shared/ValidationFailure";
 
 export class RuleApplicationOutcome {
 
-    constructor(private validationFailure?: ValidationFailure) { }
+    private failures: ValidationFailure[] = [];
+
+    constructor(private validationFailure?: ValidationFailure) {
+        if (validationFailure) {
+            this.addValidationFailure(validationFailure);
+        }
+    }
 
     isSuccess(): boolean {
-        if (this.validationFailure) {
-            return false;
-        }
-        return true;
+        return this.failures.length === 0;
     }
 
     isFailure(): boolean {
         return !this.isSuccess();
     }
 
-    getValidationFailure(): ValidationFailure {
-        if (this.validationFailure) {
-            return this.validationFailure;
-        }
-        return null;
+    addValidationFailure(failure: ValidationFailure): void {
+        this.failures.push(failure);
+    }
+
+    getValidationFailures(): ValidationFailure[] {
+        return this.failures.slice(0);
     }
 }

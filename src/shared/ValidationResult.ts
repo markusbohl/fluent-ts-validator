@@ -12,13 +12,13 @@ export class ValidationResult {
         return this.failures.length === 0;
     }
 
-    addFailure(failure: ValidationFailure): void {
-        if (failure) {
-            this.failures.push(failure);
+    addFailures(failures: ValidationFailure[]): void {
+        if (failures) {
+            this.failures = this.failures.concat(failures);
         }
     }
 
     getFailures(): ValidationFailure[] {
-        return this.failures.slice();
+        return this.failures.slice(0);
     }
 }
