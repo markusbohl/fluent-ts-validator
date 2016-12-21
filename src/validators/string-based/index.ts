@@ -13,3 +13,4 @@ export * from "./IsEmailValidator";
 export * from "./IsFQDNValidator";
 export * from "./IsNumericStringValidator";
 export * from "./IsUUIDValidator";
+export * from "./RegExValidator";

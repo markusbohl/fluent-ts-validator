@@ -12,7 +12,7 @@ gulp.task("test", (done) => {
     });
 });
 
-gulp.task("tdd", () => {
+gulp.task("tdd", ["test"], () => {
     let _watchables = ["src/**/*.ts"];
 
     return gulp.watch(_watchables, ["test"]);
@@ -20,8 +20,8 @@ gulp.task("tdd", () => {
 
 gulp.task("tslint", () =>
     gulp.src("src/**/*.ts")
-        .pipe(tslint({
-            formatter: "verbose"
-        }))
-        .pipe(tslint.report())
+    .pipe(tslint({
+        formatter: "verbose"
+    }))
+    .pipe(tslint.report())
 );
