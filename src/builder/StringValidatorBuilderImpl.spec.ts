@@ -19,7 +19,8 @@ import {
     IsEmailValidator,
     IsFQDNValidator,
     IsNumericStringValidator,
-    IsUUIDValidator
+    IsUUIDValidator,
+    RegExValidator
 } from "../validators/string-based";
 
 import {
@@ -222,6 +223,20 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isUUID();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("matches()", () => {
+        it("should set RegExValidator to validation rule", () => {
+            validatorBuilder.matches(new RegExp("foo"));
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(RegExValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.matches(new RegExp("foo"));
 
             expect(result).not.toBeNull();
         });

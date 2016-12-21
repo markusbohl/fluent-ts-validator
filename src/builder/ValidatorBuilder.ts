@@ -1,4 +1,5 @@
 "use strict";
+import { RegExValidator } from '../validators/string-based/RegExValidator';
 
 import {
     ValidationRule
@@ -359,6 +360,12 @@ export class ValidatorBuilder<T, TProperty> implements
 
     isUUID(version?: UuidVersion): ValidationOptionsBuilder<T> {
         this.addToRule(new IsUUIDValidator(version));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    matches(pattern: RegExp, modifiers?: string): ValidationOptionsBuilder<T> {
+        this.addToRule(new RegExValidator(pattern, modifiers));
 
         return this.newValidationOptionsBuilder();
     }
