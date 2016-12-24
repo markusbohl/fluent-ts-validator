@@ -88,11 +88,9 @@ export class ValidatorBuilder<T, TProperty> implements
 
     constructor(private validationRule: ValidationRule<T, any>) { }
 
-    private addToRule(validator: PropertyValidator<any>) {
+    private buildRuleWith(validator: PropertyValidator<any>): ValidationOptionsBuilder<T> {
         this.validationRule.setValidator(validator);
-    }
 
-    private newValidationOptionsBuilder(): ValidationOptionsBuilder<T> {
         return new ValidationOptionsBuilderImpl(this.validationRule);
     }
 
@@ -102,87 +100,59 @@ export class ValidatorBuilder<T, TProperty> implements
     * =======================
     */
     isDefined(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsDefinedValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsDefinedValidator());
     }
 
     isNull(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsNullValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsNullValidator());
     }
 
     isNotNull(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsNotNullValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsNotNullValidator());
     }
 
     isEmpty(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsEmptyValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsEmptyValidator());
     }
 
     isNotEmpty(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsNotEmptyValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsNotEmptyValidator());
     }
 
     isEqualTo(comparison: TProperty): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsEqualValidator(comparison));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsEqualValidator(comparison));
     }
 
     isNotEqualTo(comparison: TProperty): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsNotEqualValidator(comparison));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsNotEqualValidator(comparison));
     }
 
     isIn(array: Array<TProperty>): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsInValidator(array));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsInValidator(array));
     }
 
     isNotIn(array: Array<TProperty>): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsNotInValidator(array));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsNotInValidator(array));
     }
 
     isArray(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsArrayValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsArrayValidator());
     }
 
     isBoolean(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsBooleanValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsBooleanValidator());
     }
 
     isDate(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsDateValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsDateValidator());
     }
 
     isNumber(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsNumberValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsNumberValidator());
     }
 
     isString(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsStringValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsStringValidator());
     }
 
     /*
@@ -191,13 +161,11 @@ export class ValidatorBuilder<T, TProperty> implements
     * ======================
     */
     must(validationExpression: (input: TProperty) => boolean): ValidationOptionsBuilder<T> {
-        this.addToRule({
+        return this.buildRuleWith({
             isValid: function (input: TProperty): boolean {
                 return validationExpression(input);
             }
         });
-
-        return this.newValidationOptionsBuilder();
     }
 
     /*
@@ -206,39 +174,27 @@ export class ValidatorBuilder<T, TProperty> implements
     * =============================
     */
     isPositive(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsPositiveValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsPositiveValidator());
     }
 
     isNegative(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsNegativeValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsNegativeValidator());
     }
 
     isGreaterThan(threshold: number): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsGreaterThanValidator(threshold));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsGreaterThanValidator(threshold));
     }
 
     isGreaterThanOrEqual(threshold: number): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsGreaterThanOrEqualToValidator(threshold));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsGreaterThanOrEqualToValidator(threshold));
     }
 
     isLessThan(threshold: number): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsLessThanValidator(threshold));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsLessThanValidator(threshold));
     }
 
     isLessThanOrEqual(threshold: number): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsLessThanOrEqualToValidator(threshold));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsLessThanOrEqualToValidator(threshold));
     }
 
     /*
@@ -247,39 +203,27 @@ export class ValidatorBuilder<T, TProperty> implements
     * ===========================
     */
     isBefore(date: Date): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsBeforeValidator(date));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsBeforeValidator(date));
     }
 
     isSameAs(date: Date): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsSameAsValidator(date));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsSameAsValidator(date));
     }
 
     isAfter(date: Date): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsAfterValidator(date));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsAfterValidator(date));
     }
 
     isSameOrBefore(date: Date): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsSameOrBeforeValidator(date));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsSameOrBeforeValidator(date));
     }
 
     isSameOrAfter(date: Date): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsSameOrAfterValidator(date));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsSameOrAfterValidator(date));
     }
 
     isBetween(date1: Date, date2: Date, lowerBoundary: "(" | "[" = "(", upperBoundary: ")" | "]" = ")"): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsBetweenValidator(date1, date2, lowerBoundary, upperBoundary));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsBetweenValidator(date1, date2, lowerBoundary, upperBoundary));
     }
 
     /*
@@ -288,93 +232,63 @@ export class ValidatorBuilder<T, TProperty> implements
     * =============================
     */
     isBooleanString(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsBooleanStringValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsBooleanStringValidator());
     }
 
     isDateString(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsDateStringValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsDateStringValidator());
     }
 
     isNumericString(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsNumericStringValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsNumericStringValidator());
     }
 
     isAlphaString(locale?: AlphaLocale): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsAlphaValidator(locale));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsAlphaValidator(locale));
     }
 
     isAlphanumericString(locale?: AlphanumericLocale): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsAlphanumericValidator(locale));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsAlphanumericValidator(locale));
     }
 
     contains(seed: string): ValidationOptionsBuilder<T> {
-        this.addToRule(new ContainsValidator(seed));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new ContainsValidator(seed));
     }
 
     isAscii(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsAsciiValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsAsciiValidator());
     }
 
     isBase64(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsBase64Validator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsBase64Validator());
     }
 
     isCurrency(options?: CurrencyOptions): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsCurrencyValidator(options));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsCurrencyValidator(options));
     }
 
     isDecimalString(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsDecimalStringValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsDecimalStringValidator());
     }
 
     isEmail(options?: EmailOptions): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsEmailValidator(options));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsEmailValidator(options));
     }
 
     isFQDN(options?: FqdnOptions): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsFQDNValidator(options));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsFQDNValidator(options));
     }
 
     isUppercase(): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsUppercaseValidator());
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsUppercaseValidator());
     }
 
     isUUID(version?: UuidVersion): ValidationOptionsBuilder<T> {
-        this.addToRule(new IsUUIDValidator(version));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new IsUUIDValidator(version));
     }
 
     matches(pattern: RegExp, modifiers?: string): ValidationOptionsBuilder<T> {
-        this.addToRule(new RegExValidator(pattern, modifiers));
-
-        return this.newValidationOptionsBuilder();
+        return this.buildRuleWith(new RegExValidator(pattern, modifiers));
     }
 
     /*
@@ -383,12 +297,10 @@ export class ValidatorBuilder<T, TProperty> implements
     * =======================
     */
     setValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T> {
-        this.addToRule({
+        return this.buildRuleWith({
             isValid: function (input: TProperty): boolean {
                 return validator.validate(input).isValid();
             }
         });
-
-        return this.newValidationOptionsBuilder();
     }
 }
