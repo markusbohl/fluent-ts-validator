@@ -11,6 +11,7 @@ export * from "./IsDateStringValidator";
 export * from "./IsDecimalStringValidator";
 export * from "./IsEmailValidator";
 export * from "./IsFQDNValidator";
+export * from "./IsLowercaseValidator";
 export * from "./IsNumericStringValidator";
 export * from "./IsUppercaseValidator";
 export * from "./IsUUIDValidator";

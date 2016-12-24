@@ -1,4 +1,5 @@
 "use strict";
+import { IsLowercaseValidator } from '../validators/string-based/IsLowercaseValidator';
 import { IsUppercaseValidator } from '../validators/string-based/IsUppercaseValidator';
 import { RegExValidator } from '../validators/string-based/RegExValidator';
 
@@ -277,6 +278,10 @@ export class ValidatorBuilder<T, TProperty> implements
 
     isFQDN(options?: FqdnOptions): ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsFQDNValidator(options));
+    }
+
+    isLowercase(): ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsLowercaseValidator());
     }
 
     isUppercase(): ValidationOptionsBuilder<T> {

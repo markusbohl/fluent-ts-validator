@@ -25,6 +25,7 @@ export interface StringValidatorBuilder<T> {
     isDecimalString(): ValidationOptionsBuilder<T>;
     isEmail(options?: EmailOptions): ValidationOptionsBuilder<T>;
     isFQDN(options?: FqdnOptions): ValidationOptionsBuilder<T>;
+    isLowercase(): ValidationOptionsBuilder<T>;
     isNumericString(): ValidationOptionsBuilder<T>;
     isUppercase(): ValidationOptionsBuilder<T>;
     isUUID(version?: UuidVersion): ValidationOptionsBuilder<T>;
