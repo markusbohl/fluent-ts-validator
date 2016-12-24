@@ -1,4 +1,5 @@
 "use strict";
+import { IsUppercaseValidator } from '../validators/string-based/IsUppercaseValidator';
 import { RegExValidator } from '../validators/string-based/RegExValidator';
 
 import {
@@ -354,6 +355,12 @@ export class ValidatorBuilder<T, TProperty> implements
 
     isFQDN(options?: FqdnOptions): ValidationOptionsBuilder<T> {
         this.addToRule(new IsFQDNValidator(options));
+
+        return this.newValidationOptionsBuilder();
+    }
+
+    isUppercase(): ValidationOptionsBuilder<T> {
+        this.addToRule(new IsUppercaseValidator());
 
         return this.newValidationOptionsBuilder();
     }

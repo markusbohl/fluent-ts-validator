@@ -19,6 +19,7 @@ import {
     IsEmailValidator,
     IsFQDNValidator,
     IsNumericStringValidator,
+    IsUppercaseValidator,
     IsUUIDValidator,
     RegExValidator
 } from "../validators/string-based";
@@ -209,6 +210,20 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isFQDN();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isUppercase()", () => {
+        it("should set isUppercaseValidator to validation rule", () => {
+            validatorBuilder.isUppercase();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUppercaseValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isUppercase();
 
             expect(result).not.toBeNull();
         });

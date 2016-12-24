@@ -12,7 +12,7 @@ gulp.task("test", (done) => {
     });
 });
 
-gulp.task("tdd", ["test"], () => {
+gulp.task("tdd", () => {
     let _watchables = ["src/**/*.ts"];
 
     return gulp.watch(_watchables, ["test"]);

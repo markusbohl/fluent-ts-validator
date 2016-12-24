@@ -26,6 +26,7 @@ export interface StringValidatorBuilder<T> {
     isEmail(options?: EmailOptions): ValidationOptionsBuilder<T>;
     isFQDN(options?: FqdnOptions): ValidationOptionsBuilder<T>;
     isNumericString(): ValidationOptionsBuilder<T>;
+    isUppercase(): ValidationOptionsBuilder<T>;
     isUUID(version?: UuidVersion): ValidationOptionsBuilder<T>;
     matches(pattern: RegExp, modifiers?: string): ValidationOptionsBuilder<T>;
 }
