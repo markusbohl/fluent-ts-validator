@@ -16,8 +16,8 @@ import {
 
 export interface StringValidatorBuilder<T> {
     contains(seed: string): ValidationOptionsBuilder<T>;
-    isAlphanumericString(locale?: AlphanumericLocale): ValidationOptionsBuilder<T>;
-    isAlphaString(locale?: AlphaLocale): ValidationOptionsBuilder<T>;
+    isAlphanumeric(locale?: AlphanumericLocale): ValidationOptionsBuilder<T>;
+    isAlpha(locale?: AlphaLocale): ValidationOptionsBuilder<T>;
     isAscii(): ValidationOptionsBuilder<T>;
     isBase64(): ValidationOptionsBuilder<T>;
     isBooleanString(): ValidationOptionsBuilder<T>;
@@ -25,11 +25,11 @@ export interface StringValidatorBuilder<T> {
     isDateString(): ValidationOptionsBuilder<T>;
     isDecimalString(): ValidationOptionsBuilder<T>;
     isEmail(options?: EmailOptions): ValidationOptionsBuilder<T>;
-    isFQDN(options?: FqdnOptions): ValidationOptionsBuilder<T>;
+    isFqdn(options?: FqdnOptions): ValidationOptionsBuilder<T>;
     isLowercase(): ValidationOptionsBuilder<T>;
     isNumericString(): ValidationOptionsBuilder<T>;
     isUrl(options?: UrlOptions): ValidationOptionsBuilder<T>;
     isUppercase(): ValidationOptionsBuilder<T>;
-    isUUID(version?: UuidVersion): ValidationOptionsBuilder<T>;
+    isUuid(version?: UuidVersion): ValidationOptionsBuilder<T>;
     matches(pattern: RegExp, modifiers?: string): ValidationOptionsBuilder<T>;
 }

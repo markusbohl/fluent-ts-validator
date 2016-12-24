@@ -17,12 +17,12 @@ import {
     IsDateStringValidator,
     IsDecimalStringValidator,
     IsEmailValidator,
-    IsFQDNValidator,
+    IsFqdnValidator,
     IsLowercaseValidator,
     IsNumericStringValidator,
     IsUrlValidator,
     IsUppercaseValidator,
-    IsUUIDValidator,
+    IsUuidValidator,
     RegExValidator
 } from "../validators/string-based";
 
@@ -91,29 +91,29 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         });
     });
 
-    describe("isAlphaString()", () => {
-        it("should set IsAlphaStringValidator to validation rule", () => {
-            validatorBuilder.isAlphaString();
+    describe("isAlpha()", () => {
+        it("should set IsAlphaValidator to validation rule", () => {
+            validatorBuilder.isAlpha();
 
             expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsAlphaValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isAlphaString();
+            let result = validatorBuilder.isAlpha();
 
             expect(result).not.toBeNull();
         });
     });
 
-    describe("isAlphanumericString()", () => {
-        it("should set IsAlphanumericStringValidator to validation rule", () => {
-            validatorBuilder.isAlphanumericString();
+    describe("isAlphanumeric()", () => {
+        it("should set IsAlphanumericValidator to validation rule", () => {
+            validatorBuilder.isAlphanumeric();
 
             expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsAlphanumericValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isAlphanumericString();
+            let result = validatorBuilder.isAlphanumeric();
 
             expect(result).not.toBeNull();
         });
@@ -203,15 +203,15 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         });
     });
 
-    describe("isFQDN()", () => {
-        it("should set IsFQDNValidator to validation rule", () => {
-            validatorBuilder.isFQDN();
+    describe("isFqdn()", () => {
+        it("should set IsFqdnValidator to validation rule", () => {
+            validatorBuilder.isFqdn();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsFQDNValidator));
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsFqdnValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isFQDN();
+            let result = validatorBuilder.isFqdn();
 
             expect(result).not.toBeNull();
         });
@@ -259,15 +259,15 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         });
     });
 
-    describe("isUUID()", () => {
-        it("should set IsUUIDValidator to validation rule", () => {
-            validatorBuilder.isUUID();
+    describe("isUuid()", () => {
+        it("should set IsUuidValidator to validation rule", () => {
+            validatorBuilder.isUuid();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUUIDValidator));
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUuidValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isUUID();
+            let result = validatorBuilder.isUuid();
 
             expect(result).not.toBeNull();
         });

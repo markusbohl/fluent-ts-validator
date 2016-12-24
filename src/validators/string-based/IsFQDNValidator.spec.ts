@@ -5,14 +5,14 @@
 import * as validatorJS from "validator";
 import { FqdnOptions } from "../../shared";
 import {
-    IsFQDNValidator
-} from "./IsFQDNValidator";
+    IsFqdnValidator
+} from "./IsFqdnValidator";
 
-describe("IsFQDNValidator", () => {
+describe("IsFqdnValidator", () => {
     describe("isValid() - delegate to validatorJS", () => {
         it("should delegate isFQDN-validation to validatorJS instance", () => {
             spyOn(validatorJS, "isFQDN");
-            let validator = new IsFQDNValidator();
+            let validator = new IsFqdnValidator();
 
             validator.isValid("fqdn");
 
@@ -26,7 +26,7 @@ describe("IsFQDNValidator", () => {
                 allow_underscores: true,
                 allow_trailing_dot: false
             };
-            let validator = new IsFQDNValidator(options);
+            let validator = new IsFqdnValidator(options);
 
             validator.isValid("fqdn");
 
@@ -35,7 +35,7 @@ describe("IsFQDNValidator", () => {
 
         it("should return true", () => {
             spyOn(validatorJS, "isFQDN").and.returnValue(true);
-            let validator = new IsFQDNValidator();
+            let validator = new IsFqdnValidator();
 
             let result = validator.isValid("fqdn");
 
@@ -44,7 +44,7 @@ describe("IsFQDNValidator", () => {
 
         it("should return false", () => {
             spyOn(validatorJS, "isFQDN").and.returnValue(false);
-            let validator = new IsFQDNValidator();
+            let validator = new IsFqdnValidator();
 
             let result = validator.isValid("fqdn");
 

@@ -67,10 +67,10 @@ import {
     IsCurrencyValidator,
     IsDecimalStringValidator,
     IsEmailValidator,
-    IsFQDNValidator,
+    IsFqdnValidator,
     IsLowercaseValidator,
     IsUppercaseValidator,
-    IsUUIDValidator,
+    IsUuidValidator,
     RegExValidator
 } from "../validators/string-based";
 
@@ -246,11 +246,11 @@ export class ValidatorBuilder<T, TProperty> implements
         return this.buildRuleWith(new IsNumericStringValidator());
     }
 
-    isAlphaString(locale?: AlphaLocale): ValidationOptionsBuilder<T> {
+    isAlpha(locale?: AlphaLocale): ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsAlphaValidator(locale));
     }
 
-    isAlphanumericString(locale?: AlphanumericLocale): ValidationOptionsBuilder<T> {
+    isAlphanumeric(locale?: AlphanumericLocale): ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsAlphanumericValidator(locale));
     }
 
@@ -278,8 +278,8 @@ export class ValidatorBuilder<T, TProperty> implements
         return this.buildRuleWith(new IsEmailValidator(options));
     }
 
-    isFQDN(options?: FqdnOptions): ValidationOptionsBuilder<T> {
-        return this.buildRuleWith(new IsFQDNValidator(options));
+    isFqdn(options?: FqdnOptions): ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsFqdnValidator(options));
     }
 
     isLowercase(): ValidationOptionsBuilder<T> {
@@ -294,8 +294,8 @@ export class ValidatorBuilder<T, TProperty> implements
         return this.buildRuleWith(new IsUrlValidator(options));
     }
 
-    isUUID(version?: UuidVersion): ValidationOptionsBuilder<T> {
-        return this.buildRuleWith(new IsUUIDValidator(version));
+    isUuid(version?: UuidVersion): ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsUuidValidator(version));
     }
 
     matches(pattern: RegExp, modifiers?: string): ValidationOptionsBuilder<T> {

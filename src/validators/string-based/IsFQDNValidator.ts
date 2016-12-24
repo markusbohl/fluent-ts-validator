@@ -4,7 +4,7 @@ import { PropertyValidator } from "../PropertyValidator";
 import { FqdnOptions } from "../../shared";
 import * as validatorJS from "validator";
 
-export class IsFQDNValidator implements PropertyValidator<string> {
+export class IsFqdnValidator implements PropertyValidator<string> {
 
     constructor(private options?: FqdnOptions) { }
 
