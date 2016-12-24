@@ -33,6 +33,10 @@ export class ValidationRule<T, TProperty> {
         this.propertyName = regexArray && regexArray.length > 1 ? regexArray[1] : null;
     }
 
+    setPropertyName(propertyName: string) {
+        this.propertyName = propertyName;
+    }
+
     setValidator(validator: PropertyValidator<TProperty>) {
         this.validator = validator;
     }

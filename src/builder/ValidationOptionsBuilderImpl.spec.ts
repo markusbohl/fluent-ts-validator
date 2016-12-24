@@ -61,6 +61,22 @@ describe("ValidationOptionsBuilderImpl", () => {
         });
     });
 
+    describe("withName", () => {
+        it("should set (property) name to validation rule", () => {
+            spyOn(validationRule, "setPropertyName");
+
+            validationOptionsBuilder.withName("A better property name");
+
+            expect(validationRule.setPropertyName).toHaveBeenCalledWith("A better property name");
+        });
+
+        it("should return current builder instance", () => {
+            let result = validationOptionsBuilder.withName("A better property name");
+
+            expect(result).toBe(validationOptionsBuilder);
+        });
+    });
+
     describe("withSeverity()", () => {
         it("should set severity to validation rule", () => {
             spyOn(validationRule, "setSeverity");
