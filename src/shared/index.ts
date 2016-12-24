@@ -10,3 +10,4 @@ export * from "./UuidVersion";
 export * from "./EmailOptions";
 export * from "./CurrencyOptions";
 export * from "./FqdnOptions";
+export * from "./UrlOptions";

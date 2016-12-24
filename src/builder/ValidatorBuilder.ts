@@ -1,7 +1,5 @@
 "use strict";
-import { IsLowercaseValidator } from '../validators/string-based/IsLowercaseValidator';
-import { IsUppercaseValidator } from '../validators/string-based/IsUppercaseValidator';
-import { RegExValidator } from '../validators/string-based/RegExValidator';
+import { IsUrlValidator } from '../validators/string-based/IsUrlValidator';
 
 import {
     ValidationRule
@@ -14,6 +12,7 @@ import {
     CurrencyOptions,
     EmailOptions,
     FqdnOptions,
+    UrlOptions,
     UuidVersion
 } from "../shared";
 
@@ -69,7 +68,10 @@ import {
     IsDecimalStringValidator,
     IsEmailValidator,
     IsFQDNValidator,
-    IsUUIDValidator
+    IsLowercaseValidator,
+    IsUppercaseValidator,
+    IsUUIDValidator,
+    RegExValidator
 } from "../validators/string-based";
 
 import {
@@ -286,6 +288,10 @@ export class ValidatorBuilder<T, TProperty> implements
 
     isUppercase(): ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsUppercaseValidator());
+    }
+
+    isUrl(options?: UrlOptions): ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsUrlValidator(options));
     }
 
     isUUID(version?: UuidVersion): ValidationOptionsBuilder<T> {

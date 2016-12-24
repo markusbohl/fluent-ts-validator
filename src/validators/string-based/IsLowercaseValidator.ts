@@ -1,3 +1,5 @@
+"use strict";
+
 import { PropertyValidator } from "../PropertyValidator";
 
 import * as validatorJS from "validator";

@@ -20,6 +20,7 @@ import {
     IsFQDNValidator,
     IsLowercaseValidator,
     IsNumericStringValidator,
+    IsUrlValidator,
     IsUppercaseValidator,
     IsUUIDValidator,
     RegExValidator
@@ -239,6 +240,20 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isLowercase();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isUrl()", () => {
+        it("should set IsUrlValidator to validation rule", () => {
+            validatorBuilder.isUrl();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUrlValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isUrl();
 
             expect(result).not.toBeNull();
         });

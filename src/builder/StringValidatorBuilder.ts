@@ -10,6 +10,7 @@ import {
     CurrencyOptions,
     EmailOptions,
     FqdnOptions,
+    UrlOptions,
     UuidVersion
 } from "../shared";
 
@@ -27,6 +28,7 @@ export interface StringValidatorBuilder<T> {
     isFQDN(options?: FqdnOptions): ValidationOptionsBuilder<T>;
     isLowercase(): ValidationOptionsBuilder<T>;
     isNumericString(): ValidationOptionsBuilder<T>;
+    isUrl(options?: UrlOptions): ValidationOptionsBuilder<T>;
     isUppercase(): ValidationOptionsBuilder<T>;
     isUUID(version?: UuidVersion): ValidationOptionsBuilder<T>;
     matches(pattern: RegExp, modifiers?: string): ValidationOptionsBuilder<T>;

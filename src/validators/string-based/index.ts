@@ -13,6 +13,7 @@ export * from "./IsEmailValidator";
 export * from "./IsFQDNValidator";
 export * from "./IsLowercaseValidator";
 export * from "./IsNumericStringValidator";
+export * from "./IsUrlValidator";
 export * from "./IsUppercaseValidator";
 export * from "./IsUUIDValidator";
 export * from "./RegExValidator";
