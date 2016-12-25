@@ -18,7 +18,7 @@ import {
 
 export class ValidationOptionsBuilderImpl<T> implements ValidationOptionsBuilder<T> {
 
-    constructor(private validationRule: ValidationRule<T, any>) {}
+    constructor(private validationRule: ValidationRule<T, any>) { }
 
     withErrorCode(errorCode: string): ValidationOptionsBuilder<T> {
         this.validationRule.setErrorCode(errorCode);
@@ -32,6 +32,11 @@ export class ValidationOptionsBuilderImpl<T> implements ValidationOptionsBuilder
 
     withSeverity(severity: Severity): ValidationOptionsBuilder<T> {
         this.validationRule.setSeverity(severity);
+        return this;
+    }
+
+    withName(name: string): ValidationOptionsBuilder<T> {
+        this.validationRule.setPropertyName(name);
         return this;
     }
 
