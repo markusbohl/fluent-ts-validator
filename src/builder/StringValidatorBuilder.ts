@@ -10,6 +10,7 @@ import {
     CurrencyOptions,
     EmailOptions,
     FqdnOptions,
+    LengthOptions,
     UrlOptions,
     UuidVersion
 } from "../shared";
@@ -26,6 +27,7 @@ export interface StringValidatorBuilder<T> {
     isDecimalString(): ValidationOptionsBuilder<T>;
     isEmail(options?: EmailOptions): ValidationOptionsBuilder<T>;
     isFqdn(options?: FqdnOptions): ValidationOptionsBuilder<T>;
+    isLength(options: LengthOptions): ValidationOptionsBuilder<T>;
     isLowercase(): ValidationOptionsBuilder<T>;
     isNumericString(): ValidationOptionsBuilder<T>;
     isUrl(options?: UrlOptions): ValidationOptionsBuilder<T>;

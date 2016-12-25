@@ -1,5 +1,4 @@
 "use strict";
-import { IsUrlValidator } from '../validators/string-based/IsUrlValidator';
 
 import {
     ValidationRule
@@ -12,6 +11,7 @@ import {
     CurrencyOptions,
     EmailOptions,
     FqdnOptions,
+    LengthOptions,
     UrlOptions,
     UuidVersion
 } from "../shared";
@@ -68,7 +68,9 @@ import {
     IsDecimalStringValidator,
     IsEmailValidator,
     IsFqdnValidator,
+    IsLengthValidator,
     IsLowercaseValidator,
+    IsUrlValidator,
     IsUppercaseValidator,
     IsUuidValidator,
     RegExValidator
@@ -280,6 +282,10 @@ export class ValidatorBuilder<T, TProperty> implements
 
     isFqdn(options?: FqdnOptions): ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsFqdnValidator(options));
+    }
+
+    isLength(options: LengthOptions): ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsLengthValidator(options));
     }
 
     isLowercase(): ValidationOptionsBuilder<T> {

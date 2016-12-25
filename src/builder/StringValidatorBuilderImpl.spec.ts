@@ -18,6 +18,7 @@ import {
     IsDecimalStringValidator,
     IsEmailValidator,
     IsFqdnValidator,
+    IsLengthValidator,
     IsLowercaseValidator,
     IsNumericStringValidator,
     IsUrlValidator,
@@ -226,6 +227,20 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isUppercase();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isLength()", () => {
+        it("should set isLengthValidator to validation rule", () => {
+            validatorBuilder.isLength({ min: 4 });
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLengthValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isLength({ max: 10 });
 
             expect(result).not.toBeNull();
         });
