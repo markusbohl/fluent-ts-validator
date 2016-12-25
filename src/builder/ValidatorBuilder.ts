@@ -1,4 +1,5 @@
 "use strict";
+import { IsJsonValidator } from '../validators/string-based/IsJsonValidator';
 
 import {
     ValidationRule
@@ -282,6 +283,10 @@ export class ValidatorBuilder<T, TProperty> implements
 
     isFqdn(options?: FqdnOptions): ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsFqdnValidator(options));
+    }
+
+    isJson(): ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsJsonValidator());
     }
 
     isLength(options: LengthOptions): ValidationOptionsBuilder<T> {

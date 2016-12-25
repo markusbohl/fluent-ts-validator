@@ -20,6 +20,7 @@ import {
     IsFqdnValidator,
     IsLengthValidator,
     IsLowercaseValidator,
+    IsJsonValidator,
     IsNumericStringValidator,
     IsUrlValidator,
     IsUppercaseValidator,
@@ -213,6 +214,20 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isFqdn();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isJson()", () => {
+        it("should set IsJsonValidator to validation rule", () => {
+            validatorBuilder.isJson();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsJsonValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isJson();
 
             expect(result).not.toBeNull();
         });
