@@ -31,6 +31,7 @@ export class ValidationRule<T, TProperty> {
         // unfortunately, it does not exist yet
         let regexArray = lambdaExpression.toString().match("return\\s+\\w+\\.(\\w+)");
         this.propertyName = regexArray && regexArray.length > 1 ? regexArray[1] : null;
+        this.errorMessage = `${this.propertyName} is invalid`;
     }
 
     setPropertyName(propertyName: string) {

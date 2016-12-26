@@ -83,7 +83,7 @@ describe("AbstractValidator", () => {
             expect(failure.propertyName).toBe("name");
             expect(failure.errorCode).toBe("C-3628/B");
             expect(failure.severity).toBe(Severity.ERROR);
-            expect(failure.errorMessage).not.toBeDefined();
+            expect(failure.errorMessage).toBe("name is invalid");
         });
 
         it("should return a negative validation result if address is forbidden", () => {
@@ -255,7 +255,7 @@ describe("AddressbookValidator", () => {
                 propertyName: "contacts",
                 attemptedValue: null,
                 errorCode: undefined,
-                errorMessage: undefined,
+                errorMessage: "contacts is invalid",
                 severity: Severity.ERROR
             }));
         });
