@@ -24,5 +24,5 @@ export interface CommonValidatorBuilder<T, TProperty> {
     isNumber(): ValidationOptionsBuilder<T>;
     isString(): ValidationOptionsBuilder<T>;
     must(validationExpression: (input: TProperty) => boolean): ValidationOptionsBuilder<T>;
-    setValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T>;
+    addValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T>;
 }

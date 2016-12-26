@@ -50,7 +50,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
-        spyOn(validationRule, "setValidator");
+        spyOn(validationRule, "addValidator");
         validatorBuilder = new ValidatorBuilder(validationRule);
     });
 
@@ -58,7 +58,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsBooleanStringValidator to validation rule", () => {
             validatorBuilder.isBooleanString();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsBooleanStringValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsBooleanStringValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -72,7 +72,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsDateStringValidator to validation rule", () => {
             validatorBuilder.isDateString();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsDateStringValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsDateStringValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -86,7 +86,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsNumericStringValidator to validation rule", () => {
             validatorBuilder.isNumericString();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsNumericStringValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNumericStringValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -100,7 +100,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsAlphaValidator to validation rule", () => {
             validatorBuilder.isAlpha();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsAlphaValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsAlphaValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -114,7 +114,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsAlphanumericValidator to validation rule", () => {
             validatorBuilder.isAlphanumeric();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsAlphanumericValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsAlphanumericValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -128,7 +128,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set containsValidator to validation rule", () => {
             validatorBuilder.contains("foo");
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(ContainsValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(ContainsValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -142,7 +142,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsAsciiValidator to validation rule", () => {
             validatorBuilder.isAscii();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsAsciiValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsAsciiValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -156,7 +156,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsBase64Validator to validation rule", () => {
             validatorBuilder.isBase64();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsBase64Validator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsBase64Validator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -170,7 +170,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsCurrencyValidator to validation rule", () => {
             validatorBuilder.isCurrency();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsCurrencyValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsCurrencyValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -184,7 +184,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsDecimalStringValidator to validation rule", () => {
             validatorBuilder.isDecimalString();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsDecimalStringValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsDecimalStringValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -198,7 +198,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsEmailValidator to validation rule", () => {
             validatorBuilder.isEmail();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsEmailValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsEmailValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -212,7 +212,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsFqdnValidator to validation rule", () => {
             validatorBuilder.isFqdn();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsFqdnValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsFqdnValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -226,7 +226,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsHexadecimalValidator to validation rule", () => {
             validatorBuilder.isHexadecimal();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsHexadecimalValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsHexadecimalValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -240,7 +240,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsIso8601Validator to validation rule", () => {
             validatorBuilder.isIso8601();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsIso8601Validator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsIso8601Validator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -254,7 +254,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsJsonValidator to validation rule", () => {
             validatorBuilder.isJson();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsJsonValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsJsonValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -268,7 +268,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsMobilePhoneValidator to validation rule", () => {
             validatorBuilder.isMobilePhone("ja-JP");
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsMobilePhoneValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsMobilePhoneValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -282,7 +282,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set isUppercaseValidator to validation rule", () => {
             validatorBuilder.isUppercase();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUppercaseValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsUppercaseValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -296,7 +296,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set isLengthValidator to validation rule", () => {
             validatorBuilder.isLength({ min: 4 });
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLengthValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsLengthValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -310,7 +310,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set isLowercaseValidator to validation rule", () => {
             validatorBuilder.isLowercase();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLowercaseValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsLowercaseValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -324,7 +324,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsUrlValidator to validation rule", () => {
             validatorBuilder.isUrl();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUrlValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsUrlValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -338,7 +338,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set IsUuidValidator to validation rule", () => {
             validatorBuilder.isUuid();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUuidValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsUuidValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -352,7 +352,7 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         it("should set RegExValidator to validation rule", () => {
             validatorBuilder.matches(new RegExp("foo"));
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(RegExValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(RegExValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {

@@ -99,7 +99,7 @@ export class ValidatorBuilder<T, TProperty> implements
     constructor(private validationRule: ValidationRule<T, any>) { }
 
     private buildRuleWith(validator: PropertyValidator<any>): ValidationOptionsBuilder<T> {
-        this.validationRule.setValidator(validator);
+        this.validationRule.addValidator(validator);
 
         return new ValidationOptionsBuilderImpl(this.validationRule);
     }
@@ -333,7 +333,7 @@ export class ValidatorBuilder<T, TProperty> implements
     * Custom validation rules
     * =======================
     */
-    setValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T> {
+    addValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T> {
         return this.buildRuleWith({
             isValid: function (input: TProperty): boolean {
                 return validator.validate(input).isValid();

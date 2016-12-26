@@ -47,7 +47,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
-        spyOn(validationRule, "setValidator").and.callThrough();
+        spyOn(validationRule, "addValidator").and.callThrough();
         validatorBuilder = new ValidatorBuilder(validationRule);
     });
 
@@ -55,7 +55,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsDefinedValidator to validation rule", () => {
             validatorBuilder.isDefined();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsDefinedValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsDefinedValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -69,7 +69,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsNullValidator to validation rule", () => {
             validatorBuilder.isNull();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsNullValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNullValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -83,7 +83,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsNotNullValidator to validation rule", () => {
             validatorBuilder.isNotNull();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsNotNullValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNotNullValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -97,7 +97,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsEmptyValidator to validation rule", () => {
             validatorBuilder.isEmpty();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsEmptyValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsEmptyValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -111,7 +111,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsNotEmptyValidator to validation rule", () => {
             validatorBuilder.isNotEmpty();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsNotEmptyValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNotEmptyValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -125,7 +125,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsEqualValidator to validation rule", () => {
             validatorBuilder.isEqualTo("foo");
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsEqualValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsEqualValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -139,7 +139,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsNotEqualValidator to validation rule", () => {
             validatorBuilder.isNotEqualTo("foo");
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsNotEqualValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNotEqualValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -153,7 +153,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsValidator to validation rule", () => {
             validatorBuilder.isIn(["allowed value"]);
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsInValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsInValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -167,7 +167,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsValidator to validation rule", () => {
             validatorBuilder.isNotIn(["element value"]);
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsNotInValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNotInValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -181,7 +181,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsValidator to validation rule", () => {
             validatorBuilder.isArray();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsArrayValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsArrayValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -195,7 +195,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsBooleanValidator to validation rule", () => {
             validatorBuilder.isBoolean();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsBooleanValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsBooleanValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -209,7 +209,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsDateValidator to validation rule", () => {
             validatorBuilder.isDate();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsDateValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsDateValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -223,7 +223,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsNumberValidator to validation rule", () => {
             validatorBuilder.isNumber();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsNumberValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNumberValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -237,7 +237,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         it("should set IsStringValidator to validation rule", () => {
             validatorBuilder.isString();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsStringValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsStringValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -253,7 +253,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
 
             validatorBuilder.must(validationExpression);
 
-            expect(validationRule.setValidator).toHaveBeenCalled();
+            expect(validationRule.addValidator).toHaveBeenCalled();
         });
 
         it("should actually apply custom validation logic and succeed", () => {
@@ -286,7 +286,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
 
 /**
  * ========================================================================
- * vvv Tests concerning setValidator function of CommonValidatorBuilder vvv
+ * vvv Tests concerning addValidator function of CommonValidatorBuilder vvv
  * ========================================================================
  */
 
@@ -312,7 +312,7 @@ class InnerValidator extends AbstractValidator<InnerTestClass> {
     }
 }
 
-describe("ValidatorBuilder -> CommonValidatorBuilder setValidator", () => {
+describe("ValidatorBuilder -> CommonValidatorBuilder addValidator", () => {
     let inner: InnerTestClass;
     let innerValidator: InnerValidator;
     let validationRule: ValidationRule<OuterTestClass, InnerTestClass>;
@@ -327,13 +327,13 @@ describe("ValidatorBuilder -> CommonValidatorBuilder setValidator", () => {
     });
 
     it("should return new instance of a ValidationOptionsBuilder", () => {
-        let result = validatorBuilder.setValidator(innerValidator);
+        let result = validatorBuilder.addValidator(innerValidator);
 
         expect(result).not.toBeNull();
     });
 
     it("should use validatable to apply validation rules - success case", () => {
-        validatorBuilder.setValidator(innerValidator);
+        validatorBuilder.addValidator(innerValidator);
 
         let result = validationRule.apply(new OuterTestClass(new InnerTestClass("foo")));
 
@@ -341,7 +341,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder setValidator", () => {
     });
 
     it("should use validatable to apply validation rules - failure case", () => {
-        validatorBuilder.setValidator(innerValidator);
+        validatorBuilder.addValidator(innerValidator);
 
         let result = validationRule.apply(new OuterTestClass(new InnerTestClass("")));
 
@@ -349,7 +349,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder setValidator", () => {
     });
 
     it("should delegate to given validator during validation", () => {
-        validatorBuilder.setValidator(innerValidator);
+        validatorBuilder.addValidator(innerValidator);
         let objectUnderTest = new InnerTestClass("foo");
 
         validationRule.apply(new OuterTestClass(objectUnderTest));
