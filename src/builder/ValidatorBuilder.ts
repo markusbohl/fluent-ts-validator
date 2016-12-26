@@ -69,6 +69,7 @@ import {
     IsDecimalStringValidator,
     IsEmailValidator,
     IsFqdnValidator,
+    IsIso8601Validator,
     IsJsonValidator,
     IsLengthValidator,
     IsLowercaseValidator,
@@ -287,6 +288,9 @@ export class ValidatorBuilder<T, TProperty> implements
         return this.buildRuleWith(new IsFqdnValidator(options));
     }
 
+    isIso8601(): ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsIso8601Validator());
+    }
     isJson(): ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsJsonValidator());
     }
