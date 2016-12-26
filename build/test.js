@@ -20,8 +20,8 @@ gulp.task("tdd", () => {
 
 gulp.task("tslint", () =>
     gulp.src("src/**/*.ts")
-        .pipe(tslint({
-            formatter: "verbose"
-        }))
-        .pipe(tslint.report())
+    .pipe(tslint({
+        formatter: "verbose"
+    }))
+    .pipe(tslint.report())
 );

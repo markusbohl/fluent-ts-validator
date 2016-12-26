@@ -5,10 +5,10 @@
 import * as validatorJS from "validator";
 
 import {
-    IsUUIDValidator
-} from "./IsUUIDValidator";
+    IsUuidValidator
+} from "./IsUuidValidator";
 
-describe("IsUUIDValidator", () => {
+describe("IsUuidValidator", () => {
     describe("isValid() - delegate to validatorJS", () => {
 
         beforeEach(() => {
@@ -16,7 +16,7 @@ describe("IsUUIDValidator", () => {
         });
 
         it("should delegate isUUID-validation to validatorJS instance", () => {
-            let validator = new IsUUIDValidator("5");
+            let validator = new IsUuidValidator("5");
 
             validator.isValid("uuid");
 
@@ -24,7 +24,7 @@ describe("IsUUIDValidator", () => {
         });
 
         it("should delegate undefined to IsUUID-validation if no specific version is provided", () => {
-            let validator = new IsUUIDValidator();
+            let validator = new IsUuidValidator();
 
             validator.isValid("uuid");
 
@@ -35,7 +35,7 @@ describe("IsUUIDValidator", () => {
     describe("isValid()", () => {
         it("should return true", () => {
             spyOn(validatorJS, "isUUID").and.returnValue(true);
-            let validator = new IsUUIDValidator();
+            let validator = new IsUuidValidator();
 
             let result = validator.isValid("uuid");
 
@@ -44,7 +44,7 @@ describe("IsUUIDValidator", () => {
 
         it("should return false", () => {
             spyOn(validatorJS, "isUUID").and.returnValue(false);
-            let validator = new IsUUIDValidator();
+            let validator = new IsUuidValidator();
 
             let result = validator.isValid("uuid");
 

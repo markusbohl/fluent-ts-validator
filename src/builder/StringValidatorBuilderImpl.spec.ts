@@ -17,9 +17,18 @@ import {
     IsDateStringValidator,
     IsDecimalStringValidator,
     IsEmailValidator,
-    IsFQDNValidator,
+    IsFqdnValidator,
+    IsHexadecimalValidator,
+    IsIso8601Validator,
+    IsLengthValidator,
+    IsLowercaseValidator,
+    IsJsonValidator,
+    IsMobilePhoneValidator,
     IsNumericStringValidator,
-    IsUUIDValidator
+    IsUrlValidator,
+    IsUppercaseValidator,
+    IsUuidValidator,
+    RegExValidator
 } from "../validators/string-based";
 
 import {
@@ -87,29 +96,29 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         });
     });
 
-    describe("isAlphaString()", () => {
-        it("should set IsAlphaStringValidator to validation rule", () => {
-            validatorBuilder.isAlphaString();
+    describe("isAlpha()", () => {
+        it("should set IsAlphaValidator to validation rule", () => {
+            validatorBuilder.isAlpha();
 
             expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsAlphaValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isAlphaString();
+            let result = validatorBuilder.isAlpha();
 
             expect(result).not.toBeNull();
         });
     });
 
-    describe("isAlphanumericString()", () => {
-        it("should set IsAlphanumericStringValidator to validation rule", () => {
-            validatorBuilder.isAlphanumericString();
+    describe("isAlphanumeric()", () => {
+        it("should set IsAlphanumericValidator to validation rule", () => {
+            validatorBuilder.isAlphanumeric();
 
             expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsAlphanumericValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isAlphanumericString();
+            let result = validatorBuilder.isAlphanumeric();
 
             expect(result).not.toBeNull();
         });
@@ -199,29 +208,155 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
         });
     });
 
-    describe("isFQDN()", () => {
-        it("should set IsFQDNValidator to validation rule", () => {
-            validatorBuilder.isFQDN();
+    describe("isFqdn()", () => {
+        it("should set IsFqdnValidator to validation rule", () => {
+            validatorBuilder.isFqdn();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsFQDNValidator));
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsFqdnValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isFQDN();
+            let result = validatorBuilder.isFqdn();
 
             expect(result).not.toBeNull();
         });
     });
 
-    describe("isUUID()", () => {
-        it("should set IsUUIDValidator to validation rule", () => {
-            validatorBuilder.isUUID();
+    describe("isHexadecimal()", () => {
+        it("should set IsHexadecimalValidator to validation rule", () => {
+            validatorBuilder.isHexadecimal();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUUIDValidator));
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsHexadecimalValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isUUID();
+            let result = validatorBuilder.isHexadecimal();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isIso8601()", () => {
+        it("should set IsIso8601Validator to validation rule", () => {
+            validatorBuilder.isIso8601();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsIso8601Validator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isIso8601();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isJson()", () => {
+        it("should set IsJsonValidator to validation rule", () => {
+            validatorBuilder.isJson();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsJsonValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isJson();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isMobilePhone()", () => {
+        it("should set IsMobilePhoneValidator to validation rule", () => {
+            validatorBuilder.isMobilePhone("ja-JP");
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsMobilePhoneValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isMobilePhone("en-CA");
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isUppercase()", () => {
+        it("should set isUppercaseValidator to validation rule", () => {
+            validatorBuilder.isUppercase();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUppercaseValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isUppercase();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isLength()", () => {
+        it("should set isLengthValidator to validation rule", () => {
+            validatorBuilder.isLength({ min: 4 });
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLengthValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isLength({ max: 10 });
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isLowercase()", () => {
+        it("should set isLowercaseValidator to validation rule", () => {
+            validatorBuilder.isLowercase();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLowercaseValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isLowercase();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isUrl()", () => {
+        it("should set IsUrlValidator to validation rule", () => {
+            validatorBuilder.isUrl();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUrlValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isUrl();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isUuid()", () => {
+        it("should set IsUuidValidator to validation rule", () => {
+            validatorBuilder.isUuid();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsUuidValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isUuid();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("matches()", () => {
+        it("should set RegExValidator to validation rule", () => {
+            validatorBuilder.matches(new RegExp("foo"));
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(RegExValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.matches(new RegExp("foo"));
 
             expect(result).not.toBeNull();
         });

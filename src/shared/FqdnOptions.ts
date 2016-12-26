@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Options to be passed to IsFQDNValidator.
+ * Options to be passed to IsFqdnValidator.
  */
 export interface FqdnOptions {
     require_tld?: boolean;

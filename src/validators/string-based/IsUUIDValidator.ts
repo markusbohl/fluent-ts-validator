@@ -5,7 +5,7 @@ import { UuidVersion } from "../../shared/";
 
 import * as validatorJS from "validator";
 
-export class IsUUIDValidator implements PropertyValidator<string> {
+export class IsUuidValidator implements PropertyValidator<string> {
 
     constructor(private version?: UuidVersion) { }
 
