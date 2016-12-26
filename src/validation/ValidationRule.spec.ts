@@ -83,6 +83,7 @@ describe("ValidationRule", () => {
 
             expect(failure.target).toBe(toBeValidated);
             expect(failure.propertyName).toBe("property");
+            expect(failure.errorMessage).toBe("property is invalid");
             expect(failure.attemptedValue).toBe("invalid property value");
             expect(failure.severity).toBe(Severity.ERROR);
         });
@@ -95,6 +96,16 @@ describe("ValidationRule", () => {
             let failure = rule.apply(toBeValidated).getValidationFailures()[0];
 
             expect(failure.propertyName).toBe("leOtherProperty1");
+        });
+
+        it("should provide standard error message in validation failure if no specific message has been set", () => {
+            let rule: ValidationRule<TestClass, number> = new ValidationRule((input: TestClass) => { return input.leOtherProperty1; });
+            let toBeValidated = new TestClass("invalid property value");
+            rule.setValidator(getNegativeValidator());
+
+            let failure = rule.apply(toBeValidated).getValidationFailures()[0];
+
+            expect(failure.errorMessage).toBe("leOtherProperty1 is invalid");
         });
 
         it("should provide given provide property name in validation failure in case of invalid input", () => {
