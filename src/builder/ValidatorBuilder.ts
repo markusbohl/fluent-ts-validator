@@ -1,5 +1,4 @@
 "use strict";
-import { IsHexadecimalValidator } from '../validators/string-based/IsHexadecimalValidator';
 
 import {
     ValidationRule
@@ -70,6 +69,7 @@ import {
     IsDecimalStringValidator,
     IsEmailValidator,
     IsFqdnValidator,
+    IsHexadecimalValidator,
     IsIso8601Validator,
     IsJsonValidator,
     IsLengthValidator,
