@@ -21,6 +21,7 @@ import {
     IsLengthValidator,
     IsLowercaseValidator,
     IsJsonValidator,
+    IsMobilePhoneValidator,
     IsNumericStringValidator,
     IsUrlValidator,
     IsUppercaseValidator,
@@ -228,6 +229,20 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isJson();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isMobilePhone()", () => {
+        it("should set IsMobilePhoneValidator to validation rule", () => {
+            validatorBuilder.isMobilePhone("ja-JP");
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsMobilePhoneValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isMobilePhone("en-CA");
 
             expect(result).not.toBeNull();
         });

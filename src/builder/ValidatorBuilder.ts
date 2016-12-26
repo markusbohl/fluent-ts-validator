@@ -1,5 +1,4 @@
 "use strict";
-import { IsJsonValidator } from '../validators/string-based/IsJsonValidator';
 
 import {
     ValidationRule
@@ -12,6 +11,7 @@ import {
     CurrencyOptions,
     EmailOptions,
     FqdnOptions,
+    MobilePhoneLocale,
     LengthOptions,
     UrlOptions,
     UuidVersion
@@ -69,8 +69,10 @@ import {
     IsDecimalStringValidator,
     IsEmailValidator,
     IsFqdnValidator,
+    IsJsonValidator,
     IsLengthValidator,
     IsLowercaseValidator,
+    IsMobilePhoneValidator,
     IsUrlValidator,
     IsUppercaseValidator,
     IsUuidValidator,
@@ -295,6 +297,10 @@ export class ValidatorBuilder<T, TProperty> implements
 
     isLowercase(): ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsLowercaseValidator());
+    }
+
+    isMobilePhone(locale: MobilePhoneLocale): ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsMobilePhoneValidator(locale));
     }
 
     isUppercase(): ValidationOptionsBuilder<T> {

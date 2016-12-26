@@ -11,6 +11,7 @@ import {
     EmailOptions,
     FqdnOptions,
     LengthOptions,
+    MobilePhoneLocale,
     UrlOptions,
     UuidVersion
 } from "../shared";
@@ -30,6 +31,7 @@ export interface StringValidatorBuilder<T> {
     isJson(): ValidationOptionsBuilder<T>;
     isLength(options: LengthOptions): ValidationOptionsBuilder<T>;
     isLowercase(): ValidationOptionsBuilder<T>;
+    isMobilePhone(locale: MobilePhoneLocale): ValidationOptionsBuilder<T>;
     isNumericString(): ValidationOptionsBuilder<T>;
     isUrl(options?: UrlOptions): ValidationOptionsBuilder<T>;
     isUppercase(): ValidationOptionsBuilder<T>;

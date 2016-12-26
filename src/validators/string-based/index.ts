@@ -14,6 +14,7 @@ export * from "./IsFqdnValidator";
 export * from "./IsJsonValidator";
 export * from "./IsLengthValidator";
 export * from "./IsLowercaseValidator";
+export * from "./IsMobilePhoneValidator";
 export * from "./IsNumericStringValidator";
 export * from "./IsUrlValidator";
 export * from "./IsUppercaseValidator";
