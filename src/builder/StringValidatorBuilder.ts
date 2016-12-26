@@ -28,6 +28,7 @@ export interface StringValidatorBuilder<T> {
     isDecimalString(): ValidationOptionsBuilder<T>;
     isEmail(options?: EmailOptions): ValidationOptionsBuilder<T>;
     isFqdn(options?: FqdnOptions): ValidationOptionsBuilder<T>;
+    isHexadecimal(): ValidationOptionsBuilder<T>;
     isIso8601(): ValidationOptionsBuilder<T>;
     isJson(): ValidationOptionsBuilder<T>;
     isLength(options: LengthOptions): ValidationOptionsBuilder<T>;

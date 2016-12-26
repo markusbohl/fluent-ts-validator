@@ -1,4 +1,5 @@
 "use strict";
+import { IsHexadecimalValidator } from '../validators/string-based/IsHexadecimalValidator';
 
 import {
     ValidationRule
@@ -286,6 +287,10 @@ export class ValidatorBuilder<T, TProperty> implements
 
     isFqdn(options?: FqdnOptions): ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsFqdnValidator(options));
+    }
+
+    isHexadecimal(): ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsHexadecimalValidator());
     }
 
     isIso8601(): ValidationOptionsBuilder<T> {

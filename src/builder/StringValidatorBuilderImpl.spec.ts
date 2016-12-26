@@ -18,6 +18,7 @@ import {
     IsDecimalStringValidator,
     IsEmailValidator,
     IsFqdnValidator,
+    IsHexadecimalValidator,
     IsIso8601Validator,
     IsLengthValidator,
     IsLowercaseValidator,
@@ -216,6 +217,20 @@ describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isFqdn();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isHexadecimal()", () => {
+        it("should set IsHexadecimalValidator to validation rule", () => {
+            validatorBuilder.isHexadecimal();
+
+            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsHexadecimalValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isHexadecimal();
 
             expect(result).not.toBeNull();
         });
