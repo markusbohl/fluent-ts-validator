@@ -1,7 +1,9 @@
 "use strict";
 
 import {
-    ValidationRule
+    ValidationRule,
+    UnlessCondition,
+    WhenCondition
 } from "../validation";
 
 import {
@@ -14,7 +16,9 @@ import {
     MobilePhoneLocale,
     LengthOptions,
     UrlOptions,
-    UuidVersion
+    UuidVersion,
+    Severity,
+    ValidationFailure
 } from "../shared";
 
 import {
@@ -86,22 +90,63 @@ import {
     NumberValidatorBuilder,
     DateValidatorBuilder,
     StringValidatorBuilder,
-    ValidationOptionsBuilder,
-    ValidationOptionsBuilderImpl
+    ValidationOptionsBuilder
 } from "./";
 
 export class ValidatorBuilder<T, TProperty> implements
     CommonValidatorBuilder<T, TProperty>,
     NumberValidatorBuilder<T>,
     DateValidatorBuilder<T>,
-    StringValidatorBuilder<T> {
+    StringValidatorBuilder<T>,
+    ValidationOptionsBuilder<T> {
 
     constructor(private validationRule: ValidationRule<T, any>) { }
 
     private buildRuleWith(validator: PropertyValidator<any>): ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(validator);
 
-        return new ValidationOptionsBuilderImpl(this.validationRule);
+        return this;
+    }
+
+    /*
+    * ==================
+    * Validation options
+    * ==================
+    */
+    withErrorCode(errorCode: string): ValidationOptionsBuilder<T> {
+        this.validationRule.setErrorCode(errorCode);
+
+        return this;
+    }
+    withErrorMessage(errorMessage: string): ValidationOptionsBuilder<T> {
+        this.validationRule.setErrorMessage(errorMessage);
+
+        return this;
+    }
+    withSeverity(severity: Severity): ValidationOptionsBuilder<T> {
+        this.validationRule.setSeverity(severity);
+
+        return this;
+    }
+    withName(name: string): ValidationOptionsBuilder<T> {
+        this.validationRule.setPropertyName(name);
+
+        return this;
+    }
+    when(expression: (input: T) => boolean): ValidationOptionsBuilder<T> {
+        this.validationRule.setCondition(new WhenCondition(expression));
+
+        return this;
+    }
+    unless(expression: (input: T) => boolean): ValidationOptionsBuilder<T> {
+        this.validationRule.setCondition(new UnlessCondition(expression));
+
+        return this;
+    }
+    onFailure(callback: (failure: ValidationFailure) => void): ValidationOptionsBuilder<T> {
+        this.validationRule.onFailure(callback);
+
+        return this;
     }
 
     /*

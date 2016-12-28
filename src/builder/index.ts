@@ -6,4 +6,3 @@ export * from "./NumberValidatorBuilder";
 export * from "./DateValidatorBuilder";
 export * from "./StringValidatorBuilder";
 export * from "./ValidationOptionsBuilder";
-export * from "./ValidationOptionsBuilderImpl";

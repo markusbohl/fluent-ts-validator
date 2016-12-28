@@ -15,33 +15,34 @@ import {
 } from "../validation";
 
 import {
-    ValidationOptionsBuilder,
-    ValidationOptionsBuilderImpl
+    ValidatorBuilder,
+    ValidationOptionsBuilder
 } from "./";
 
 describe("ValidationOptionsBuilderImpl", () => {
 
     let validationRule: ValidationRule<TestClass, string>;
     let validationOptionsBuilder: ValidationOptionsBuilder<TestClass>;
+    let validatorBuilder: ValidatorBuilder<TestClass, string>;
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
-        validationOptionsBuilder = new ValidationOptionsBuilderImpl(validationRule);
+        validatorBuilder = new ValidatorBuilder(validationRule);
     });
 
     describe("withErrorCode()", () => {
         it("should set error code to validation rule", () => {
             spyOn(validationRule, "setErrorCode");
 
-            validationOptionsBuilder.withErrorCode("error-code");
+            validatorBuilder.withErrorCode("error-code");
 
             expect(validationRule.setErrorCode).toHaveBeenCalledWith("error-code");
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.withErrorCode("error-code");
+            let result = validatorBuilder.withErrorCode("error-code");
 
-            expect(result).toBe(validationOptionsBuilder);
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -49,15 +50,15 @@ describe("ValidationOptionsBuilderImpl", () => {
         it("should set error message to validation rule", () => {
             spyOn(validationRule, "setErrorMessage");
 
-            validationOptionsBuilder.withErrorMessage("error-message");
+            validatorBuilder.withErrorMessage("error-message");
 
             expect(validationRule.setErrorMessage).toHaveBeenCalledWith("error-message");
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.withErrorMessage("error-message");
+            let result = validatorBuilder.withErrorMessage("error-message");
 
-            expect(result).toBe(validationOptionsBuilder);
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -65,15 +66,15 @@ describe("ValidationOptionsBuilderImpl", () => {
         it("should set (property) name to validation rule", () => {
             spyOn(validationRule, "setPropertyName");
 
-            validationOptionsBuilder.withName("A better property name");
+            validatorBuilder.withName("A better property name");
 
             expect(validationRule.setPropertyName).toHaveBeenCalledWith("A better property name");
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.withName("A better property name");
+            let result = validatorBuilder.withName("A better property name");
 
-            expect(result).toBe(validationOptionsBuilder);
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -81,45 +82,46 @@ describe("ValidationOptionsBuilderImpl", () => {
         it("should set severity to validation rule", () => {
             spyOn(validationRule, "setSeverity");
 
-            validationOptionsBuilder.withSeverity(Severity.WARNING);
+            validatorBuilder.withSeverity(Severity.WARNING);
 
             expect(validationRule.setSeverity).toHaveBeenCalledWith(Severity.WARNING);
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.withSeverity(Severity.WARNING);
+            let result = validatorBuilder.withSeverity(Severity.WARNING);
 
-            expect(result).toBe(validationOptionsBuilder);
+            expect(result).toBe(validatorBuilder);
         });
     });
 
     describe("when()", () => {
         it("should set a WhenCondition to the validation rule", () => {
             spyOn(validationRule, "setCondition");
-            validationOptionsBuilder.when((input: TestClass) => { return true; });
+            validatorBuilder.when((input: TestClass) => { return true; });
 
             expect(validationRule.setCondition).toHaveBeenCalledWith(jasmine.any(WhenCondition));
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.when((input: TestClass) => { return true; });
+            let result = validatorBuilder.when((input: TestClass) => { return true; });
 
-            expect(result).toBe(validationOptionsBuilder);
+            expect(result).toBe(validatorBuilder);
         });
     });
 
     describe("unless()", () => {
         it("should set a UnlessCondition to the validation rule", () => {
             spyOn(validationRule, "setCondition");
-            validationOptionsBuilder.unless((input: TestClass) => { return true; });
+
+            validatorBuilder.unless((input: TestClass) => { return true; });
 
             expect(validationRule.setCondition).toHaveBeenCalledWith(jasmine.any(UnlessCondition));
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.unless((input: TestClass) => { return true; });
+            let result = validatorBuilder.unless((input: TestClass) => { return true; });
 
-            expect(result).toBe(validationOptionsBuilder);
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -128,7 +130,7 @@ describe("ValidationOptionsBuilderImpl", () => {
             spyOn(validationRule, "onFailure");
             let callback = (failure: ValidationFailure) => { };
 
-            validationOptionsBuilder.onFailure(callback);
+            validatorBuilder.onFailure(callback);
 
             expect(validationRule.onFailure).toHaveBeenCalledWith(callback);
         });
@@ -136,9 +138,9 @@ describe("ValidationOptionsBuilderImpl", () => {
         it("should return current builder instance", () => {
             let callback = (failure: ValidationFailure) => { };
 
-            let result = validationOptionsBuilder.onFailure(callback);
+            let result = validatorBuilder.onFailure(callback);
 
-            expect(result).toBe(validationOptionsBuilder);
+            expect(result).toBe(validatorBuilder);
         });
     });
 });
