@@ -18,11 +18,6 @@ export interface CommonValidatorBuilder<T, TProperty> {
     isNotEqualTo(comparison: TProperty): ValidationOptionsBuilder<T>;
     isIn(array: Array<TProperty>): ValidationOptionsBuilder<T>;
     isNotIn(array: Array<TProperty>): ValidationOptionsBuilder<T>;
-    isArray(): ValidationOptionsBuilder<T>;
-    isBoolean(): ValidationOptionsBuilder<T>;
-    isDate(): ValidationOptionsBuilder<T>;
-    isNumber(): ValidationOptionsBuilder<T>;
-    isString(): ValidationOptionsBuilder<T>;
     must(validationExpression: (input: TProperty) => boolean): ValidationOptionsBuilder<T>;
     addValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T>;
 }

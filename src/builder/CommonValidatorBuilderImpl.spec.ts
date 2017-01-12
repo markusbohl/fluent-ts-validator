@@ -7,8 +7,8 @@ import {
 } from "../";
 
 import {
-    ValidatorBuilder,
-    CommonValidatorBuilder
+    CommonValidatorBuilder,
+    CommonValidatorBuilderImpl
 } from "./";
 
 import {
@@ -24,12 +24,7 @@ import {
     IsEqualValidator,
     IsNotEqualValidator,
     IsInValidator,
-    IsNotInValidator,
-    IsArrayValidator,
-    IsBooleanValidator,
-    IsDateValidator,
-    IsNumberValidator,
-    IsStringValidator
+    IsNotInValidator
 } from "../validators/common";
 
 class TestClass {
@@ -40,7 +35,7 @@ class TestClass {
     }
 }
 
-describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
+describe("CommonValidatorBuilderImpl", () => {
 
     let validationRule: ValidationRule<TestClass, string>;
     let validatorBuilder: CommonValidatorBuilder<TestClass, string>;
@@ -48,7 +43,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
         spyOn(validationRule, "addValidator").and.callThrough();
-        validatorBuilder = new ValidatorBuilder(validationRule);
+        validatorBuilder = new CommonValidatorBuilderImpl(validationRule);
     });
 
     describe("isDefined()", () => {
@@ -149,7 +144,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         });
     });
 
-    describe("is()", () => {
+    describe("isIn()", () => {
         it("should set IsValidator to validation rule", () => {
             validatorBuilder.isIn(["allowed value"]);
 
@@ -163,7 +158,7 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
         });
     });
 
-    describe("is()", () => {
+    describe("isNotIn()", () => {
         it("should set IsValidator to validation rule", () => {
             validatorBuilder.isNotIn(["element value"]);
 
@@ -172,76 +167,6 @@ describe("ValidatorBuilder -> CommonValidatorBuilder implementation", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isNotIn(["element value"]);
-
-            expect(result).not.toBeNull();
-        });
-    });
-
-    describe("isArray()", () => {
-        it("should set IsValidator to validation rule", () => {
-            validatorBuilder.isArray();
-
-            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsArrayValidator));
-        });
-
-        it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isArray();
-
-            expect(result).not.toBeNull();
-        });
-    });
-
-    describe("isBoolean()", () => {
-        it("should set IsBooleanValidator to validation rule", () => {
-            validatorBuilder.isBoolean();
-
-            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsBooleanValidator));
-        });
-
-        it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isBoolean();
-
-            expect(result).not.toBeNull();
-        });
-    });
-
-    describe("isDate()", () => {
-        it("should set IsDateValidator to validation rule", () => {
-            validatorBuilder.isDate();
-
-            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsDateValidator));
-        });
-
-        it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isDate();
-
-            expect(result).not.toBeNull();
-        });
-    });
-
-    describe("isNumber()", () => {
-        it("should set IsNumberValidator to validation rule", () => {
-            validatorBuilder.isNumber();
-
-            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNumberValidator));
-        });
-
-        it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isNumber();
-
-            expect(result).not.toBeNull();
-        });
-    });
-
-    describe("isString()", () => {
-        it("should set IsStringValidator to validation rule", () => {
-            validatorBuilder.isString();
-
-            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsStringValidator));
-        });
-
-        it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isString();
 
             expect(result).not.toBeNull();
         });
@@ -312,17 +237,17 @@ class InnerValidator extends AbstractValidator<InnerTestClass> {
     }
 }
 
-describe("ValidatorBuilder -> CommonValidatorBuilder addValidator", () => {
+describe("CommonValidatorBuilderImpl addValidator()", () => {
     let inner: InnerTestClass;
     let innerValidator: InnerValidator;
     let validationRule: ValidationRule<OuterTestClass, InnerTestClass>;
-    let validatorBuilder: ValidatorBuilder<OuterTestClass, InnerTestClass>;
+    let validatorBuilder: CommonValidatorBuilderImpl<OuterTestClass, InnerTestClass>;
 
     beforeEach(() => {
         inner = new InnerTestClass("foo");
         innerValidator = new InnerValidator();
         validationRule = new ValidationRule((input: OuterTestClass) => { return input.property; });
-        validatorBuilder = new ValidatorBuilder(validationRule);
+        validatorBuilder = new CommonValidatorBuilderImpl(validationRule);
         spyOn(innerValidator, "validate").and.callThrough();
     });
 
