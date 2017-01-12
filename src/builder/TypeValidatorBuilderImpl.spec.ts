@@ -15,7 +15,7 @@ import {
     IsDateValidator,
     IsNumberValidator,
     IsStringValidator
-} from "../validators/common";
+} from "../validators/type-based";
 
 class TestClass {
     arrayProp: string[];

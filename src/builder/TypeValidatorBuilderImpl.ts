@@ -23,7 +23,7 @@ import {
     IsDateValidator,
     IsNumberValidator,
     IsStringValidator
-} from "../validators/common";
+} from "../validators/type-based";
 
 export class TypeValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, any> implements TypeValidatorBuilder<T> {
 
