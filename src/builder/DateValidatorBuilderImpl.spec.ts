@@ -16,8 +16,8 @@ import {
 } from "../validators/date-based";
 
 import {
-    ValidatorBuilder,
-    DateValidatorBuilder
+    DateValidatorBuilder,
+    DateValidatorBuilderImpl
 } from "./";
 
 class TestClass {
@@ -28,14 +28,14 @@ class TestClass {
     }
 }
 
-describe("ValidatorBuilder -> DateValidatorBuilder implementation", () => {
+describe("DateValidatorBuilderImpl", () => {
     let validationRule: ValidationRule<TestClass, Date>;
     let validatorBuilder: DateValidatorBuilder<TestClass>;
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
         spyOn(validationRule, "addValidator");
-        validatorBuilder = new ValidatorBuilder(validationRule);
+        validatorBuilder = new DateValidatorBuilderImpl(validationRule);
     });
 
     describe("isBefore()", () => {
