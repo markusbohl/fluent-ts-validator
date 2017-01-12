@@ -1,10 +1,11 @@
 "use strict";
 
 import {
+    CommonValidatorBuilder,
     ValidationOptionsBuilder
 } from "./";
 
-export interface NumberValidatorBuilder<T> {
+export interface NumberValidatorBuilder<T> extends CommonValidatorBuilder<T, number> {
     isPositive(): ValidationOptionsBuilder<T>;
     isNegative(): ValidationOptionsBuilder<T>;
     isGreaterThan(threshold: number): ValidationOptionsBuilder<T>;

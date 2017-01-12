@@ -16,8 +16,8 @@ import {
 } from "../validators/number-based";
 
 import {
-    ValidatorBuilder,
-    NumberValidatorBuilder
+    NumberValidatorBuilder,
+    NumberValidatorBuilderImpl
 } from "./";
 
 class TestClass {
@@ -28,14 +28,14 @@ class TestClass {
     }
 }
 
-describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
+describe("NumberValidatorBuilderImpl", () => {
     let validationRule: ValidationRule<TestClass, number>;
     let validatorBuilder: NumberValidatorBuilder<TestClass>;
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
         spyOn(validationRule, "addValidator");
-        validatorBuilder = new ValidatorBuilder(validationRule);
+        validatorBuilder = new NumberValidatorBuilderImpl(validationRule);
     });
 
     describe("isPositive()", () => {
