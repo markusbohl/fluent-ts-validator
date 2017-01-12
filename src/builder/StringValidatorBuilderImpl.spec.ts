@@ -32,8 +32,8 @@ import {
 } from "../validators/string-based";
 
 import {
-    ValidatorBuilder,
-    StringValidatorBuilder
+    StringValidatorBuilder,
+    StringValidatorBuilderImpl,
 } from "./";
 
 class TestClass {
@@ -44,14 +44,14 @@ class TestClass {
     }
 }
 
-describe("ValidatorBuilder -> StringValidatorBuilder implementation", () => {
+describe("StringValidatorBuilderImpl", () => {
     let validationRule: ValidationRule<TestClass, string>;
     let validatorBuilder: StringValidatorBuilder<TestClass>;
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
         spyOn(validationRule, "addValidator");
-        validatorBuilder = new ValidatorBuilder(validationRule);
+        validatorBuilder = new StringValidatorBuilderImpl(validationRule);
     });
 
     describe("isBooleanString()", () => {

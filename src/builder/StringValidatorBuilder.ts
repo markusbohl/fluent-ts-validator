@@ -1,6 +1,7 @@
 "use strict";
 
 import {
+    CommonValidatorBuilder,
     ValidationOptionsBuilder
 } from "./";
 
@@ -16,7 +17,7 @@ import {
     UuidVersion
 } from "../shared";
 
-export interface StringValidatorBuilder<T> {
+export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, string> {
     contains(seed: string): ValidationOptionsBuilder<T>;
     isAlphanumeric(locale?: AlphanumericLocale): ValidationOptionsBuilder<T>;
     isAlpha(locale?: AlphaLocale): ValidationOptionsBuilder<T>;
