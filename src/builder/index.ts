@@ -1,8 +1,13 @@
 "use strict";
 
-export * from "./ValidatorBuilder";
 export * from "./CommonValidatorBuilder";
-export * from "./NumberValidatorBuilder";
+export * from "./CommonValidatorBuilderImpl";
 export * from "./DateValidatorBuilder";
+export * from "./DateValidatorBuilderImpl";
+export * from "./NumberValidatorBuilder";
+export * from "./NumberValidatorBuilderImpl";
 export * from "./StringValidatorBuilder";
+export * from "./StringValidatorBuilderImpl";
+export * from "./TypeValidatorBuilder";
+export * from "./TypeValidatorBuilderImpl";
 export * from "./ValidationOptionsBuilder";

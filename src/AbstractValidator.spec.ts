@@ -19,14 +19,16 @@ class TestPerson {
     age: number;
     address: string;
     email: string;
+    dateOfBirth: Date;
 }
 
 class TestValidator extends AbstractValidator<TestPerson> {
     constructor() {
         super();
-        this.ruleFor((input: TestPerson) => { return input.name; }).isNotNull()
+        this.ruleForNumber((input: TestPerson) => input.age).isGreaterThanOrEqual(8);
+        this.ruleForString((input: TestPerson) => { return input.name; }).isNotNull()
             .withErrorCode("C-3628/B");
-        this.ruleFor((input: TestPerson) => { return input.email; }).isNotNull()
+        this.ruleForString((input: TestPerson) => { return input.email; }).isNotNull()
             .unless((input) => { return input.age < 12; });
         this.ruleFor((input: TestPerson) => { return input.address; }).isNotEqualTo("forbidden address")
             .withErrorMessage("address not allowed")
@@ -40,7 +42,7 @@ class TestValidator extends AbstractValidator<TestPerson> {
 class TestFunctionOverloadingValidator extends AbstractValidator<TestPerson> {
     constructor() {
         super();
-        this.ruleFor((input: TestPerson) => { return input.age; }).isGreaterThanOrEqual(18)
+        this.ruleForNumber((input: TestPerson) => { return input.age; }).isGreaterThanOrEqual(18)
             .withErrorMessage("too young");
     }
 }
