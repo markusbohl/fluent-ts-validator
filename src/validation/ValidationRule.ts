@@ -30,8 +30,8 @@ export class ValidationRule<T, TProperty> {
         // (the identified propertyName will be used later to specify where a validation failure came from)
         // obviously, something like a native nameof-function in TypeScript would be way nicer
         // unfortunately, it does not exist yet
-        let regexArray = lambdaExpression.toString().match("return\\s+\\w+\\.(\\w+)");
-        this.propertyName = regexArray && regexArray.length > 1 ? regexArray[1] : null;
+        let regexArray = lambdaExpression.toString().match("\\s+\\w+\\.(\\w+(\\.\\w+)*)");
+        this.propertyName = regexArray && regexArray.length > 1 ? regexArray[1] : undefined;
         this.errorMessage = `${this.propertyName} is invalid`;
     }
 
