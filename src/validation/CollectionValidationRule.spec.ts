@@ -47,7 +47,7 @@ describe("CollectionValidationRule", () => {
             it("should validate every element of the array", () => {
                 let validator = getPositiveValidator();
                 spyOn(validator, "isValid");
-                validationRule.setValidator(validator);
+                validationRule.addValidator(validator);
 
                 validationRule.apply(testClass);
 
@@ -56,7 +56,7 @@ describe("CollectionValidationRule", () => {
             });
 
             it("should return a postive outcome if every element is valid", () => {
-                validationRule.setValidator(getPositiveValidator());
+                validationRule.addValidator(getPositiveValidator());
 
                 let result = validationRule.apply(testClass);
 
@@ -64,7 +64,37 @@ describe("CollectionValidationRule", () => {
             });
 
             it("should return a negative outcome if element are invalid", () => {
-                validationRule.setValidator(getNegativeValidator());
+                validationRule.addValidator(getNegativeValidator());
+
+                let result = validationRule.apply(testClass);
+
+                expect(result.isSuccess()).toBeFalsy();
+            });
+
+            it("should return a positive outcome if every element is validated successfully with every validator", () => {
+                validationRule.addValidator(getPositiveValidator());
+                validationRule.addValidator(getPositiveValidator());
+                validationRule.addValidator(getPositiveValidator());
+
+                let result = validationRule.apply(testClass);
+
+                expect(result.isSuccess()).toBeTruthy();
+            });
+
+            it("should return a negative outcome if not all validators validate successfully - test 1", () => {
+                validationRule.addValidator(getPositiveValidator());
+                validationRule.addValidator(getPositiveValidator());
+                validationRule.addValidator(getNegativeValidator());
+
+                let result = validationRule.apply(testClass);
+
+                expect(result.isSuccess()).toBeFalsy();
+            });
+
+            it("should return a negative outcome if not all validators validate successfully - test 2", () => {
+                validationRule.addValidator(getNegativeValidator());
+                validationRule.addValidator(getPositiveValidator());
+                validationRule.addValidator(getPositiveValidator());
 
                 let result = validationRule.apply(testClass);
 
@@ -72,7 +102,7 @@ describe("CollectionValidationRule", () => {
             });
 
             it("should return a negative outcome with detailed validation failures if element are invalid", () => {
-                validationRule.setValidator(getNegativeValidator());
+                validationRule.addValidator(getNegativeValidator());
 
                 let result = validationRule.apply(testClass);
 
@@ -93,7 +123,7 @@ describe("CollectionValidationRule", () => {
             it("should invoke callbacks in case of failures", () => {
                 let callback = jasmine.createSpy("callback");
                 validationRule.onFailure(callback);
-                validationRule.setValidator(getNegativeValidator());
+                validationRule.addValidator(getNegativeValidator());
 
                 validationRule.apply(testClass);
 
@@ -114,7 +144,7 @@ describe("CollectionValidationRule", () => {
             it("should not invoke validator if specified condition omits validation", () => {
                 let validator = getNegativeValidator();
                 spyOn(validator, "isValid").and.callThrough();
-                validationRule.setValidator(validator);
+                validationRule.addValidator(validator);
                 validationRule.setCondition(getNegativeCondition());
 
                 let result = validationRule.apply(testClass);
@@ -126,7 +156,7 @@ describe("CollectionValidationRule", () => {
             it("should invoke validator if specified condition does not omits validation", () => {
                 let validator = getNegativeValidator();
                 spyOn(validator, "isValid").and.callThrough();
-                validationRule.setValidator(validator);
+                validationRule.addValidator(validator);
                 validationRule.setCondition(getPositiveCondition());
 
                 let result = validationRule.apply(testClass);
@@ -148,7 +178,7 @@ describe("CollectionValidationRule", () => {
             it("should validate every element of the array", () => {
                 let validator = getPositiveValidator();
                 spyOn(validator, "isValid");
-                validationRule.setValidator(validator);
+                validationRule.addValidator(validator);
 
                 validationRule.apply(testClass);
 
@@ -158,7 +188,7 @@ describe("CollectionValidationRule", () => {
             });
 
             it("should return a postive outcome if every element is valid", () => {
-                validationRule.setValidator(getPositiveValidator());
+                validationRule.addValidator(getPositiveValidator());
 
                 let result = validationRule.apply(testClass);
 
@@ -166,7 +196,7 @@ describe("CollectionValidationRule", () => {
             });
 
             it("should return a negative outcome if element are invalid", () => {
-                validationRule.setValidator(getNegativeValidator());
+                validationRule.addValidator(getNegativeValidator());
 
                 let result = validationRule.apply(testClass);
 

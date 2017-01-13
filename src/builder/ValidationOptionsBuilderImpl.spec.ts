@@ -16,17 +16,17 @@ import {
 
 import {
     ValidationOptionsBuilder,
-    ValidationOptionsBuilderImpl
+    CommonValidatorBuilderImpl
 } from "./";
 
-describe("ValidationOptionsBuilderImpl", () => {
+describe("ValidationOptionsBuilder", () => {
 
     let validationRule: ValidationRule<TestClass, string>;
     let validationOptionsBuilder: ValidationOptionsBuilder<TestClass>;
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => { return input.property; });
-        validationOptionsBuilder = new ValidationOptionsBuilderImpl(validationRule);
+        validationOptionsBuilder = new CommonValidatorBuilderImpl(validationRule);
     });
 
     describe("withErrorCode()", () => {
@@ -111,6 +111,7 @@ describe("ValidationOptionsBuilderImpl", () => {
     describe("unless()", () => {
         it("should set a UnlessCondition to the validation rule", () => {
             spyOn(validationRule, "setCondition");
+
             validationOptionsBuilder.unless((input: TestClass) => { return true; });
 
             expect(validationRule.setCondition).toHaveBeenCalledWith(jasmine.any(UnlessCondition));

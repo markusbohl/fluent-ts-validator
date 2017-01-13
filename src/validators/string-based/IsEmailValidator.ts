@@ -10,6 +10,6 @@ export class IsEmailValidator implements PropertyValidator<string> {
     constructor(private options?: EmailOptions) { }
 
     isValid(input: string): boolean {
-        return validatorJS.isEmail(input, this.options);
+        return input && validatorJS.isEmail(input, this.options);
     }
 }

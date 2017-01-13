@@ -1,6 +1,7 @@
 "use strict";
 
 import {
+    CommonValidatorBuilder,
     ValidationOptionsBuilder
 } from "./";
 
@@ -16,27 +17,27 @@ import {
     UuidVersion
 } from "../shared";
 
-export interface StringValidatorBuilder<T> {
-    contains(seed: string): ValidationOptionsBuilder<T>;
-    isAlphanumeric(locale?: AlphanumericLocale): ValidationOptionsBuilder<T>;
-    isAlpha(locale?: AlphaLocale): ValidationOptionsBuilder<T>;
-    isAscii(): ValidationOptionsBuilder<T>;
-    isBase64(): ValidationOptionsBuilder<T>;
-    isBooleanString(): ValidationOptionsBuilder<T>;
-    isCurrency(options?: CurrencyOptions): ValidationOptionsBuilder<T>;
-    isDateString(): ValidationOptionsBuilder<T>;
-    isDecimalString(): ValidationOptionsBuilder<T>;
-    isEmail(options?: EmailOptions): ValidationOptionsBuilder<T>;
-    isFqdn(options?: FqdnOptions): ValidationOptionsBuilder<T>;
-    isHexadecimal(): ValidationOptionsBuilder<T>;
-    isIso8601(): ValidationOptionsBuilder<T>;
-    isJson(): ValidationOptionsBuilder<T>;
-    isLength(options: LengthOptions): ValidationOptionsBuilder<T>;
-    isLowercase(): ValidationOptionsBuilder<T>;
-    isMobilePhone(locale: MobilePhoneLocale): ValidationOptionsBuilder<T>;
-    isNumericString(): ValidationOptionsBuilder<T>;
-    isUrl(options?: UrlOptions): ValidationOptionsBuilder<T>;
-    isUppercase(): ValidationOptionsBuilder<T>;
-    isUuid(version?: UuidVersion): ValidationOptionsBuilder<T>;
-    matches(pattern: RegExp, modifiers?: string): ValidationOptionsBuilder<T>;
+export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, string> {
+    contains(seed: string): this & ValidationOptionsBuilder<T>;
+    isAlphanumeric(locale?: AlphanumericLocale): this & ValidationOptionsBuilder<T>;
+    isAlpha(locale?: AlphaLocale): this & ValidationOptionsBuilder<T>;
+    isAscii(): this & ValidationOptionsBuilder<T>;
+    isBase64(): this & ValidationOptionsBuilder<T>;
+    isBooleanString(): this & ValidationOptionsBuilder<T>;
+    isCurrency(options?: CurrencyOptions): this & ValidationOptionsBuilder<T>;
+    isDateString(): this & ValidationOptionsBuilder<T>;
+    isDecimalString(): this & ValidationOptionsBuilder<T>;
+    isEmail(options?: EmailOptions): this & ValidationOptionsBuilder<T>;
+    isFqdn(options?: FqdnOptions): this & ValidationOptionsBuilder<T>;
+    isHexadecimal(): this & ValidationOptionsBuilder<T>;
+    isIso8601(): this & ValidationOptionsBuilder<T>;
+    isJson(): this & ValidationOptionsBuilder<T>;
+    isLength(options: LengthOptions): this & ValidationOptionsBuilder<T>;
+    isLowercase(): this & ValidationOptionsBuilder<T>;
+    isMobilePhone(locale: MobilePhoneLocale): this & ValidationOptionsBuilder<T>;
+    isNumericString(): this & ValidationOptionsBuilder<T>;
+    isUrl(options?: UrlOptions): this & ValidationOptionsBuilder<T>;
+    isUppercase(): this & ValidationOptionsBuilder<T>;
+    isUuid(version?: UuidVersion): this & ValidationOptionsBuilder<T>;
+    matches(pattern: RegExp, modifiers?: string): this & ValidationOptionsBuilder<T>;
 }

@@ -22,8 +22,8 @@ export class CollectionValidationRule<T, TProperty extends Iterable<any>> extend
         return outcome;
     }
 
-    private processElementValidation(input: T, element: TProperty, outcome: RuleApplicationOutcome) {
-        if (this.validator.isValid(element) === false) {
+    private processElementValidation(input: T, element: any, outcome: RuleApplicationOutcome) {
+        if (this.validators.some(validator => validator.isValid(element) === false)) {
             let failure = this.createValidationFailure(input, element);
             this.invokeCallbackWith(failure);
             outcome.addValidationFailure(failure);
