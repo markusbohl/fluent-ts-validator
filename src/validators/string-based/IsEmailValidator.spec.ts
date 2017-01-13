@@ -33,8 +33,7 @@ describe("IsEmailValidator", () => {
             expect(validatorJS.isEmail).toHaveBeenCalledWith("test@example.com", options);
         });
 
-        it("should return true", () => {
-            spyOn(validatorJS, "isEmail").and.returnValue(true);
+        it("should return true for valid email address", () => {
             let validator = new IsEmailValidator();
 
             let result = validator.isValid("test@example.com");
@@ -42,11 +41,26 @@ describe("IsEmailValidator", () => {
             expect(result).toBeTruthy();
         });
 
-        it("should return false", () => {
-            spyOn(validatorJS, "isEmail").and.returnValue(false);
+        it("should return false for invalid email address", () => {
             let validator = new IsEmailValidator();
 
-            let result = validator.isValid("test@example.com");
+            let result = validator.isValid("@example.com");
+
+            expect(result).toBeFalsy();
+        });
+
+        it("should return false for undefined", () => {
+            let validator = new IsEmailValidator();
+
+            let result = validator.isValid(undefined);
+
+            expect(result).toBeFalsy();
+        });
+
+        it("should return false for null", () => {
+            let validator = new IsEmailValidator();
+
+            let result = validator.isValid(null);
 
             expect(result).toBeFalsy();
         });
