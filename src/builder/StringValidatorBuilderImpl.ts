@@ -58,7 +58,7 @@ export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
         super(validationRule);
     }
 
-    private buildRuleWith(validator: PropertyValidator<string>): this {
+    private buildRuleWith(validator: PropertyValidator<string>): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(validator);
 
         return this;
@@ -69,90 +69,90 @@ export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
 * String-based validation rules
 * =============================
 */
-    isBooleanString(): this {
+    isBooleanString(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsBooleanStringValidator());
     }
 
-    isDateString(): this {
+    isDateString(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsDateStringValidator());
     }
 
-    isNumericString(): this {
+    isNumericString(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsNumericStringValidator());
     }
 
-    isAlpha(locale?: AlphaLocale): this {
+    isAlpha(locale?: AlphaLocale): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsAlphaValidator(locale));
     }
 
-    isAlphanumeric(locale?: AlphanumericLocale): this {
+    isAlphanumeric(locale?: AlphanumericLocale): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsAlphanumericValidator(locale));
     }
 
-    contains(seed: string): this {
+    contains(seed: string): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new ContainsValidator(seed));
     }
 
-    isAscii(): this {
+    isAscii(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsAsciiValidator());
     }
 
-    isBase64(): this {
+    isBase64(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsBase64Validator());
     }
 
-    isCurrency(options?: CurrencyOptions): this {
+    isCurrency(options?: CurrencyOptions): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsCurrencyValidator(options));
     }
 
-    isDecimalString(): this {
+    isDecimalString(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsDecimalStringValidator());
     }
 
-    isEmail(options?: EmailOptions): this {
+    isEmail(options?: EmailOptions): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsEmailValidator(options));
     }
 
-    isFqdn(options?: FqdnOptions): this {
+    isFqdn(options?: FqdnOptions): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsFqdnValidator(options));
     }
 
-    isHexadecimal(): this {
+    isHexadecimal(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsHexadecimalValidator());
     }
 
-    isIso8601(): this {
+    isIso8601(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsIso8601Validator());
     }
-    isJson(): this {
+    isJson(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsJsonValidator());
     }
 
-    isLength(options: LengthOptions): this {
+    isLength(options: LengthOptions): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsLengthValidator(options));
     }
 
-    isLowercase(): this {
+    isLowercase(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsLowercaseValidator());
     }
 
-    isMobilePhone(locale: MobilePhoneLocale): this {
+    isMobilePhone(locale: MobilePhoneLocale): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsMobilePhoneValidator(locale));
     }
 
-    isUppercase(): this {
+    isUppercase(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsUppercaseValidator());
     }
 
-    isUrl(options?: UrlOptions): this {
+    isUrl(options?: UrlOptions): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsUrlValidator(options));
     }
 
-    isUuid(version?: UuidVersion): this {
+    isUuid(version?: UuidVersion): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsUuidValidator(version));
     }
 
-    matches(pattern: RegExp, modifiers?: string): this {
+    matches(pattern: RegExp, modifiers?: string): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new RegExValidator(pattern, modifiers));
     }
 }

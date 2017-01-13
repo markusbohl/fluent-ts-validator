@@ -9,15 +9,15 @@ import {
 } from "../shared";
 
 export interface CommonValidatorBuilder<T, TProperty> {
-    isDefined(): ValidationOptionsBuilder<T>;
-    isNull(): ValidationOptionsBuilder<T>;
-    isNotNull(): ValidationOptionsBuilder<T>;
-    isEmpty(): ValidationOptionsBuilder<T>;
-    isNotEmpty(): ValidationOptionsBuilder<T>;
-    isEqualTo(comparison: TProperty): ValidationOptionsBuilder<T>;
-    isNotEqualTo(comparison: TProperty): ValidationOptionsBuilder<T>;
-    isIn(array: Array<TProperty>): ValidationOptionsBuilder<T>;
-    isNotIn(array: Array<TProperty>): ValidationOptionsBuilder<T>;
-    must(validationExpression: (input: TProperty) => boolean): ValidationOptionsBuilder<T>;
-    addValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T>;
+    isDefined(): this & ValidationOptionsBuilder<T>;
+    isNull(): this & ValidationOptionsBuilder<T>;
+    isNotNull(): this & ValidationOptionsBuilder<T>;
+    isEmpty(): this & ValidationOptionsBuilder<T>;
+    isNotEmpty(): this & ValidationOptionsBuilder<T>;
+    isEqualTo(comparison: TProperty): this & ValidationOptionsBuilder<T>;
+    isNotEqualTo(comparison: TProperty): this & ValidationOptionsBuilder<T>;
+    isIn(array: Array<TProperty>): this & ValidationOptionsBuilder<T>;
+    isNotIn(array: Array<TProperty>): this & ValidationOptionsBuilder<T>;
+    must(validationExpression: (input: TProperty) => boolean): this & ValidationOptionsBuilder<T>;
+    addValidator(validator: Validatable<TProperty>): this & ValidationOptionsBuilder<T>;
 }

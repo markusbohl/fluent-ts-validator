@@ -3,6 +3,7 @@
 "use strict";
 
 import {
+    LengthOptions,
     Severity,
     ValidationFailure
 } from "./shared";
@@ -12,38 +13,51 @@ import {
     AbstractValidator
 } from "./";
 
-let validationFailure: ValidationFailure = null;
 
 class TestPerson {
     name: string;
-    age: number;
-    address: string;
+    xpInYears: number;
+    address: TestAddress;
     email: string;
     dateOfBirth: Date;
+    buddies: string[];
 }
+
+class TestAddress {
+    street: string;
+    number?: string;
+    city: string;
+    postcode: string;
+}
+
+let validationFailure: ValidationFailure = null;
 
 class TestValidator extends AbstractValidator<TestPerson> {
     constructor() {
         super();
-        this.ruleForNumber((input: TestPerson) => input.age).isGreaterThanOrEqual(8);
-        this.ruleForString((input: TestPerson) => { return input.name; }).isNotNull()
-            .withErrorCode("C-3628/B");
-        this.ruleForString((input: TestPerson) => { return input.email; }).isNotNull()
-            .unless((input) => { return input.age < 12; });
-        this.ruleFor((input: TestPerson) => { return input.address; }).isNotEqualTo("forbidden address")
-            .withErrorMessage("address not allowed")
+
+        this.ruleForString((input: TestPerson) => input.name)
+            .isNotEmpty().isLength({ min: 3 }).isAlpha().withErrorCode("N1");
+
+        this.ruleForNumber((input: TestPerson) => input.xpInYears)
+            .isGreaterThanOrEqual(3).isLessThanOrEqual(13).withSeverity(Severity.INFO);
+
+        this.ruleForString((input: TestPerson) => { return input.email; })
+            .isEmail().unless((input: TestPerson) => !input.address);
+
+        this.ruleFor((input: TestPerson) => { return input.address; })
+            .must(address => {
+                if (address) {
+                    return address.postcode !== "55555" && address.street !== "Le Place";
+                } else {
+                    return true;
+                }
+            })
+            .withErrorMessage("address is not allowed")
             .withSeverity(Severity.WARNING)
             .onFailure((failure) => {
                 validationFailure = failure;
             });
-    }
-}
-
-class TestFunctionOverloadingValidator extends AbstractValidator<TestPerson> {
-    constructor() {
-        super();
-        this.ruleForNumber((input: TestPerson) => { return input.age; }).isGreaterThanOrEqual(18)
-            .withErrorMessage("too young");
     }
 }
 
@@ -56,9 +70,13 @@ describe("AbstractValidator", () => {
         validator = new TestValidator();
         person = new TestPerson();
         person.name = "Franz";
-        person.age = 18;
-        person.address = "other address";
+        person.xpInYears = 8;
         person.email = "mail@example.com";
+        person.address = {
+            street: "Le other Place",
+            city: "MyOtherTown",
+            postcode: "22222"
+        };
     });
 
     describe("TestValidator.validate()", () => {
@@ -68,28 +86,33 @@ describe("AbstractValidator", () => {
             expect(result.isValid()).toBeTruthy();
         });
 
-        it("should return a negative validation result if name is null", () => {
-            person.name = null;
+        it("should return a negative validation result if name is empty", () => {
+            person.name = "";
 
             let result: ValidationResult = validator.validate(person);
 
             expect(result.isValid()).toBeFalsy();
         });
 
-        it("should return a proper failure-object if name is null", () => {
-            person.name = null;
+        it("should return a proper failure-object if name is is less than 3 characters long", () => {
+            person.name = "DJ";
 
             let failure: ValidationFailure = validator.validate(person).getFailures()[0];
 
             expect(failure.target).toBe(person);
+            expect(failure.attemptedValue).toBe("DJ");
             expect(failure.propertyName).toBe("name");
-            expect(failure.errorCode).toBe("C-3628/B");
+            expect(failure.errorCode).toBe("N1");
             expect(failure.severity).toBe(Severity.ERROR);
             expect(failure.errorMessage).toBe("name is invalid");
         });
 
         it("should return a negative validation result if address is forbidden", () => {
-            person.address = "forbidden address";
+            person.address = {
+                street: "Le Place",
+                city: "MyTown",
+                postcode: "55555"
+            };
 
             let result: ValidationResult = validator.validate(person);
 
@@ -97,7 +120,11 @@ describe("AbstractValidator", () => {
         });
 
         it("should return a proper failure-object if address is forbidden", () => {
-            person.address = "forbidden address";
+            person.address = {
+                street: "Le Place",
+                city: "MyTown",
+                postcode: "55555"
+            };
 
             let failure: ValidationFailure = validator.validate(person).getFailures()[0];
 
@@ -105,13 +132,17 @@ describe("AbstractValidator", () => {
             expect(failure.propertyName).toBe("address");
             expect(failure.errorCode).not.toBeDefined();
             expect(failure.severity).toBe(Severity.WARNING);
-            expect(failure.errorMessage).toBe("address not allowed");
+            expect(failure.errorMessage).toBe("address is not allowed");
         });
 
         it("should return one failure for every validation that failed", () => {
             person.name = null;
             person.email = null;
-            person.address = "forbidden address";
+            person.address = {
+                street: "Le Place",
+                city: "MyTown",
+                postcode: "55555"
+            };
 
             let result: ValidationResult = validator.validate(person);
 
@@ -119,7 +150,11 @@ describe("AbstractValidator", () => {
         });
 
         it("should trigger callback on failure", () => {
-            person.address = "forbidden address";
+            person.address = {
+                street: "Le Place",
+                city: "MyTown",
+                postcode: "55555"
+            };
 
             validator.validate(person);
 
@@ -129,8 +164,8 @@ describe("AbstractValidator", () => {
         });
 
         it("should return positive validation result if invalid value is not validated due to a specified condition", () => {
-            person.age = 10;
             person.email = null;
+            person.address = undefined;
 
             let result: ValidationResult = validator.validate(person);
 
@@ -138,8 +173,12 @@ describe("AbstractValidator", () => {
         });
 
         it("should return negative validation result if invalid value is validated because of a specified condition", () => {
-            person.age = 12;
             person.email = null;
+            person.address = {
+                street: "Le other Place",
+                city: "MyOtherTown",
+                postcode: "22222"
+            };
 
             let result: ValidationResult = validator.validate(person);
 
@@ -165,43 +204,6 @@ describe("AbstractValidator", () => {
                 expect(result.isValid()).toBeFalsy();
                 done();
             });
-        });
-    });
-});
-
-describe("TestFunctionOverloadingValidator", () => {
-    describe("ruleFor()", () => {
-        it("should not throw exception while instanitating validator", () => {
-            try {
-                let validator = new TestFunctionOverloadingValidator();
-
-                expect(validator).toBeDefined();
-            } catch (error) {
-                fail(error);
-            }
-        });
-    });
-
-    describe("validate()", () => {
-        it("should work with number-specific validation rules (valid case)", () => {
-            let validator = new TestFunctionOverloadingValidator();
-            let person = new TestPerson();
-            person.age = 20;
-
-            let result = validator.validate(person);
-
-            expect(result.isValid()).toBeTruthy();
-        });
-
-        it("should work with number-specific validation rules (invalid case)", () => {
-            let validator = new TestFunctionOverloadingValidator();
-            let person = new TestPerson();
-            person.age = 16;
-
-            let result = validator.validate(person);
-
-            expect(result.isValid()).toBeFalsy();
-            expect(result.getFailures()[0].errorMessage).toBe("too young");
         });
     });
 });

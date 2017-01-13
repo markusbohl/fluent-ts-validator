@@ -30,7 +30,7 @@ export class NumberValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
         super(validationRule);
     }
 
-    private buildRuleWith(validator: PropertyValidator<number>): this {
+    private buildRuleWith(validator: PropertyValidator<number>): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(validator);
 
         return this;
@@ -41,27 +41,27 @@ export class NumberValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
     * Number-based validation rules
     * =============================
     */
-    isPositive(): this {
+    isPositive(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsPositiveValidator());
     }
 
-    isNegative(): this {
+    isNegative(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsNegativeValidator());
     }
 
-    isGreaterThan(threshold: number): this {
+    isGreaterThan(threshold: number): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsGreaterThanValidator(threshold));
     }
 
-    isGreaterThanOrEqual(threshold: number): this {
+    isGreaterThanOrEqual(threshold: number): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsGreaterThanOrEqualToValidator(threshold));
     }
 
-    isLessThan(threshold: number): this {
+    isLessThan(threshold: number): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsLessThanValidator(threshold));
     }
 
-    isLessThanOrEqual(threshold: number): this {
+    isLessThanOrEqual(threshold: number): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsLessThanOrEqualToValidator(threshold));
     }
 }

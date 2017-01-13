@@ -86,7 +86,7 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements
     * Custom validation rules
     * =======================
     */
-    addValidator(validator: Validatable<TProperty>): this {
+    addValidator(validator: Validatable<TProperty>): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator({
             isValid: function (input: TProperty): boolean {
                 return validator.validate(input).isValid();
@@ -96,7 +96,7 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements
         return this;
     }
 
-    must(validationExpression: (input: TProperty) => boolean): this {
+    must(validationExpression: (input: TProperty) => boolean): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator({
             isValid: function (input: TProperty): boolean {
                 return validationExpression(input);
@@ -111,55 +111,55 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements
     * Common validation rules
     * =======================
     */
-    isDefined(): this {
+    isDefined(): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsDefinedValidator());
 
         return this;
     }
 
-    isNull(): this {
+    isNull(): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsNullValidator());
 
         return this;
     }
 
-    isNotNull(): this {
+    isNotNull(): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsNotNullValidator());
 
         return this;
     }
 
-    isEmpty(): this {
+    isEmpty(): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsEmptyValidator());
 
         return this;
     }
 
-    isNotEmpty(): this {
+    isNotEmpty(): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsNotEmptyValidator());
 
         return this;
     }
 
-    isEqualTo(comparison: TProperty): this {
+    isEqualTo(comparison: TProperty): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsEqualValidator(comparison));
 
         return this;
     }
 
-    isNotEqualTo(comparison: TProperty): this {
+    isNotEqualTo(comparison: TProperty): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsNotEqualValidator(comparison));
 
         return this;
     }
 
-    isIn(array: Array<TProperty>): this {
+    isIn(array: Array<TProperty>): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsInValidator(array));
 
         return this;
     }
 
-    isNotIn(array: Array<TProperty>): this {
+    isNotIn(array: Array<TProperty>): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsNotInValidator(array));
 
         return this;
