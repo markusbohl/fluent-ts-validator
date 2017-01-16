@@ -47,5 +47,17 @@ describe("IsUrlValidator", () => {
             expect(result).toBeFalsy();
             expect(validatorJS.isURL).toHaveBeenCalledWith("bar", undefined);
         });
+
+        it("should return false if input is undefined", () => {
+            let result = validator.isValid(undefined);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if input is null", () => {
+            let result = validator.isValid(null);
+
+            expect(result).toBe(false);
+        });
     });
 });

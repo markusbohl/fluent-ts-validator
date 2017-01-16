@@ -48,5 +48,21 @@ describe("IsUuidValidator", () => {
 
             expect(result).toBeFalsy();
         });
+
+        it("should return false if input is undefined", () => {
+            let validator = new IsUuidValidator();
+
+            let result = validator.isValid(undefined);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if input is null", () => {
+            let validator = new IsUuidValidator();
+
+            let result = validator.isValid(null);
+
+            expect(result).toBe(false);
+        });
     });
 });

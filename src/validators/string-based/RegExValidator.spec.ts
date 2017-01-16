@@ -37,5 +37,21 @@ describe("RegExValidator", () => {
 
             expect(validatorJS.matches).toHaveBeenCalledWith("foo", regexp, "i");
         });
+
+        it("should return false if input is undefined", () => {
+            let regexValidator = new RegExValidator(regexp);
+
+            let result = regexValidator.isValid(undefined);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if input is null", () => {
+            let regexValidator = new RegExValidator(regexp);
+
+            let result = regexValidator.isValid(null);
+
+            expect(result).toBe(false);
+        });
     });
 });

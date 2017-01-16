@@ -17,5 +17,16 @@ describe("IsDateStringValidator", () => {
 
             expect(validatorJS.isDate).toHaveBeenCalledWith("2016-11-14");
         });
+        it("should return false if input is undefined", () => {
+            let result = validator.isValid(undefined);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if input is null", () => {
+            let result = validator.isValid(null);
+
+            expect(result).toBe(false);
+        });
     });
 });
