@@ -1,5 +1,3 @@
-/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
 "use strict";
 
 import * as validatorJS from "validator";
@@ -49,6 +47,22 @@ describe("IsUuidValidator", () => {
             let result = validator.isValid("uuid");
 
             expect(result).toBeFalsy();
+        });
+
+        it("should return false if input is undefined", () => {
+            let validator = new IsUuidValidator();
+
+            let result = validator.isValid(undefined);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if input is null", () => {
+            let validator = new IsUuidValidator();
+
+            let result = validator.isValid(null);
+
+            expect(result).toBe(false);
         });
     });
 });

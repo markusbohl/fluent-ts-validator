@@ -1,5 +1,3 @@
-/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
 "use strict";
 
 import { IsBooleanValidator } from "./IsBooleanValidator";

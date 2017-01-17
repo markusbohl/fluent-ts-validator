@@ -10,6 +10,9 @@ export class IsEmailValidator implements PropertyValidator<string> {
     constructor(private options?: EmailOptions) { }
 
     isValid(input: string): boolean {
-        return input && validatorJS.isEmail(input, this.options);
+        if (typeof input === "undefined" || input === null) {
+            return false;
+        }
+        return validatorJS.isEmail(input, this.options);
     }
 }

@@ -1,5 +1,3 @@
-/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
 "use strict";
 
 import { IsBetweenValidator } from "./IsBetweenValidator";
@@ -48,6 +46,18 @@ describe("IsBetweenValidator", () => {
 
             it("should return false if given date is equal to upper boundary", () => {
                 let result = validator.isValid(upperDate);
+
+                expect(result).toBeFalsy();
+            });
+
+            it("should return false if input is undefined", () => {
+                let result = validator.isValid(undefined);
+
+                expect(result).toBeFalsy();
+            });
+
+            it("should return false if input is null", () => {
+                let result = validator.isValid(null);
 
                 expect(result).toBeFalsy();
             });

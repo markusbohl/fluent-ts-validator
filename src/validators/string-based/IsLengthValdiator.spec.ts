@@ -27,5 +27,21 @@ describe("IsLengthValdiator", () => {
             expect(result).toBeFalsy();
             expect(validatorJS.isLength).toHaveBeenCalledWith("foo", options);
         });
+
+        it("should return false if input is undefined", () => {
+            let validator = new IsLengthValidator(options);
+
+            let result = validator.isValid(undefined);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if input is null", () => {
+            let validator = new IsLengthValidator(options);
+
+            let result = validator.isValid(null);
+
+            expect(result).toBe(false);
+        });
     });
 });

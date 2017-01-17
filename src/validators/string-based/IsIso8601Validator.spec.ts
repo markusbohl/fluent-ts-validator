@@ -24,5 +24,21 @@ describe("IsIso8601Validator", () => {
             expect(result).toBeFalsy();
             expect(validatorJS.isISO8601).toHaveBeenCalledWith("26.12.2016");
         });
+
+        it("should return false if input is undefined", () => {
+            let validator = new IsIso8601Validator();
+
+            let result = validator.isValid(undefined);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if input is null", () => {
+            let validator = new IsIso8601Validator();
+
+            let result = validator.isValid(null);
+
+            expect(result).toBe(false);
+        });
     });
 });
