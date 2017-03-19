@@ -252,7 +252,7 @@ describe("AddressbookValidator", () => {
 
             let result = validator.validate(addressbook);
 
-            expect(result.getFailures()).toContain(jasmine.objectContaining({
+            expect(result.getFailures()[0]).toEqual(jasmine.objectContaining({
                 target: addressbook,
                 propertyName: "contacts",
                 attemptedValue: null,

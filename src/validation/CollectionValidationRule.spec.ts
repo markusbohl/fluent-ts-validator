@@ -104,13 +104,13 @@ describe("CollectionValidationRule", () => {
 
                 let result = validationRule.apply(testClass);
 
-                expect(result.getValidationFailures()).toContain(jasmine.objectContaining({
+                expect(result.getValidationFailures()[0]).toEqual(jasmine.objectContaining({
                     target: testClass,
                     propertyName: "array",
                     attemptedValue: "foo",
                     severity: Severity.ERROR
                 }));
-                expect(result.getValidationFailures()).toContain(jasmine.objectContaining({
+                expect(result.getValidationFailures()[1]).toEqual(jasmine.objectContaining({
                     target: testClass,
                     propertyName: "array",
                     attemptedValue: "bar",
