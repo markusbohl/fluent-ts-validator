@@ -8,9 +8,9 @@ export class IsAlphanumericValidator implements PropertyValidator<string> {
     }
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return validatorJS.isAlphanumeric(input, this.locale);
         }
-        return validatorJS.isAlphanumeric(input, this.locale);
+        return false;
     }
 }

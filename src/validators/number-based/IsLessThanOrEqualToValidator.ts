@@ -13,7 +13,7 @@ export class IsLessThanOrEqualToValidator implements PropertyValidator<number> {
     }
 
     isValid(input: number): boolean {
-        if (input === null) {
+        if (typeof input === "undefined" || input === null) {
             return false;
         }
         return input <= this.threshold;

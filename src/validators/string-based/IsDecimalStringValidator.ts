@@ -4,9 +4,9 @@ import {PropertyValidator} from "../PropertyValidator";
 export class IsDecimalStringValidator implements PropertyValidator<string> {
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return validatorJS.isDecimal(input);
         }
-        return validatorJS.isDecimal(input);
+        return false;
     }
 }

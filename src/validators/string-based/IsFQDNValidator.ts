@@ -8,9 +8,9 @@ export class IsFqdnValidator implements PropertyValidator<string> {
     }
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return validatorJS.isFQDN(input, this.options);
         }
-        return validatorJS.isFQDN(input, this.options);
+        return false;
     }
 }

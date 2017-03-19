@@ -8,9 +8,9 @@ export class IsUrlValidator implements PropertyValidator<string> {
     }
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return validatorJS.isURL(input, this.urlOptions);
         }
-        return validatorJS.isURL(input, this.urlOptions);
+        return false;
     }
 }

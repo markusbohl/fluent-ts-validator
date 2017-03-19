@@ -4,9 +4,9 @@ import * as validatorJS from "validator";
 export class IsJsonValidator implements PropertyValidator<string> {
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return validatorJS.isJSON(input);
         }
-        return validatorJS.isJSON(input);
+        return false;
     }
 }

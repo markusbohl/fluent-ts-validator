@@ -8,9 +8,9 @@ export class IsMobilePhoneValidator implements PropertyValidator<string> {
     }
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return validatorJS.isMobilePhone(input, this.locale);
         }
-        return validatorJS.isMobilePhone(input, this.locale);
+        return false;
     }
 }

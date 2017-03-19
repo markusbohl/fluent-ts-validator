@@ -8,9 +8,9 @@ export class IsCurrencyValidator implements PropertyValidator<string> {
     }
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return validatorJS.isCurrency(input, this.options);
         }
-        return validatorJS.isCurrency(input, this.options);
+        return false;
     }
 }

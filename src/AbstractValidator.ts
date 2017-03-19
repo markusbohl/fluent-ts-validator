@@ -120,7 +120,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
     }
 
     private createPromiseForEachRule(input: T, rules: ValidationRule<T, any>[]): Array<Promise<RuleApplicationOutcome>> {
-        let promises = new Array<Promise<RuleApplicationOutcome>>();
+        let promises: Promise<RuleApplicationOutcome>[] = [];
 
         rules.forEach((rule: ValidationRule<T, any>) => {
             promises.push(this.applyRuleAsync(rule, input));

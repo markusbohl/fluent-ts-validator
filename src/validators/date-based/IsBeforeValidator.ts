@@ -13,10 +13,9 @@ export class IsBeforeValidator implements PropertyValidator<Date> {
     }
 
     isValid(input: Date): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return input.getTime() < this.date.getTime();
         }
-
-        return input.getTime() < this.date.getTime();
+        return false;
     }
 }

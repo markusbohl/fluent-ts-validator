@@ -7,10 +7,10 @@ export class ContainsValidator implements PropertyValidator<string> {
     }
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
-        } else {
+        if (input) {
             return validatorJS.contains(input, this.seed);
+        } else {
+            return false;
         }
     }
 }

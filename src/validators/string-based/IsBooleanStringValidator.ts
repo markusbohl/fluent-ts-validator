@@ -4,9 +4,9 @@ import * as validatorJS from "validator";
 export class IsBooleanStringValidator implements PropertyValidator<string> {
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return validatorJS.isBoolean(input);
         }
-        return validatorJS.isBoolean(input);
+        return false;
     }
 }

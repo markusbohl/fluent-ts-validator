@@ -8,9 +8,9 @@ export class IsAlphaValidator implements PropertyValidator<string> {
     }
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return validatorJS.isAlpha(input, this.locale);
         }
-        return validatorJS.isAlpha(input, this.locale);
+        return false;
     }
 }

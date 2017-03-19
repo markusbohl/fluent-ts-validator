@@ -1,7 +1,6 @@
 import {Severity, ValidationFailure} from "./shared";
 import {ValidationResult, AbstractValidator} from "./";
 
-
 class TestPerson {
     name: string;
     xpInYears: number;

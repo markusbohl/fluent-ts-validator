@@ -8,9 +8,9 @@ export class IsUuidValidator implements PropertyValidator<string> {
     }
 
     isValid(input: string): boolean {
-        if (typeof input === "undefined" || input === null) {
-            return false;
+        if (input) {
+            return validatorJS.isUUID(input, this.version);
         }
-        return validatorJS.isUUID(input, this.version);
+        return false;
     }
 }
