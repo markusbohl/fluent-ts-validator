@@ -1,12 +1,5 @@
-import {
-    TypeValidatorBuilder,
-    TypeValidatorBuilderImpl
-} from "./";
-
-import {
-    ValidationRule
-} from "../validation";
-
+import {TypeValidatorBuilder, TypeValidatorBuilderImpl} from "./";
+import {ValidationRule} from "../validation";
 import {
     IsArrayValidator,
     IsBooleanValidator,
@@ -30,7 +23,9 @@ describe("TypeValidatorBuilderImpl", () => {
         let validationRule: ValidationRule<TestClass, string[]>;
 
         beforeEach(() => {
-            validationRule = new ValidationRule((input: TestClass) => { return input.arrayProp; });
+            validationRule = new ValidationRule((input: TestClass) => {
+                return input.arrayProp;
+            });
             validatorBuilder = new TypeValidatorBuilderImpl(validationRule);
         });
         it("should set IsArrayValidator to validation rule", () => {
@@ -52,7 +47,9 @@ describe("TypeValidatorBuilderImpl", () => {
         let validationRule: ValidationRule<TestClass, boolean>;
 
         beforeEach(() => {
-            validationRule = new ValidationRule((input: TestClass) => { return input.booleanProp; });
+            validationRule = new ValidationRule((input: TestClass) => {
+                return input.booleanProp;
+            });
             validatorBuilder = new TypeValidatorBuilderImpl(validationRule);
         });
         it("should set IsBooleanValidator to validation rule", () => {
@@ -74,7 +71,9 @@ describe("TypeValidatorBuilderImpl", () => {
         let validationRule: ValidationRule<TestClass, Date>;
 
         beforeEach(() => {
-            validationRule = new ValidationRule((input: TestClass) => { return input.dateProp; });
+            validationRule = new ValidationRule((input: TestClass) => {
+                return input.dateProp;
+            });
             validatorBuilder = new TypeValidatorBuilderImpl(validationRule);
         });
         it("should set IsDateValidator to validation rule", () => {
@@ -96,7 +95,9 @@ describe("TypeValidatorBuilderImpl", () => {
         let validationRule: ValidationRule<TestClass, number>;
 
         beforeEach(() => {
-            validationRule = new ValidationRule((input: TestClass) => { return input.numberProp; });
+            validationRule = new ValidationRule((input: TestClass) => {
+                return input.numberProp;
+            });
             validatorBuilder = new TypeValidatorBuilderImpl(validationRule);
         });
         it("should set IsNumberValidator to validation rule", () => {
@@ -118,7 +119,9 @@ describe("TypeValidatorBuilderImpl", () => {
         let validationRule: ValidationRule<TestClass, string>;
 
         beforeEach(() => {
-            validationRule = new ValidationRule((input: TestClass) => { return input.stringProp; });
+            validationRule = new ValidationRule((input: TestClass) => {
+                return input.stringProp;
+            });
             validatorBuilder = new TypeValidatorBuilderImpl(validationRule);
         });
         it("should set IsStringValidator to validation rule", () => {

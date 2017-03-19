@@ -1,5 +1,5 @@
 import * as validatorJS from "validator";
-import { ContainsValidator } from "./ContainsValidator";
+import {ContainsValidator} from "./ContainsValidator";
 
 describe("ContainsValidator", () => {
     let validator: ContainsValidator;

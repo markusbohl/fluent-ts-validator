@@ -1,4 +1,4 @@
-import { IsIso8601Validator } from "./IsIso8601Validator";
+import {IsIso8601Validator} from "./IsIso8601Validator";
 import * as validatorJS from "validator";
 
 describe("IsIso8601Validator", () => {

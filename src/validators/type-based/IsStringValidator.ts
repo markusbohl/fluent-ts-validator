@@ -1,8 +1,8 @@
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if input is a real string.
- * 
+ *
  * @export
  * @class IsStringValidator
  * @implements {PropertyValidator<any>}

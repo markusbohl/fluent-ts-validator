@@ -1,8 +1,6 @@
 import * as validatorJS from "validator";
-import { EmailOptions } from "../../shared";
-import {
-    IsEmailValidator
-} from "./IsEmailValidator";
+import {EmailOptions} from "../../shared";
+import {IsEmailValidator} from "./IsEmailValidator";
 
 describe("IsEmailValidator", () => {
     describe("isValid() - delegate to validatorJS", () => {

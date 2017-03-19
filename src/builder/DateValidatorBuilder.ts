@@ -1,7 +1,4 @@
-import {
-    CommonValidatorBuilder,
-    ValidationOptionsBuilder
-} from "./";
+import {CommonValidatorBuilder, ValidationOptionsBuilder} from "./";
 
 export interface DateValidatorBuilder<T> extends CommonValidatorBuilder<T, Date> {
     isBefore(date: Date): this & ValidationOptionsBuilder<T>;

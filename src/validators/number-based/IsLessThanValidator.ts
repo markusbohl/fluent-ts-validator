@@ -1,4 +1,4 @@
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if given number is less than the threshold value.
@@ -9,7 +9,8 @@ import { PropertyValidator } from "../PropertyValidator";
  */
 export class IsLessThanValidator implements PropertyValidator<number> {
 
-    constructor(private threshold: number) { }
+    constructor(private threshold: number) {
+    }
 
     isValid(input: number): boolean {
         if (input === null) {

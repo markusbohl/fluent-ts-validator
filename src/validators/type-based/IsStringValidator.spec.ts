@@ -1,4 +1,4 @@
-import { IsStringValidator } from "./IsStringValidator";
+import {IsStringValidator} from "./IsStringValidator";
 
 describe("IsStringValidator", () => {
     describe("isValid()", () => {

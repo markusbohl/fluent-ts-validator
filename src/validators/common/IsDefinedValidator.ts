@@ -1,8 +1,8 @@
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if given value is defined.
- * 
+ *
  * @export
  * @class IsDefinedValidator
  * @implements {PropertyValidator<any>}

@@ -1,7 +1,6 @@
 import * as validatorJS from "validator";
-import { IsUrlValidator } from "./IsUrlValidator";
-import { UrlOptions } from "../../shared/UrlOptions";
-
+import {IsUrlValidator} from "./IsUrlValidator";
+import {UrlOptions} from "../../shared/UrlOptions";
 
 describe("IsUrlValidator", () => {
 

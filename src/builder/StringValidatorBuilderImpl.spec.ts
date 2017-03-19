@@ -1,7 +1,4 @@
-import {
-    ValidationRule
-} from "../validation";
-
+import {ValidationRule} from "../validation";
 import {
     ContainsValidator,
     IsAlphanumericValidator,
@@ -26,11 +23,7 @@ import {
     IsUuidValidator,
     RegExValidator
 } from "../validators/string-based";
-
-import {
-    StringValidatorBuilder,
-    StringValidatorBuilderImpl,
-} from "./";
+import {StringValidatorBuilder, StringValidatorBuilderImpl} from "./";
 
 class TestClass {
     property: string;
@@ -45,7 +38,9 @@ describe("StringValidatorBuilderImpl", () => {
     let validatorBuilder: StringValidatorBuilder<TestClass>;
 
     beforeEach(() => {
-        validationRule = new ValidationRule((input: TestClass) => { return input.property; });
+        validationRule = new ValidationRule((input: TestClass) => {
+            return input.property;
+        });
         spyOn(validationRule, "addValidator");
         validatorBuilder = new StringValidatorBuilderImpl(validationRule);
     });
@@ -290,13 +285,13 @@ describe("StringValidatorBuilderImpl", () => {
 
     describe("isLength()", () => {
         it("should set isLengthValidator to validation rule", () => {
-            validatorBuilder.isLength({ min: 4 });
+            validatorBuilder.isLength({min: 4});
 
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsLengthValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isLength({ max: 10 });
+            let result = validatorBuilder.isLength({max: 10});
 
             expect(result).not.toBeNull();
         });

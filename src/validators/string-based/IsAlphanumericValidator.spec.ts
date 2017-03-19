@@ -1,7 +1,5 @@
 import * as validatorJS from "validator";
-import {
-    IsAlphanumericValidator
-} from "./IsAlphanumericValidator";
+import {IsAlphanumericValidator} from "./IsAlphanumericValidator";
 
 describe("IsAlphanumericValidator", () => {
     beforeEach(() => {

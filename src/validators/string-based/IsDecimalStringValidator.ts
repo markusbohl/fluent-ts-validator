@@ -1,6 +1,5 @@
 import * as validatorJS from "validator";
-
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 export class IsDecimalStringValidator implements PropertyValidator<string> {
 

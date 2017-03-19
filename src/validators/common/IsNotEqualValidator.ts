@@ -1,8 +1,8 @@
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if a value does not match ("!==") the comparison.
- * 
+ *
  * @export
  * @class IsNotEqualValidator
  * @implements {PropertyValidator<T>}
@@ -10,7 +10,8 @@ import { PropertyValidator } from "../PropertyValidator";
  */
 export class IsNotEqualValidator<T> implements PropertyValidator<T> {
 
-    constructor(private comparison: T) {}
+    constructor(private comparison: T) {
+    }
 
     isValid(input: T) {
         return this.comparison !== input;

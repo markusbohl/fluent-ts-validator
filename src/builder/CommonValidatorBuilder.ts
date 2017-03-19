@@ -1,10 +1,5 @@
-import {
-    ValidationOptionsBuilder
-} from "./";
-
-import {
-    Validatable
-} from "../shared";
+import {ValidationOptionsBuilder} from "./";
+import {Validatable} from "../shared";
 
 export interface CommonValidatorBuilder<T, TProperty> {
     isDefined(): this & ValidationOptionsBuilder<T>;

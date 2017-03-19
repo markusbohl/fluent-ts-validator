@@ -1,14 +1,5 @@
-import {
-    Validatable,
-    ValidationResult
-} from "./shared";
-
-import {
-    ValidationRule,
-    CollectionValidationRule,
-    RuleApplicationOutcome
-} from "./validation";
-
+import {Validatable, ValidationResult} from "./shared";
+import {ValidationRule, CollectionValidationRule, RuleApplicationOutcome} from "./validation";
 import {
     CommonValidatorBuilder,
     CommonValidatorBuilderImpl,
@@ -19,8 +10,7 @@ import {
     StringValidatorBuilder,
     StringValidatorBuilderImpl,
     TypeValidatorBuilder,
-    TypeValidatorBuilderImpl,
-    ValidationOptionsBuilder
+    TypeValidatorBuilderImpl
 } from "./builder";
 
 /**

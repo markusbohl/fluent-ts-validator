@@ -1,4 +1,4 @@
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if the given date lies between the lower and upper boundary.
@@ -18,7 +18,8 @@ import { PropertyValidator } from "../PropertyValidator";
  */
 export class IsBetweenValidator implements PropertyValidator<Date> {
 
-    constructor(private lowerDate: Date, private upperDate: Date, private lowerBoundary: "(" | "[" = "(", private upperBoundary: ")" | "]" = ")") { }
+    constructor(private lowerDate: Date, private upperDate: Date, private lowerBoundary: "(" | "[" = "(", private upperBoundary: ")" | "]" = ")") {
+    }
 
     isValid(input: Date): boolean {
         if (typeof input === "undefined" || input === null) {

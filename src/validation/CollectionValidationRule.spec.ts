@@ -1,18 +1,6 @@
-import {
-    ValidationRule,
-    CollectionValidationRule,
-    ValidationCondition,
-    RuleApplicationOutcome
-} from "./";
-
-import {
-    Severity,
-    ValidationFailure
-} from "../shared";
-
-import {
-    PropertyValidator
-} from "../validators/PropertyValidator";
+import {CollectionValidationRule, ValidationCondition} from "./";
+import {Severity} from "../shared";
+import {PropertyValidator} from "../validators/PropertyValidator";
 
 
 class TestClass {
@@ -36,7 +24,9 @@ describe("CollectionValidationRule", () => {
         let validationRule: CollectionValidationRule<TestClass, string[]>;
 
         beforeEach(() => {
-            validationRule = new CollectionValidationRule<TestClass, string[]>((input: TestClass) => { return input.array; });
+            validationRule = new CollectionValidationRule<TestClass, string[]>((input: TestClass) => {
+                return input.array;
+            });
         });
 
         describe("apply()", () => {
@@ -167,7 +157,9 @@ describe("CollectionValidationRule", () => {
         let validationRule: CollectionValidationRule<TestClass, Set<number>>;
 
         beforeEach(() => {
-            validationRule = new CollectionValidationRule<TestClass, Set<number>>((input: TestClass) => { return input.set; });
+            validationRule = new CollectionValidationRule<TestClass, Set<number>>((input: TestClass) => {
+                return input.set;
+            });
         });
 
         describe("apply()", () => {
@@ -204,21 +196,33 @@ describe("CollectionValidationRule", () => {
 
 
 function getPositiveValidator<T>(): PropertyValidator<T> {
-    return { isValid(input: T) { return true; } };
+    return {
+        isValid(input: T) {
+            return true;
+        }
+    };
 }
 
 function getNegativeValidator<T>(): PropertyValidator<T> {
-    return { isValid(input: T) { return false; } };
+    return {
+        isValid(input: T) {
+            return false;
+        }
+    };
 }
 
 function getNegativeCondition<T>(): ValidationCondition<T> {
     return {
-        shouldDoValidation(input: T) { return false; }
+        shouldDoValidation(input: T) {
+            return false;
+        }
     };
 }
 
 function getPositiveCondition<T>(): ValidationCondition<T> {
     return {
-        shouldDoValidation(input: T) { return true; }
+        shouldDoValidation(input: T) {
+            return true;
+        }
     };
 }

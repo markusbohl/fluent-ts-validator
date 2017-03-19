@@ -1,14 +1,7 @@
-import {
-    Severity,
-    ValidationFailure
-} from "../shared";
-
-import {
-    PropertyValidator
-} from "../validators/PropertyValidator";
-
-import { RuleApplicationOutcome } from "./RuleApplicationOutcome";
-import { ValidationCondition } from "./ValidationCondition";
+import {Severity, ValidationFailure} from "../shared";
+import {PropertyValidator} from "../validators/PropertyValidator";
+import {RuleApplicationOutcome} from "./RuleApplicationOutcome";
+import {ValidationCondition} from "./ValidationCondition";
 
 const successfulOutcome = new RuleApplicationOutcome();
 

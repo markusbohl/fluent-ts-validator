@@ -1,8 +1,8 @@
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if a value matches ("===") the comparison.
- * 
+ *
  * @export
  * @class IsEqualValidator
  * @implements {PropertyValidator<T>}
@@ -10,7 +10,8 @@ import { PropertyValidator } from "../PropertyValidator";
  */
 export class IsEqualValidator<T> implements PropertyValidator<T> {
 
-    constructor(private comparison: T) {}
+    constructor(private comparison: T) {
+    }
 
     isValid(input: T) {
         return this.comparison === input;

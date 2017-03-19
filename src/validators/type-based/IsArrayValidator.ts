@@ -1,8 +1,8 @@
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if input is an Array.
- * 
+ *
  * @export
  * @class IsArrayValidator
  * @implements {PropertyValidator<any>}

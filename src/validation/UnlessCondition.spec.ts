@@ -1,5 +1,4 @@
-import { ValidationCondition } from "./ValidationCondition";
-import { UnlessCondition } from "./UnlessCondition";
+import {UnlessCondition} from "./UnlessCondition";
 
 describe("UnlessCondition", () => {
     describe("shouldDoValidation", () => {

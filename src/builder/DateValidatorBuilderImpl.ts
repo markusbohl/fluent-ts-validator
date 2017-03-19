@@ -1,17 +1,6 @@
-import {
-    CommonValidatorBuilderImpl,
-    DateValidatorBuilder,
-    ValidationOptionsBuilder
-} from "./";
-
-import {
-    ValidationRule
-} from "../validation";
-
-import {
-    PropertyValidator
-} from "../validators/PropertyValidator";
-
+import {CommonValidatorBuilderImpl, DateValidatorBuilder, ValidationOptionsBuilder} from "./";
+import {ValidationRule} from "../validation";
+import {PropertyValidator} from "../validators/PropertyValidator";
 import {
     IsBeforeValidator,
     IsSameAsValidator,
@@ -21,8 +10,7 @@ import {
     IsBetweenValidator
 } from "../validators/date-based";
 
-export class DateValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, Date> implements
-    DateValidatorBuilder<T> {
+export class DateValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, Date> implements DateValidatorBuilder<T> {
 
     constructor(validationRule: ValidationRule<T, Date | Iterable<Date>>) {
         super(validationRule);
@@ -35,10 +23,10 @@ export class DateValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, D
     }
 
     /*
-    * ===========================
-    * Date-based validation rules
-    * ===========================
-    */
+     * ===========================
+     * Date-based validation rules
+     * ===========================
+     */
     isBefore(date: Date): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsBeforeValidator(date));
     }

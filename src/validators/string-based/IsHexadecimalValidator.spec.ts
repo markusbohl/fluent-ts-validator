@@ -1,4 +1,4 @@
-import { IsHexadecimalValidator } from "./IsHexadecimalValidator";
+import {IsHexadecimalValidator} from "./IsHexadecimalValidator";
 import * as validatorJS from "validator";
 
 describe("IsHexadecimalValidator", () => {

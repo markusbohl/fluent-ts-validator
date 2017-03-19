@@ -1,11 +1,4 @@
-import {
-    Severity,
-    ValidationFailure
-} from "../shared";
-
-import {
-    ValidationCondition
-} from "../validation";
+import {Severity, ValidationFailure} from "../shared";
 
 export interface ValidationOptionsBuilder<T> {
     withErrorCode(errorCode: string): ValidationOptionsBuilder<T>;

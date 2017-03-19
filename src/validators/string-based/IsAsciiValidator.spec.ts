@@ -1,5 +1,5 @@
 import * as validatorJS from "validator";
-import { IsAsciiValidator } from "./IsAsciiValidator";
+import {IsAsciiValidator} from "./IsAsciiValidator";
 
 describe("IsAsciiValidator", () => {
     describe("isValid()", () => {

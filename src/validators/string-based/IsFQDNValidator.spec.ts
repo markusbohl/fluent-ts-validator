@@ -1,8 +1,6 @@
 import * as validatorJS from "validator";
-import { FqdnOptions } from "../../shared";
-import {
-    IsFqdnValidator
-} from "./IsFqdnValidator";
+import {FqdnOptions} from "../../shared";
+import {IsFqdnValidator} from "./IsFqdnValidator";
 
 describe("IsFqdnValidator", () => {
     describe("isValid() - delegate to validatorJS", () => {

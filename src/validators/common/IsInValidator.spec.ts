@@ -1,4 +1,4 @@
-import { IsInValidator } from "./IsInValidator";
+import {IsInValidator} from "./IsInValidator";
 
 describe("IsInValidator", () => {
     let numbers = [1, 2, 3, 4, null];

@@ -1,25 +1,7 @@
-import {
-    AbstractValidator
-} from "../";
-
-import {
-    ValidationOptionsBuilder,
-    CommonValidatorBuilder,
-    CommonValidatorBuilderImpl
-} from "./";
-
-import {
-    Severity,
-    ValidationFailure
-} from "../shared";
-
-import {
-    ValidationRule,
-    ValidationCondition,
-    UnlessCondition,
-    WhenCondition
-} from "../validation";
-
+import {AbstractValidator} from "../";
+import {ValidationOptionsBuilder, CommonValidatorBuilder, CommonValidatorBuilderImpl} from "./";
+import {Severity, ValidationFailure} from "../shared";
+import {ValidationRule, UnlessCondition, WhenCondition} from "../validation";
 import {
     IsDefinedValidator,
     IsNullValidator,
@@ -46,7 +28,9 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
     let validationOptionsBuilder: ValidationOptionsBuilder<TestClass>;
 
     beforeEach(() => {
-        validationRule = new ValidationRule((input: TestClass) => { return input.property; });
+        validationRule = new ValidationRule((input: TestClass) => {
+            return input.property;
+        });
         validationOptionsBuilder = new CommonValidatorBuilderImpl(validationRule);
     });
 
@@ -117,13 +101,17 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
     describe("when()", () => {
         it("should set a WhenCondition to the validation rule", () => {
             spyOn(validationRule, "setCondition");
-            validationOptionsBuilder.when((input: TestClass) => { return true; });
+            validationOptionsBuilder.when((input: TestClass) => {
+                return true;
+            });
 
             expect(validationRule.setCondition).toHaveBeenCalledWith(jasmine.any(WhenCondition));
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.when((input: TestClass) => { return true; });
+            let result = validationOptionsBuilder.when((input: TestClass) => {
+                return true;
+            });
 
             expect(result).toBe(validationOptionsBuilder);
         });
@@ -133,13 +121,17 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
         it("should set a UnlessCondition to the validation rule", () => {
             spyOn(validationRule, "setCondition");
 
-            validationOptionsBuilder.unless((input: TestClass) => { return true; });
+            validationOptionsBuilder.unless((input: TestClass) => {
+                return true;
+            });
 
             expect(validationRule.setCondition).toHaveBeenCalledWith(jasmine.any(UnlessCondition));
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.unless((input: TestClass) => { return true; });
+            let result = validationOptionsBuilder.unless((input: TestClass) => {
+                return true;
+            });
 
             expect(result).toBe(validationOptionsBuilder);
         });
@@ -148,7 +140,8 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
     describe("onFailure()", () => {
         it("should set on-failure-callback to validation rule", () => {
             spyOn(validationRule, "onFailure");
-            let callback = (failure: ValidationFailure) => { };
+            let callback = (failure: ValidationFailure) => {
+            };
 
             validationOptionsBuilder.onFailure(callback);
 
@@ -156,7 +149,8 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
         });
 
         it("should return current builder instance", () => {
-            let callback = (failure: ValidationFailure) => { };
+            let callback = (failure: ValidationFailure) => {
+            };
 
             let result = validationOptionsBuilder.onFailure(callback);
 
@@ -171,7 +165,9 @@ describe("CommonValidatorBuilderImpl -> CommonValidatorBuilder", () => {
     let validatorBuilder: CommonValidatorBuilder<TestClass, string>;
 
     beforeEach(() => {
-        validationRule = new ValidationRule((input: TestClass) => { return input.property; });
+        validationRule = new ValidationRule((input: TestClass) => {
+            return input.property;
+        });
         spyOn(validationRule, "addValidator").and.callThrough();
         validatorBuilder = new CommonValidatorBuilderImpl(validationRule);
     });
@@ -304,7 +300,9 @@ describe("CommonValidatorBuilderImpl -> CommonValidatorBuilder", () => {
 
     describe("must()", () => {
         it("should set custom validation logic to validation rule", () => {
-            let validationExpression = (input: string) => { return input === "foobar"; };
+            let validationExpression = (input: string) => {
+                return input === "foobar";
+            };
 
             validatorBuilder.must(validationExpression);
 
@@ -332,7 +330,9 @@ describe("CommonValidatorBuilderImpl -> CommonValidatorBuilder", () => {
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.must((input: string) => { return input === "foobar"; });
+            let result = validatorBuilder.must((input: string) => {
+                return input === "foobar";
+            });
 
             expect(result).not.toBeNull();
         });
@@ -355,6 +355,7 @@ class OuterTestClass {
 
 class InnerTestClass {
     property: string;
+
     constructor(property: string) {
         this.property = property;
     }
@@ -363,7 +364,9 @@ class InnerTestClass {
 class InnerValidator extends AbstractValidator<InnerTestClass> {
     constructor() {
         super();
-        this.ruleFor((input: InnerTestClass) => { return input.property; }).isNotEmpty();
+        this.ruleFor((input: InnerTestClass) => {
+            return input.property;
+        }).isNotEmpty();
     }
 }
 
@@ -376,7 +379,9 @@ describe("CommonValidatorBuilderImpl addValidator()", () => {
     beforeEach(() => {
         inner = new InnerTestClass("foo");
         innerValidator = new InnerValidator();
-        validationRule = new ValidationRule((input: OuterTestClass) => { return input.property; });
+        validationRule = new ValidationRule((input: OuterTestClass) => {
+            return input.property;
+        });
         validatorBuilder = new CommonValidatorBuilderImpl(validationRule);
         spyOn(innerValidator, "validate").and.callThrough();
     });

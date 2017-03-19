@@ -1,8 +1,5 @@
 import * as validatorJS from "validator";
-
-import {
-    IsUuidValidator
-} from "./IsUuidValidator";
+import {IsUuidValidator} from "./IsUuidValidator";
 
 describe("IsUuidValidator", () => {
     describe("isValid() - delegate to validatorJS", () => {

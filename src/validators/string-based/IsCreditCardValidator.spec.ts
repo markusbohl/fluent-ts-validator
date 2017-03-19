@@ -1,5 +1,5 @@
 import * as validatorJS from "validator";
-import { IsCreditCardValidator } from "./IsCreditCardValidator";
+import {IsCreditCardValidator} from "./IsCreditCardValidator";
 
 
 describe("IsCreditCardValidator", () => {

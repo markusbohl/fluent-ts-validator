@@ -1,4 +1,4 @@
-import { IsArrayValidator } from "./IsArrayValidator";
+import {IsArrayValidator} from "./IsArrayValidator";
 
 describe("IsArrayValidator", () => {
     describe("isValid()", () => {

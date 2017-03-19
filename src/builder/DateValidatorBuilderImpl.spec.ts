@@ -1,7 +1,4 @@
-import {
-    ValidationRule
-} from "../validation";
-
+import {ValidationRule} from "../validation";
 import {
     IsBeforeValidator,
     IsSameAsValidator,
@@ -10,11 +7,7 @@ import {
     IsSameOrAfterValidator,
     IsBetweenValidator
 } from "../validators/date-based";
-
-import {
-    DateValidatorBuilder,
-    DateValidatorBuilderImpl
-} from "./";
+import {DateValidatorBuilder, DateValidatorBuilderImpl} from "./";
 
 class TestClass {
     property: Date;
@@ -29,7 +22,9 @@ describe("DateValidatorBuilderImpl", () => {
     let validatorBuilder: DateValidatorBuilder<TestClass>;
 
     beforeEach(() => {
-        validationRule = new ValidationRule((input: TestClass) => { return input.property; });
+        validationRule = new ValidationRule((input: TestClass) => {
+            return input.property;
+        });
         spyOn(validationRule, "addValidator");
         validatorBuilder = new DateValidatorBuilderImpl(validationRule);
     });

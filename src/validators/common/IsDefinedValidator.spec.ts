@@ -1,4 +1,4 @@
-import { IsDefinedValidator } from "./IsDefinedValidator";
+import {IsDefinedValidator} from "./IsDefinedValidator";
 
 describe("IsDefinedValidator", () => {
 

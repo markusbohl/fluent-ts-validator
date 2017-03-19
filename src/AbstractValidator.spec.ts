@@ -1,13 +1,5 @@
-import {
-    LengthOptions,
-    Severity,
-    ValidationFailure
-} from "./shared";
-
-import {
-    ValidationResult,
-    AbstractValidator
-} from "./";
+import {Severity, ValidationFailure} from "./shared";
+import {ValidationResult, AbstractValidator} from "./";
 
 
 class TestPerson {
@@ -33,15 +25,19 @@ class TestValidator extends AbstractValidator<TestPerson> {
         super();
 
         this.ruleForString((input: TestPerson) => input.name)
-            .isNotEmpty().isLength({ min: 3 }).isAlpha().withErrorCode("N1");
+            .isNotEmpty().isLength({min: 3}).isAlpha().withErrorCode("N1");
 
         this.ruleForNumber((input: TestPerson) => input.xpInYears)
             .isGreaterThanOrEqual(3).isLessThanOrEqual(13).withSeverity(Severity.INFO);
 
-        this.ruleForString((input: TestPerson) => { return input.email; })
+        this.ruleForString((input: TestPerson) => {
+            return input.email;
+        })
             .isEmail().unless((input: TestPerson) => !input.address);
 
-        this.ruleFor((input: TestPerson) => { return input.address; })
+        this.ruleFor((input: TestPerson) => {
+            return input.address;
+        })
             .must(address => {
                 if (address) {
                     return address.postcode !== "55555" && address.street !== "Le Place";
@@ -211,7 +207,9 @@ class TestAddressbook {
 class AddressbookValidator extends AbstractValidator<TestAddressbook> {
     constructor() {
         super();
-        this.ruleForEach((input: TestAddressbook) => { return input.contacts; }).isNotNull();
+        this.ruleForEach((input: TestAddressbook) => {
+            return input.contacts;
+        }).isNotNull();
     }
 }
 

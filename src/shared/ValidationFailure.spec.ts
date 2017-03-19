@@ -1,7 +1,4 @@
-import {
-    Severity,
-    ValidationFailure
-} from "../shared";
+import {Severity, ValidationFailure} from "../shared";
 
 describe("ValidationFailure", () => {
     describe("constructor", () => {

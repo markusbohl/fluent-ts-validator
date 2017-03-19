@@ -1,4 +1,4 @@
-import { IsNotNullValidator } from "./IsNotNullValidator";
+import {IsNotNullValidator} from "./IsNotNullValidator";
 
 describe("IsNotNullValidator", () => {
     describe("isValid()", () => {
@@ -6,7 +6,7 @@ describe("IsNotNullValidator", () => {
             let isNotNullValidator = new IsNotNullValidator();
             let notDefined: any;
 
-            let result  = isNotNullValidator.isValid(notDefined);
+            let result = isNotNullValidator.isValid(notDefined);
 
             expect(result).toBeFalsy();
         });
@@ -15,7 +15,7 @@ describe("IsNotNullValidator", () => {
             let isNotNullValidator = new IsNotNullValidator();
             let notDefined: any = null;
 
-            let result  = isNotNullValidator.isValid(notDefined);
+            let result = isNotNullValidator.isValid(notDefined);
 
             expect(result).toBeFalsy();
         });
@@ -24,7 +24,7 @@ describe("IsNotNullValidator", () => {
             let isNotNullValidator = new IsNotNullValidator();
             let notDefined: any = "foo";
 
-            let result  = isNotNullValidator.isValid(notDefined);
+            let result = isNotNullValidator.isValid(notDefined);
 
             expect(result).toBeTruthy();
         });

@@ -1,4 +1,4 @@
-import { IsSameAsValidator } from "./IsSameAsValidator";
+import {IsSameAsValidator} from "./IsSameAsValidator";
 
 describe("IsSameAsValidator", () => {
     describe("isValid()", () => {

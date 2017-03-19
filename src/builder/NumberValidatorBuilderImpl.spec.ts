@@ -1,7 +1,4 @@
-import {
-    ValidationRule
-} from "../validation";
-
+import {ValidationRule} from "../validation";
 import {
     IsPositiveValidator,
     IsNegativeValidator,
@@ -10,11 +7,7 @@ import {
     IsLessThanValidator,
     IsLessThanOrEqualToValidator
 } from "../validators/number-based";
-
-import {
-    NumberValidatorBuilder,
-    NumberValidatorBuilderImpl
-} from "./";
+import {NumberValidatorBuilder, NumberValidatorBuilderImpl} from "./";
 
 class TestClass {
     property: number;
@@ -29,7 +22,9 @@ describe("NumberValidatorBuilderImpl", () => {
     let validatorBuilder: NumberValidatorBuilder<TestClass>;
 
     beforeEach(() => {
-        validationRule = new ValidationRule((input: TestClass) => { return input.property; });
+        validationRule = new ValidationRule((input: TestClass) => {
+            return input.property;
+        });
         spyOn(validationRule, "addValidator");
         validatorBuilder = new NumberValidatorBuilderImpl(validationRule);
     });

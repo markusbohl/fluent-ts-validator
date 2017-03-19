@@ -1,5 +1,5 @@
 import * as validatorJS from "validator";
-import { IsDateStringValidator } from "./IsDateStringValidator";
+import {IsDateStringValidator} from "./IsDateStringValidator";
 
 describe("IsDateStringValidator", () => {
     let validator: IsDateStringValidator;

@@ -1,17 +1,6 @@
-import {
-    CommonValidatorBuilderImpl,
-    NumberValidatorBuilder,
-    ValidationOptionsBuilder
-} from "./";
-
-import {
-    ValidationRule
-} from "../validation";
-
-import {
-    PropertyValidator
-} from "../validators/PropertyValidator";
-
+import {CommonValidatorBuilderImpl, NumberValidatorBuilder, ValidationOptionsBuilder} from "./";
+import {ValidationRule} from "../validation";
+import {PropertyValidator} from "../validators/PropertyValidator";
 import {
     IsPositiveValidator,
     IsNegativeValidator,
@@ -21,8 +10,7 @@ import {
     IsLessThanOrEqualToValidator
 } from "../validators/number-based";
 
-export class NumberValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, number> implements
-    NumberValidatorBuilder<T> {
+export class NumberValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, number> implements NumberValidatorBuilder<T> {
 
     constructor(validationRule: ValidationRule<T, number | Iterable<number>>) {
         super(validationRule);
@@ -35,10 +23,10 @@ export class NumberValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
     }
 
     /*
-    * =============================
-    * Number-based validation rules
-    * =============================
-    */
+     * =============================
+     * Number-based validation rules
+     * =============================
+     */
     isPositive(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsPositiveValidator());
     }

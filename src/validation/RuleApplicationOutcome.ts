@@ -1,4 +1,4 @@
-import { ValidationFailure } from "../shared/ValidationFailure";
+import {ValidationFailure} from "../shared/ValidationFailure";
 
 export class RuleApplicationOutcome {
 

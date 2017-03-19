@@ -1,8 +1,8 @@
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if input is a real Date.
- * 
+ *
  * @export
  * @class IsDateValidator
  * @implements {PropertyValidator<any>}

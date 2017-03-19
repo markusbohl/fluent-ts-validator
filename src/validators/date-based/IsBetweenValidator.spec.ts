@@ -1,4 +1,4 @@
-import { IsBetweenValidator } from "./IsBetweenValidator";
+import {IsBetweenValidator} from "./IsBetweenValidator";
 
 describe("IsBetweenValidator", () => {
     const lowerDate = new Date(2016, 0, 1, 0, 0, 0, 0);

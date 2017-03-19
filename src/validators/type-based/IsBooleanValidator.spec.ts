@@ -1,4 +1,4 @@
-import { IsBooleanValidator } from "./IsBooleanValidator";
+import {IsBooleanValidator} from "./IsBooleanValidator";
 
 describe("IsBooleanValidator", () => {
     describe("isValid()", () => {

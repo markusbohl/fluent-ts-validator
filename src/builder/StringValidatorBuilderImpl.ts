@@ -1,13 +1,5 @@
-import {
-    CommonValidatorBuilderImpl,
-    StringValidatorBuilder,
-    ValidationOptionsBuilder
-} from "./";
-
-import {
-    ValidationRule
-} from "../validation";
-
+import {CommonValidatorBuilderImpl, StringValidatorBuilder, ValidationOptionsBuilder} from "./";
+import {ValidationRule} from "../validation";
 import {
     AlphaLocale,
     AlphanumericLocale,
@@ -17,13 +9,9 @@ import {
     MobilePhoneLocale,
     LengthOptions,
     UrlOptions,
-    UuidVersion,
+    UuidVersion
 } from "../shared";
-
-import {
-    PropertyValidator
-} from "../validators/PropertyValidator";
-
+import {PropertyValidator} from "../validators/PropertyValidator";
 import {
     ContainsValidator,
     IsBooleanStringValidator,
@@ -49,8 +37,7 @@ import {
     RegExValidator
 } from "../validators/string-based";
 
-export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, string> implements
-    StringValidatorBuilder<T> {
+export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, string> implements StringValidatorBuilder<T> {
 
     constructor(validationRule: ValidationRule<T, string | Iterable<string>>) {
         super(validationRule);
@@ -63,10 +50,10 @@ export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
     }
 
     /*
-* =============================
-* String-based validation rules
-* =============================
-*/
+     * =============================
+     * String-based validation rules
+     * =============================
+     */
     isBooleanString(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsBooleanStringValidator());
     }
@@ -122,6 +109,7 @@ export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
     isIso8601(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsIso8601Validator());
     }
+
     isJson(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsJsonValidator());
     }

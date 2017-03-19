@@ -10,11 +10,7 @@ import {
     TypeValidatorBuilder,
     ValidationOptionsBuilder
 } from "./";
-
-import {
-    ValidationRule
-} from "../validation";
-
+import {ValidationRule} from "../validation";
 import {
     IsArrayValidator,
     IsBooleanValidator,

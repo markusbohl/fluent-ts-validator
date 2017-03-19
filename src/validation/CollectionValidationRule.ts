@@ -1,8 +1,5 @@
-import {
-    ValidationRule
-} from "./";
-
-import { RuleApplicationOutcome } from "./RuleApplicationOutcome";
+import {ValidationRule} from "./";
+import {RuleApplicationOutcome} from "./RuleApplicationOutcome";
 
 export class CollectionValidationRule<T, TProperty extends Iterable<any>> extends ValidationRule<T, TProperty> {
 

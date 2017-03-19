@@ -1,4 +1,4 @@
-import { IsLessThanOrEqualToValidator } from "./IsLessThanOrEqualToValidator";
+import {IsLessThanOrEqualToValidator} from "./IsLessThanOrEqualToValidator";
 
 describe("IsLessThanOrEqualToValidator", () => {
     describe("isValid()", () => {

@@ -1,5 +1,4 @@
-import { ValidationCondition } from "./ValidationCondition";
-import { WhenCondition } from "./WhenCondition";
+import {WhenCondition} from "./WhenCondition";
 
 describe("WhenCondition", () => {
     describe("shouldDoValidation()", () => {

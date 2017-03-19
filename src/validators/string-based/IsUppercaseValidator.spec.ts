@@ -1,5 +1,5 @@
 import * as validatorJS from "validator";
-import { IsUppercaseValidator } from "./IsUppercaseValidator";
+import {IsUppercaseValidator} from "./IsUppercaseValidator";
 
 describe("IsUppercaseValidator", () => {
     let validator: IsUppercaseValidator;

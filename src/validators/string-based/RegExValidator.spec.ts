@@ -1,6 +1,5 @@
 import * as validatorJS from "validator";
-
-import { RegExValidator } from "./RegExValidator";
+import {RegExValidator} from "./RegExValidator";
 
 describe("RegExValidator", () => {
 

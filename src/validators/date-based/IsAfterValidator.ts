@@ -1,4 +1,4 @@
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if given date is after specified date.
@@ -9,7 +9,8 @@ import { PropertyValidator } from "../PropertyValidator";
  */
 export class IsAfterValidator implements PropertyValidator<Date> {
 
-    constructor(private date: Date) { }
+    constructor(private date: Date) {
+    }
 
     isValid(input: Date): boolean {
         if (typeof input === "undefined" || input === null) {

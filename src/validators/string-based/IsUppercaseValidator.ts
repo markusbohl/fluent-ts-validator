@@ -1,4 +1,4 @@
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 import * as validatorJS from "validator";
 
 export class IsUppercaseValidator implements PropertyValidator<string> {

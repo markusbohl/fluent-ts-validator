@@ -1,23 +1,14 @@
-import {
-    Severity,
-    ValidationFailure
-} from "../shared";
-
-import {
-    PropertyValidator
-} from "../validators/PropertyValidator";
-
-import {
-    ValidationRule,
-    ValidationCondition,
-    RuleApplicationOutcome
-} from "./";
+import {Severity} from "../shared";
+import {PropertyValidator} from "../validators/PropertyValidator";
+import {ValidationRule, ValidationCondition} from "./";
 
 describe("ValidationRule", () => {
     let rule: ValidationRule<TestClass, string>;
 
     beforeEach(() => {
-        rule = new ValidationRule((input: TestClass) => { return input.property; });
+        rule = new ValidationRule((input: TestClass) => {
+            return input.property;
+        });
     });
 
     describe("addValidator()", () => {
@@ -54,7 +45,9 @@ describe("ValidationRule", () => {
         it("should return successful validation outcome when validation was performed due to specified validation condition", () => {
             rule.addValidator(getPositiveValidator());
             let validation: ValidationCondition<TestClass> = {
-                shouldDoValidation(input: TestClass) { return false; }
+                shouldDoValidation(input: TestClass) {
+                    return false;
+                }
             };
             rule.setCondition(validation);
 
@@ -115,7 +108,9 @@ describe("ValidationRule", () => {
         });
 
         it("should provide standard error message in validation failure if no specific message has been set", () => {
-            let rule: ValidationRule<TestClass, number> = new ValidationRule((input: TestClass) => { return input.leOtherProperty1; });
+            let rule: ValidationRule<TestClass, number> = new ValidationRule((input: TestClass) => {
+                return input.leOtherProperty1;
+            });
             let toBeValidated = new TestClass("invalid property value");
             rule.addValidator(getNegativeValidator());
 
@@ -136,7 +131,9 @@ describe("ValidationRule", () => {
         });
 
         it("should provide undefined for property name in case of 'flat' input", () => {
-            let rule: ValidationRule<number, number> = new ValidationRule((input: number) => { return input; });
+            let rule: ValidationRule<number, number> = new ValidationRule((input: number) => {
+                return input;
+            });
             rule.addValidator(getNegativeValidator());
 
             let failure = rule.apply(42).getValidationFailures()[0];
@@ -213,7 +210,9 @@ describe("ValidationRule", () => {
             spyOn(validator, "isValid");
             rule.addValidator(validator);
             let condition: ValidationCondition<TestClass> = {
-                shouldDoValidation(input: TestClass) { return true; }
+                shouldDoValidation(input: TestClass) {
+                    return true;
+                }
             };
             rule.setCondition(condition);
 
@@ -227,7 +226,9 @@ describe("ValidationRule", () => {
             spyOn(validator, "isValid");
             rule.addValidator(validator);
             let validation: ValidationCondition<TestClass> = {
-                shouldDoValidation(input: TestClass) { return false; }
+                shouldDoValidation(input: TestClass) {
+                    return false;
+                }
             };
             rule.setCondition(validation);
 
@@ -248,9 +249,17 @@ class TestClass {
 }
 
 function getPositiveValidator<T>(): PropertyValidator<T> {
-    return { isValid(input: T) { return true; } };
+    return {
+        isValid(input: T) {
+            return true;
+        }
+    };
 }
 
 function getNegativeValidator<T>(): PropertyValidator<T> {
-    return { isValid(input: T) { return false; } };
+    return {
+        isValid(input: T) {
+            return false;
+        }
+    };
 }

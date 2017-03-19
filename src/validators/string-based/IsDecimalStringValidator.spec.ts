@@ -1,5 +1,5 @@
 import * as validatorJS from "validator";
-import { IsDecimalStringValidator } from "./";
+import {IsDecimalStringValidator} from "./";
 
 describe("IsDecimalStringValidator", () => {
     describe("isValid()", () => {

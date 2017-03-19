@@ -1,14 +1,11 @@
-import {
-    IsEmptyValidator
-} from "./";
-
-import { PropertyValidator } from "../PropertyValidator";
+import {IsEmptyValidator} from "./";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if given value is not empty (!== '', !== null, !== undefined)
  *  or in case of collections (Array, Set, Map) if they do contain any elements
  *  (length > 0, size > 0).
- * 
+ *
  * @export
  * @class IsNotEmptyValidator
  * @implements {PropertyValidator<any>}

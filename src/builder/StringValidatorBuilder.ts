@@ -1,8 +1,4 @@
-import {
-    CommonValidatorBuilder,
-    ValidationOptionsBuilder
-} from "./";
-
+import {CommonValidatorBuilder, ValidationOptionsBuilder} from "./";
 import {
     AlphaLocale,
     AlphanumericLocale,

@@ -1,4 +1,4 @@
-import { IsEmptyValidator } from "./IsEmptyValidator";
+import {IsEmptyValidator} from "./IsEmptyValidator";
 
 describe("IsEmptyValidator", () => {
     describe("isValid()", () => {

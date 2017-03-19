@@ -1,5 +1,5 @@
 import * as validatorJS from "validator";
-import { IsLowercaseValidator } from "./IsLowercaseValidator";
+import {IsLowercaseValidator} from "./IsLowercaseValidator";
 
 
 describe("IsLowercaseValidator", () => {

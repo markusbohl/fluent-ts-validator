@@ -1,4 +1,4 @@
-import { Severity } from "../shared/Severity";
+import {Severity} from "../shared/Severity";
 
 export class ValidationFailure {
 

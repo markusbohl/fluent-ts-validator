@@ -1,11 +1,9 @@
-import { IsLengthValidator } from "./IsLengthValidator";
-import { LengthOptions } from "../../shared/LengthOptions";
-
+import {IsLengthValidator} from "./IsLengthValidator";
 import * as validatorJS from "validator";
 
 describe("IsLengthValdiator", () => {
     describe("isValid()", () => {
-        const options = { min: 5, max: 10 };
+        const options = {min: 5, max: 10};
         it("should delegate to validatorJS instance - success case", () => {
             spyOn(validatorJS, "isLength").and.returnValue(true);
             let validator = new IsLengthValidator(options);

@@ -1,7 +1,4 @@
-import {
-    ValidationResult,
-    ValidationFailure
-} from "./";
+import {ValidationResult, ValidationFailure} from "./";
 
 describe("ValidationResult", () => {
     let result: ValidationResult;

@@ -1,4 +1,4 @@
-import { IsAfterValidator } from "./IsAfterValidator";
+import {IsAfterValidator} from "./IsAfterValidator";
 
 describe("IsAfterValidator", () => {
     describe("isValid()", () => {

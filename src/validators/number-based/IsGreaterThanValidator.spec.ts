@@ -1,4 +1,4 @@
-import { IsGreaterThanValidator } from "./IsGreaterThanValidator";
+import {IsGreaterThanValidator} from "./IsGreaterThanValidator";
 
 describe("IsGreaterThanValidator", () => {
     describe("isValid()", () => {

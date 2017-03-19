@@ -1,4 +1,4 @@
-import { IsDateValidator } from "./IsDateValidator";
+import {IsDateValidator} from "./IsDateValidator";
 
 describe("IsDateValidator", () => {
     describe("isValid()", () => {

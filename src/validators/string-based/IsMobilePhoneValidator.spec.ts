@@ -1,5 +1,5 @@
-import { IsMobilePhoneValidator } from "./IsMobilePhoneValidator";
-import { MobilePhoneLocale } from "../../shared/";
+import {IsMobilePhoneValidator} from "./IsMobilePhoneValidator";
+import {MobilePhoneLocale} from "../../shared/";
 import * as validatorJS from "validator";
 
 describe("IsMobilePhoneValidator", () => {

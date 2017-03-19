@@ -1,7 +1,4 @@
-import {
-    CommonValidatorBuilder,
-    ValidationOptionsBuilder
-} from "./";
+import {CommonValidatorBuilder, ValidationOptionsBuilder} from "./";
 
 export interface NumberValidatorBuilder<T> extends CommonValidatorBuilder<T, number> {
     isPositive(): this & ValidationOptionsBuilder<T>;
