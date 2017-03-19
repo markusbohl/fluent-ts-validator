@@ -12,12 +12,10 @@
   "devDependencies": {
     "@types/jasmine": "2.5.46",
     "@types/validator": "6.2.0",
-    "child_process": "^1.0.2",
     "chokidar-cli": "1.2.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.7.0",
     "jasmine-ts": "0.0.3",
-    "require-dir": "^0.3.1",
     "tslint": "4.0.2",
     "typescript": "2.2.1"
   },
