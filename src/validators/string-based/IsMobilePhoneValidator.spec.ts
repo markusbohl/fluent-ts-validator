@@ -1,5 +1,3 @@
-"use strict";
-
 import { IsMobilePhoneValidator } from "./IsMobilePhoneValidator";
 import { MobilePhoneLocale } from "../../shared/";
 import * as validatorJS from "validator";

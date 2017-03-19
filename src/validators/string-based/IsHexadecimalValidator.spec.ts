@@ -1,5 +1,3 @@
-"use strict";
-
 import { IsHexadecimalValidator } from "./IsHexadecimalValidator";
 import * as validatorJS from "validator";
 

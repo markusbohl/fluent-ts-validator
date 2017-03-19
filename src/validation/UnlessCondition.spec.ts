@@ -1,5 +1,3 @@
-"use strict";
-
 import { ValidationCondition } from "./ValidationCondition";
 import { UnlessCondition } from "./UnlessCondition";
 

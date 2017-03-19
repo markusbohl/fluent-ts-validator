@@ -1,5 +1,3 @@
-"use strict";
-
 import { IsGreaterThanValidator } from "./IsGreaterThanValidator";
 
 describe("IsGreaterThanValidator", () => {

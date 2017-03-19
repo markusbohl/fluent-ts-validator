@@ -1,5 +1,3 @@
-"use strict";
-
 export interface CurrencyOptions {
     symbol?: string;
     require_symbol?: boolean;

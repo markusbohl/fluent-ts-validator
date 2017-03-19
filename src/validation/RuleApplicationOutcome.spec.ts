@@ -1,5 +1,3 @@
-"use strict";
-
 import { RuleApplicationOutcome } from "./RuleApplicationOutcome";
 import { ValidationFailure } from "../shared/ValidationFailure";
 

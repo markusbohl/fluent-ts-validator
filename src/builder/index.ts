@@ -1,5 +1,3 @@
-"use strict";
-
 export * from "./CommonValidatorBuilder";
 export * from "./CommonValidatorBuilderImpl";
 export * from "./DateValidatorBuilder";

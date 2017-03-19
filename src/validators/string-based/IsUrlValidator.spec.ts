@@ -1,5 +1,3 @@
-"use strict";
-
 import * as validatorJS from "validator";
 import { IsUrlValidator } from "./IsUrlValidator";
 import { UrlOptions } from "../../shared/UrlOptions";

@@ -1,5 +1,3 @@
-"use strict";
-
 export * from "./IsDefinedValidator";
 export * from "./IsNullValidator";
 export * from "./IsNotNullValidator";

@@ -1,5 +1,3 @@
-"use strict";
-
 import { IsSameOrAfterValidator } from "./IsSameOrAfterValidator";
 
 describe("IsSameOrAfterValidator", () => {

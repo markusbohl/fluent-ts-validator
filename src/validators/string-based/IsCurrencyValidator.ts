@@ -1,5 +1,3 @@
-"use strict";
-
 import { PropertyValidator } from "../PropertyValidator";
 import { CurrencyOptions } from "../../shared";
 import * as validatorJS from "validator";

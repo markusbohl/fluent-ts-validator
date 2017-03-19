@@ -1,5 +1,3 @@
-"use strict";
-
 export * from "./Severity";
 export * from "./Validatable";
 export * from "./ValidationResult";

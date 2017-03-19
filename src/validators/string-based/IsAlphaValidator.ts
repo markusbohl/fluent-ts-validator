@@ -1,5 +1,3 @@
-"use strict";
-
 import { PropertyValidator } from "../PropertyValidator";
 import { AlphaLocale } from "../../shared";
 

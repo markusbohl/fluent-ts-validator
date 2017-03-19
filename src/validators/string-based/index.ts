@@ -1,5 +1,3 @@
-"use strict";
-
 export * from "./ContainsValidator";
 export * from "./IsAlphanumericValidator";
 export * from "./IsAlphaValidator";

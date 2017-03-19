@@ -1,5 +1,3 @@
-"use strict";
-
 import { ValidationCondition } from "./ValidationCondition";
 
 export class WhenCondition<T> implements ValidationCondition<T> {

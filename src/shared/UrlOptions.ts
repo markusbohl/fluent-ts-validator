@@ -1,5 +1,3 @@
-"use strict";
-
 export interface UrlOptions {
     protocols?: string[];
     require_tld?: boolean;

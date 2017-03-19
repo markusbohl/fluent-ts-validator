@@ -1,5 +1,3 @@
-"use strict";
-
 import { IsArrayValidator } from "./IsArrayValidator";
 
 describe("IsArrayValidator", () => {

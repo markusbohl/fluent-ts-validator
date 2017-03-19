@@ -1,5 +1,3 @@
-"use strict";
-
 import {
     ValidationFailure
 } from "./";

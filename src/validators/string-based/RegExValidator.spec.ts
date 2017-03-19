@@ -1,5 +1,3 @@
-"use strict";
-
 import * as validatorJS from "validator";
 
 import { RegExValidator } from "./RegExValidator";

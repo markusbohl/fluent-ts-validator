@@ -1,5 +1,3 @@
-"use strict";
-
 import * as validatorJS from "validator";
 import { IsBase64Validator } from "./IsBase64Validator";
 

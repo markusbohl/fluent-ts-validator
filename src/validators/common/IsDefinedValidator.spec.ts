@@ -1,5 +1,3 @@
-"use strict";
-
 import { IsDefinedValidator } from "./IsDefinedValidator";
 
 describe("IsDefinedValidator", () => {

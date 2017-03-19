@@ -1,5 +1,3 @@
-"use strict";
-
 import { IsJsonValidator } from "./IsJsonValidator";
 import * as validatorJS from "validator";
 

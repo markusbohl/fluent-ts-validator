@@ -1,5 +1,3 @@
-"use strict";
-
 export * from "./IsBeforeValidator";
 export * from "./IsAfterValidator";
 export * from "./IsSameAsValidator";

@@ -1,5 +1,3 @@
-"use strict";
-
 import { IsNotNullValidator } from "./IsNotNullValidator";
 
 describe("IsNotNullValidator", () => {

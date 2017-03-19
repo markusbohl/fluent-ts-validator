@@ -1,5 +1,3 @@
-"use strict";
-
 import { IsLengthValidator } from "./IsLengthValidator";
 import { LengthOptions } from "../../shared/LengthOptions";
 

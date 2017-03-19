@@ -1,5 +1,3 @@
-"use strict";
-
 import { IsBetweenValidator } from "./IsBetweenValidator";
 
 describe("IsBetweenValidator", () => {
