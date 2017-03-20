@@ -6,14 +6,13 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "declaration": true,
-        "outDir": "dist",
+        "outDir": "build",
         "target": "es6"
     },
     "include": [
         "src/**/*"
     ],
     "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
+        "node_modules"
     ]
 }

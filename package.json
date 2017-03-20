@@ -13,18 +13,22 @@
     "@types/jasmine": "2.5.46",
     "@types/validator": "6.2.0",
     "chokidar-cli": "1.2.0",
+    "jasmine": "2.5.3",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.7.0",
     "jasmine-ts": "0.0.3",
+    "rimraf": "2.6.1",
     "tslint": "4.0.2",
     "typescript": "2.2.1"
   },
   "scripts": {
+    "build": "rimraf build && tsc",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
+    "test.ci": "jasmine build/**/*.spec.js",
     "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
     "lint": "tslint --config ./tslint.json --project ./tsconfig.json"
   },
   "dependencies": {
-    "validator": "^6.2.0"
+    "validator": "6.2.0"
   }
 }
