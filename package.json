@@ -24,7 +24,7 @@
   "scripts": {
     "build": "rimraf build && tsc",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
-    "test.ci": "jasmine build/**/*.spec.js",
+    "test.ci": "jasmine ./build/**/*.spec.js",
     "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
     "lint": "tslint --config ./tslint.json --project ./tsconfig.json"
   },
