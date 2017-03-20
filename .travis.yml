@@ -8,4 +8,4 @@ install:
 script:
   - npm run lint
   - npm run build
-  - jasmine build/**/*.spec.js
+  - npm run test.ci
