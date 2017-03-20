@@ -22,7 +22,7 @@
   "scripts": {
     "test": "jasmine-ts 'src/**/*.spec.ts'",
     "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
-    "tslint": "tslint --config ./tslint.json --project ./tsconfig.json"
+    "lint": "tslint --config ./tslint.json --project ./tsconfig.json"
   },
   "dependencies": {
     "validator": "^6.2.0"
