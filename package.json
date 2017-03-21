@@ -8,11 +8,13 @@
     "type": "git",
     "url": "https://github.com/markusbohl/fluent-ts-validator.git"
   },
+  "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "@types/jasmine": "2.5.46",
     "@types/validator": "6.2.0",
     "chokidar-cli": "1.2.0",
+    "copyfiles": "1.2.0",
     "jasmine": "2.5.3",
     "jasmine-console-reporter": "1.2.7",
     "jasmine-core": "2.5.2",
@@ -23,7 +25,7 @@
     "typescript": "2.2.1"
   },
   "scripts": {
-    "build": "rimraf build && tsc",
+    "build": "rimraf build && tsc && copyfiles package.json build",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
     "test.ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
     "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
