@@ -7,7 +7,6 @@ import {
     EmailOptions,
     FqdnOptions,
     MobilePhoneLocale,
-    LengthOptions,
     UrlOptions,
     UuidVersion
 } from "../shared";
@@ -28,7 +27,7 @@ import {
     IsHexadecimalValidator,
     IsIso8601Validator,
     IsJsonValidator,
-    IsLengthValidator,
+    HasLengthValidator,
     IsLowercaseValidator,
     IsMobilePhoneValidator,
     IsUrlValidator,
@@ -114,15 +113,23 @@ export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
         return this.buildRuleWith(new IsJsonValidator());
     }
 
-    isLength(options: LengthOptions): this & ValidationOptionsBuilder<T> {
-        return this.buildRuleWith(new IsLengthValidator(options));
+    hasLengthBetween(min: number, max: number): this & ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new HasLengthValidator({min: min, max: max}));
+    }
+
+    hasMinLength(min: number): this & ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new HasLengthValidator({min: min}));
+    }
+
+    hasMaxLength(max: number): this & ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new HasLengthValidator({max: max}));
     }
 
     isLowercase(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsLowercaseValidator());
     }
 
-    isMobilePhone(locale: MobilePhoneLocale): this & ValidationOptionsBuilder<T> {
+    isMobilePhoneNo(locale: MobilePhoneLocale): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsMobilePhoneValidator(locale));
     }
 

@@ -10,15 +10,15 @@ describe("ValidationFailure", () => {
             expect(failure.propertyName).toBe("propertyName");
         });
 
-        it("should set target, propertyName, attemptedValue, errorCode, errorMessage, and severity", () => {
+        it("should set target, propertyName, attemptedValue, code, message, and severity", () => {
             let target = {};
-            let failure = new ValidationFailure(target, "propertyName", "attemptedValue", "errorCode", "errorMessage", Severity.WARNING);
+            let failure = new ValidationFailure(target, "propertyName", "attemptedValue", "code", "message", Severity.WARNING);
 
             expect(failure.target).toBe(target);
             expect(failure.propertyName).toBe("propertyName");
             expect(failure.attemptedValue).toBe("attemptedValue");
-            expect(failure.errorCode).toBe("errorCode");
-            expect(failure.errorMessage).toBe("errorMessage");
+            expect(failure.code).toBe("code");
+            expect(failure.message).toBe("message");
             expect(failure.severity).toBe(Severity.WARNING);
         });
 

@@ -24,13 +24,13 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements ValidationOptio
      * Validation options
      * ==================
      */
-    withErrorCode(errorCode: string): ValidationOptionsBuilder<T> {
+    withFailureCode(errorCode: string): ValidationOptionsBuilder<T> {
         this.validationRule.setErrorCode(errorCode);
 
         return this;
     }
 
-    withErrorMessage(errorMessage: string): ValidationOptionsBuilder<T> {
+    withFailureMessage(errorMessage: string): ValidationOptionsBuilder<T> {
         this.validationRule.setErrorMessage(errorMessage);
 
         return this;

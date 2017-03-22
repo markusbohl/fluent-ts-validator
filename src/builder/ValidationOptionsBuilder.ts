@@ -1,8 +1,8 @@
 import {Severity, ValidationFailure} from "../shared";
 
 export interface ValidationOptionsBuilder<T> {
-    withErrorCode(errorCode: string): ValidationOptionsBuilder<T>;
-    withErrorMessage(errorMessage: string): ValidationOptionsBuilder<T>;
+    withFailureCode(code: string): ValidationOptionsBuilder<T>;
+    withFailureMessage(message: string): ValidationOptionsBuilder<T>;
     withSeverity(severity: Severity): ValidationOptionsBuilder<T>;
     withName(name: string): ValidationOptionsBuilder<T>;
     when(expression: (input: T) => boolean): ValidationOptionsBuilder<T>;

@@ -13,7 +13,7 @@ import {
     IsFqdnValidator,
     IsHexadecimalValidator,
     IsIso8601Validator,
-    IsLengthValidator,
+    HasLengthValidator,
     IsLowercaseValidator,
     IsJsonValidator,
     IsMobilePhoneValidator,
@@ -255,15 +255,15 @@ describe("StringValidatorBuilderImpl", () => {
         });
     });
 
-    describe("isMobilePhone()", () => {
+    describe("isMobilePhoneNo()", () => {
         it("should set IsMobilePhoneValidator to validation rule", () => {
-            validatorBuilder.isMobilePhone("ja-JP");
+            validatorBuilder.isMobilePhoneNo("ja-JP");
 
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsMobilePhoneValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isMobilePhone("en-CA");
+            let result = validatorBuilder.isMobilePhoneNo("en-CA");
 
             expect(result).not.toBeNull();
         });
@@ -283,15 +283,43 @@ describe("StringValidatorBuilderImpl", () => {
         });
     });
 
-    describe("isLength()", () => {
-        it("should set isLengthValidator to validation rule", () => {
-            validatorBuilder.isLength({min: 4});
+    describe("hasLengthBetween()", () => {
+        it("should set hasLengthValidator to validation rule", () => {
+            validatorBuilder.hasLengthBetween(4, 8);
 
-            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsLengthValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(HasLengthValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.isLength({max: 10});
+            let result = validatorBuilder.hasLengthBetween(10, 20);
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("hasMinLength()", () => {
+        it("should set hasLengthValidator to validation rule", () => {
+            validatorBuilder.hasMinLength(4);
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(HasLengthValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.hasMinLength(10);
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("hasMaxLength()", () => {
+        it("should set hasLengthValidator to validation rule", () => {
+            validatorBuilder.hasMaxLength(40);
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(HasLengthValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.hasMaxLength(30);
 
             expect(result).not.toBeNull();
         });

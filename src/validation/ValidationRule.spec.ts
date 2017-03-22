@@ -92,7 +92,7 @@ describe("ValidationRule", () => {
 
             expect(failure.target).toBe(toBeValidated);
             expect(failure.propertyName).toBe("property");
-            expect(failure.errorMessage).toBe("property is invalid");
+            expect(failure.message).toBe("property is invalid");
             expect(failure.attemptedValue).toBe("invalid property value");
             expect(failure.severity).toBe(Severity.ERROR);
         });
@@ -116,7 +116,7 @@ describe("ValidationRule", () => {
 
             let failure = rule.apply(toBeValidated).getValidationFailures()[0];
 
-            expect(failure.errorMessage).toBe("leOtherProperty1 is invalid");
+            expect(failure.message).toBe("leOtherProperty1 is invalid");
         });
 
         it("should provide given provide property name in validation failure in case of invalid input", () => {
@@ -161,24 +161,24 @@ describe("ValidationRule", () => {
     });
 
     describe("setErrorCode()", () => {
-        it("should set errorCode for use in validation failure", () => {
+        it("should set code for use in validation failure", () => {
             rule.addValidator(getNegativeValidator());
             rule.setErrorCode("error-code");
 
             let result = rule.apply(new TestClass("invalid property value"));
 
-            expect(result.getValidationFailures()[0].errorCode).toBe("error-code");
+            expect(result.getValidationFailures()[0].code).toBe("error-code");
         });
     });
 
     describe("setErrorMessage()", () => {
-        it("should set errorMessage for use in validation failure", () => {
+        it("should set message for use in validation failure", () => {
             rule.addValidator(getNegativeValidator());
             rule.setErrorMessage("error-message");
 
             let result = rule.apply(new TestClass("invalid property value"));
 
-            expect(result.getValidationFailures()[0].errorMessage).toBe("error-message");
+            expect(result.getValidationFailures()[0].message).toBe("error-message");
         });
     });
 

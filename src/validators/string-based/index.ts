@@ -12,7 +12,7 @@ export * from "./IsFqdnValidator";
 export * from "./IsHexadecimalValidator";
 export * from "./IsIso8601Validator";
 export * from "./IsJsonValidator";
-export * from "./IsLengthValidator";
+export * from "./HasLengthValidator";
 export * from "./IsLowercaseValidator";
 export * from "./IsMobilePhoneValidator";
 export * from "./IsNumericStringValidator";

@@ -5,7 +5,6 @@ import {
     CurrencyOptions,
     EmailOptions,
     FqdnOptions,
-    LengthOptions,
     MobilePhoneLocale,
     UrlOptions,
     UuidVersion
@@ -26,9 +25,11 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
     isHexadecimal(): this & ValidationOptionsBuilder<T>;
     isIso8601(): this & ValidationOptionsBuilder<T>;
     isJson(): this & ValidationOptionsBuilder<T>;
-    isLength(options: LengthOptions): this & ValidationOptionsBuilder<T>;
+    hasLengthBetween(min: number, max: number): this & ValidationOptionsBuilder<T>;
+    hasMinLength(min: number): this & ValidationOptionsBuilder<T>;
+    hasMaxLength(max: number): this & ValidationOptionsBuilder<T>;
     isLowercase(): this & ValidationOptionsBuilder<T>;
-    isMobilePhone(locale: MobilePhoneLocale): this & ValidationOptionsBuilder<T>;
+    isMobilePhoneNo(locale: MobilePhoneLocale): this & ValidationOptionsBuilder<T>;
     isNumericString(): this & ValidationOptionsBuilder<T>;
     isUrl(options?: UrlOptions): this & ValidationOptionsBuilder<T>;
     isUppercase(): this & ValidationOptionsBuilder<T>;

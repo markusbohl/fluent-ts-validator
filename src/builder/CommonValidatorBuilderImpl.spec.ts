@@ -34,33 +34,33 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
         validationOptionsBuilder = new CommonValidatorBuilderImpl(validationRule);
     });
 
-    describe("withErrorCode()", () => {
+    describe("withFailureCode()", () => {
         it("should set error code to validation rule", () => {
             spyOn(validationRule, "setErrorCode");
 
-            validationOptionsBuilder.withErrorCode("error-code");
+            validationOptionsBuilder.withFailureCode("error-code");
 
             expect(validationRule.setErrorCode).toHaveBeenCalledWith("error-code");
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.withErrorCode("error-code");
+            let result = validationOptionsBuilder.withFailureCode("error-code");
 
             expect(result).toBe(validationOptionsBuilder);
         });
     });
 
-    describe("withErrorMessage()", () => {
+    describe("withFailureMessage()", () => {
         it("should set error message to validation rule", () => {
             spyOn(validationRule, "setErrorMessage");
 
-            validationOptionsBuilder.withErrorMessage("error-message");
+            validationOptionsBuilder.withFailureMessage("error-message");
 
             expect(validationRule.setErrorMessage).toHaveBeenCalledWith("error-message");
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.withErrorMessage("error-message");
+            let result = validationOptionsBuilder.withFailureMessage("error-message");
 
             expect(result).toBe(validationOptionsBuilder);
         });
@@ -364,7 +364,7 @@ class InnerTestClass {
 class InnerValidator extends AbstractValidator<InnerTestClass> {
     constructor() {
         super();
-        this.ruleFor((input: InnerTestClass) => {
+        this.validateThat((input: InnerTestClass) => {
             return input.property;
         }).isNotEmpty();
     }

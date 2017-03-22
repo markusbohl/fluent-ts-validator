@@ -1,5 +1,5 @@
 import {Severity, ValidationFailure} from "./shared";
-import {ValidationResult, AbstractValidator} from "./";
+import {AbstractValidator, ValidationResult} from "./";
 
 class TestPerson {
     name: string;
@@ -23,18 +23,18 @@ class TestValidator extends AbstractValidator<TestPerson> {
     constructor() {
         super();
 
-        this.ruleForString((input: TestPerson) => input.name)
-            .isNotEmpty().isLength({min: 3}).isAlpha().withErrorCode("N1");
+        this.validateThatString((input: TestPerson) => input.name)
+            .isNotEmpty().hasLengthBetween(3, 20).isAlpha().withFailureCode("N1");
 
-        this.ruleForNumber((input: TestPerson) => input.xpInYears)
+        this.validateThatNumber((input: TestPerson) => input.xpInYears)
             .isGreaterThanOrEqual(3).isLessThanOrEqual(13).withSeverity(Severity.INFO);
 
-        this.ruleForString((input: TestPerson) => {
+        this.validateThatString((input: TestPerson) => {
             return input.email;
         })
             .isEmail().unless((input: TestPerson) => !input.address);
 
-        this.ruleFor((input: TestPerson) => {
+        this.validateThat((input: TestPerson) => {
             return input.address;
         })
             .must(address => {
@@ -44,7 +44,7 @@ class TestValidator extends AbstractValidator<TestPerson> {
                     return true;
                 }
             })
-            .withErrorMessage("address is not allowed")
+            .withFailureMessage("address is not allowed")
             .withSeverity(Severity.WARNING)
             .onFailure((failure) => {
                 validationFailure = failure;
@@ -93,9 +93,9 @@ describe("AbstractValidator", () => {
             expect(failure.target).toBe(person);
             expect(failure.attemptedValue).toBe("DJ");
             expect(failure.propertyName).toBe("name");
-            expect(failure.errorCode).toBe("N1");
+            expect(failure.code).toBe("N1");
             expect(failure.severity).toBe(Severity.ERROR);
-            expect(failure.errorMessage).toBe("name is invalid");
+            expect(failure.message).toBe("name is invalid");
         });
 
         it("should return a negative validation result if address is forbidden", () => {
@@ -121,9 +121,9 @@ describe("AbstractValidator", () => {
 
             expect(failure.target).toBe(person);
             expect(failure.propertyName).toBe("address");
-            expect(failure.errorCode).not.toBeDefined();
+            expect(failure.code).not.toBeDefined();
             expect(failure.severity).toBe(Severity.WARNING);
-            expect(failure.errorMessage).toBe("address is not allowed");
+            expect(failure.message).toBe("address is not allowed");
         });
 
         it("should return one failure for every validation that failed", () => {
@@ -206,7 +206,7 @@ class TestAddressbook {
 class AddressbookValidator extends AbstractValidator<TestAddressbook> {
     constructor() {
         super();
-        this.ruleForEach((input: TestAddressbook) => {
+        this.validateThatEach((input: TestAddressbook) => {
             return input.contacts;
         }).isNotNull();
     }
@@ -251,8 +251,8 @@ describe("AddressbookValidator", () => {
                 target: addressbook,
                 propertyName: "contacts",
                 attemptedValue: null,
-                errorCode: undefined,
-                errorMessage: "contacts is invalid",
+                code: undefined,
+                message: "contacts is invalid",
                 severity: Severity.ERROR
             }));
         });

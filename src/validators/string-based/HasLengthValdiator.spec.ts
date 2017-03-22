@@ -1,4 +1,4 @@
-import {IsLengthValidator} from "./IsLengthValidator";
+import {HasLengthValidator} from "./HasLengthValidator";
 import * as validatorJS from "validator";
 
 describe("IsLengthValdiator", () => {
@@ -6,7 +6,7 @@ describe("IsLengthValdiator", () => {
         const options = {min: 5, max: 10};
         it("should delegate to validatorJS instance - success case", () => {
             spyOn(validatorJS, "isLength").and.returnValue(true);
-            let validator = new IsLengthValidator(options);
+            let validator = new HasLengthValidator(options);
 
             let result = validator.isValid("foobar");
 
@@ -16,7 +16,7 @@ describe("IsLengthValdiator", () => {
 
         it("should delegate to validatorJS instance - failure case", () => {
             spyOn(validatorJS, "isLength").and.returnValue(false);
-            let validator = new IsLengthValidator(options);
+            let validator = new HasLengthValidator(options);
 
             let result = validator.isValid("foo");
 
@@ -25,7 +25,7 @@ describe("IsLengthValdiator", () => {
         });
 
         it("should return false if input is undefined", () => {
-            let validator = new IsLengthValidator(options);
+            let validator = new HasLengthValidator(options);
 
             let result = validator.isValid(undefined);
 
@@ -33,7 +33,7 @@ describe("IsLengthValdiator", () => {
         });
 
         it("should return false if input is null", () => {
-            let validator = new IsLengthValidator(options);
+            let validator = new HasLengthValidator(options);
 
             let result = validator.isValid(null);
 
