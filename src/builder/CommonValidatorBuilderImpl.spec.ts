@@ -4,6 +4,7 @@ import {Severity, ValidationFailure} from "../shared";
 import {ValidationRule, UnlessCondition, WhenCondition} from "../validation";
 import {
     IsDefinedValidator,
+    IsUndefinedValidator,
     IsNullValidator,
     IsNotNullValidator,
     IsEmptyValidator,
@@ -181,6 +182,20 @@ describe("CommonValidatorBuilderImpl -> CommonValidatorBuilder", () => {
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isDefined();
+
+            expect(result).not.toBeNull();
+        });
+    });
+
+    describe("isUndefined()", () => {
+        it("should set IsUndefinedValidator to validation rule", () => {
+            validatorBuilder.isUndefined();
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsUndefinedValidator));
+        });
+
+        it("should return new instance of a ValidationOptionsBuilder", () => {
+            let result = validatorBuilder.isUndefined();
 
             expect(result).not.toBeNull();
         });
@@ -364,7 +379,7 @@ class InnerTestClass {
 class InnerValidator extends AbstractValidator<InnerTestClass> {
     constructor() {
         super();
-        this.validateThat((input: InnerTestClass) => {
+        this.validateIf((input: InnerTestClass) => {
             return input.property;
         }).isNotEmpty();
     }

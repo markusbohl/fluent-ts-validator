@@ -3,6 +3,7 @@ import {Validatable} from "../shared";
 
 export interface CommonValidatorBuilder<T, TProperty> {
     isDefined(): this & ValidationOptionsBuilder<T>;
+    isUndefined(): this & ValidationOptionsBuilder<T>;
     isNull(): this & ValidationOptionsBuilder<T>;
     isNotNull(): this & ValidationOptionsBuilder<T>;
     isEmpty(): this & ValidationOptionsBuilder<T>;

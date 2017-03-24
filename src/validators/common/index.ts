@@ -1,4 +1,5 @@
 export * from "./IsDefinedValidator";
+export * from "./IsUndefinedValidator";
 export * from "./IsNullValidator";
 export * from "./IsNotNullValidator";
 export * from "./IsEmptyValidator";

@@ -2,6 +2,7 @@ import {Validatable, Severity, ValidationFailure} from "../shared";
 import {ValidationRule, UnlessCondition, WhenCondition} from "../validation";
 import {
     IsDefinedValidator,
+    IsUndefinedValidator,
     IsNullValidator,
     IsNotNullValidator,
     IsEmptyValidator,
@@ -98,6 +99,12 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements ValidationOptio
      */
     isDefined(): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsDefinedValidator());
+
+        return this;
+    }
+
+    isUndefined(): this & ValidationOptionsBuilder<T> {
+        this.validationRule.addValidator(new IsUndefinedValidator());
 
         return this;
     }
