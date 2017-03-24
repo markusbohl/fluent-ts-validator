@@ -23,18 +23,18 @@ class TestValidator extends AbstractValidator<TestPerson> {
     constructor() {
         super();
 
-        this.validateThatString((input: TestPerson) => input.name)
+        this.validateIfString((input: TestPerson) => input.name)
             .isNotEmpty().hasLengthBetween(3, 20).isAlpha().withFailureCode("N1");
 
-        this.validateThatNumber((input: TestPerson) => input.xpInYears)
+        this.validateIfNumber((input: TestPerson) => input.xpInYears)
             .isGreaterThanOrEqual(3).isLessThanOrEqual(13).withSeverity(Severity.INFO);
 
-        this.validateThatString((input: TestPerson) => {
+        this.validateIfString((input: TestPerson) => {
             return input.email;
         })
             .isEmail().unless((input: TestPerson) => !input.address);
 
-        this.validateThat((input: TestPerson) => {
+        this.validateIf((input: TestPerson) => {
             return input.address;
         })
             .must(address => {
@@ -206,7 +206,7 @@ class TestAddressbook {
 class AddressbookValidator extends AbstractValidator<TestAddressbook> {
     constructor() {
         super();
-        this.validateThatEach((input: TestAddressbook) => {
+        this.validateIfEach((input: TestAddressbook) => {
             return input.contacts;
         }).isNotNull();
     }

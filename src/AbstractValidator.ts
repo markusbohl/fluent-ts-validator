@@ -25,70 +25,70 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
 
     private rules: ValidationRule<T, any>[] = [];
 
-    protected validateThat<TProperty>(lambdaExpression: (input: T) => TProperty): CommonValidatorBuilder<T, TProperty> {
+    protected validateIf<TProperty>(lambdaExpression: (input: T) => TProperty): CommonValidatorBuilder<T, TProperty> {
         let rule: ValidationRule<T, TProperty> = new ValidationRule(lambdaExpression);
         this.rules.push(rule);
 
         return new CommonValidatorBuilderImpl(rule);
     }
 
-    protected validateThatAny(lambdaExpression: (input: T) => any): TypeValidatorBuilder<T> {
+    protected validateIfAny(lambdaExpression: (input: T) => any): TypeValidatorBuilder<T> {
         let rule: ValidationRule<T, any> = new ValidationRule(lambdaExpression);
         this.rules.push(rule);
 
         return new TypeValidatorBuilderImpl(rule);
     }
 
-    protected validateThatNumber(lambdaExpression: (input: T) => number): NumberValidatorBuilder<T> {
+    protected validateIfNumber(lambdaExpression: (input: T) => number): NumberValidatorBuilder<T> {
         let rule: ValidationRule<T, number> = new ValidationRule(lambdaExpression);
         this.rules.push(rule);
 
         return new NumberValidatorBuilderImpl(rule);
     }
 
-    protected validateThatDate(lambdaExpression: (input: T) => Date): DateValidatorBuilder<T> {
+    protected validateIfDate(lambdaExpression: (input: T) => Date): DateValidatorBuilder<T> {
         let rule: ValidationRule<T, Date> = new ValidationRule(lambdaExpression);
         this.rules.push(rule);
 
         return new DateValidatorBuilderImpl(rule);
     }
 
-    protected validateThatString(lambdaExpression: (input: T) => string): StringValidatorBuilder<T> {
+    protected validateIfString(lambdaExpression: (input: T) => string): StringValidatorBuilder<T> {
         let rule: ValidationRule<T, string> = new ValidationRule(lambdaExpression);
         this.rules.push(rule);
 
         return new StringValidatorBuilderImpl(rule);
     }
 
-    protected validateThatEach<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty>): CommonValidatorBuilder<T, TProperty> {
+    protected validateIfEach<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty>): CommonValidatorBuilder<T, TProperty> {
         let rule: ValidationRule<T, Iterable<TProperty>> = new CollectionValidationRule(lambdaExpression);
         this.rules.push(rule);
 
         return new CommonValidatorBuilderImpl(rule);
     }
 
-    protected validateThatEachAny(lambdaExpression: (input: T) => Iterable<any>): TypeValidatorBuilder<T> {
+    protected validateIfEachAny(lambdaExpression: (input: T) => Iterable<any>): TypeValidatorBuilder<T> {
         let rule: ValidationRule<T, Iterable<any>> = new CollectionValidationRule(lambdaExpression);
         this.rules.push(rule);
 
         return new TypeValidatorBuilderImpl(rule);
     }
 
-    protected validateThatEachNumber(lambdaExpression: (input: T) => Iterable<number>): NumberValidatorBuilder<T> {
+    protected validateIfEachNumber(lambdaExpression: (input: T) => Iterable<number>): NumberValidatorBuilder<T> {
         let rule: ValidationRule<T, Iterable<number>> = new CollectionValidationRule(lambdaExpression);
         this.rules.push(rule);
 
         return new NumberValidatorBuilderImpl(rule);
     }
 
-    protected validateThatEachDate(lambdaExpression: (input: T) => Iterable<Date>): DateValidatorBuilder<T> {
+    protected validateIfEachDate(lambdaExpression: (input: T) => Iterable<Date>): DateValidatorBuilder<T> {
         let rule: ValidationRule<T, Iterable<Date>> = new CollectionValidationRule(lambdaExpression);
         this.rules.push(rule);
 
         return new DateValidatorBuilderImpl(rule);
     }
 
-    protected validateThatEachString(lambdaExpression: (input: T) => Iterable<string>): StringValidatorBuilder<T> {
+    protected validateIfEachString(lambdaExpression: (input: T) => Iterable<string>): StringValidatorBuilder<T> {
         let rule: ValidationRule<T, Iterable<string>> = new CollectionValidationRule(lambdaExpression);
         this.rules.push(rule);
 
