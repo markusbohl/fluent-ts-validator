@@ -313,19 +313,19 @@ describe("CommonValidatorBuilderImpl -> CommonValidatorBuilder", () => {
         });
     });
 
-    describe("must()", () => {
+    describe("fulfills(validationExpression)", () => {
         it("should set custom validation logic to validation rule", () => {
             let validationExpression = (input: string) => {
                 return input === "foobar";
             };
 
-            validatorBuilder.must(validationExpression);
+            validatorBuilder.fulfills(validationExpression);
 
             expect(validationRule.addValidator).toHaveBeenCalled();
         });
 
         it("should actually apply custom validation logic and succeed", () => {
-            validatorBuilder.must((input: string) => {
+            validatorBuilder.fulfills((input: string) => {
                 return input === "foobar";
             });
 
@@ -335,7 +335,7 @@ describe("CommonValidatorBuilderImpl -> CommonValidatorBuilder", () => {
         });
 
         it("should actually apply custom validation logic and fail", () => {
-            validatorBuilder.must((input: string) => {
+            validatorBuilder.fulfills((input: string) => {
                 return input === "barfoo";
             });
 
@@ -345,7 +345,7 @@ describe("CommonValidatorBuilderImpl -> CommonValidatorBuilder", () => {
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
-            let result = validatorBuilder.must((input: string) => {
+            let result = validatorBuilder.fulfills((input: string) => {
                 return input === "foobar";
             });
 
@@ -355,9 +355,9 @@ describe("CommonValidatorBuilderImpl -> CommonValidatorBuilder", () => {
 });
 
 /**
- * ========================================================================
- * vvv Tests concerning addValidator function of CommonValidatorBuilder vvv
- * ========================================================================
+ * ===============================================================================
+ * vvv Tests concerning fulfills(validator) function of CommonValidatorBuilder vvv
+ * ===============================================================================
  */
 
 class OuterTestClass {
@@ -385,7 +385,7 @@ class InnerValidator extends AbstractValidator<InnerTestClass> {
     }
 }
 
-describe("CommonValidatorBuilderImpl addValidator()", () => {
+describe("CommonValidatorBuilderImpl fulfills(validator)", () => {
     let inner: InnerTestClass;
     let innerValidator: InnerValidator;
     let validationRule: ValidationRule<OuterTestClass, InnerTestClass>;
@@ -402,13 +402,13 @@ describe("CommonValidatorBuilderImpl addValidator()", () => {
     });
 
     it("should return new instance of a ValidationOptionsBuilder", () => {
-        let result = validatorBuilder.addValidator(innerValidator);
+        let result = validatorBuilder.fulfills(innerValidator);
 
         expect(result).not.toBeNull();
     });
 
     it("should use validatable to apply validation rules - success case", () => {
-        validatorBuilder.addValidator(innerValidator);
+        validatorBuilder.fulfills(innerValidator);
 
         let result = validationRule.apply(new OuterTestClass(new InnerTestClass("foo")));
 
@@ -416,7 +416,7 @@ describe("CommonValidatorBuilderImpl addValidator()", () => {
     });
 
     it("should use validatable to apply validation rules - failure case", () => {
-        validatorBuilder.addValidator(innerValidator);
+        validatorBuilder.fulfills(innerValidator);
 
         let result = validationRule.apply(new OuterTestClass(new InnerTestClass("")));
 
@@ -424,7 +424,7 @@ describe("CommonValidatorBuilderImpl addValidator()", () => {
     });
 
     it("should delegate to given validator during validation", () => {
-        validatorBuilder.addValidator(innerValidator);
+        validatorBuilder.fulfills(innerValidator);
         let objectUnderTest = new InnerTestClass("foo");
 
         validationRule.apply(new OuterTestClass(objectUnderTest));

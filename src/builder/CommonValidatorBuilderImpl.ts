@@ -1,16 +1,16 @@
-import {Validatable, Severity, ValidationFailure} from "../shared";
-import {ValidationRule, UnlessCondition, WhenCondition} from "../validation";
+import {Severity, Validatable, ValidationFailure} from "../shared";
+import {UnlessCondition, ValidationRule, WhenCondition} from "../validation";
 import {
     IsDefinedValidator,
-    IsUndefinedValidator,
-    IsNullValidator,
-    IsNotNullValidator,
     IsEmptyValidator,
-    IsNotEmptyValidator,
     IsEqualValidator,
-    IsNotEqualValidator,
     IsInValidator,
-    IsNotInValidator
+    IsNotEmptyValidator,
+    IsNotEqualValidator,
+    IsNotInValidator,
+    IsNotNullValidator,
+    IsNullValidator,
+    IsUndefinedValidator
 } from "../validators/common";
 import {CommonValidatorBuilder, ValidationOptionsBuilder} from "./";
 
@@ -72,22 +72,22 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements ValidationOptio
      * Custom validation rules
      * =======================
      */
-    addValidator(validator: Validatable<TProperty>): this & ValidationOptionsBuilder<T> {
-        this.validationRule.addValidator({
-            isValid: function (input: TProperty): boolean {
-                return validator.validate(input).isValid();
-            }
-        });
-
-        return this;
-    }
-
-    must(validationExpression: (input: TProperty) => boolean): this & ValidationOptionsBuilder<T> {
-        this.validationRule.addValidator({
-            isValid: function (input: TProperty): boolean {
-                return validationExpression(input);
-            }
-        });
+    fulfills(validator: Validatable<TProperty>): this & ValidationOptionsBuilder<T>;
+    fulfills(validationExpression: (input: TProperty) => boolean): this & ValidationOptionsBuilder<T>;
+    fulfills(validatable: any): this & ValidationOptionsBuilder<T> {
+        if (typeof validatable === 'object') {
+            this.validationRule.addValidator({
+                isValid: function (input: TProperty): boolean {
+                    return validatable.validate(input).isValid();
+                }
+            });
+        } else {
+            this.validationRule.addValidator({
+                isValid: function (input: TProperty): boolean {
+                    return validatable(input);
+                }
+            });
+        }
 
         return this;
     }

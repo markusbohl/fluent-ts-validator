@@ -37,7 +37,7 @@ class TestValidator extends AbstractValidator<TestPerson> {
         this.validateIf((input: TestPerson) => {
             return input.address;
         })
-            .must(address => {
+            .fulfills(address => {
                 if (address) {
                     return address.postcode !== "55555" && address.street !== "Le Place";
                 } else {
