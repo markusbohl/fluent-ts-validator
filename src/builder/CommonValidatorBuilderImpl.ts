@@ -75,7 +75,7 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements ValidationOptio
     fulfills(validator: Validatable<TProperty>): this & ValidationOptionsBuilder<T>;
     fulfills(validationExpression: (input: TProperty) => boolean): this & ValidationOptionsBuilder<T>;
     fulfills(validatable: any): this & ValidationOptionsBuilder<T> {
-        if (typeof validatable === 'object') {
+        if (typeof validatable === "object") {
             this.validationRule.addValidator({
                 isValid: function (input: TProperty): boolean {
                     return validatable.validate(input).isValid();
