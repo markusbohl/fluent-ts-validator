@@ -20,20 +20,18 @@ import {AbstractValidator, Severity} from "fluent-ts-validator";
 export class SuperheroValidator extends AbstractValidator<Superhero> {
     constructor() {
         super();
-        this.ruleForString(superhero => superhero.name)
-            .isNotEmpty()
+        this.validateIfString(superhero => superhero.name)
             .isAlphanumeric()
-            .withErrorMessage("C'mon! At least some pronounceable name.");
+            .withFailureMessage("C'mon! At least some pronounceable name.");
 
-        this.ruleFor(superhero => superhero.superpowers)
+        this.validateIf(superhero => superhero.superpowers)
             .isNotEmpty()
             .unless(superhero => superhero.immortal)
-            .withErrorCode("FAKE-001")
+            .withFailureCode("FAKE-001")
             .withSeverity(Severity.INFO);
 
-        this.ruleForEachString(superhero => {
-            return superhero.superpowers.map(power => power.description);
-        }).isLength({min: 3, max: 40})
+        this.validateIfEachString(superhero => superhero.superpowers.map(power => power.description))
+            .hasLengthBetween(5, 50)
             .when(superheros => superheros.superpowers != null);
     }
 }
@@ -45,6 +43,7 @@ const result = validator.validate(superhero);
 const validationSucceeded = result.isValid();
 const failures = result.getFailures();
 ```
+
 ### Validation Conditions
 
 
@@ -52,5 +51,6 @@ const failures = result.getFailures();
 
 
 ### Custom Validators
+
 
 ## Validators
