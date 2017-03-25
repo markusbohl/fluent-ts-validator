@@ -102,18 +102,20 @@ will be available. And that is an _epic_ win for auto completion.
 
 ### Common Validation Rules
 
+These rules are applicable to properties of all types.
+
 | Method | Description |
 | ------ | ----------- |
-| `isDefined()` |   |
-| `isUndefined()` |   |
-| `isNull()` |   |
-| `isNotNull()` |   |
-| `isEmpty()` |   |
-| `isNotEmpty()` |   |
-| `isEqualTo(comparison: T)` |   |
-| `isNotEqualTo(comparison: T)` |   |
-| `isIn(array: Array<T>)` |   |
-| `isNotIn(array: Array<T>)` |   |
+| `isDefined()` | Validates if a property is _defined_. |
+| `isUndefined()` | Validates if a property is _undefined_. |
+| `isNull()` | Validates if a property is _null_. |
+| `isNotNull()` | Validates if a property is _not null_. |
+| `isEmpty()` | Validates if a property is _empty_. Meaning either an empty `string`, `null`, or `undefined`. Or in case of collections (`Array`, `Set`, `Map`) that they do not contain any element (`length === 0`, `size === 0`). 
+| `isNotEmpty()` | Validates if a property is _not empty_. That is, neither `null` nor `undefined` and not an empty `string`. If a property in question is a collection this method checks if the collection contains elements. |
+| `isEqualTo(comparison: TProperty)` | Validates if a property is _equal_ to (`===`) the `comparison` parameter. |
+| `isNotEqualTo(comparison: TProperty)` | Validates if a property is _not equal_ to (`!==`) the `comparison` parameter. |
+| `isIn(array: Array<TProperty>)` | Validates if a property or an equal value _is_ an element of the provided array (`===`). |
+| `isNotIn(array: Array<TProperty>)` | Validates if a property or an equal value _is not_ an element of the provided array (`!==`). |
 
 
 
