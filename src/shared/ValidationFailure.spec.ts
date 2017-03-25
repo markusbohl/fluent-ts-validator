@@ -19,13 +19,13 @@ describe("ValidationFailure", () => {
             expect(failure.attemptedValue).toBe("attemptedValue");
             expect(failure.code).toBe("code");
             expect(failure.message).toBe("message");
-            expect(failure.severity).toBe(Severity.WARNING);
+            expect(failure.severity).toBe(Severity[Severity.WARNING]);
         });
 
         it("should set ERROR-severity by default", () => {
             let failure = new ValidationFailure(null, null);
 
-            expect(failure.severity).toBe(Severity.ERROR);
+            expect(failure.severity).toBe(Severity[Severity.ERROR]);
         });
     });
 });

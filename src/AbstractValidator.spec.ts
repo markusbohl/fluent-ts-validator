@@ -94,7 +94,7 @@ describe("AbstractValidator", () => {
             expect(failure.attemptedValue).toBe("DJ");
             expect(failure.propertyName).toBe("name");
             expect(failure.code).toBe("N1");
-            expect(failure.severity).toBe(Severity.ERROR);
+            expect(failure.severity).toBe(Severity[Severity.ERROR]);
             expect(failure.message).toBe("name is invalid");
         });
 
@@ -122,7 +122,7 @@ describe("AbstractValidator", () => {
             expect(failure.target).toBe(person);
             expect(failure.propertyName).toBe("address");
             expect(failure.code).not.toBeDefined();
-            expect(failure.severity).toBe(Severity.WARNING);
+            expect(failure.severity).toBe(Severity[Severity.WARNING]);
             expect(failure.message).toBe("address is not allowed");
         });
 
@@ -253,7 +253,7 @@ describe("AddressbookValidator", () => {
                 attemptedValue: null,
                 code: undefined,
                 message: "contacts is invalid",
-                severity: Severity.ERROR
+                severity: Severity[Severity.ERROR]
             }));
         });
     });

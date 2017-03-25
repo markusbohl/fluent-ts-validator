@@ -7,7 +7,7 @@ export class ValidationFailure {
     readonly attemptedValue: any;
     readonly code: string;
     readonly message: string;
-    readonly severity: Severity;
+    readonly severity: string;
 
     constructor(target: any, propertyName: string, attemptedValue?: any, code?: string, message?: string, severity = Severity.ERROR) {
         this.target = target;
@@ -15,6 +15,6 @@ export class ValidationFailure {
         this.attemptedValue = attemptedValue;
         this.code = code;
         this.message = message;
-        this.severity = severity;
+        this.severity = Severity[severity];
     }
 }

@@ -96,13 +96,13 @@ describe("CollectionValidationRule", () => {
                     target: testClass,
                     propertyName: "array",
                     attemptedValue: "foo",
-                    severity: Severity.ERROR
+                    severity: Severity[Severity.ERROR]
                 }));
                 expect(result.getValidationFailures()[1]).toEqual(jasmine.objectContaining({
                     target: testClass,
                     propertyName: "array",
                     attemptedValue: "bar",
-                    severity: Severity.ERROR
+                    severity: Severity[Severity.ERROR]
                 }));
             });
 
@@ -117,13 +117,13 @@ describe("CollectionValidationRule", () => {
                     target: testClass,
                     propertyName: "array",
                     attemptedValue: "foo",
-                    severity: Severity.ERROR
+                    severity: Severity[Severity.ERROR]
                 }));
                 expect(callback).toHaveBeenCalledWith(jasmine.objectContaining({
                     target: testClass,
                     propertyName: "array",
                     attemptedValue: "bar",
-                    severity: Severity.ERROR
+                    severity: Severity[Severity.ERROR]
                 }));
             });
 

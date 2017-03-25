@@ -94,7 +94,7 @@ describe("ValidationRule", () => {
             expect(failure.propertyName).toBe("property");
             expect(failure.message).toBe("property is invalid");
             expect(failure.attemptedValue).toBe("invalid property value");
-            expect(failure.severity).toBe(Severity.ERROR);
+            expect(failure.severity).toBe(Severity[Severity.ERROR]);
         });
 
         it("should provide property name in validation failure in case of invalid input", () => {
@@ -155,7 +155,7 @@ describe("ValidationRule", () => {
                 target: toBeValidated,
                 propertyName: "property",
                 attemptedValue: "invalid property value",
-                severity: Severity.ERROR
+                severity: Severity[Severity.ERROR]
             }));
         });
     });
@@ -189,7 +189,7 @@ describe("ValidationRule", () => {
 
             let result = rule.apply(new TestClass("invalid property value"));
 
-            expect(result.getValidationFailures()[0].severity).toBe(Severity.INFO);
+            expect(result.getValidationFailures()[0].severity).toBe(Severity[Severity.INFO]);
         });
     });
 
