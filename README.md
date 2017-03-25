@@ -85,7 +85,7 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
     }
 }
 ```
-`AbstractValidator` is typed with the `Superhero` class. So
+Above, `AbstractValidator` is typed with the `Superhero` class. So
 the lamdba expressions expect instances of superheros. The type of the attribute to validate 
 determines which `validateIf` method to use. So, checks on a superhero's name require the 
 `validateIfString()` method, whether ensuring a superhero has won a certain amount of epic 
@@ -97,13 +97,99 @@ plausible for a date but not for a number, etc.
 Only the types of validation rules that make sense for the attributes you are about to validate 
 will be available. And that is an _epic_ win for auto completion.
 
- 
-### Validation Conditions
+
+## Validation Rules
+
+### Common Validation Rules
+
+| Method | Description |
+| ------ | ----------- |
+| `isDefined()` |   |
+| `isUndefined()` |   |
+| `isNull()` |   |
+| `isNotNull()` |   |
+| `isEmpty()` |   |
+| `isNotEmpty()` |   |
+| `isEqualTo(comparison: T)` |   |
+| `isNotEqualTo(comparison: T)` |   |
+| `isIn(array: Array<T>)` |   |
+| `isNotIn(array: Array<T>)` |   |
 
 
-### Custom Validators
+
+### String Validation Rules
+
+| Method | Description |
+| ------ | ----------- |
+| `contains(seed: string)` |   |
+| `isAlphanumeric(locale?: AlphanumericLocale)` |   |
+| `isAlpha(locale?: AlphaLocale)` |   |
+| `isAscii()` |   |
+| `isBase64()` |   |
+| `isBooleanString()` |   |
+| `isCurrency(options?: CurrencyOptions)` |   |
+| `isDateString()` |   |
+| `isDecimalString()` |   |
+| `isEmail(options?: EmailOptions)` |   |
+| `isFqdn(options?: FqdnOptions)` |   |
+| `isHexadecimal()` |   |
+| `isIso8601()` |   |
+| `isJson()` |   |
+| `hasLengthBetween(min: number, max: number)` |   |
+| `hasMinLength(min: number)` |   |
+| `hasMaxLength(max: number)` |   |
+| `isLowercase()` |   |
+| `isMobilePhoneNo(locale: MobilePhoneLocale)` |   |
+| `isNumericString()` |   |
+| `isUrl(options?: UrlOptions)` |   |
+| `isUppercase()` |   |
+| `isUuid(version?: UuidVersion)` |   |
+| `matches(pattern: RegExp, modifiers?: string)` |   |
 
 
-## Validators
+### Number Validation Rules
+
+| Method | Description |
+| ------ | ----------- |
+| `isPositive()` |   |
+| `isNegative()` |   |
+| `isGreaterThan(threshold: number)` |   |
+| `isGreaterThanOrEqual(threshold: number)` |   |
+| `isLessThan(threshold: number)` |   |
+| `isLessThanOrEqual(threshold: number)` |   |
+
+### Date Validation Rules
+
+| Method | Description |
+| ------ | ----------- |
+| `isBefore(date: Date)` |   |
+| `isSameAs(date: Date)` |   |
+| `isAfter(date: Date)` |   |
+| `isSameOrBefore(date: Date)` |   |
+| `isSameOrAfter(date: Date)` |   |
+| <code>isBetween(date1: Date, date2: Date, lowerBoundary?: "(" &#124; "[", upperBoundary?: ")" &#124; "]")</code> |   |
+
+
+### Type Validation Rules
+
+| Method | Description |
+| ------ | ----------- |
+| `isArray()` |   |
+| `isBoolean()` |   |
+| `isDate()` |   |
+| `isNumber()` |   |
+| `isString()` |   |
+
+
+## Validation Conditions
+
+
 
 ## Validation Result
+
+
+
+## Custom Validators
+
+
+
