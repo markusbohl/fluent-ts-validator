@@ -139,7 +139,7 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
 Eventually, the appearance of validation failures can be configured on a per-property basis. In 
 case an _invalid_ object is passed to the `validate()` or `validateAsync()` method, you might be 
 interested in details about the failure, possibly react to it, or pass some failure-specific 
-information along.
+information along. For details about the various methods see [Validation Result & Validation Failures](#validation-result--validation-failures).
 
 ```typescript
 export class SuperheroValidator extends AbstractValidator<Superhero> {
