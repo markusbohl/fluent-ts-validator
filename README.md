@@ -266,7 +266,7 @@ validation process. It provides two methods that are of particular importance.
 - `isValid(): boolean`
     - returns `true` if no `ValidationFailure` exists, `false` otherwise.
 - `getFailures(): ValidationFailure[]`
-    - returns an array containing one `ValidationFailure` __per__ invalid property. If no 
+    - returns an array containing __one__ `ValidationFailure` __per__ invalid property. If no 
     failures exist, meaning the result is valid, an empty array is returned.
 
 So, what is a `ValidationFailure`? It is an object with the following properties (all of them 
