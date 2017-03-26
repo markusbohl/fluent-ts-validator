@@ -89,12 +89,14 @@ the lamdba expressions expect instances of superheros. The type of the attribute
 determines which `validateIf` method to use. So, checks on a superhero's name require the 
 `validateIfString()` method, whether ensuring a superhero has won a certain amount of epic 
 fights cries out for the `validateIfNumber()` method. In addition, the type of the attribute to 
-validate determines which kind of validation rules are available. While `isAlphanumeric()` makes 
-sense for a `string` it does not so much for a `Date` object. Using `isAfter(anotherDate)` is
+validate also determines which kind of validation rules are available. While `isAlphanumeric()` 
+makes sense for a `string` it does not so much for a `Date` object. Using `isAfter(anotherDate)` is
 plausible for a date but not for a number, etc. 
 
 Only the types of validation rules that make sense for the attributes you are about to validate 
-will be available. And that is an _epic_ win for auto completion.
+will be available. And that is an _epic_ win for auto completion. A detailed overview of all 
+available validation options can be found in the [Validation Rules](#validation-rules) section 
+below.
 
 
 #### Rule Concatencation
@@ -119,7 +121,8 @@ Conditional rules allow you to specify under which circumstances a validation sh
  validation rules. Both methods expect a lambda expression as parameter that evaluates to a boolean 
  value. When the lambda expression in a `when()` results in `true`, the validation is 
  executed. With `unless()` it is the other way round. The validation does _not_ take place when 
- the corresponding lambda expression evaluates to `true`.
+ the corresponding lambda expression evaluates to `true`. For details, see [Validation Conditions]
+ (#validation-conditions).
 
 ```typescript
 export class SuperheroValidator extends AbstractValidator<Superhero> {
@@ -257,7 +260,25 @@ of the provided array (`!==`).
 
 ## Validation Result & Validation Failures
 
+Each validator created with this library returns a `ValidationResult` object at the end of the 
+validation process. It provides two methods that are of particular importance.
 
+- `isValid(): boolean`
+    - returns `true` if no `ValidationFailure` exists, `false` otherwise.
+- `getFailures(): ValidationFailure[]`
+    - returns an array containing one `ValidationFailure` __per__ invalid property. If no 
+    failures exist, meaning the result is valid, an empty array is returned.
+
+So, what is a `ValidationFailure`? It is an object with the following properties (all of them 
+being _readonly_):
+
+- `target: any`: the object as a whole that was validated
+- `propertyName: string`: the name of the property that is considered invalid
+- `attemptedValue: any`: the actual value of the property that is considred invalid
+- `code: string`: a failure code, if set; otherwise `undefined`
+- `message: string`: a failure message; if not explicitly set, it defaults to '`<propertyName>` is
+ invalid'
+- `severity: string`: the severity of the failure; defaults to `ERROR`
 
 ## Asynchronous Validation
 
