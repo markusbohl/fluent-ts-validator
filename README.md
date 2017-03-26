@@ -165,35 +165,51 @@ Common validation rules are applicable to properties of all types.
 
 #### Methods
 
-- `isDefined()`: Validates if a property is _defined_. 
-- `isUndefined()`: Validates if a property is _undefined_.
-- `isNull()`: Validates if a property is _null_.
-- `isNotNull()`: Validates if a property is _not null_.
-- `isEmpty()`: Validates if a property is _empty_. 
-    - _Empty_ in this context means either an empty `string`, `null`, or `undefined`. Or in case of 
+- `isDefined()`: Checks if a property is defined. 
+- `isUndefined()`: Checks if a property is undefined.
+- `isNull()`: Checks if a property is null.
+- `isNotNull()`: Checks if a property is not null.
+- `isEmpty()`: Checks if a property is empty. 
+    - Empty in this context means either an empty `string`, `null`, or `undefined`. Or in case of 
 collections (`Array`, `Set`, `Map`) that they do not contain any element (`length === 0`, `size 
 === 0`)
-- `isNotEmpty()`: Validates if a property is _not empty_. 
+- `isNotEmpty()`: Checks if a property is not empty. 
     - That is, neither `null` nor `undefined` and not an empty `string`. If the property in 
     question is a collection (`Array`, `Set`, `Map`) this method checks if the collection contains elements.
-- `isEqualTo(comparison: TProperty)`: Validates if a property is _equal_ to (`===`) the `comparison`
+- `isEqualTo(comparison: TProperty)`: Checks if a property is equal to (`===`) the `comparison`
  parameter. 
-- `isNotEqualTo(comparison: TProperty)`: Validates if a property is _not equal_ to (`!==`) the 
+- `isNotEqualTo(comparison: TProperty)`: Checks if a property is not equal to (`!==`) the 
 `comparison` parameter.
-- `isIn(array: Array<TProperty>)`: Validates if a property or an equal value _is_ an element of the 
+- `isIn(array: Array<TProperty>)`: Checks if a property or an equal value is an element of the 
 provided array (`===`).
-- `isNotIn(array: Array<TProperty>)`: Validates if a property or an equal value _is not_ an element 
+- `isNotIn(array: Array<TProperty>)`: Checks if a property or an equal value is not an element 
 of the provided array (`!==`).
 
 
 
 ### String Validation Rules
 
+The largest group of validation rules targets properties of type `string`. Most of these rules 
+delegate the actual validation to the internal [validator.js](https://github.com/chriso/validator.js) library.
+
 #### Methods
 
-- `contains(seed: string)`:
-- `isAlphanumeric(locale?: AlphanumericLocale)`:
-- `isAlpha(locale?: AlphaLocale)`:
+- `contains(seed: string)`: Checks if a string contains a substring or `seed`.
+- `isAlphanumeric(locale?: AlphanumericLocale)`: Checks if a string is alphanumeric.
+    - an optional locale can be set. Since this rule delegates to [validator.js](https://github.com/chriso/validator.js), it accepts the same locales
+    `AlphanumericLocale = "ar" | "ar-AE" | "ar-BH" | "ar-DZ" | "ar-EG" | "ar-IQ" | "ar-JO" | 
+    "ar-KW" | "ar-LB" | "ar-LY" | "ar-MA" | "ar-QA" | "ar-QM" | "ar-SA" | "ar-SD" | "ar-SY" | 
+    "ar-TN" | "ar-YE" | "cs-CZ" | "de-DE" | "en-AU" | "en-GB" | "en-HK" | "en-IN" | "en-NZ" | 
+    "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fr-FR" | "fr-BE" | "hu-HU" | "nl-BE" | "nl-NL" | 
+    "pl-PL" | "pt-BR" | "pt-PT" | "ru-RU" | "sr-RS" | "sr-RS@latin" | "tr-TR";` defaults to `en-US`
+- `isAlpha(locale?: AlphaLocale)`: Checks if a string contains only letters (a-zA-Z). 
+    - an optional locale (same as for [validator.js](https://github.com/chriso/validator.js)) can
+     be set, which is  one of `AlphaLocale = "ar" | "ar-AE" | "ar-BH" | "ar-DZ" | "ar-EG" |
+  "ar-IQ" | "ar-JO" | "ar-KW" | "ar-LB" | "ar-LY" | "ar-MA" | "ar-QA" | "ar-QM" | "ar-SA" | 
+  "ar-SD" | "ar-SY" | "ar-TN" | "ar-YE" | "cs-CZ" | "de-DE" | "en-AU" | "en-GB" | "en-HK" | 
+  "en-IN" | "en-NZ" | "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fr-FR" | "hu-HU" | "nl-NL" | 
+  "pl-PL" | "pt-BR" | "pt-PT" | "ru-RU" | "sr-RS" | "sr-RS@latin" | "tr-TR";` if not set, defaults
+   to `en-US`.
 - `isAscii()`:
 - `isBase64()`:
 - `isBooleanString()`:
@@ -251,7 +267,7 @@ of the provided array (`!==`).
 - `isString()`:
 
 
-## Custom Validators
+## Custom Validators and Validation Expressions
 
 
 ## Validation Conditions
