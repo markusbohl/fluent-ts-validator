@@ -43,7 +43,7 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements ValidationOptio
         return this;
     }
 
-    withName(name: string): ValidationOptionsBuilder<T> {
+    withPropertyName(name: string): ValidationOptionsBuilder<T> {
         this.validationRule.setPropertyName(name);
 
         return this;

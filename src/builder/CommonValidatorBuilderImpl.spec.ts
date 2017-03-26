@@ -67,17 +67,17 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
         });
     });
 
-    describe("withName", () => {
+    describe("withPropertyName", () => {
         it("should set (property) name to validation rule", () => {
             spyOn(validationRule, "setPropertyName");
 
-            validationOptionsBuilder.withName("A better property name");
+            validationOptionsBuilder.withPropertyName("A better property name");
 
             expect(validationRule.setPropertyName).toHaveBeenCalledWith("A better property name");
         });
 
         it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.withName("A better property name");
+            let result = validationOptionsBuilder.withPropertyName("A better property name");
 
             expect(result).toBe(validationOptionsBuilder);
         });
