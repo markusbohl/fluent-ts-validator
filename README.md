@@ -148,7 +148,7 @@ information along. For details about the various methods see [Validation Result 
 export class SuperheroValidator extends AbstractValidator<Superhero> {
     constructor() {
         super();
-        this.validateIfNumber(superhero => superhero.epicFightsWon).isLessThan(1)
+        this.validateIfNumber(superhero => superhero.epicFightsWon).isNotEqualTo(0)
             .withSeverity(Severity.INFO)
             .withFailureCode("F_0")
             .withFailureMessage("Don't give up!")
@@ -266,7 +266,7 @@ validation process. It provides two methods that are of particular importance.
 - `isValid(): boolean`
     - returns `true` if no `ValidationFailure` exists, `false` otherwise.
 - `getFailures(): ValidationFailure[]`
-    - returns an array containing __one__ `ValidationFailure` __per__ invalid property. If no 
+    - returns an array containing `ValidationFailures` for the invalid properties. If no 
     failures exist, meaning the result is valid, an empty array is returned.
 
 So, what is a `ValidationFailure`? It is an object with the following properties (all of them 
@@ -274,11 +274,49 @@ being _readonly_):
 
 - `target: any`: the object as a whole that was validated
 - `propertyName: string`: the name of the property that is considered invalid
-- `attemptedValue: any`: the actual value of the property that is considred invalid
+- `attemptedValue: any`: the actual value of the property that is considered invalid
 - `code: string`: a failure code, if set; otherwise `undefined`
 - `message: string`: a failure message; if not explicitly set, it defaults to '`<propertyName>` is
  invalid'
 - `severity: string`: the severity of the failure; defaults to `ERROR`
+
+To make the relationship between a `Validator` and a `ValidationFailure` clear, take a look at the 
+following `SuperheroValidator` and `Superhero` instance:
+
+```typescript
+export class SuperheroValidator extends AbstractValidator<Superhero> {
+    constructor() {
+        super();
+        this.validateIfNumber(superhero => superhero.epicFightsWon).isNotEqualTo(0)
+            .withSeverity(Severity.INFO)
+            .withFailureCode("F_0")
+            .withFailureMessage("Don't give up!");
+    }
+}
+
+const superhero = new Superhero();
+superhero.name = "SUPER DUDE";
+superhero.epicFightsWon = 0;
+
+const validator = new SuperheroValidator();
+const result = validator.validate(superhero);
+```
+
+The `ValidationResult` will contain a `ValidationFailure` object in its array that looks like this:
+
+```typescript
+ValidationFailure {
+  target: Superhero { name: 'SUPER DUDE', epicFightsWon: 0 },
+  propertyName: 'epicFightsWon',
+  attemptedValue: 0,
+  code: 'F_0',
+  message: 'Don\'t give up!',
+  severity: 'INFO'
+}
+```
+That makes it obvious which object failed validation due to which property and value.
+
+
 
 ## Asynchronous Validation
 
