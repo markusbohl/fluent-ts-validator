@@ -16,8 +16,7 @@ The fluent-ts-validator library is licensed under [MIT](https://opensource.org/l
 Creating a validator for your needs is simply done by extending the `AbstractValidator<T>` 
 class for a specific type and defining a set of validation rules within the constructor of that 
 class. Then create an instance of that validator and invoke the `validate()` or `validateAsync()` 
-method with an 
-object you want to validate.  
+method with an object you want to validate.  
 
 
 ### Basic Validation Example
@@ -135,6 +134,26 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
 }
 ```
 
+#### Validation Failure Configuration
+
+Eventually, the appearance of validation failures can be configured on a per-property basis. In 
+case an _invalid_ object is passed to the `validate()` or `validateAsync()` method, you might be 
+interested in details about the failure, possibly react to it, or pass some failure-specific 
+information along.
+
+```typescript
+export class SuperheroValidator extends AbstractValidator<Superhero> {
+    constructor() {
+        super();
+        this.validateIfNumber(superhero => superhero.epicFightsWon).isLessThan(1)
+            .withSeverity(Severity.INFO)
+            .withFailureCode("F_0")
+            .withFailureMessage("Don't give up!")
+            .onFailure(failure => console.log(failure));
+    }
+}
+```
+
 ## Validation Rules
 
 ### Common Validation Rules
@@ -144,31 +163,22 @@ Common validation rules are applicable to properties of all types.
 #### Methods
 
 - `isDefined()`: Validates if a property is _defined_. 
-
 - `isUndefined()`: Validates if a property is _undefined_.
-
 - `isNull()`: Validates if a property is _null_.
-
 - `isNotNull()`: Validates if a property is _not null_.
-
 - `isEmpty()`: Validates if a property is _empty_. 
     - _Empty_ in this context means either an empty `string`, `null`, or `undefined`. Or in case of 
 collections (`Array`, `Set`, `Map`) that they do not contain any element (`length === 0`, `size 
 === 0`)
- 
 - `isNotEmpty()`: Validates if a property is _not empty_. 
     - That is, neither `null` nor `undefined` and not an empty `string`. If the property in 
     question is a collection (`Array`, `Set`, `Map`) this method checks if the collection contains elements.
-
 - `isEqualTo(comparison: TProperty)`: Validates if a property is _equal_ to (`===`) the `comparison`
  parameter. 
- 
 - `isNotEqualTo(comparison: TProperty)`: Validates if a property is _not equal_ to (`!==`) the 
 `comparison` parameter.
-
 - `isIn(array: Array<TProperty>)`: Validates if a property or an equal value _is_ an element of the 
 provided array (`===`).
-
 - `isNotIn(array: Array<TProperty>)`: Validates if a property or an equal value _is not_ an element 
 of the provided array (`!==`).
 
@@ -245,7 +255,7 @@ of the provided array (`!==`).
 
 
 
-## Validation Result
+## Validation Result & Validation Failures
 
 
 
