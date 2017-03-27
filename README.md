@@ -210,16 +210,36 @@ delegate the actual validation to the internal [validator.js](https://github.com
   "en-IN" | "en-NZ" | "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fr-FR" | "hu-HU" | "nl-NL" | 
   "pl-PL" | "pt-BR" | "pt-PT" | "ru-RU" | "sr-RS" | "sr-RS@latin" | "tr-TR";` if not set, defaults
    to `en-US`.
-- `isAscii()`:
-- `isBase64()`:
-- `isBooleanString()`:
-- `isCurrency(options?: CurrencyOptions)`:
-- `isDateString()`:
-- `isDecimalString()`:
-- `isEmail(options?: EmailOptions)`:
-- `isFqdn(options?: FqdnOptions)`:
-- `isHexadecimal()`:
-- `isIso8601()`:
+- `isAscii()`: Checks if a string contains ASCII chars only.
+- `isBase64()`: Checks if a string is Base64 encoded.
+- `isBooleanString()`: Checks if a string is a boolean.
+- `isCurrency(options?: CurrencyOptions)`: Checks if a string is a valid currency amount.
+    - the optional parameter defaults to `CurrencyOptions: {
+    symbol: '$', 
+    require_symbol: false, 
+    allow_space_after_symbol: 
+    false, symbol_after_digits: false, 
+    allow_negatives: true, 
+    parens_for_negatives: false, 
+    negative_sign_before_digits: false, 
+    negative_sign_after_digits: false, 
+    allow_negative_sign_placeholder: false, 
+    thousands_separator: ',', 
+    decimal_separator: '.', 
+    allow_space_after_digits: false 
+    }`
+- `isDecimalString()`: Checks if the string represents a decimal number, such as 0.1, .3, 1.1, 1
+.00003, 4.0, etc.
+- `isEmail(options?: EmailOptions)`: Checks if the string is an email.
+    - the optional parameter defaults to `EmailOptions: { allow_display_name: false, 
+    require_display_name: false, allow_utf8_local_part: true, require_tld: true }`. 
+    - if `allow_display_name` is set to `true`, the validator will also match `Display Name 
+    <email-address>`. If `require_display_name` is set to true, the validator will reject strings without the format `Display Name <email-address>`. If `allow_utf8_local_part` is set to `false`, the validator will not allow any non-English UTF8 character in email address' local part. If `require_tld` is set to `false`, e-mail addresses without having TLD in their domain will also be matched.
+- `isFqdn(options?: FqdnOptions)`: Checks if the string is a fully qualified domain name (e.g. 
+domain.com). 
+    - the optional parameter is an option that defaults to `FqdnOptions: { require_tld: true, allow_underscores: false, allow_trailing_dot: false }`.
+- `isHexadecimal()`: Checks if the string is a hexadecimal number.
+- `isIso8601()`: Checks if the string is a valid ISO 8601 date.
 - `isJson()`:
 - `hasLengthBetween(min: number, max: number)`:
 - `hasMinLength(min: number)`:
