@@ -5,7 +5,6 @@ export * from "./IsAsciiValidator";
 export * from "./IsBase64Validator";
 export * from "./IsBooleanStringValidator";
 export * from "./IsCurrencyValidator";
-export * from "./IsDateStringValidator";
 export * from "./IsDecimalStringValidator";
 export * from "./IsEmailValidator";
 export * from "./IsFqdnValidator";
