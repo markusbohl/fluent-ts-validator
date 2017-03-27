@@ -18,7 +18,6 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
     isBase64(): this & ValidationOptionsBuilder<T>;
     isBooleanString(): this & ValidationOptionsBuilder<T>;
     isCurrency(options?: CurrencyOptions): this & ValidationOptionsBuilder<T>;
-    isDateString(): this & ValidationOptionsBuilder<T>;
     isDecimalString(): this & ValidationOptionsBuilder<T>;
     isEmail(options?: EmailOptions): this & ValidationOptionsBuilder<T>;
     isFqdn(options?: FqdnOptions): this & ValidationOptionsBuilder<T>;

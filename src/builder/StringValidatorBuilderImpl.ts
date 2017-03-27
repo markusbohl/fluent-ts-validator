@@ -14,7 +14,6 @@ import {PropertyValidator} from "../validators/PropertyValidator";
 import {
     ContainsValidator,
     IsBooleanStringValidator,
-    IsDateStringValidator,
     IsNumericStringValidator,
     IsAlphaValidator,
     IsAlphanumericValidator,
@@ -55,10 +54,6 @@ export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
      */
     isBooleanString(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsBooleanStringValidator());
-    }
-
-    isDateString(): this & ValidationOptionsBuilder<T> {
-        return this.buildRuleWith(new IsDateStringValidator());
     }
 
     isNumericString(): this & ValidationOptionsBuilder<T> {
