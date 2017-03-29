@@ -289,11 +289,11 @@ range.
 
 #### Methods
 
-- `isArray()`:
-- `isBoolean()`:
-- `isDate()`:
-- `isNumber()`:
-- `isString()`:
+- `isArray()`: Checks if a property is of type `Array`.
+- `isBoolean()`: Checks if a property is a real `boolean`.
+- `isDate()`: Checks if a property is of type `Date`.
+- `isNumber()`: Checks if a property is a real `number`.
+- `isString()`: Checks if a property is a real `string`.
 
 
 ## Custom Validators and Validation Expressions
