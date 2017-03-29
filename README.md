@@ -264,12 +264,14 @@ range.
 
 #### Methods
 
-- `isPositive()`:
-- `isNegative()`:
-- `isGreaterThan(threshold: number)`:
-- `isGreaterThanOrEqual(threshold: number)`:
-- `isLessThan(threshold: number)`:
-- `isLessThanOrEqual(threshold: number)`:
+- `isPositive()`: Checks if a number is positive (`> 0`).
+- `isNegative()`: Checks if a number is negative (`< 0`).
+- `isGreaterThan(threshold: number)`: Checks if a number is greater than `threshold` (`>`).
+- `isGreaterThanOrEqual(threshold: number)`: Checks if a number is greater than or equal to
+`threshold` (`>=`).
+- `isLessThan(threshold: number)`: Checks if a number is less than `threshold` (`<`).
+- `isLessThanOrEqual(threshold: number)`: Checks if a number is less than or equal to `threshold`
+ (`<=`).
 
 ### Date Validation Rules
 
