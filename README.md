@@ -277,12 +277,16 @@ range.
 
 #### Methods
 
-- `isBefore(date: Date)`:
-- `isSameAs(date: Date)`:
-- `isAfter(date: Date)`:
-- `isSameOrBefore(date: Date)`:
-- `isSameOrAfter(date: Date)`:
-- `isBetween(date1: Date, date2: Date, lowerBoundary?: "(" | "[", upperBoundary?: ")" | "]")`:
+- `isBefore(date: Date)`: Checks if a date is before `date`.
+- `isSameAs(date: Date)`: Checks if a date is the same as `date`.
+- `isAfter(date: Date)`: Checks if a date is after `date`.
+- `isSameOrBefore(date: Date)`: Checks if a date is the same as or before `date`.
+- `isSameOrAfter(date: Date)`: Checks if a date is the same as or after `date`.
+- `isBetween(date1: Date, date2: Date, lowerBoundary?: "(" | "[", upperBoundary?: ")" | "]")`: 
+Checks if a date is between `date1` and `date2`.
+    - uses the same boundary characters as [moment.js](https://momentjs.com/docs/#/query/is-between/)
+    - `[` and `]` indicate inclusion of a date 
+    - `(` and `)` indicates exclusion of a date
 
 
 ### Type Validation Rules
