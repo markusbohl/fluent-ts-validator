@@ -196,15 +196,15 @@ delegate the actual validation to the internal [validator.js](https://github.com
 
 - `contains(seed: string)`: Checks if a string contains a substring or `seed`.
 - `isAlphanumeric(locale?: AlphanumericLocale)`: Checks if a string is alphanumeric.
-    - an optional locale can be set. Since this rule delegates to [validator.js](https://github.com/chriso/validator.js), it accepts the same locales
+    - an optional locale can be set. It accepts a locale of
     `AlphanumericLocale = "ar" | "ar-AE" | "ar-BH" | "ar-DZ" | "ar-EG" | "ar-IQ" | "ar-JO" | 
     "ar-KW" | "ar-LB" | "ar-LY" | "ar-MA" | "ar-QA" | "ar-QM" | "ar-SA" | "ar-SD" | "ar-SY" | 
     "ar-TN" | "ar-YE" | "cs-CZ" | "de-DE" | "en-AU" | "en-GB" | "en-HK" | "en-IN" | "en-NZ" | 
     "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fr-FR" | "fr-BE" | "hu-HU" | "nl-BE" | "nl-NL" | 
     "pl-PL" | "pt-BR" | "pt-PT" | "ru-RU" | "sr-RS" | "sr-RS@latin" | "tr-TR";` defaults to `en-US`
 - `isAlpha(locale?: AlphaLocale)`: Checks if a string contains only letters (a-zA-Z). 
-    - an optional locale (same as for [validator.js](https://github.com/chriso/validator.js)) can
-     be set, which is  one of `AlphaLocale = "ar" | "ar-AE" | "ar-BH" | "ar-DZ" | "ar-EG" |
+    - an optional locale can be set, which is  one of `AlphaLocale = "ar" | "ar-AE" | "ar-BH" | 
+    "ar-DZ" | "ar-EG" |
   "ar-IQ" | "ar-JO" | "ar-KW" | "ar-LB" | "ar-LY" | "ar-MA" | "ar-QA" | "ar-QM" | "ar-SA" | 
   "ar-SD" | "ar-SY" | "ar-TN" | "ar-YE" | "cs-CZ" | "de-DE" | "en-AU" | "en-GB" | "en-HK" | 
   "en-IN" | "en-NZ" | "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fr-FR" | "hu-HU" | "nl-NL" | 
@@ -228,29 +228,36 @@ delegate the actual validation to the internal [validator.js](https://github.com
     decimal_separator: '.', 
     allow_space_after_digits: false 
     }`
-- `isDecimalString()`: Checks if the string represents a decimal number, such as 0.1, .3, 1.1, 1
+- `isDecimalString()`: Checks if a string represents a decimal number, such as 0.1, .3, 1.1, 1
 .00003, 4.0, etc.
-- `isEmail(options?: EmailOptions)`: Checks if the string is an email.
+- `isEmail(options?: EmailOptions)`: Checks if a string is an email.
     - the optional parameter defaults to `EmailOptions: { allow_display_name: false, 
     require_display_name: false, allow_utf8_local_part: true, require_tld: true }`. 
     - if `allow_display_name` is set to `true`, the validator will also match `Display Name 
     <email-address>`. If `require_display_name` is set to true, the validator will reject strings without the format `Display Name <email-address>`. If `allow_utf8_local_part` is set to `false`, the validator will not allow any non-English UTF8 character in email address' local part. If `require_tld` is set to `false`, e-mail addresses without having TLD in their domain will also be matched.
-- `isFqdn(options?: FqdnOptions)`: Checks if the string is a fully qualified domain name (e.g. 
+- `isFqdn(options?: FqdnOptions)`: Checks if a string is a fully qualified domain name (e.g. 
 domain.com). 
     - the optional parameter is an option that defaults to `FqdnOptions: { require_tld: true, allow_underscores: false, allow_trailing_dot: false }`.
-- `isHexadecimal()`: Checks if the string is a hexadecimal number.
-- `isIso8601()`: Checks if the string is a valid ISO 8601 date.
-- `isJson()`:
-- `hasLengthBetween(min: number, max: number)`:
-- `hasMinLength(min: number)`:
-- `hasMaxLength(max: number)`:
-- `isLowercase()`:
-- `isMobilePhoneNo(locale: MobilePhoneLocale)`:
-- `isNumericString()`:
-- `isUrl(options?: UrlOptions)`:
-- `isUppercase()`:
-- `isUuid(version?: UuidVersion)`:
-- `matches(pattern: RegExp, modifiers?: string)`:
+- `isHexadecimal()`: Checks if a string is a hexadecimal number.
+- `isIso8601()`: Checks if a string is a valid ISO 8601 date.
+- `isJson()`: Check if a string is valid JSON (note: uses JSON.parse).
+- `hasLengthBetween(min: number, max: number)`: Checks if a string falls in a the `min` - `max` 
+range. 
+- `hasMinLength(min: number)`: Checks if a string has at least `min` length.
+- `hasMaxLength(max: number)`: Checks if a string has at most `max` length.
+- `isLowercase()`: Checks if a string is all lowercase.
+- `isMobilePhoneNo(locale: MobilePhoneLocale)`: Checks if a string is a mobile phone number.
+    - the `locale` is one of `MobilePhoneLocale = "ar-DZ" | "ar-SA" | "ar-SY" | "cs-CZ" | "de-DE" | "da-DK" | "el-GR" | "en-AU" | "en-GB" | "en-HK" | "en-IN" | "en-NZ" | "en-US" | "en-CA" | "en-ZA" | "en-ZM" | "es-ES" | "fi-FI" | "fr-FR" | "hu-HU" | "it-IT" | "ja-JP" | "ms-MY" | "nb-NO" | "nn-NO" | "pl-PL" | "pt-PT" | "ru-RU" | "sr-RS" | "tr-TR" | "vi-VN" | "zh-CN" | "zh-TW";`
+- `isNumericString()`: Checks if a string contains only numbers.
+- `isUrl(options?: UrlOptions)`: Checks if a string is a URL.
+    - the optional parameter defaults to `UrlOptions: { protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, require_host: true, require_valid_protocol: true, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false, allow_protocol_relative_urls: false }`
+- `isUppercase()`: Checks if a string is all uppercase.
+- `isUuid(version?: UuidVersion)`: Checks if a string is a UUID.
+    - Optional `version` is one value of `UuidVersion = "3" | "4" | "5" | "all";`
+    - defaults to `all`
+- `matches(pattern: RegExp, modifiers?: string)`: Checks if a string matches a pattern.
+    - optional `modifiers` are the same as a `RegExp` constructor would accept (e.g. `"i"` for 
+    _ignore case_, or `"g"` for _global match_, etc.) 
 
 
 ### Number Validation Rules
