@@ -262,6 +262,8 @@ range.
 
 ### Number Validation Rules
 
+Validation rules for properties of type `number`.
+
 #### Methods
 
 - `isPositive()`: Checks if a number is positive (`> 0`).
@@ -275,6 +277,8 @@ range.
 
 ### Date Validation Rules
 
+Validation rules for properties of type `Date`.
+
 #### Methods
 
 - `isBefore(date: Date)`: Checks if a date is before `date`.
@@ -287,9 +291,12 @@ Checks if a date is between `date1` and `date2`.
     - uses the same boundary characters as [moment.js](https://momentjs.com/docs/#/query/is-between/)
     - `[` and `]` indicate inclusion of a date 
     - `(` and `)` indicates exclusion of a date
+    - defaults to exclusion of lower and upper boundary if not specified
 
 
 ### Type Validation Rules
+
+Validation rules to check for certain types.
 
 #### Methods
 
@@ -366,8 +373,14 @@ ValidationFailure {
 That makes it obvious which object failed validation due to which property and value.
 
 
-
 ## Asynchronous Validation
 
+A validation can also be performed asynchronously. Besides the `validate` method every validator 
+provides a `validateAsync` method which returns a `Promise` for a `ValidationResult`.
 
+```typescript
+const promise: Promise<ValidationResult> = validator.validateAsync(superhero);
+
+promise.then(result => console.log(result.isValid()));
+```
 
