@@ -159,6 +159,9 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
 
 ## Validation Rules
 
+On the one hand this library provides validation rules that can only be used with properties of 
+type `string`, `number`, or `Date`. On the other hand there are rules that can be applied irrespectively of a property's type ([Common](#common-validation-rules) and [Type Validation Rules](#type-validation-rules)). 
+
 ### Common Validation Rules
 
 Common validation rules are applicable to properties of all types.
@@ -329,7 +332,7 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
 ```
 
 The `fulfills` method is actually overloaded which allows us to use it for our own validation 
-expressions as well. In case the provided validation rules are just don't fit your needs, be a 
+expressions as well. In case the provided validation rules just don't fit your needs, be a 
 _Superhero_ and formulate your own validation expression:
 
 ```typescript
