@@ -28,26 +28,26 @@ import {AbstractValidator, Severity} from "fluent-ts-validator";
 export class SuperheroValidator extends AbstractValidator<Superhero> {
     constructor() {
         super();
-        this.validateIfString(superhero => superhero.name)
+        this.validateIfString(hero => hero.name)
             .isAlphanumeric()
             .withFailureMessage("C'mon! At least some pronounceable name.");
 
-        this.validateIf(superhero => superhero.superpowers)
+        this.validateIf(hero => hero.superpowers)
             .isNotEmpty()
-            .unless(superhero => superhero.immortal)
+            .unless(hero => hero.immortal)
             .withFailureCode("FAKE-001")
             .withSeverity(Severity.WARNING);
 
-        this.validateIfEachString(superhero => superhero.superpowers.map(power => power.description))
+        this.validateIfEachString(hero => hero.superpowers.map(power => power.description))
             .hasLengthBetween(5, 50)
-            .when(superheros => superheros.superpowers != null);
+            .when(hero => hero.superpowers != null);
     }
 }
 
-const superhero: Superhero = ...;
+const hero: Superhero = ...;
 const validator = new SuperheroValidator();
 
-const result = validator.validate(superhero);
+const result = validator.validate(hero);
 const validationSucceeded = result.isValid();
 const failures = result.getFailures();
 ```
@@ -78,9 +78,9 @@ For example:
 export class SuperheroValidator extends AbstractValidator<Superhero> {
     constructor() {
         super();
-        this.validateIfString(superhero => superhero.name).isAlphanumeric();
-        this.validateIfNumber(superhero => superhero.epicFightsWon).isGreaterThanOrEqual(3);
-        this.validateIfDate(superhero => superhero.lastSighting).isAfter(THEdate);
+        this.validateIfString(hero => hero.name).isAlphanumeric();
+        this.validateIfNumber(hero => hero.epicFightsWon).isGreaterThanOrEqual(3);
+        this.validateIfDate(hero => hero.lastSighting).isAfter(THEdate);
     }
 }
 ```
@@ -107,7 +107,7 @@ Validation rules can also be concatenated.
 export class SuperheroValidator extends AbstractValidator<Superhero> {
     constructor() {
         super();
-        this.validateIfString(superhero => superhero.name)
+        this.validateIfString(hero => hero.name)
             .isAlphanumeric().isUppercase().hasMinLength(3).isNotIn(arrayOfBadGuys);
     }
 }
@@ -128,11 +128,11 @@ Conditional rules allow you to specify under which circumstances a validation sh
 export class SuperheroValidator extends AbstractValidator<Superhero> {
     constructor() {
         super();
-        this.validateIfString(superhero => superhero.name).isIn(hallOfFame)
-            .when(superhero => superhero.epicFightsWon > 100);
+        this.validateIfString(hero => hero.name).isIn(hallOfFame)
+            .when(hero => hero.epicFightsWon > 100);
 
-        this.validateIf(superhero => superhero.superpowers).isNotEmpty()
-            .unless(superhero => superhero.immortal);
+        this.validateIf(hero => hero.superpowers).isNotEmpty()
+            .unless(hero => hero.immortal);
     }
 }
 ```
@@ -148,7 +148,7 @@ information along. For details about the various methods see [Validation Result 
 export class SuperheroValidator extends AbstractValidator<Superhero> {
     constructor() {
         super();
-        this.validateIfNumber(superhero => superhero.epicFightsWon).isNotEqualTo(0)
+        this.validateIfNumber(hero => hero.epicFightsWon).isNotEqualTo(0)
             .withSeverity(Severity.INFO)
             .withFailureCode("F_0")
             .withFailureMessage("Don't give up!")
@@ -309,6 +309,39 @@ Validation rules to check for certain types.
 
 ## Custom Validators and Validation Expressions
 
+Sometimes it is useful to reuse one of your validators within a different validator. This is 
+where the `fulfills` method comes in handy:
+
+```typescript
+export class SuperpowerValidator extends AbstractValidator<Superpower> {
+    constructor() {
+        super();
+        this.validateIf(superpower => superpower.type).isNotEmpty();
+    }
+}
+
+export class SuperheroValidator extends AbstractValidator<Superhero> {
+    constructor() {
+        super();
+        this.validateIfEach(hero => hero.superpowers).fulfills(new SuperpowerValidator());
+    }
+}
+```
+
+The `fulfills` method is actually overloaded which allows us to use it for our own validation 
+expressions as well. In case the provided validation rules are just don't fit your needs, be a 
+_Superhero_ and formulate your own validation expression:
+
+```typescript
+export class SuperheroValidator extends AbstractValidator<Superhero> {
+    constructor() {
+        super();
+        this.validateIf(hero => hero.name).fulfills(name => {
+            return !(name.includes('SUPER') || name.includes('BAT'));
+        });
+    }
+}
+```
 
 ## Validation Conditions
 
