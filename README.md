@@ -4,7 +4,7 @@ A small validation library written in TypeScript which uses a fluent API and lam
 to build validation rules. It is inspired by the [FluentValidation](https://github.com/JeremySkinner/FluentValidation) library for .NET written by Jeremy Skinner.
 
 Instead of implementing an awful lot of validation logic within this project again this library 
-makes use of the mature validation library [validator.js](https://github.com/chriso/validator.js)
+makes use of the mature string validation library [validator.js](https://github.com/chriso/validator.js)
  and delegates invocations to it where it makes sense.
 
 In this respect, special thanks go to these two projects.
