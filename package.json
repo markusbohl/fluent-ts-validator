@@ -1,6 +1,6 @@
 {
   "name": "fluent-ts-validator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "A fluent validator written in TypeScript",
   "author": "Markus Bohl <markus.bohl@gmail.com>",
@@ -32,6 +32,6 @@
     "lint": "tslint --config ./tslint.json --project ./tsconfig.json"
   },
   "dependencies": {
-    "validator": "6.2.0"
+    "validator": "7.0.0"
   }
 }
