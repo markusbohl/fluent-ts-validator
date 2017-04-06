@@ -419,9 +419,6 @@ ValidationFailure {
 That makes it obvious which object failed validation due to which property and value.
 
 
-## Callbacks
-
-
 ## Asynchronous Validation
 
 A validation can also be performed asynchronously. Besides the `validate` method every validator 
@@ -433,3 +430,18 @@ const promise: Promise<ValidationResult> = validator.validateAsync(superhero);
 promise.then(result => console.log(result.isValid()));
 ```
 
+## Callbacks
+
+In case you want to respond to failures immediately callbacks can be used. Just use the 
+`onFailure()` method when building your validation rule. It accepts a callback-method as parameter 
+with the following signature: `(failure: ValidationFailure) => void`
+
+```typescript
+export class SuperheroValidator extends AbstractValidator<Superhero> {
+    constructor() {
+        super();
+        this.validateIfString(superhero => superhero.name).isEqualTo("The DUDE")
+            .onFailure(failure => console.log("We have found his Dudeness!"));
+    }
+}
+```
