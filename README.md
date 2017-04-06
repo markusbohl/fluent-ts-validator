@@ -56,11 +56,11 @@ const failures = result.getFailures();
 ### Rule Building
 Validation rules are built in a fluent API style. Entry points are always the 
 type-based `validateIf` or `validateIfEach` kind of methods. These variants are available:
-- `validateIf`
-- `validateIfAny`
-- `validateIfNumber`
-- `validateIfDate`
-- `validateIfString`
+- `validateIf`: for _common_ validation rules (independent of datatype)
+- `validateIfAny`: for _type_-based validation rules
+- `validateIfNumber`: for _number_-based validation rules
+- `validateIfDate`: for _Date_-based validation rules
+- `validateIfString`: for _String_-based validation rules
 - `validateIfEach`
 - `validateIfEachAny`
 - `validateIfEachNumber`
@@ -68,10 +68,10 @@ type-based `validateIf` or `validateIfEach` kind of methods. These variants are 
 - `validateIfEachString`
 
 All of these methods expect a lambda expression as parameter which maps the input to specific 
-validatable attributes of that instance. Depending on the type of the validatable attributes
+validatable properties of that instance. Depending on the type of the validatable properties
 different validation rules are available. The lambda expressions in the `validateIfEach`-methods 
-map to an instance of type `Iterable`. Obviously, all elements in an Array, Set, or whatever kind
- of Iterable will then be validated.
+map to an instance that complies to the `Iterable` protocol. Obviously, all elements in an `Array`, 
+`Set`, or whatever kind of `Iterable` will then be validated.
 
 For example:
 
