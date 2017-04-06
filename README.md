@@ -1,6 +1,7 @@
 # fluent-ts-validator
 
-A small validation library written in TypeScript which uses a fluent API and lambda expressions to build validation rules. It is inspired by the [FluentValidation](https://github.com/JeremySkinner/FluentValidation) library for .NET written by Jeremy Skinner.
+A small validation library written in TypeScript which uses a fluent API and lambda expressions 
+to build validation rules. It is inspired by the [FluentValidation](https://github.com/JeremySkinner/FluentValidation) library for .NET written by Jeremy Skinner.
 
 Instead of implementing an awful lot of validation logic within this project again this library 
 makes use of the mature validation library [validator.js](https://github.com/chriso/validator.js)
@@ -121,8 +122,7 @@ Conditional rules allow you to specify under which circumstances a validation sh
  validation rules. Both methods expect a lambda expression as parameter that evaluates to a boolean 
  value. When the lambda expression in a `when()` results in `true`, the validation is 
  executed. With `unless()` it is the other way round. The validation does _not_ take place when 
- the corresponding lambda expression evaluates to `true`. For details, see [Validation Conditions]
- (#validation-conditions).
+ the corresponding lambda expression evaluates to `true`.
 
 ```typescript
 export class SuperheroValidator extends AbstractValidator<Superhero> {
@@ -348,10 +348,6 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
 }
 ```
 
-## Validation Conditions
-
-
-
 ## Validation Result & Validation Failures
 
 Each validator created with this library returns a `ValidationResult` object at the end of the 
@@ -373,6 +369,18 @@ being _readonly_):
 - `message: string`: a failure message; if not explicitly set, it defaults to '`<propertyName>` is
  invalid'
 - `severity: string`: the severity of the failure; defaults to `ERROR`
+
+The following methods can be used to influence the appearance of a `ValidationFailure`:  
+- `withFailureCode(code: string)`: sets a failure code
+- `withFailureMessage(message: string)`: sets a failure message
+- `withSeverity(severity: Severity)`: sets the severity
+    - `Severity` is an `enum` with the possible values `ERROR`, `WARNING`, or `INFO`
+    - defaults to `ERROR` if not set
+- `withPropertyName(name: string)`: sets a name for the property under validation
+    - although _fluent-ts-validator_ tries its best to automatically detect the name of the 
+    properties under validation it might sometimes be useful to set the name explicitly. For 
+    example, in case an uglifier scrambles the code and throws original property names out of the
+    window.
 
 To make the relationship between a `Validator` and a `ValidationFailure` clear, take a look at the 
 following `SuperheroValidator` and `Superhero` instance:
@@ -409,6 +417,9 @@ ValidationFailure {
 }
 ```
 That makes it obvious which object failed validation due to which property and value.
+
+
+## Callbacks
 
 
 ## Asynchronous Validation
