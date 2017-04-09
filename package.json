@@ -14,6 +14,7 @@
     "@types/jasmine": "2.5.47",
     "@types/validator": "6.2.0",
     "chokidar-cli": "1.2.0",
+    "codecov": "2.1.0",
     "copyfiles": "1.2.0",
     "istanbul": "1.1.0-alpha.1",
     "jasmine": "2.5.3",
@@ -28,13 +29,14 @@
   },
   "scripts": {
     "build": "rimraf build && tsc && copyfiles package.json README.md build",
+    "lint": "tslint --config ./tslint.json --project ./tsconfig.json",
     "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
     "test:coverage": "ts-node node_modules/.bin/istanbul cover -e .ts -x '*.spec.ts' node_modules/.bin/jasmine",
     "test:ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
     "test:snyk": "snyk test",
     "test:snyk:dev": "snyk test --dev",
-    "lint": "tslint --config ./tslint.json --project ./tsconfig.json"
+    "codecov": "node_modules/.bin/codecov"
   },
   "dependencies": {
     "validator": "7.0.0"
