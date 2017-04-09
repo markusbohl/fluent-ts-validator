@@ -1,6 +1,7 @@
 {
   "name": "fluent-ts-validator",
   "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "description": "A fluent validator written in TypeScript",
   "author": "Markus Bohl <markus.bohl@gmail.com>",
@@ -27,6 +28,7 @@
     "build": "rimraf build && tsc && copyfiles package.json README.md build",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
     "test.ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
+    "test:ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
     "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
     "lint": "tslint --config ./tslint.json --project ./tsconfig.json"
   },
