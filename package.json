@@ -1,6 +1,5 @@
 {
   "name": "fluent-ts-validator",
-  "version": "0.3.0",
   "version": "0.4.0",
   "private": true,
   "description": "A fluent validator written in TypeScript",
@@ -16,23 +15,30 @@
     "@types/validator": "6.2.0",
     "chokidar-cli": "1.2.0",
     "copyfiles": "1.2.0",
+    "istanbul": "1.1.0-alpha.1",
     "jasmine": "2.5.3",
     "jasmine-console-reporter": "1.2.7",
     "jasmine-core": "2.5.2",
     "jasmine-ts": "0.1.0",
     "rimraf": "2.6.1",
+    "ts-node": "^3.0.2",
     "tslint": "5.0.0",
     "typescript": "2.2.2"
   },
   "scripts": {
     "build": "rimraf build && tsc && copyfiles package.json README.md build",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
-    "test.ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
+    "test:coverage": "ts-node node_modules/.bin/istanbul cover -e .ts -x '*.spec.ts' node_modules/.bin/jasmine JASMINE_CONFIG_PATH=./spec/support/jasmine.json",
     "test:ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
     "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
     "lint": "tslint --config ./tslint.json --project ./tsconfig.json"
   },
   "dependencies": {
     "validator": "7.0.0"
-  }
+  },
+  "keywords": [
+    "typescript",
+    "validator",
+    "fluent API"
+  ]
 }

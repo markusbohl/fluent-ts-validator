@@ -1,0 +1,13 @@
+verbose: true
+instrumentation:
+  root: src
+  extensions:
+    - .ts
+  excludes:
+    - .spec.ts
+reporting:
+    print: summary
+    reports:
+        - lcov
+        - text
+        - html
