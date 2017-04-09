@@ -1,3 +1,7 @@
+[![Build Status](https://api.travis-ci.org/markusbohl/fluent-ts-validator.svg)](https://travis-ci.org/markusbohl/fluent-ts-validator)
+[![Known Vulnerabilities](https://snyk.io/test/github/markusbohl/fluent-ts-validator/badge.svg)](https://snyk.io/test/github/markusbohl/fluent-ts-validator)
+
+
 # fluent-ts-validator
 
 A small validation library written in TypeScript which uses a fluent API and lambda expressions 

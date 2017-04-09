@@ -21,16 +21,19 @@
     "jasmine-core": "2.5.2",
     "jasmine-ts": "0.1.0",
     "rimraf": "2.6.1",
+    "snyk": "1.28.0",
     "ts-node": "^3.0.2",
     "tslint": "5.0.0",
     "typescript": "2.2.2"
   },
   "scripts": {
     "build": "rimraf build && tsc && copyfiles package.json README.md build",
+    "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
     "test:coverage": "ts-node node_modules/.bin/istanbul cover -e .ts -x '*.spec.ts' node_modules/.bin/jasmine",
     "test:ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
-    "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
+    "test:snyk": "snyk test",
+    "test:snyk:dev": "snyk test --dev",
     "lint": "tslint --config ./tslint.json --project ./tsconfig.json"
   },
   "dependencies": {
