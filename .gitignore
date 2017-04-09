@@ -114,6 +114,6 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
-# Build-Verzeichnis
+# Build directories
 dist
 build
