@@ -25,7 +25,7 @@
     "typescript": "2.2.1"
   },
   "scripts": {
-    "build": "rimraf build && tsc && copyfiles package.json build",
+    "build": "rimraf build && tsc && copyfiles package.json README.md build",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
     "test.ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
     "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
