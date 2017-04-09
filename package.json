@@ -11,18 +11,17 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@types/jasmine": "2.5.46",
+    "@types/jasmine": "2.5.47",
     "@types/validator": "6.2.0",
     "chokidar-cli": "1.2.0",
     "copyfiles": "1.2.0",
     "jasmine": "2.5.3",
     "jasmine-console-reporter": "1.2.7",
     "jasmine-core": "2.5.2",
-    "jasmine-spec-reporter": "2.7.0",
-    "jasmine-ts": "0.0.3",
+    "jasmine-ts": "0.1.0",
     "rimraf": "2.6.1",
-    "tslint": "4.0.2",
-    "typescript": "2.2.1"
+    "tslint": "5.0.0",
+    "typescript": "2.2.2"
   },
   "scripts": {
     "build": "rimraf build && tsc && copyfiles package.json README.md build",
