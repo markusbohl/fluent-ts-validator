@@ -29,10 +29,9 @@ class TestValidator extends AbstractValidator<TestPerson> {
         this.validateIfNumber((input: TestPerson) => input.xpInYears)
             .isGreaterThanOrEqual(3).isLessThanOrEqual(13).withSeverity(Severity.INFO);
 
-        this.validateIfString((input: TestPerson) => {
-            return input.email;
-        })
-            .isEmail().unless((input: TestPerson) => !input.address);
+        this.validateIfString(input => input.email).isEmail().unless(input => !input.address);
+
+        this.validateIfDate(input => input.dateOfBirth).isSameOrAfter(new Date(2000, 0, 1));
 
         this.validateIf((input: TestPerson) => {
             return input.address;
@@ -62,6 +61,7 @@ describe("AbstractValidator", () => {
         person = new TestPerson();
         person.name = "Franz";
         person.xpInYears = 8;
+        person.dateOfBirth = new Date(2001, 2, 2);
         person.email = "mail@example.com";
         person.address = {
             street: "Le other Place",
@@ -129,6 +129,7 @@ describe("AbstractValidator", () => {
         it("should return one failure for every validation that failed", () => {
             person.name = null;
             person.email = null;
+            person.dateOfBirth = new Date(1999, 0, 1);
             person.address = {
                 street: "Le Place",
                 city: "MyTown",
@@ -137,7 +138,7 @@ describe("AbstractValidator", () => {
 
             let result: ValidationResult = validator.validate(person);
 
-            expect(result.getFailures().length).toBe(3);
+            expect(result.getFailures().length).toBe(4);
         });
 
         it("should trigger callback on failure", () => {
@@ -201,14 +202,14 @@ describe("AbstractValidator", () => {
 
 class TestAddressbook {
     contacts: TestPerson[];
+    addresses: any;
 }
 
 class AddressbookValidator extends AbstractValidator<TestAddressbook> {
     constructor() {
         super();
-        this.validateIfEach((input: TestAddressbook) => {
-            return input.contacts;
-        }).isNotNull();
+        this.validateIfAny(addressbook => addressbook.addresses).isArray();
+        this.validateIfEach(addressbook => addressbook.contacts).isNotNull();
     }
 }
 
@@ -223,15 +224,23 @@ describe("AddressbookValidator", () => {
         addressbook = new TestAddressbook();
         person1 = new TestPerson();
         person2 = new TestPerson();
+        addressbook.contacts = [person1, person2];
+        addressbook.addresses = [];
     });
 
     describe("validate()", () => {
         it("should return a positive result if none of the elements in the given array is null", () => {
-            addressbook.contacts = [person1, person2];
-
             let result = validator.validate(addressbook);
 
             expect(result.isValid()).toBeTruthy();
+        });
+
+        it("should return a negative result if addresses is not an array", () => {
+            addressbook.addresses = new Set();
+
+            let result = validator.validate(addressbook);
+
+            expect(result.isValid()).toBeFalsy();
         });
 
         it("should return a negative result if at least one of the elements in the given array is null", () => {
@@ -255,6 +264,87 @@ describe("AddressbookValidator", () => {
                 message: "contacts is invalid",
                 severity: Severity[Severity.ERROR]
             }));
+        });
+    });
+});
+
+class CollectionStuff {
+    names: string[];
+    dates: Date[];
+    numbers: number[];
+    people: TestPerson[];
+    anything: any[];
+}
+
+class CollectionValidator extends AbstractValidator<CollectionStuff> {
+    constructor() {
+        super();
+        this.validateIfEachDate(stuff => stuff.dates).isAfter(new Date(2000, 0, 1));
+        this.validateIfEachString(stuff => stuff.names).hasMinLength(2);
+        this.validateIfEachNumber(stuff => stuff.numbers).isGreaterThan(0);
+        this.validateIfEach(stuff => stuff.people).isDefined();
+        this.validateIfEachAny(stuff => stuff.anything).isString();
+    }
+}
+
+describe("CollectionValidator", () => {
+    let validator: CollectionValidator;
+    let stuff: CollectionStuff;
+    beforeEach(() => {
+        stuff = new CollectionStuff();
+        stuff.names = ['foo'];
+        stuff.dates = [new Date(2001, 0, 1)];
+        stuff.numbers = [1];
+        stuff.people = [new TestPerson()];
+        stuff.anything = ['foobar'];
+        validator = new CollectionValidator();
+    });
+
+    describe("validate()", () => {
+        it("should return positive result if everything is fine", () => {
+            const result = validator.validate(stuff);
+
+            expect(result.isValid()).toBe(true);
+        });
+
+        it("should return negative result if a name is too short", () => {
+            stuff.names.push("X");
+
+            const result = validator.validate(stuff);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if a date is too old", () => {
+            stuff.dates.push(new Date(1999, 0, 1));
+
+            const result = validator.validate(stuff);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if a number is negative", () => {
+            stuff.numbers.push(-1);
+
+            const result = validator.validate(stuff);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if a person is undefined", () => {
+            stuff.people.push(undefined);
+
+            const result = validator.validate(stuff);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if anything is not a string", () => {
+            stuff.anything.push(0);
+
+            const result = validator.validate(stuff);
+
+            expect(result.isValid()).toBe(false);
         });
     });
 });
