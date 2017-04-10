@@ -292,11 +292,11 @@ describe("CollectionValidator", () => {
     let stuff: CollectionStuff;
     beforeEach(() => {
         stuff = new CollectionStuff();
-        stuff.names = ['foo'];
+        stuff.names = ["foo"];
         stuff.dates = [new Date(2001, 0, 1)];
         stuff.numbers = [1];
         stuff.people = [new TestPerson()];
-        stuff.anything = ['foobar'];
+        stuff.anything = ["foobar"];
         validator = new CollectionValidator();
     });
 
