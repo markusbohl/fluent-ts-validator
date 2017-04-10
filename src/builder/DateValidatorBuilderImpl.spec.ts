@@ -25,7 +25,7 @@ describe("DateValidatorBuilderImpl", () => {
         validationRule = new ValidationRule((input: TestClass) => {
             return input.property;
         });
-        spyOn(validationRule, "addValidator");
+        spyOn(validationRule, "addValidator").and.callThrough();
         validatorBuilder = new DateValidatorBuilderImpl(validationRule);
     });
 
@@ -109,10 +109,26 @@ describe("DateValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsBetweenValidator));
         });
 
+        it("should set IsBetweenValidator with default boundaries to validation rule", () => {
+            validatorBuilder.isBetween(lowerDate, upperDate);
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsBetweenValidator));
+        });
+
         it("should return new instance of a ValidationOptionsBuilder", () => {
             let result = validatorBuilder.isBetween(lowerDate, upperDate, "[", ")");
 
             expect(result).not.toBeNull();
+        });
+
+        it("should default to excluding boundaries if lower and upper boundaries left blank", () => {
+            const testInstance1 = new TestClass(lowerDate);
+            const testInstance2 = new TestClass(upperDate);
+
+            validatorBuilder.isBetween(lowerDate, upperDate);
+
+            expect(validationRule.apply(testInstance1).isSuccess()).toBe(false);
+            expect(validationRule.apply(testInstance2).isSuccess()).toBe(false);
         });
     });
 });

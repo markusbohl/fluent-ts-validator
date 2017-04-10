@@ -22,5 +22,21 @@ describe("IsAlphanumericValidator", () => {
 
             expect(validatorJS.isAlphanumeric).toHaveBeenCalledWith("abcABC", "de-DE");
         });
+
+        it("should return false if input is undefined", () => {
+            let validator = new IsAlphanumericValidator();
+
+            let result = validator.isValid(undefined);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if input is null", () => {
+            let validator = new IsAlphanumericValidator();
+
+            let result = validator.isValid(null);
+
+            expect(result).toBe(false);
+        });
     });
 });
