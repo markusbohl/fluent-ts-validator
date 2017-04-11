@@ -192,6 +192,34 @@ describe("CollectionValidationRule", () => {
             });
         });
     });
+
+    describe("tests with null and undefined", () => {
+        it("should not throw exception if array is undefined", () => {
+            const validationRule = new CollectionValidationRule<TestClass, string[]>((input: TestClass) => {
+                return input.array;
+            });
+
+            try {
+                const result = validationRule.apply(new TestClass());
+                expect(result.isFailure()).toBe(false);
+            } catch (e) {
+                fail(e);
+            }
+        });
+
+        it("should not throw exception if array is null", () => {
+            const validationRule = new CollectionValidationRule<TestClass, string[]>((input: TestClass) => {
+                return input.array;
+            });
+
+            try {
+                const result = validationRule.apply(new TestClass(null));
+                expect(result.isFailure()).toBe(false);
+            } catch (e) {
+                fail(e);
+            }
+        });
+    });
 });
 
 

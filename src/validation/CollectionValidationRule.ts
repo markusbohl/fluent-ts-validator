@@ -6,7 +6,7 @@ export class CollectionValidationRule<T, TProperty extends Iterable<any>> extend
     apply(input: T): RuleApplicationOutcome {
         let outcome = new RuleApplicationOutcome();
 
-        if (this.isNoValidationRequired(input)) {
+        if (this.isNoValidationRequired(input) || this.isIterableNotDefined(input)) {
             return outcome;
         }
 
@@ -15,6 +15,10 @@ export class CollectionValidationRule<T, TProperty extends Iterable<any>> extend
         }
 
         return outcome;
+    }
+
+    private isIterableNotDefined(input: T): boolean {
+        return this.lambdaExpression(input) == null;
     }
 
     private processElementValidation(input: T, element: any, outcome: RuleApplicationOutcome) {
