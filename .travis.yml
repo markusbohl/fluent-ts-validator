@@ -17,5 +17,6 @@ after_success:
 deploy:
   provider: script
   script: scripts/npm-publish.sh
+  skip_cleanup: true
   on:
-    branch: master
+    tags: true
