@@ -59,6 +59,25 @@ const validationSucceeded = result.isValid();
 const failures = result.getFailures();
 ```
 
+---
+
+__Pro Tip:__ Your custom `Validator` classes love to be transpiled to ES6 (at least). Otherwise, 
+they might throw things like `TypeError: Class constructor AbstractValidator cannot be invoked 
+without 'new'` at you. Not nice! So make sure to set the compiler options in your `tsconfig.json`
+ accordingly:
+
+```json
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        ...
+    }
+}
+```
+
+---
+
 ### Rule Building
 Validation rules are built in a fluent API style. Entry points are always the 
 type-based `validateIf` or `validateIfEach` kind of methods. These variants are available:
