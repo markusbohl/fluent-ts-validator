@@ -1,14 +1,16 @@
-"use strict";
-
-import { PropertyValidator } from "../PropertyValidator";
-import { CurrencyOptions } from "../../shared";
+import {PropertyValidator} from "../PropertyValidator";
+import {CurrencyOptions} from "../../shared";
 import * as validatorJS from "validator";
 
 export class IsCurrencyValidator implements PropertyValidator<string> {
 
-    constructor(private options?: CurrencyOptions) { }
+    constructor(private options?: CurrencyOptions) {
+    }
 
     isValid(input: string): boolean {
-        return validatorJS.isCurrency(input, this.options);
+        if (input) {
+            return validatorJS.isCurrency(input, this.options);
+        }
+        return false;
     }
 }

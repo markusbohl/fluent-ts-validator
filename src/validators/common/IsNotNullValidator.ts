@@ -1,6 +1,4 @@
-"use strict";
-
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if a value is not null (!== undefined, !== null).

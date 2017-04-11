@@ -1,9 +1,5 @@
-/// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
-import { RuleApplicationOutcome } from "./RuleApplicationOutcome";
-import { ValidationFailure } from "../shared/ValidationFailure";
+import {RuleApplicationOutcome} from "./RuleApplicationOutcome";
+import {ValidationFailure} from "../shared/ValidationFailure";
 
 describe("RuleApplicationOutcome", () => {
 

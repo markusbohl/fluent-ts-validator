@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * Options to be passed to IsEmailValidator.
  */

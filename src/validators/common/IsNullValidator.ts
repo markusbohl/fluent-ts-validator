@@ -1,10 +1,8 @@
-"use strict";
-
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if a value is null (=== null).
- * 
+ *
  * @export
  * @class IsNullValidator
  * @implements {PropertyValidator<any>}

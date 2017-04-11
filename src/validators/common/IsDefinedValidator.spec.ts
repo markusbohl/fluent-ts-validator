@@ -1,8 +1,4 @@
-/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
-import { IsDefinedValidator } from "./IsDefinedValidator";
+import {IsDefinedValidator} from "./IsDefinedValidator";
 
 describe("IsDefinedValidator", () => {
 

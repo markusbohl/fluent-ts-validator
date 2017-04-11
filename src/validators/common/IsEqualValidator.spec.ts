@@ -1,8 +1,4 @@
-/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
-import { IsEqualValidator } from "./IsEqualValidator";
+import {IsEqualValidator} from "./IsEqualValidator";
 
 describe("IsEqualValidator", () => {
     describe("isValid()", () => {

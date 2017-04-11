@@ -1,9 +1,5 @@
-/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
 import * as validatorJS from "validator";
-import { IsDecimalStringValidator } from "./";
+import {IsDecimalStringValidator} from "./";
 
 describe("IsDecimalStringValidator", () => {
     describe("isValid()", () => {
@@ -27,6 +23,17 @@ describe("IsDecimalStringValidator", () => {
             let result = validator.isValid("2");
 
             expect(result).toBeFalsy();
+        });
+        it("should return false if input is undefined", () => {
+            let result = validator.isValid(undefined);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if input is null", () => {
+            let result = validator.isValid(null);
+
+            expect(result).toBe(false);
         });
     });
 });

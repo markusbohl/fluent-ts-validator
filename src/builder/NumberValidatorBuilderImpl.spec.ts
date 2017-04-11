@@ -1,11 +1,4 @@
-/// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
-import {
-    ValidationRule
-} from "../validation";
-
+import {ValidationRule} from "../validation";
 import {
     IsPositiveValidator,
     IsNegativeValidator,
@@ -14,11 +7,7 @@ import {
     IsLessThanValidator,
     IsLessThanOrEqualToValidator
 } from "../validators/number-based";
-
-import {
-    ValidatorBuilder,
-    NumberValidatorBuilder
-} from "./";
+import {NumberValidatorBuilder, NumberValidatorBuilderImpl} from "./";
 
 class TestClass {
     property: number;
@@ -28,21 +17,23 @@ class TestClass {
     }
 }
 
-describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
+describe("NumberValidatorBuilderImpl", () => {
     let validationRule: ValidationRule<TestClass, number>;
     let validatorBuilder: NumberValidatorBuilder<TestClass>;
 
     beforeEach(() => {
-        validationRule = new ValidationRule((input: TestClass) => { return input.property; });
-        spyOn(validationRule, "setValidator");
-        validatorBuilder = new ValidatorBuilder(validationRule);
+        validationRule = new ValidationRule((input: TestClass) => {
+            return input.property;
+        });
+        spyOn(validationRule, "addValidator");
+        validatorBuilder = new NumberValidatorBuilderImpl(validationRule);
     });
 
     describe("isPositive()", () => {
         it("should set IsPositiveValidator to validation rule", () => {
             validatorBuilder.isPositive();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsPositiveValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsPositiveValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -56,7 +47,7 @@ describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
         it("should set IsNegativeValidator to validation rule", () => {
             validatorBuilder.isNegative();
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsNegativeValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNegativeValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -70,7 +61,7 @@ describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
         it("should set IsGreaterThanValidator to validation rule", () => {
             validatorBuilder.isGreaterThan(42);
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsGreaterThanValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsGreaterThanValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -84,7 +75,7 @@ describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
         it("should set IsGreaterThanOrEqualValidator to validation rule", () => {
             validatorBuilder.isGreaterThanOrEqual(42);
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsGreaterThanOrEqualToValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsGreaterThanOrEqualToValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -98,7 +89,7 @@ describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
         it("should set IsLessThanValidator to validation rule", () => {
             validatorBuilder.isLessThan(42);
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLessThanValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsLessThanValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {
@@ -112,7 +103,7 @@ describe("ValidatorBuilder -> NumberValidatorBuilder implementation", () => {
         it("should set IsLessThanOrEqualValidator to validation rule", () => {
             validatorBuilder.isLessThanOrEqual(42);
 
-            expect(validationRule.setValidator).toHaveBeenCalledWith(jasmine.any(IsLessThanOrEqualToValidator));
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsLessThanOrEqualToValidator));
         });
 
         it("should return new instance of a ValidationOptionsBuilder", () => {

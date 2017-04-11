@@ -1,9 +1,5 @@
-/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
 import * as validatorJS from "validator";
-import { IsAsciiValidator } from "./IsAsciiValidator";
+import {IsAsciiValidator} from "./IsAsciiValidator";
 
 describe("IsAsciiValidator", () => {
     describe("isValid()", () => {
@@ -29,6 +25,18 @@ describe("IsAsciiValidator", () => {
 
             expect(result).toBeFalsy();
             expect(validatorJS.isAscii).toHaveBeenCalledWith("¨ˆΩ≈¨ˆ");
+        });
+
+        it("should return false if input is undefined", () => {
+            let result = validator.isValid(undefined);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if input is null", () => {
+            let result = validator.isValid(null);
+
+            expect(result).toBe(false);
         });
     });
 });

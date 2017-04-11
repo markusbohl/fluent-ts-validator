@@ -1,8 +1,4 @@
-/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
-import { IsSameOrAfterValidator } from "./IsSameOrAfterValidator";
+import {IsSameOrAfterValidator} from "./IsSameOrAfterValidator";
 
 describe("IsSameOrAfterValidator", () => {
     describe("isValid()", () => {
@@ -31,6 +27,18 @@ describe("IsSameOrAfterValidator", () => {
             const previousDate = new Date(2015, 0, 1);
 
             let result = validator.isValid(previousDate);
+
+            expect(result).toBeFalsy();
+        });
+
+        it("should return false if input is undefined", () => {
+            let result = validator.isValid(undefined);
+
+            expect(result).toBeFalsy();
+        });
+
+        it("should return false if input is null", () => {
+            let result = validator.isValid(null);
 
             expect(result).toBeFalsy();
         });

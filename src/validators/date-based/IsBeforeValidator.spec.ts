@@ -1,8 +1,4 @@
-/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
-import { IsBeforeValidator } from "./IsBeforeValidator";
+import {IsBeforeValidator} from "./IsBeforeValidator";
 
 describe("IsBeforeValidator", () => {
     describe("isValid()", () => {
@@ -31,6 +27,18 @@ describe("IsBeforeValidator", () => {
 
         it("should return false if given date is equal to specified date", () => {
             let result = validator.isValid(date);
+
+            expect(result).toBeFalsy();
+        });
+
+        it("should return false if input is undefined", () => {
+            let result = validator.isValid(undefined);
+
+            expect(result).toBeFalsy();
+        });
+
+        it("should return false if input is null", () => {
+            let result = validator.isValid(null);
 
             expect(result).toBeFalsy();
         });

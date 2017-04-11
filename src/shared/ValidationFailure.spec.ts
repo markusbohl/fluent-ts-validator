@@ -1,11 +1,4 @@
-/// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
-import {
-    Severity,
-    ValidationFailure
-} from "../shared";
+import {Severity, ValidationFailure} from "../shared";
 
 describe("ValidationFailure", () => {
     describe("constructor", () => {
@@ -17,22 +10,22 @@ describe("ValidationFailure", () => {
             expect(failure.propertyName).toBe("propertyName");
         });
 
-        it("should set target, propertyName, attemptedValue, errorCode, errorMessage, and severity", () => {
+        it("should set target, propertyName, attemptedValue, code, message, and severity", () => {
             let target = {};
-            let failure = new ValidationFailure(target, "propertyName", "attemptedValue", "errorCode", "errorMessage", Severity.WARNING);
+            let failure = new ValidationFailure(target, "propertyName", "attemptedValue", "code", "message", Severity.WARNING);
 
             expect(failure.target).toBe(target);
             expect(failure.propertyName).toBe("propertyName");
             expect(failure.attemptedValue).toBe("attemptedValue");
-            expect(failure.errorCode).toBe("errorCode");
-            expect(failure.errorMessage).toBe("errorMessage");
-            expect(failure.severity).toBe(Severity.WARNING);
+            expect(failure.code).toBe("code");
+            expect(failure.message).toBe("message");
+            expect(failure.severity).toBe(Severity[Severity.WARNING]);
         });
 
         it("should set ERROR-severity by default", () => {
             let failure = new ValidationFailure(null, null);
 
-            expect(failure.severity).toBe(Severity.ERROR);
+            expect(failure.severity).toBe(Severity[Severity.ERROR]);
         });
     });
 });

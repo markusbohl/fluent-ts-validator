@@ -1,8 +1,4 @@
-/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
-import { IsInValidator } from "./IsInValidator";
+import {IsInValidator} from "./IsInValidator";
 
 describe("IsInValidator", () => {
     let numbers = [1, 2, 3, 4, null];

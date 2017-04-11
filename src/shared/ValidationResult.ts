@@ -1,8 +1,4 @@
-"use strict";
-
-import {
-    ValidationFailure
-} from "./";
+import {ValidationFailure} from "./";
 
 export class ValidationResult {
 

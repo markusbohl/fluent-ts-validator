@@ -1,17 +1,12 @@
-"use strict";
-
-import {
-    ValidationRule
-} from "./";
-
-import { RuleApplicationOutcome } from "./RuleApplicationOutcome";
+import {ValidationRule} from "./";
+import {RuleApplicationOutcome} from "./RuleApplicationOutcome";
 
 export class CollectionValidationRule<T, TProperty extends Iterable<any>> extends ValidationRule<T, TProperty> {
 
     apply(input: T): RuleApplicationOutcome {
         let outcome = new RuleApplicationOutcome();
 
-        if (this.isNoValidationRequired(input)) {
+        if (this.isNoValidationRequired(input) || this.isIterableNotDefined(input)) {
             return outcome;
         }
 
@@ -22,8 +17,12 @@ export class CollectionValidationRule<T, TProperty extends Iterable<any>> extend
         return outcome;
     }
 
-    private processElementValidation(input: T, element: TProperty, outcome: RuleApplicationOutcome) {
-        if (this.validator.isValid(element) === false) {
+    private isIterableNotDefined(input: T): boolean {
+        return this.lambdaExpression(input) == null;
+    }
+
+    private processElementValidation(input: T, element: any, outcome: RuleApplicationOutcome) {
+        if (this.validators.some(validator => validator.isValid(element) === false)) {
             let failure = this.createValidationFailure(input, element);
             this.invokeCallbackWith(failure);
             outcome.addValidationFailure(failure);

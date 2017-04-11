@@ -1,9 +1,4 @@
-/// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
-import { ValidationCondition } from "./ValidationCondition";
-import { WhenCondition } from "./WhenCondition";
+import {WhenCondition} from "./WhenCondition";
 
 describe("WhenCondition", () => {
     describe("shouldDoValidation()", () => {

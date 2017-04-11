@@ -1,28 +1,17 @@
-"use strict";
-
-import {
-    ValidationOptionsBuilder
-} from "./";
-
-import {
-    Validatable
-} from "../shared";
+import {ValidationOptionsBuilder} from "./";
+import {Validatable} from "../shared";
 
 export interface CommonValidatorBuilder<T, TProperty> {
-    isDefined(): ValidationOptionsBuilder<T>;
-    isNull(): ValidationOptionsBuilder<T>;
-    isNotNull(): ValidationOptionsBuilder<T>;
-    isEmpty(): ValidationOptionsBuilder<T>;
-    isNotEmpty(): ValidationOptionsBuilder<T>;
-    isEqualTo(comparison: TProperty): ValidationOptionsBuilder<T>;
-    isNotEqualTo(comparison: TProperty): ValidationOptionsBuilder<T>;
-    isIn(array: Array<TProperty>): ValidationOptionsBuilder<T>;
-    isNotIn(array: Array<TProperty>): ValidationOptionsBuilder<T>;
-    isArray(): ValidationOptionsBuilder<T>;
-    isBoolean(): ValidationOptionsBuilder<T>;
-    isDate(): ValidationOptionsBuilder<T>;
-    isNumber(): ValidationOptionsBuilder<T>;
-    isString(): ValidationOptionsBuilder<T>;
-    must(validationExpression: (input: TProperty) => boolean): ValidationOptionsBuilder<T>;
-    setValidator(validator: Validatable<TProperty>): ValidationOptionsBuilder<T>;
+    isDefined(): this & ValidationOptionsBuilder<T>;
+    isUndefined(): this & ValidationOptionsBuilder<T>;
+    isNull(): this & ValidationOptionsBuilder<T>;
+    isNotNull(): this & ValidationOptionsBuilder<T>;
+    isEmpty(): this & ValidationOptionsBuilder<T>;
+    isNotEmpty(): this & ValidationOptionsBuilder<T>;
+    isEqualTo(comparison: TProperty): this & ValidationOptionsBuilder<T>;
+    isNotEqualTo(comparison: TProperty): this & ValidationOptionsBuilder<T>;
+    isIn(array: Array<TProperty>): this & ValidationOptionsBuilder<T>;
+    isNotIn(array: Array<TProperty>): this & ValidationOptionsBuilder<T>;
+    fulfills(validator: Validatable<TProperty>): this & ValidationOptionsBuilder<T>;
+    fulfills(validationExpression: (input: TProperty) => boolean): this & ValidationOptionsBuilder<T>;
 }

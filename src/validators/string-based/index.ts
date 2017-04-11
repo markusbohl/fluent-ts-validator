@@ -1,5 +1,3 @@
-"use strict";
-
 export * from "./ContainsValidator";
 export * from "./IsAlphanumericValidator";
 export * from "./IsAlphaValidator";
@@ -7,9 +5,17 @@ export * from "./IsAsciiValidator";
 export * from "./IsBase64Validator";
 export * from "./IsBooleanStringValidator";
 export * from "./IsCurrencyValidator";
-export * from "./IsDateStringValidator";
 export * from "./IsDecimalStringValidator";
 export * from "./IsEmailValidator";
-export * from "./IsFQDNValidator";
+export * from "./IsFqdnValidator";
+export * from "./IsHexadecimalValidator";
+export * from "./IsIso8601Validator";
+export * from "./IsJsonValidator";
+export * from "./HasLengthValidator";
+export * from "./IsLowercaseValidator";
+export * from "./IsMobilePhoneValidator";
 export * from "./IsNumericStringValidator";
-export * from "./IsUUIDValidator";
+export * from "./IsUrlValidator";
+export * from "./IsUppercaseValidator";
+export * from "./IsUuidValidator";
+export * from "./RegExValidator";

@@ -1,10 +1,8 @@
-"use strict";
-
-import { PropertyValidator } from "../PropertyValidator";
+import {PropertyValidator} from "../PropertyValidator";
 
 /**
  * Validates if given number is less than zero.
- * 
+ *
  * @export
  * @class IsNegativeValidator
  * @implements {PropertyValidator<number>}

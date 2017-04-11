@@ -1,11 +1,4 @@
-/// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
-
-"use strict";
-
-import {
-    ValidationResult,
-    ValidationFailure
-} from "./";
+import {ValidationResult, ValidationFailure} from "./";
 
 describe("ValidationResult", () => {
     let result: ValidationResult;
