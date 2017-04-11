@@ -67,11 +67,11 @@ type-based `validateIf` or `validateIfEach` kind of methods. These variants are 
 - `validateIfNumber`: for _number_-based validation rules
 - `validateIfDate`: for _Date_-based validation rules
 - `validateIfString`: for _String_-based validation rules
-- `validateIfEach`
-- `validateIfEachAny`
-- `validateIfEachNumber`
-- `validateIfEachDate`
-- `validateIfEachString`
+- `validateIfEach`: same as `validateIf` but for `Iterables`
+- `validateIfEachAny`: same as `validateIfAny` but for `Iterables`
+- `validateIfEachNumber`: same as `validateIfNumber` but for `Iterables`
+- `validateIfEachDate`: same as `validateIfDate` but for `Iterables`
+- `validateIfEachString`: same as `validateIfString` but for `Iterables`
 
 All of these methods expect a lambda expression as parameter which maps the input to specific 
 validatable properties of that instance. Depending on the type of the validatable properties
