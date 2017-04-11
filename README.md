@@ -1,5 +1,6 @@
 [![Build Status](https://api.travis-ci.org/markusbohl/fluent-ts-validator.svg)](https://travis-ci.org/markusbohl/fluent-ts-validator)
 [![Code Coverage](https://codecov.io/gh/markusbohl/fluent-ts-validator/branch/master/graph/badge.svg)](https://codecov.io/gh/markusbohl/fluent-ts-validator)
+[![Code Climate](https://codeclimate.com/github/markusbohl/fluent-ts-validator/badges/gpa.svg)](https://codeclimate.com/github/markusbohl/fluent-ts-validator)
 [![Known Vulnerabilities](https://snyk.io/test/github/markusbohl/fluent-ts-validator/badge.svg)](https://snyk.io/test/github/markusbohl/fluent-ts-validator)
 
 
