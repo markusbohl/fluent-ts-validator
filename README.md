@@ -18,6 +18,15 @@ In this respect, special thanks go to these two projects.
 The fluent-ts-validator library is licensed under [MIT](https://opensource.org/licenses/MIT).
 
 
+## Installation
+
+Either use npm: 
+- `npm i fluent-ts-validator --save`
+
+Or yarn:
+- `yarn add fluent-ts-validator`
+
+
 ## Usage
 
 Creating a validator for your needs is simply done by extending the `AbstractValidator<T>` 
