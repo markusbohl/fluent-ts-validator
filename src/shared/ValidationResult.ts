@@ -8,6 +8,10 @@ export class ValidationResult {
         return this.failures.length === 0;
     }
 
+    isInvalid(): boolean {
+        return !this.isValid();
+    }
+
     addFailures(failures: ValidationFailure[]): void {
         if (failures) {
             this.failures = this.failures.concat(failures);
