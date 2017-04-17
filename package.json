@@ -1,6 +1,6 @@
 {
   "name": "fluent-ts-validator",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0",
   "description": "A fluent validator written in TypeScript",
   "author": "Markus Bohl <markus.bohl@gmail.com>",
   "repository": {
@@ -22,7 +22,7 @@
     "jasmine-ts": "0.1.0",
     "rimraf": "2.6.1",
     "snyk": "1.28.0",
-    "ts-node": "^3.0.2",
+    "ts-node": "3.0.2",
     "tslint": "5.0.0",
     "typescript": "2.2.2"
   },
