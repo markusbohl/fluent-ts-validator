@@ -18,6 +18,19 @@ In this respect, special thanks go to these two projects.
 The fluent-ts-validator library is licensed under [MIT](https://opensource.org/licenses/MIT).
 
 
+## Installation
+
+```bash
+npm i fluent-ts-validator --save
+```
+
+or:
+
+```bash
+yarn add fluent-ts-validator
+```
+
+
 ## Usage
 
 Creating a validator for your needs is simply done by extending the `AbstractValidator<T>` 
@@ -56,6 +69,7 @@ const validator = new SuperheroValidator();
 
 const result = validator.validate(hero);
 const validationSucceeded = result.isValid();
+const validationFailed = result.isInvalid();
 const failures = result.getFailures();
 ```
 
@@ -380,6 +394,8 @@ validation process. It provides two methods that are of particular importance.
 
 - `isValid(): boolean`
     - returns `true` if no `ValidationFailure` exists, `false` otherwise.
+- `isInvalid(): boolean`
+    - returns `true` if at least one `ValidationFailure` exists, `false` otherwise.
 - `getFailures(): ValidationFailure[]`
     - returns an array containing `ValidationFailures` for the invalid properties. If no 
     failures exist, meaning the result is valid, an empty array is returned.

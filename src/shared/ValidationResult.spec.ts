@@ -30,6 +30,25 @@ describe("ValidationResult", () => {
         });
     });
 
+    describe("isInvalid()", () => {
+        it("should return false if no failure exist", () => {
+            expect(result.isInvalid()).toBeFalsy();
+        });
+
+        it("should return true if a failure has been added", () => {
+            result.addFailures(failures);
+
+            expect(result.isInvalid()).toBeTruthy();
+        });
+
+        it("should continue to return true even after clearing the returned array", () => {
+            result.addFailures(failures);
+            result.getFailures().pop();
+
+            expect(result.isInvalid()).toBeTruthy();
+        });
+    });
+
     describe("getFailures()", () => {
         it("should initially return an empty array", () => {
             expect(result.getFailures().length).toBe(0);
