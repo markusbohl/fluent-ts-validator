@@ -71,6 +71,7 @@ const result = validator.validate(hero);
 const validationSucceeded = result.isValid();
 const validationFailed = result.isInvalid();
 const failures = result.getFailures();
+const messages = result.getFailureMessages();
 ```
 
 ---
@@ -417,7 +418,8 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
 ## Validation Result & Validation Failures
 
 Each validator created with this library returns a `ValidationResult` object at the end of the 
-validation process. It provides two methods that are of particular importance.
+validation process. It contains some information regarding the validation process you are probably very interested in.
+Its methods are:
 
 - `isValid(): boolean`
     - returns `true` if no `ValidationFailure` exists, `false` otherwise.
@@ -426,6 +428,10 @@ validation process. It provides two methods that are of particular importance.
 - `getFailures(): ValidationFailure[]`
     - returns an array containing `ValidationFailures` for the invalid properties. If no 
     failures exist, meaning the result is valid, an empty array is returned.
+- `getFailureMessages(): string[]`
+    - collects all the non-empty failure messages of all validation failures and returns them in one array; if no validation failures exist, an empty array is returned
+- `getFailureCodes(): string[]`
+    - collects all the non-empty failure codes of all validation failures and returns them in one array; if no validation failures exist, an empty array is returned
 
 So, what is a `ValidationFailure`? It is an object with the following properties (all of them 
 being _readonly_):
