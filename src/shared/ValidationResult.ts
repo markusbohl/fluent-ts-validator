@@ -23,10 +23,26 @@ export class ValidationResult {
     }
 
     getFailureMessages(): string[] {
-        return this.failures.map(failure => failure.message);
+        return this.failures
+            .filter(failure => {
+                if (failure.message) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+            .map(failure => failure.message);
     }
 
     getFailureCodes(): string[] {
-        return this.failures.map(failure => failure.code);
+        return this.failures
+            .filter(failure => {
+                if (failure.code) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+            .map(failure => failure.code);
     }
 }

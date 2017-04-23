@@ -85,6 +85,15 @@ describe("ValidationResult", () => {
             expect(messages.length).toBe(0);
         });
 
+        it("should return an empty array if the existing failures do not have failure messages", () => {
+            result.addFailures(failures);
+
+            const messages = result.getFailureMessages();
+
+            expect(messages).not.toBeNull();
+            expect(messages.length).toBe(0);
+        });
+
         it("should return all messages of the existing failures", () => {
             result.addFailures(validationFailuresWithMessage("message1", "message2", "message3"));
 
@@ -99,10 +108,19 @@ describe("ValidationResult", () => {
 
     describe("getFailureCodes()", () => {
         it("should return an empty array if there are no failures", () => {
-            const messages = result.getFailureCodes();
+            const codes = result.getFailureCodes();
 
-            expect(messages).not.toBeNull();
-            expect(messages.length).toBe(0);
+            expect(codes).not.toBeNull();
+            expect(codes.length).toBe(0);
+        });
+
+        it("should return an empty array if the existing failures do not have failure codes", () => {
+            result.addFailures(failures);
+
+            const codes = result.getFailureCodes();
+
+            expect(codes).not.toBeNull();
+            expect(codes.length).toBe(0);
         });
 
         it("should return all codes of the existing failures", () => {
