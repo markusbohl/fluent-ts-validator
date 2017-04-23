@@ -21,4 +21,12 @@ export class ValidationResult {
     getFailures(): ValidationFailure[] {
         return this.failures.slice(0);
     }
+
+    getFailureMessages(): string[] {
+        return this.failures.map(failure => failure.message);
+    }
+
+    getFailureCodes(): string[] {
+        return this.failures.map(failure => failure.code);
+    }
 }
