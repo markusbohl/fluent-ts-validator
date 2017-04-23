@@ -50,13 +50,13 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements ValidationOptio
     }
 
     when(expression: (input: T) => boolean): ValidationOptionsBuilder<T> {
-        this.validationRule.setCondition(new WhenCondition(expression));
+        this.validationRule.addCondition(new WhenCondition(expression));
 
         return this;
     }
 
     unless(expression: (input: T) => boolean): ValidationOptionsBuilder<T> {
-        this.validationRule.setCondition(new UnlessCondition(expression));
+        this.validationRule.addCondition(new UnlessCondition(expression));
 
         return this;
     }

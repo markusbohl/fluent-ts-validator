@@ -101,12 +101,12 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
 
     describe("when()", () => {
         it("should set a WhenCondition to the validation rule", () => {
-            spyOn(validationRule, "setCondition");
+            spyOn(validationRule, "addCondition");
             validationOptionsBuilder.when((input: TestClass) => {
                 return true;
             });
 
-            expect(validationRule.setCondition).toHaveBeenCalledWith(jasmine.any(WhenCondition));
+            expect(validationRule.addCondition).toHaveBeenCalledWith(jasmine.any(WhenCondition));
         });
 
         it("should return current builder instance", () => {
@@ -120,13 +120,13 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
 
     describe("unless()", () => {
         it("should set a UnlessCondition to the validation rule", () => {
-            spyOn(validationRule, "setCondition");
+            spyOn(validationRule, "addCondition");
 
             validationOptionsBuilder.unless((input: TestClass) => {
                 return true;
             });
 
-            expect(validationRule.setCondition).toHaveBeenCalledWith(jasmine.any(UnlessCondition));
+            expect(validationRule.addCondition).toHaveBeenCalledWith(jasmine.any(UnlessCondition));
         });
 
         it("should return current builder instance", () => {

@@ -49,7 +49,7 @@ describe("ValidationRule", () => {
                     return false;
                 }
             };
-            rule.setCondition(validation);
+            rule.addCondition(validation);
 
             let result = rule.apply(new TestClass("some value"));
 
@@ -193,12 +193,12 @@ describe("ValidationRule", () => {
         });
     });
 
-    describe("setCondition()", () => {
+    describe("addCondition()", () => {
         it("should allow validation if no validation condition is set", () => {
             let validator: PropertyValidator<string> = getPositiveValidator();
             spyOn(validator, "isValid");
             rule.addValidator(validator);
-            rule.setCondition(null);
+            rule.addCondition(null);
 
             rule.apply(new TestClass("some value"));
 
@@ -214,7 +214,7 @@ describe("ValidationRule", () => {
                     return true;
                 }
             };
-            rule.setCondition(condition);
+            rule.addCondition(condition);
 
             rule.apply(new TestClass("some value"));
 
@@ -230,7 +230,7 @@ describe("ValidationRule", () => {
                     return false;
                 }
             };
-            rule.setCondition(validation);
+            rule.addCondition(validation);
 
             rule.apply(new TestClass("some value"));
 

@@ -131,7 +131,7 @@ describe("CollectionValidationRule", () => {
                 let validator = getNegativeValidator();
                 spyOn(validator, "isValid").and.callThrough();
                 validationRule.addValidator(validator);
-                validationRule.setCondition(getNegativeCondition());
+                validationRule.addCondition(getNegativeCondition());
 
                 let result = validationRule.apply(testClass);
 
@@ -143,7 +143,7 @@ describe("CollectionValidationRule", () => {
                 let validator = getNegativeValidator();
                 spyOn(validator, "isValid").and.callThrough();
                 validationRule.addValidator(validator);
-                validationRule.setCondition(getPositiveCondition());
+                validationRule.addCondition(getPositiveCondition());
 
                 let result = validationRule.apply(testClass);
 
