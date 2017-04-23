@@ -29,7 +29,7 @@
   "scripts": {
     "build": "rimraf build && tsc && copyfiles package.json README.md build",
     "lint": "tslint --config ./tslint.json --project ./tsconfig.json",
-    "tdd": "chokidar -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
+    "tdd": "chokidar --initial -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
     "test:coverage": "ts-node node_modules/.bin/istanbul cover -e .ts -x '*.spec.ts' node_modules/.bin/jasmine",
     "test:ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
