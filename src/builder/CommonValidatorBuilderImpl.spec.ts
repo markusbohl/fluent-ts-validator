@@ -1,7 +1,21 @@
 import {AbstractValidator} from "../";
-import {ValidationOptionsBuilder, CommonValidatorBuilder, CommonValidatorBuilderImpl} from "./";
-import {Severity, ValidationFailure} from "../shared";
-import {ValidationRule, UnlessCondition, WhenCondition} from "../validation";
+import {
+    ValidationOptionsBuilder,
+    CommonValidatorBuilder,
+    CommonValidatorBuilderImpl
+} from "./";
+import {
+    Severity,
+    ValidationFailure
+} from "../shared";
+import {
+    UnlessCondition,
+    ValidationRule,
+    WhenCondition,
+    WhenDefinedCondition,
+    WhenNotEmptyCondition,
+    WhenNotNullCondition
+} from "../validation";
 import {
     IsDefinedValidator,
     IsUndefinedValidator,
@@ -111,6 +125,63 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
 
         it("should return current builder instance", () => {
             let result = validationOptionsBuilder.when((input: TestClass) => {
+                return true;
+            });
+
+            expect(result).toBe(validationOptionsBuilder);
+        });
+    });
+
+    describe("whenDefined()", () => {
+        it("should set a WhenCondition to the validation rule", () => {
+            spyOn(validationRule, "addCondition");
+            validationOptionsBuilder.whenDefined((input: TestClass) => {
+                return true;
+            });
+
+            expect(validationRule.addCondition).toHaveBeenCalledWith(jasmine.any(WhenDefinedCondition));
+        });
+
+        it("should return current builder instance", () => {
+            let result = validationOptionsBuilder.whenDefined((input: TestClass) => {
+                return true;
+            });
+
+            expect(result).toBe(validationOptionsBuilder);
+        });
+    });
+
+    describe("whenNotNull()", () => {
+        it("should set a WhenCondition to the validation rule", () => {
+            spyOn(validationRule, "addCondition");
+            validationOptionsBuilder.whenNotNull((input: TestClass) => {
+                return true;
+            });
+
+            expect(validationRule.addCondition).toHaveBeenCalledWith(jasmine.any(WhenNotNullCondition));
+        });
+
+        it("should return current builder instance", () => {
+            let result = validationOptionsBuilder.whenNotNull((input: TestClass) => {
+                return true;
+            });
+
+            expect(result).toBe(validationOptionsBuilder);
+        });
+    });
+
+    describe("whenNotEmpty()()", () => {
+        it("should set a WhenCondition to the validation rule", () => {
+            spyOn(validationRule, "addCondition");
+            validationOptionsBuilder.whenNotEmpty((input: TestClass) => {
+                return true;
+            });
+
+            expect(validationRule.addCondition).toHaveBeenCalledWith(jasmine.any(WhenNotEmptyCondition));
+        });
+
+        it("should return current builder instance", () => {
+            let result = validationOptionsBuilder.whenNotEmpty((input: TestClass) => {
                 return true;
             });
 

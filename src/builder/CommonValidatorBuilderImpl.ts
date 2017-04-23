@@ -1,5 +1,12 @@
 import {Severity, Validatable, ValidationFailure} from "../shared";
-import {UnlessCondition, ValidationRule, WhenCondition} from "../validation";
+import {
+    UnlessCondition,
+    ValidationRule,
+    WhenCondition,
+    WhenDefinedCondition,
+    WhenNotEmptyCondition,
+    WhenNotNullCondition
+} from "../validation";
 import {
     IsDefinedValidator,
     IsEmptyValidator,
@@ -51,6 +58,24 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements ValidationOptio
 
     when(expression: (input: T) => boolean): ValidationOptionsBuilder<T> {
         this.validationRule.addCondition(new WhenCondition(expression));
+
+        return this;
+    }
+
+    whenDefined(expression: (input: T) => any): ValidationOptionsBuilder<T> {
+        this.validationRule.addCondition(new WhenDefinedCondition(expression));
+
+        return this;
+    }
+
+    whenNotNull(expression: (input: T) => any): ValidationOptionsBuilder<T> {
+        this.validationRule.addCondition(new WhenNotNullCondition(expression));
+
+        return this;
+    }
+
+    whenNotEmpty(expression: (input: T) => any): ValidationOptionsBuilder<T> {
+        this.validationRule.addCondition(new WhenNotEmptyCondition(expression));
 
         return this;
     }
