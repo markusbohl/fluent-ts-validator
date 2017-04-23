@@ -7,6 +7,7 @@ import {
     NumberValidatorBuilderImpl,
     StringValidatorBuilder,
     StringValidatorBuilderImpl,
+    StringValidationOptionsBuilder,
     TypeValidatorBuilder,
     ValidationOptionsBuilder
 } from "./";
@@ -49,7 +50,7 @@ export class TypeValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, a
         return new NumberValidatorBuilderImpl(this.validationRule);
     }
 
-    isString(): StringValidatorBuilder<T> & CommonValidatorBuilder<T, string> & ValidationOptionsBuilder<T> {
+    isString(): StringValidatorBuilder<T> & CommonValidatorBuilder<T, string> & StringValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsStringValidator());
 
         return new StringValidatorBuilderImpl(this.validationRule);

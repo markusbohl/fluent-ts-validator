@@ -1,5 +1,13 @@
-import {CommonValidatorBuilderImpl, StringValidatorBuilder, ValidationOptionsBuilder} from "./";
-import {ValidationRule} from "../validation";
+import {
+    CommonValidatorBuilderImpl,
+    StringValidatorBuilder,
+    ValidationOptionsBuilder,
+    StringValidationOptionsBuilder
+} from "./";
+import {
+    ValidationRule,
+    WhenNotEmptyCondition
+} from "../validation";
 import {
     AlphaLocale,
     AlphanumericLocale,
@@ -35,7 +43,7 @@ import {
     RegExValidator
 } from "../validators/string-based";
 
-export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, string> implements StringValidatorBuilder<T> {
+export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, string> implements StringValidatorBuilder<T>, StringValidationOptionsBuilder<T> {
 
     constructor(validationRule: ValidationRule<T, string | Iterable<string>>) {
         super(validationRule);
@@ -43,6 +51,17 @@ export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
 
     private buildRuleWith(validator: PropertyValidator<string>): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(validator);
+
+        return this;
+    }
+
+    /*
+     * ==================
+     * Validation options
+     * ==================
+     */
+    whenNotEmpty(): StringValidationOptionsBuilder<T> {
+        this.validationRule.addCondition(new WhenNotEmptyCondition(this.validationRule.lambdaExpression));
 
         return this;
     }

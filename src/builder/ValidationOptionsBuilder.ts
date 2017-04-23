@@ -7,7 +7,6 @@ export interface ValidationOptionsBuilder<T> {
     withPropertyName(name: string): ValidationOptionsBuilder<T>;
     whenDefined(): ValidationOptionsBuilder<T>;
     whenNotNull(): ValidationOptionsBuilder<T>;
-    whenNotEmpty(): ValidationOptionsBuilder<T>;
     when(expression: (input: T) => boolean): ValidationOptionsBuilder<T>;
     unless(expression: (input: T) => boolean): ValidationOptionsBuilder<T>;
     onFailure(callback: (failure: ValidationFailure) => void): ValidationOptionsBuilder<T>;

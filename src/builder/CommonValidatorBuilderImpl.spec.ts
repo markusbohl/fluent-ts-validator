@@ -162,21 +162,6 @@ describe("CommonValidatorBuilderImpl -> ValidationOptionsBuilder", () => {
         });
     });
 
-    describe("whenNotEmpty()()", () => {
-        it("should set a WhenCondition to the validation rule", () => {
-            spyOn(validationRule, "addCondition");
-            validationOptionsBuilder.whenNotEmpty();
-
-            expect(validationRule.addCondition).toHaveBeenCalledWith(jasmine.any(WhenNotEmptyCondition));
-        });
-
-        it("should return current builder instance", () => {
-            let result = validationOptionsBuilder.whenNotEmpty();
-
-            expect(result).toBe(validationOptionsBuilder);
-        });
-    });
-
     describe("unless()", () => {
         it("should set a UnlessCondition to the validation rule", () => {
             spyOn(validationRule, "addCondition");

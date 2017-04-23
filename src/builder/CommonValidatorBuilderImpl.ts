@@ -68,12 +68,6 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements ValidationOptio
         return this;
     }
 
-    whenNotEmpty(): ValidationOptionsBuilder<T> {
-        this.validationRule.addCondition(new WhenNotEmptyCondition(this.validationRule.lambdaExpression));
-
-        return this;
-    }
-
     when(expression: (input: T) => boolean): ValidationOptionsBuilder<T> {
         this.validationRule.addCondition(new WhenCondition(expression));
 
