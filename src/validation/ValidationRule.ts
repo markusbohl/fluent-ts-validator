@@ -15,7 +15,7 @@ export class ValidationRule<T, TProperty> {
     protected conditions: ValidationCondition<T>[];
     protected callback: (failure: ValidationFailure) => void;
 
-    constructor(protected lambdaExpression: (input: T) => TProperty) {
+    constructor(public lambdaExpression: (input: T) => TProperty) {
         this.validators = [];
         this.conditions = [];
         // the best way I could think of to get hold of the propertyName was via regex

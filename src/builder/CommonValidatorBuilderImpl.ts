@@ -56,26 +56,26 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements ValidationOptio
         return this;
     }
 
+    whenDefined(): ValidationOptionsBuilder<T> {
+        this.validationRule.addCondition(new WhenDefinedCondition(this.validationRule.lambdaExpression));
+
+        return this;
+    }
+
+    whenNotNull(): ValidationOptionsBuilder<T> {
+        this.validationRule.addCondition(new WhenNotNullCondition(this.validationRule.lambdaExpression));
+
+        return this;
+    }
+
+    whenNotEmpty(): ValidationOptionsBuilder<T> {
+        this.validationRule.addCondition(new WhenNotEmptyCondition(this.validationRule.lambdaExpression));
+
+        return this;
+    }
+
     when(expression: (input: T) => boolean): ValidationOptionsBuilder<T> {
         this.validationRule.addCondition(new WhenCondition(expression));
-
-        return this;
-    }
-
-    whenDefined(expression: (input: T) => any): ValidationOptionsBuilder<T> {
-        this.validationRule.addCondition(new WhenDefinedCondition(expression));
-
-        return this;
-    }
-
-    whenNotNull(expression: (input: T) => any): ValidationOptionsBuilder<T> {
-        this.validationRule.addCondition(new WhenNotNullCondition(expression));
-
-        return this;
-    }
-
-    whenNotEmpty(expression: (input: T) => any): ValidationOptionsBuilder<T> {
-        this.validationRule.addCondition(new WhenNotEmptyCondition(expression));
 
         return this;
     }
