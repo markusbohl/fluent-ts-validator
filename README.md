@@ -6,7 +6,7 @@
 
 # fluent-ts-validator
 
-A small validation library written in TypeScript which uses a fluent API and lambda expressions 
+A validation library written in TypeScript which uses a fluent API and lambda expressions 
 to build validation rules. It is inspired by the [FluentValidation](https://github.com/JeremySkinner/FluentValidation) library for .NET written by Jeremy Skinner.
 
 Instead of implementing an awful lot of validation logic within this project again this library 
@@ -156,9 +156,8 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
 #### Conditional Validation
 
 Sometimes, the necessity of validating a property depends on certain conditions. 
-Conditional rules allow you to specify under which circumstances a validation should be executed or
- not. That's the reason why you can append a `when()` or an `unless()` method to your 
- validation rules. Both methods expect a lambda expression as parameter that evaluates to a boolean 
+Conditional rules allow you to specify under which circumstances a validation should be executed. That's the reason why you can append `whenDefined()`, `whenNotNull()`, `whenNotEmpty()` – or more general – `when()` or `unless()` methods to your 
+ validation rules. The three former ones come without method parameters. They internally make use of the lambda expression specified in the corresponding `validateIf()` method. However, `when()` and `unless()` expect a lambda expression as parameter that evaluates to a boolean 
  value. When the lambda expression in a `when()` results in `true`, the validation is 
  executed. With `unless()` it is the other way round. The validation does _not_ take place when 
  the corresponding lambda expression evaluates to `true`.
@@ -172,6 +171,34 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
 
         this.validateIf(hero => hero.superpowers).isNotEmpty()
             .unless(hero => hero.immortal);
+        
+        this.validateIfDate(hero => hero.lastSighting).isAfter(THEdate)
+            .whenNotNull();
+    }
+}
+```
+
+- `whenDefined()`: validation is performed when `propertyUnderValidation` is not `undefined`
+- `whenNotNull()`: validation is performed when `propertyUnderValidation` is neither `undefined`, nor `null`
+- `whenNotEmpty()`: validation is performed when `propertyUnderValidation` is neither `undefined`, nor `null`, nor an empty `string` `""`; this method is only available if the type of `propertyUnderValidation` is a `string`
+- `when(expression: (input: T) => boolean)`: validation is performed when expression evaluates to `true`
+- `unless(expression: (input: T) => boolean)`: validation is performed when expression evaluates to `false`
+
+##### Applying multiple conditions at once
+
+In case more than one condition is defined for a validation step, they are logically ANDed to determine if the validation has to be performed. 
+That is, as soon as one condition fails, the corresponding validation rules are skipped.  
+
+For example, the following `SuperheroValidator` only validates if a superhero's name is in some sort of Hall of Fame
+ when the hero has won more than 100 epic fights `AND` the hero's name is not empty:
+
+```typescript
+export class SuperheroValidator extends AbstractValidator<Superhero> {
+    constructor() {
+        super();
+        this.validateIfString(hero => hero.name).isIn(hallOfFame)
+            .when(hero => hero.epicFightsWon > 100)
+            .whenNotEmpty();
     }
 }
 ```
