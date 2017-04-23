@@ -76,4 +76,82 @@ describe("ValidationResult", () => {
             expect(result.getFailures()).not.toContain(null);
         });
     });
+
+    describe("getFailureMessages()", () => {
+        it("should return an empty array if there are no failures", () => {
+            const messages = result.getFailureMessages();
+
+            expect(messages).not.toBeNull();
+            expect(messages.length).toBe(0);
+        });
+
+        it("should return an empty array if the existing failures do not have failure messages", () => {
+            result.addFailures(failures);
+
+            const messages = result.getFailureMessages();
+
+            expect(messages).not.toBeNull();
+            expect(messages.length).toBe(0);
+        });
+
+        it("should return all messages of the existing failures", () => {
+            result.addFailures(validationFailuresWithMessage("message1", "message2", "message3"));
+
+            const messages = result.getFailureMessages();
+
+            expect(messages.length).toBe(3);
+            expect(messages).toContain("message1");
+            expect(messages).toContain("message2");
+            expect(messages).toContain("message3");
+        });
+    });
+
+    describe("getFailureCodes()", () => {
+        it("should return an empty array if there are no failures", () => {
+            const codes = result.getFailureCodes();
+
+            expect(codes).not.toBeNull();
+            expect(codes.length).toBe(0);
+        });
+
+        it("should return an empty array if the existing failures do not have failure codes", () => {
+            result.addFailures(failures);
+
+            const codes = result.getFailureCodes();
+
+            expect(codes).not.toBeNull();
+            expect(codes.length).toBe(0);
+        });
+
+        it("should return all codes of the existing failures", () => {
+            result.addFailures(validationFailuresWithCodes("code1", "code2", "code3"));
+
+            const codes = result.getFailureCodes();
+
+            expect(codes.length).toBe(3);
+            expect(codes).toContain("code1");
+            expect(codes).toContain("code2");
+            expect(codes).toContain("code3");
+        });
+    });
 });
+
+function validationFailuresWithMessage(...messages: string[]): ValidationFailure[] {
+    const failures: ValidationFailure[] = [];
+
+    for (let message of messages) {
+        failures.push(new ValidationFailure("target", "property", "attemptedValue", "code",  message));
+    }
+
+    return failures;
+}
+
+function validationFailuresWithCodes(...codes: string[]): ValidationFailure[] {
+    const failures: ValidationFailure[] = [];
+
+    for (let code of codes) {
+        failures.push(new ValidationFailure("target", "property", "attemptedValue", code));
+    }
+
+    return failures;
+}

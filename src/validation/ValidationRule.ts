@@ -7,16 +7,17 @@ const successfulOutcome = new RuleApplicationOutcome();
 
 export class ValidationRule<T, TProperty> {
 
-    protected validators: Array<PropertyValidator<TProperty>>;
+    protected validators: PropertyValidator<TProperty>[];
     protected propertyName: string;
     protected errorCode: string;
     protected errorMessage: string;
     protected severity: Severity;
-    protected condition: ValidationCondition<T>;
+    protected conditions: ValidationCondition<T>[];
     protected callback: (failure: ValidationFailure) => void;
 
-    constructor(protected lambdaExpression: (input: T) => TProperty) {
+    constructor(public lambdaExpression: (input: T) => TProperty) {
         this.validators = [];
+        this.conditions = [];
         // the best way I could think of to get hold of the propertyName was via regex
         // (the identified propertyName will be used later to specify where a validation failure came from)
         // obviously, something like a native nameof-function in TypeScript would be way nicer
@@ -46,8 +47,10 @@ export class ValidationRule<T, TProperty> {
         this.severity = severity;
     }
 
-    setCondition(condition: ValidationCondition<T>) {
-        this.condition = condition;
+    addCondition(condition: ValidationCondition<T>) {
+        if (condition) {
+            this.conditions.push(condition);
+        }
     }
 
     onFailure(callback: (failure: ValidationFailure) => void) {
@@ -73,7 +76,11 @@ export class ValidationRule<T, TProperty> {
     }
 
     protected isNoValidationRequired(input: T): boolean {
-        return this.condition && !this.condition.shouldDoValidation(input);
+        return !this.isValidationRequired(input);
+    }
+
+    private isValidationRequired(input: T): boolean {
+        return this.conditions.length === 0 || this.conditions.every(cond => cond.shouldDoValidation(input));
     }
 
     private allValidatorsAreValid(propertyValue: TProperty): boolean {

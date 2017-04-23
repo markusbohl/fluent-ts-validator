@@ -9,3 +9,4 @@ export * from "./StringValidatorBuilderImpl";
 export * from "./TypeValidatorBuilder";
 export * from "./TypeValidatorBuilderImpl";
 export * from "./ValidationOptionsBuilder";
+export * from "./StringValidationOptionsBuilder";

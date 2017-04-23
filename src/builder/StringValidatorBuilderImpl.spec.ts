@@ -1,4 +1,4 @@
-import {ValidationRule} from "../validation";
+import {ValidationRule, WhenNotEmptyCondition} from "../validation";
 import {
     ContainsValidator,
     IsAlphanumericValidator,
@@ -34,7 +34,7 @@ class TestClass {
 
 describe("StringValidatorBuilderImpl", () => {
     let validationRule: ValidationRule<TestClass, string>;
-    let validatorBuilder: StringValidatorBuilder<TestClass>;
+    let validatorBuilder: StringValidatorBuilderImpl<TestClass>;
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => {
@@ -42,6 +42,21 @@ describe("StringValidatorBuilderImpl", () => {
         });
         spyOn(validationRule, "addValidator");
         validatorBuilder = new StringValidatorBuilderImpl(validationRule);
+    });
+
+    describe("whenNotEmpty()()", () => {
+        it("should set a WhenCondition to the validation rule", () => {
+            spyOn(validationRule, "addCondition");
+            validatorBuilder.whenNotEmpty();
+
+            expect(validationRule.addCondition).toHaveBeenCalledWith(jasmine.any(WhenNotEmptyCondition));
+        });
+
+        it("should return current builder instance", () => {
+            let result = validatorBuilder.whenNotEmpty();
+
+            expect(result).toBe(validatorBuilder);
+        });
     });
 
     describe("isBooleanString()", () => {

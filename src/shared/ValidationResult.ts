@@ -21,4 +21,28 @@ export class ValidationResult {
     getFailures(): ValidationFailure[] {
         return this.failures.slice(0);
     }
+
+    getFailureMessages(): string[] {
+        return this.failures
+            .filter(failure => {
+                if (failure.message) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+            .map(failure => failure.message);
+    }
+
+    getFailureCodes(): string[] {
+        return this.failures
+            .filter(failure => {
+                if (failure.code) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+            .map(failure => failure.code);
+    }
 }
