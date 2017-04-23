@@ -1,6 +1,6 @@
 {
   "name": "fluent-ts-validator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A fluent validator written in TypeScript",
   "author": "Markus Bohl <markus.bohl@gmail.com>",
   "repository": {
@@ -12,7 +12,6 @@
   "devDependencies": {
     "@types/jasmine": "2.5.47",
     "@types/validator": "6.2.0",
-    "chokidar-cli": "1.2.0",
     "codecov": "2.1.0",
     "copyfiles": "1.2.0",
     "istanbul": "1.1.0-alpha.1",
@@ -20,6 +19,7 @@
     "jasmine-console-reporter": "1.2.7",
     "jasmine-core": "2.5.2",
     "jasmine-ts": "0.1.0",
+    "nodemon": "1.11.0",
     "rimraf": "2.6.1",
     "snyk": "1.28.0",
     "ts-node": "3.0.2",
@@ -29,7 +29,7 @@
   "scripts": {
     "build": "rimraf build && tsc && copyfiles package.json README.md build",
     "lint": "tslint --config ./tslint.json --project ./tsconfig.json",
-    "tdd": "chokidar --initial -d 1000 -p 'src/**/*.ts' -c 'npm run test'",
+    "tdd": "nodemon --watch src --ext ts --exec 'npm test'",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
     "test:coverage": "ts-node node_modules/.bin/istanbul cover -e .ts -x '*.spec.ts' node_modules/.bin/jasmine",
     "test:ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
