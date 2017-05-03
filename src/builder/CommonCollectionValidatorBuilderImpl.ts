@@ -2,7 +2,9 @@ import {CommonCollectionValidatorBuilder} from './CommonCollectionValidatorBuild
 import {CommonValidatorBuilderImpl} from './CommonValidatorBuilderImpl';
 import {ValidationOptionsBuilder} from './ValidationOptionsBuilder';
 
-export class CommonCollectionValidatorBuilderImpl<T, Collection> extends CommonValidatorBuilderImpl<T, Collection> implements CommonCollectionValidatorBuilder<T, Collection> {
+export class CommonCollectionValidatorBuilderImpl<T, CommonCollection>
+    extends CommonValidatorBuilderImpl<T, CommonCollection>
+    implements CommonCollectionValidatorBuilder<T, CommonCollection> {
 
     hasNumberOfElements(elementCount: number): this & ValidationOptionsBuilder<T> {
         throw new Error('Method not implemented.');

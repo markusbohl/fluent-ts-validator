@@ -1,3 +1,5 @@
+export * from "./CommonCollectionValidatorBuilder";
+export * from "./CommonCollectionValidatorBuilderImpl";
 export * from "./CommonValidatorBuilder";
 export * from "./CommonValidatorBuilderImpl";
 export * from "./DateValidatorBuilder";
