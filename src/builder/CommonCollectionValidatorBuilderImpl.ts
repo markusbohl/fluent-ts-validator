@@ -1,5 +1,10 @@
 import {ValidationRule} from "../validation/ValidationRule";
 import {HasNumberOfElementsValidator} from "../validators/collection-based/HasNumberOfElementsValidator";
+import {
+    HasMaxNumberOfElementsValidator,
+    HasMinMaxNumberOfElementsValidator,
+    HasMinNumberOfElementsValidator
+} from "../validators/collection-based/index";
 import {CommonCollectionValidatorBuilder} from "./CommonCollectionValidatorBuilder";
 import {CommonValidatorBuilderImpl} from "./CommonValidatorBuilderImpl";
 import {ValidationOptionsBuilder} from "./ValidationOptionsBuilder";
@@ -18,15 +23,21 @@ export class CommonCollectionValidatorBuilderImpl<T, CommonCollection>
         return this;
     }
 
-    hasMinNumberOfElements(min: number): this & ValidationOptionsBuilder<T> {
-        throw new Error("Method not implemented.");
+    hasMinNumberOfElements(minElementCount: number): this & ValidationOptionsBuilder<T> {
+        this.validationRule.addValidator(new HasMinNumberOfElementsValidator(minElementCount));
+
+        return this;
     }
 
-    hasMaxNumberOfElements(max: number): this & ValidationOptionsBuilder<T> {
-        throw new Error("Method not implemented.");
+    hasMaxNumberOfElements(maxElementCount: number): this & ValidationOptionsBuilder<T> {
+        this.validationRule.addValidator(new HasMaxNumberOfElementsValidator(maxElementCount));
+
+        return this;
     }
 
-    hasNumberOfElementsBetween(min: number, max: number): this & ValidationOptionsBuilder<T> {
-        throw new Error("Method not implemented.");
+    hasNumberOfElementsBetween(minElementCount: number, maxElementCount: number): this & ValidationOptionsBuilder<T> {
+        this.validationRule.addValidator(new HasMinMaxNumberOfElementsValidator(minElementCount, maxElementCount));
+
+        return this;
     }
 }
