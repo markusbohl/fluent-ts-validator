@@ -1,10 +1,10 @@
-import {HasNumberOfElementsValidator} from "./HasNumberOfElementsValidator";
+import {HasMaxNumberOfElementsValidator} from "./HasMaxNumberOfElementsValidator";
 
-describe("HasNumberOfElementsValidator", () => {
-    let validator: HasNumberOfElementsValidator;
+describe("HasMaxNumberOfElementsValidator", () => {
+    let validator: HasMaxNumberOfElementsValidator;
 
     beforeEach(() => {
-        validator = new HasNumberOfElementsValidator(2);
+        validator = new HasMaxNumberOfElementsValidator(2);
     });
 
     describe("isValid()", () => {
@@ -33,13 +33,13 @@ describe("HasNumberOfElementsValidator", () => {
         });
 
         describe("isValid()", () => {
-            it("should return false if collection has too few elements", () => {
+            it("should return true if collection has less than max number of elements", () => {
                 const result = validator.isValid(anArray);
 
-                expect(result).toBe(false);
+                expect(result).toBe(true);
             });
 
-            it("should return true if collection has expected number of elements", () => {
+            it("should return true if collection has expected max number of elements", () => {
                 anArray.push("foo");
                 anArray.push("bar");
 
@@ -48,7 +48,7 @@ describe("HasNumberOfElementsValidator", () => {
                 expect(result).toBe(true);
             });
 
-            it("should return false if collection has too many elements", () => {
+            it("should return false if collection has more than max number of elements", () => {
                 anArray.push("foo");
                 anArray.push("bar");
                 anArray.push("foobar");
@@ -68,13 +68,13 @@ describe("HasNumberOfElementsValidator", () => {
         });
 
         describe("isValid()", () => {
-            it("should return false if collection has too few elements", () => {
+            it("should return true if collection has less than max number of elements", () => {
                 const result = validator.isValid(aSet);
 
-                expect(result).toBe(false);
+                expect(result).toBe(true);
             });
 
-            it("should return true if collection has expected number of elements", () => {
+            it("should return true if collection has expected max number of elements", () => {
                 aSet.add("foo");
                 aSet.add("bar");
 
@@ -83,7 +83,7 @@ describe("HasNumberOfElementsValidator", () => {
                 expect(result).toBe(true);
             });
 
-            it("should return false if collection has too many elements", () => {
+            it("should return false if collection has more than max number of elements", () => {
                 aSet.add("foo");
                 aSet.add("bar");
                 aSet.add("foobar");
@@ -103,13 +103,13 @@ describe("HasNumberOfElementsValidator", () => {
         });
 
         describe("isValid()", () => {
-            it("should return false if collection has too few elements", () => {
+            it("should return true if collection has less than max number of elements", () => {
                 const result = validator.isValid(aMap);
 
-                expect(result).toBe(false);
+                expect(result).toBe(true);
             });
 
-            it("should return true if collection has expected number of elements", () => {
+            it("should return true if collection has expected max number of elements", () => {
                 aMap.set("key1", "foo");
                 aMap.set("key2", "bar");
 
@@ -118,7 +118,7 @@ describe("HasNumberOfElementsValidator", () => {
                 expect(result).toBe(true);
             });
 
-            it("should return false if collection has too many elements", () => {
+            it("should return false if collection has more than max number of elements", () => {
                 aMap.set("key1", "foo");
                 aMap.set("key2", "bar");
                 aMap.set("key3", "foobar");

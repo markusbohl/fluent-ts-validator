@@ -1,5 +1,5 @@
-import {CommonValidatorBuilder} from './CommonValidatorBuilder';
-import {ValidationOptionsBuilder} from './ValidationOptionsBuilder';
+import {CommonValidatorBuilder} from "./CommonValidatorBuilder";
+import {ValidationOptionsBuilder} from "./ValidationOptionsBuilder";
 
 export interface CommonCollectionValidatorBuilder<T, CommonCollection> extends CommonValidatorBuilder<T, CommonCollection> {
 

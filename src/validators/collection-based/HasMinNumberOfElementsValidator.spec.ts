@@ -1,10 +1,10 @@
-import {HasNumberOfElementsValidator} from "./HasNumberOfElementsValidator";
+import {HasMinNumberOfElementsValidator} from "./HasMinNumberOfElementsValidator";
 
-describe("HasNumberOfElementsValidator", () => {
-    let validator: HasNumberOfElementsValidator;
+describe("HasMinNumberOfElementsValidator", () => {
+    let validator: HasMinNumberOfElementsValidator;
 
     beforeEach(() => {
-        validator = new HasNumberOfElementsValidator(2);
+        validator = new HasMinNumberOfElementsValidator(2);
     });
 
     describe("isValid()", () => {
@@ -39,7 +39,7 @@ describe("HasNumberOfElementsValidator", () => {
                 expect(result).toBe(false);
             });
 
-            it("should return true if collection has expected number of elements", () => {
+            it("should return true if collection has expected minimum number of elements", () => {
                 anArray.push("foo");
                 anArray.push("bar");
 
@@ -48,14 +48,14 @@ describe("HasNumberOfElementsValidator", () => {
                 expect(result).toBe(true);
             });
 
-            it("should return false if collection has too many elements", () => {
+            it("should return true if collection has more than minimum number of elements", () => {
                 anArray.push("foo");
                 anArray.push("bar");
                 anArray.push("foobar");
 
                 const result = validator.isValid(anArray);
 
-                expect(result).toBe(false);
+                expect(result).toBe(true);
             });
         });
     });
@@ -74,7 +74,7 @@ describe("HasNumberOfElementsValidator", () => {
                 expect(result).toBe(false);
             });
 
-            it("should return true if collection has expected number of elements", () => {
+            it("should return true if collection has expected minimum number of elements", () => {
                 aSet.add("foo");
                 aSet.add("bar");
 
@@ -83,14 +83,14 @@ describe("HasNumberOfElementsValidator", () => {
                 expect(result).toBe(true);
             });
 
-            it("should return false if collection has too many elements", () => {
+            it("should return true if collection has more than minimum number of elements", () => {
                 aSet.add("foo");
                 aSet.add("bar");
                 aSet.add("foobar");
 
                 const result = validator.isValid(aSet);
 
-                expect(result).toBe(false);
+                expect(result).toBe(true);
             });
         });
     });
@@ -109,7 +109,7 @@ describe("HasNumberOfElementsValidator", () => {
                 expect(result).toBe(false);
             });
 
-            it("should return true if collection has expected number of elements", () => {
+            it("should return true if collection has expected minimum number of elements", () => {
                 aMap.set("key1", "foo");
                 aMap.set("key2", "bar");
 
@@ -118,14 +118,14 @@ describe("HasNumberOfElementsValidator", () => {
                 expect(result).toBe(true);
             });
 
-            it("should return false if collection has too many elements", () => {
+            it("should return true if collection has more than minimum number of elements", () => {
                 aMap.set("key1", "foo");
                 aMap.set("key2", "bar");
                 aMap.set("key3", "foobar");
 
                 const result = validator.isValid(aMap);
 
-                expect(result).toBe(false);
+                expect(result).toBe(true);
             });
         });
     });

@@ -2,16 +2,15 @@ import {PropertyValidator} from "../PropertyValidator";
 import {CommonCollection} from "../../shared/CommonCollection";
 import {hasLength, hasSize} from "./CollectionGuard";
 
-export class HasNumberOfElementsValidator implements PropertyValidator<CommonCollection> {
+export class HasMaxNumberOfElementsValidator implements PropertyValidator<CommonCollection> {
 
-    constructor(private numberOfElements: number) {
-    }
+    constructor(private maxElementCount: number) {}
 
     isValid(input: CommonCollection): boolean {
         if (hasLength(input)) {
-            return input.length === this.numberOfElements;
+            return input.length <= this.maxElementCount;
         } else if (hasSize(input)) {
-            return input.size === this.numberOfElements;
+            return input.size <= this.maxElementCount;
         } else {
             return false;
         }
