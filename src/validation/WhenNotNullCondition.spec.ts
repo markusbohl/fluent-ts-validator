@@ -39,9 +39,22 @@ describe("WhenNotNullCondition", () => {
 
             expect(result).toBe(false);
         });
+
+        it("should return false if exception occurs during lambda expression invokation", () => {
+            condition = new WhenNotNullCondition((t: TestClass) => t.innerProp.property);
+
+            const result = condition.shouldDoValidation(testObject);
+
+            expect(result).toBe(false);
+        });
     });
 });
 
 class TestClass {
+    property: string;
+    innerProp: InnerClass;
+}
+
+class InnerClass {
     property: string;
 }
