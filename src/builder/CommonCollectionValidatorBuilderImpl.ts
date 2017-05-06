@@ -10,10 +10,11 @@ import {
 import {CommonCollectionValidatorBuilder} from "./CommonCollectionValidatorBuilder";
 import {CommonValidatorBuilderImpl} from "./CommonValidatorBuilderImpl";
 import {ValidationOptionsBuilder} from "./ValidationOptionsBuilder";
+import {CommonCollection} from "../shared/CommonCollection";
 
-export class CommonCollectionValidatorBuilderImpl<T, CommonCollection>
+export class CommonCollectionValidatorBuilderImpl<T>
     extends CommonValidatorBuilderImpl<T, CommonCollection>
-    implements CommonCollectionValidatorBuilder<T, CommonCollection> {
+    implements CommonCollectionValidatorBuilder<T> {
 
     constructor(validationRule: ValidationRule<T, CommonCollection>) {
         super(validationRule);

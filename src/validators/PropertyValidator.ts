@@ -1,4 +1,4 @@
 export interface PropertyValidator<TProperty> {
 
-    isValid(input: TProperty | any): boolean;
+    isValid(input: TProperty): boolean;
 }

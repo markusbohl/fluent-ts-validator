@@ -1,5 +1,5 @@
-import {Severity, ValidationFailure} from "./shared";
 import {AbstractValidator, ValidationResult} from "./";
+import {Severity, ValidationFailure} from "./shared";
 
 class TestPerson {
     name: string;
@@ -7,7 +7,6 @@ class TestPerson {
     address: TestAddress;
     email: string;
     dateOfBirth: Date;
-    buddies: string[];
 }
 
 class TestAddress {
@@ -268,7 +267,7 @@ describe("AddressbookValidator", () => {
     });
 });
 
-class CollectionStuff {
+class IterablesPropClass {
     names: string[];
     dates: Date[];
     numbers: number[];
@@ -276,73 +275,186 @@ class CollectionStuff {
     anything: any[];
 }
 
-class CollectionValidator extends AbstractValidator<CollectionStuff> {
+class IterablesValidator extends AbstractValidator<IterablesPropClass> {
     constructor() {
         super();
-        this.validateIfEachDate(stuff => stuff.dates).isAfter(new Date(2000, 0, 1));
-        this.validateIfEachString(stuff => stuff.names).hasMinLength(2);
-        this.validateIfEachNumber(stuff => stuff.numbers).isGreaterThan(0);
-        this.validateIfEach(stuff => stuff.people).isDefined();
-        this.validateIfEachAny(stuff => stuff.anything).isString();
+        this.validateIfEachDate(i => i.dates).isAfter(new Date(2000, 0, 1));
+        this.validateIfEachString(i => i.names).hasMinLength(2);
+        this.validateIfEachNumber(i => i.numbers).isGreaterThan(0);
+        this.validateIfEach(i => i.people).isDefined();
+        this.validateIfEachAny(i => i.anything).isString();
     }
 }
 
-describe("CollectionValidator", () => {
-    let validator: CollectionValidator;
-    let stuff: CollectionStuff;
+describe("IterablesValidator", () => {
+    let validator: IterablesValidator;
+    let testInstance: IterablesPropClass;
     beforeEach(() => {
-        stuff = new CollectionStuff();
-        stuff.names = ["foo"];
-        stuff.dates = [new Date(2001, 0, 1)];
-        stuff.numbers = [1];
-        stuff.people = [new TestPerson()];
-        stuff.anything = ["foobar"];
-        validator = new CollectionValidator();
+        testInstance = new IterablesPropClass();
+        testInstance.names = ["foo"];
+        testInstance.dates = [new Date(2001, 0, 1)];
+        testInstance.numbers = [1];
+        testInstance.people = [new TestPerson()];
+        testInstance.anything = ["foobar"];
+        validator = new IterablesValidator();
     });
 
     describe("validate()", () => {
         it("should return positive result if everything is fine", () => {
-            const result = validator.validate(stuff);
+            const result = validator.validate(testInstance);
 
             expect(result.isValid()).toBe(true);
         });
 
-        it("should return negative result if a name is too short", () => {
-            stuff.names.push("X");
+        it("should return positive result if everything is fine - async", (done) => {
+            validator.validateAsync(testInstance).then(result => {
+                expect(result.isValid()).toBe(true);
+                done();
+            }).catch(reason => {
+                fail(reason);
+                done();
+            });
+        });
 
-            const result = validator.validate(stuff);
+        it("should return negative result if a name is too short", () => {
+            testInstance.names.push("X");
+
+            const result = validator.validate(testInstance);
 
             expect(result.isValid()).toBe(false);
         });
 
         it("should return negative result if a date is too old", () => {
-            stuff.dates.push(new Date(1999, 0, 1));
+            testInstance.dates.push(new Date(1999, 0, 1));
 
-            const result = validator.validate(stuff);
+            const result = validator.validate(testInstance);
 
             expect(result.isValid()).toBe(false);
         });
 
         it("should return negative result if a number is negative", () => {
-            stuff.numbers.push(-1);
+            testInstance.numbers.push(-1);
 
-            const result = validator.validate(stuff);
+            const result = validator.validate(testInstance);
 
             expect(result.isValid()).toBe(false);
         });
 
         it("should return negative result if a person is undefined", () => {
-            stuff.people.push(undefined);
+            testInstance.people.push(undefined);
 
-            const result = validator.validate(stuff);
+            const result = validator.validate(testInstance);
 
             expect(result.isValid()).toBe(false);
         });
 
         it("should return negative result if anything is not a string", () => {
-            stuff.anything.push(0);
+            testInstance.anything.push(0);
 
-            const result = validator.validate(stuff);
+            const result = validator.validate(testInstance);
+
+            expect(result.isValid()).toBe(false);
+        });
+    });
+});
+
+class CollectionsPropClass {
+    anArray: number[];
+    aSet: Set<string>;
+    aMap: Map<string, string>;
+    aReadonlyArray: ReadonlyArray<boolean>;
+    aReadonlySet: ReadonlySet<number>;
+    aReadonlyMap: ReadonlyMap<string, string>;
+}
+
+class CollectionValidator extends AbstractValidator<CollectionsPropClass> {
+    constructor() {
+        super();
+        this.validateIfCollection(i => i.anArray).isEmpty();
+        this.validateIfCollection(i => i.aSet).isNotEmpty();
+        this.validateIfCollection(i => i.aMap).hasNumberOfElements(1);
+        this.validateIfCollection(i => i.aReadonlyArray).hasMinNumberOfElements(1);
+        this.validateIfCollection(i => i.aReadonlySet).hasMaxNumberOfElements(2);
+        this.validateIfCollection(i => i.aReadonlyMap).hasNumberOfElementsBetween(2, 4);
+    }
+}
+
+describe("CollectionValidator", () => {
+    let validator: CollectionValidator;
+    let testInstance: CollectionsPropClass;
+
+    beforeEach(() => {
+        validator = new CollectionValidator();
+        testInstance = new CollectionsPropClass();
+        testInstance.anArray = [];
+        testInstance.aSet = new Set("foo");
+        testInstance.aMap = new Map([["foo", "bar"]]);
+        testInstance.aReadonlyArray = [true, false];
+        testInstance.aReadonlySet = new Set([1, 2]);
+        testInstance.aReadonlyMap = new Map([["foo", "bar"], ["bar", "foo"], ["foobar", "foobar"]]);
+    });
+
+    describe("validate()", () => {
+        it("should return positive result if everything is fine", () => {
+            const result = validator.validate(testInstance);
+
+            expect(result.isValid()).toBe(true);
+        });
+
+        it("should return positive result if everything is fine - async", (done) => {
+            validator.validateAsync(testInstance).then(result => {
+                expect(result.isValid()).toBe(true);
+                done();
+            }).catch(reason => {
+                fail(reason);
+                done();
+            });
+        });
+
+        it("should return negative result if anArray is not empty", () => {
+            testInstance.anArray.push(1);
+
+            const result = validator.validate(testInstance);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if aSet is empty", () => {
+            testInstance.aSet = new Set();
+
+            const result = validator.validate(testInstance);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if aMap has not exactly one element", () => {
+            testInstance.aMap = new Map([["foo", "bar"], ["bar", "foo"]]);
+
+            const result = validator.validate(testInstance);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if aReadonlyArray has not at least one element", () => {
+            testInstance.aReadonlyArray = [];
+
+            const result = validator.validate(testInstance);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if aReadonlySet has more than two elements", () => {
+            testInstance.aReadonlySet = new Set([1, 2, 3]);
+
+            const result = validator.validate(testInstance);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if aReadonlyMap has less than two or more than four elements", () => {
+            testInstance.aReadonlyMap = new Map([["foo", "bar"]]);
+
+            const result = validator.validate(testInstance);
 
             expect(result.isValid()).toBe(false);
         });

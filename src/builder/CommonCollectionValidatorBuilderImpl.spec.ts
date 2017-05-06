@@ -10,13 +10,13 @@ import {
 } from "../validators/collection-based/index";
 
 describe("CommonCollectionValidatorBuilderImpl", () => {
-    let builder: CommonCollectionValidatorBuilderImpl<TestClass, string[]>;
+    let builder: CommonCollectionValidatorBuilderImpl<TestClass>;
     let validationRule: ValidationRule<TestClass, string[]>;
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => input.anArray);
         spyOn(validationRule, "addValidator");
-        builder = new CommonCollectionValidatorBuilderImpl<TestClass, string[]>(validationRule);
+        builder = new CommonCollectionValidatorBuilderImpl<TestClass>(validationRule);
     });
 
     describe("isEmpty()", () => {
