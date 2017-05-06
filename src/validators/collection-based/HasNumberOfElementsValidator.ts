@@ -1,13 +1,13 @@
 import {PropertyValidator} from "../PropertyValidator";
-import {CommonCollection} from "../../shared/CommonCollection";
+import {SizedIterable} from "../../shared/SizedIterable";
 import {hasLength, hasSize} from "./CollectionGuard";
 
-export class HasNumberOfElementsValidator implements PropertyValidator<CommonCollection> {
+export class HasNumberOfElementsValidator implements PropertyValidator<SizedIterable<any>> {
 
     constructor(private numberOfElements: number) {
     }
 
-    isValid(input: CommonCollection): boolean {
+    isValid(input: SizedIterable<any>): boolean {
         if (hasLength(input)) {
             return input.length === this.numberOfElements;
         } else if (hasSize(input)) {

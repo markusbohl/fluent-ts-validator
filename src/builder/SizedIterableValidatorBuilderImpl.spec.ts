@@ -1,6 +1,6 @@
 import {ValidationRule} from "../validation/ValidationRule";
 import {HasNumberOfElementsValidator} from "../validators/collection-based/HasNumberOfElementsValidator";
-import {CommonCollectionValidatorBuilderImpl} from "./CommonCollectionValidatorBuilderImpl";
+import {SizedIterableValidatorBuilderImpl} from "./SizedIterableValidatorBuilderImpl";
 import {
     IsEmptyValidator,
     IsNotEmptyValidator,
@@ -9,14 +9,14 @@ import {
     HasMinNumberOfElementsValidator
 } from "../validators/collection-based/index";
 
-describe("CommonCollectionValidatorBuilderImpl", () => {
-    let builder: CommonCollectionValidatorBuilderImpl<TestClass>;
+describe("SizedIterableValidatorBuilderImpl", () => {
+    let builder: SizedIterableValidatorBuilderImpl<TestClass, string>;
     let validationRule: ValidationRule<TestClass, string[]>;
 
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => input.anArray);
         spyOn(validationRule, "addValidator");
-        builder = new CommonCollectionValidatorBuilderImpl<TestClass>(validationRule);
+        builder = new SizedIterableValidatorBuilderImpl<TestClass, string>(validationRule);
     });
 
     describe("isEmpty()", () => {

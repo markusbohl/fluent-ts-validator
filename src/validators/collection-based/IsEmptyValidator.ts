@@ -1,10 +1,10 @@
 import {PropertyValidator} from "../PropertyValidator";
-import {CommonCollection} from "../../shared/CommonCollection";
+import {SizedIterable} from "../../shared/SizedIterable";
 import {hasLength, hasSize} from "./CollectionGuard";
 
-export class IsEmptyValidator implements PropertyValidator<CommonCollection> {
+export class IsEmptyValidator implements PropertyValidator<SizedIterable<any>> {
 
-    isValid(input: CommonCollection): boolean {
+    isValid(input: SizedIterable<any>): boolean {
         if (hasLength(input)) {
             return input.length === 0;
         } else if (hasSize(input)) {

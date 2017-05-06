@@ -1,8 +1,8 @@
 import {CommonValidatorBuilder} from "./CommonValidatorBuilder";
 import {ValidationOptionsBuilder} from "./ValidationOptionsBuilder";
-import {CommonCollection} from "../shared/CommonCollection";
+import {SizedIterable} from "../shared/SizedIterable";
 
-export interface CommonCollectionValidatorBuilder<T> extends CommonValidatorBuilder<T, CommonCollection> {
+export interface SizedIterableValidatorBuilder<T, TProperty> extends CommonValidatorBuilder<T, SizedIterable<TProperty>> {
     hasNumberOfElements(elementCount: number): this & ValidationOptionsBuilder<T>;
     hasMinNumberOfElements(minElementCount: number): this & ValidationOptionsBuilder<T>;
     hasMaxNumberOfElements(maxElementCount: number): this & ValidationOptionsBuilder<T>;

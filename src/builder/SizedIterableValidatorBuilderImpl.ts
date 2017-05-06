@@ -7,16 +7,16 @@ import {
     HasMinNumberOfElementsValidator,
     HasNumberOfElementsValidator
 } from "../validators/collection-based/index";
-import {CommonCollectionValidatorBuilder} from "./CommonCollectionValidatorBuilder";
+import {SizedIterableValidatorBuilder} from "./SizedIterableValidatorBuilder";
 import {CommonValidatorBuilderImpl} from "./CommonValidatorBuilderImpl";
 import {ValidationOptionsBuilder} from "./ValidationOptionsBuilder";
-import {CommonCollection} from "../shared/CommonCollection";
+import {SizedIterable} from "../shared/SizedIterable";
 
-export class CommonCollectionValidatorBuilderImpl<T>
-    extends CommonValidatorBuilderImpl<T, CommonCollection>
-    implements CommonCollectionValidatorBuilder<T> {
+export class SizedIterableValidatorBuilderImpl<T, TProperty>
+    extends CommonValidatorBuilderImpl<T, SizedIterable<TProperty>>
+    implements SizedIterableValidatorBuilder<T, TProperty> {
 
-    constructor(validationRule: ValidationRule<T, CommonCollection>) {
+    constructor(validationRule: ValidationRule<T, SizedIterable<TProperty>>) {
         super(validationRule);
     }
 

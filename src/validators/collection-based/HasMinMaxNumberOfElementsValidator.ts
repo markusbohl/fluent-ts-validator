@@ -1,9 +1,9 @@
 import {PropertyValidator} from "../PropertyValidator";
-import {CommonCollection} from "../../shared/CommonCollection";
+import {SizedIterable} from "../../shared/SizedIterable";
 import {HasMinNumberOfElementsValidator} from "./HasMinNumberOfElementsValidator";
 import {HasMaxNumberOfElementsValidator} from "./HasMaxNumberOfElementsValidator";
 
-export class HasMinMaxNumberOfElementsValidator implements PropertyValidator<CommonCollection> {
+export class HasMinMaxNumberOfElementsValidator implements PropertyValidator<SizedIterable<any>> {
 
     private minValidator: HasMinNumberOfElementsValidator;
     private maxValidator: HasMaxNumberOfElementsValidator;
@@ -13,7 +13,7 @@ export class HasMinMaxNumberOfElementsValidator implements PropertyValidator<Com
         this.maxValidator = new HasMaxNumberOfElementsValidator(maxElementCount);
     }
 
-    isValid(input: CommonCollection): boolean {
+    isValid(input: SizedIterable<any>): boolean {
         return this.minValidator.isValid(input) && this.maxValidator.isValid(input);
     }
 }

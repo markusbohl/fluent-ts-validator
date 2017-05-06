@@ -363,19 +363,21 @@ class CollectionsPropClass {
     aSet: Set<string>;
     aMap: Map<string, string>;
     aReadonlyArray: ReadonlyArray<boolean>;
-    aReadonlySet: ReadonlySet<number>;
-    aReadonlyMap: ReadonlyMap<string, string>;
+    // aReadonlySet: ReadonlySet<number>;
+    aReadonlySet: Set<number>;
+    // aReadonlyMap: ReadonlyMap<string, string>;
+    aReadonlyMap: Map<string, string>;
 }
 
 class CollectionValidator extends AbstractValidator<CollectionsPropClass> {
     constructor() {
         super();
-        this.validateIfCollection(i => i.anArray).isEmpty();
-        this.validateIfCollection(i => i.aSet).isNotEmpty();
-        this.validateIfCollection(i => i.aMap).hasNumberOfElements(1);
-        this.validateIfCollection(i => i.aReadonlyArray).hasMinNumberOfElements(1);
-        this.validateIfCollection(i => i.aReadonlySet).hasMaxNumberOfElements(2);
-        this.validateIfCollection(i => i.aReadonlyMap).hasNumberOfElementsBetween(2, 4);
+        this.validateIfIterable(i => i.anArray).isEmpty();
+        this.validateIfIterable(i => i.aSet).isNotEmpty();
+        this.validateIfIterable(i => i.aMap).hasNumberOfElements(1);
+        this.validateIfIterable(i => i.aReadonlyArray).hasMinNumberOfElements(1);
+        this.validateIfIterable(i => i.aReadonlySet).hasMaxNumberOfElements(2);
+        this.validateIfIterable(i => i.aReadonlyMap).hasNumberOfElementsBetween(2, 4);
     }
 }
 
