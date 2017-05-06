@@ -1,3 +1,4 @@
+export * from "./IsEmptyValidator";
 export * from "./HasNumberOfElementsValidator";
 export * from "./HasMinNumberOfElementsValidator";
 export * from "./HasMaxNumberOfElementsValidator";
