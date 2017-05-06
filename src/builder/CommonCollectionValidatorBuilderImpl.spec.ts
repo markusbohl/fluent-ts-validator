@@ -2,6 +2,8 @@ import {ValidationRule} from "../validation/ValidationRule";
 import {HasNumberOfElementsValidator} from "../validators/collection-based/HasNumberOfElementsValidator";
 import {CommonCollectionValidatorBuilderImpl} from "./CommonCollectionValidatorBuilderImpl";
 import {
+    IsEmptyValidator,
+    IsNotEmptyValidator,
     HasMaxNumberOfElementsValidator,
     HasMinMaxNumberOfElementsValidator,
     HasMinNumberOfElementsValidator
@@ -15,6 +17,34 @@ describe("CommonCollectionValidatorBuilderImpl", () => {
         validationRule = new ValidationRule((input: TestClass) => input.anArray);
         spyOn(validationRule, "addValidator");
         builder = new CommonCollectionValidatorBuilderImpl<TestClass, string[]>(validationRule);
+    });
+
+    describe("isEmpty()", () => {
+        it("should set IsEmptyValidator to validation rule", () => {
+            builder.isEmpty();
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsEmptyValidator));
+        });
+
+        it("should return builder itself", () => {
+            const result = builder.isEmpty();
+
+            expect(result).toBe(builder);
+        });
+    });
+
+    describe("isNotEmpty()", () => {
+        it("should set IsNotEmptyValidator to validation rule", () => {
+            builder.isNotEmpty();
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNotEmptyValidator));
+        });
+
+        it("should return builder itself", () => {
+            const result = builder.isNotEmpty();
+
+            expect(result).toBe(builder);
+        });
     });
 
     describe("hasNumberOfElements()", () => {

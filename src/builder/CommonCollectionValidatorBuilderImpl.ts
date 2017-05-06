@@ -1,9 +1,11 @@
 import {ValidationRule} from "../validation/ValidationRule";
-import {HasNumberOfElementsValidator} from "../validators/collection-based/HasNumberOfElementsValidator";
 import {
+    IsEmptyValidator,
+    IsNotEmptyValidator,
     HasMaxNumberOfElementsValidator,
     HasMinMaxNumberOfElementsValidator,
-    HasMinNumberOfElementsValidator
+    HasMinNumberOfElementsValidator,
+    HasNumberOfElementsValidator
 } from "../validators/collection-based/index";
 import {CommonCollectionValidatorBuilder} from "./CommonCollectionValidatorBuilder";
 import {CommonValidatorBuilderImpl} from "./CommonValidatorBuilderImpl";
@@ -15,6 +17,18 @@ export class CommonCollectionValidatorBuilderImpl<T, CommonCollection>
 
     constructor(validationRule: ValidationRule<T, CommonCollection>) {
         super(validationRule);
+    }
+
+    isEmpty(): this & ValidationOptionsBuilder<T> {
+        this.validationRule.addValidator(new IsEmptyValidator());
+
+        return this;
+    }
+
+    isNotEmpty(): this & ValidationOptionsBuilder<T> {
+        this.validationRule.addValidator(new IsNotEmptyValidator());
+
+        return this;
     }
 
     hasNumberOfElements(elementCount: number): this & ValidationOptionsBuilder<T> {
