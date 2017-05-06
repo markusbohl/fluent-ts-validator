@@ -6,6 +6,10 @@ export class WhenDefinedCondition<T> implements ValidationCondition<T> {
     }
 
     shouldDoValidation(input: T): boolean {
-        return typeof this.expression(input) !== "undefined";
+        try {
+            return typeof this.expression(input) !== "undefined";
+        } catch (e) {
+            return false;
+        }
     }
 }

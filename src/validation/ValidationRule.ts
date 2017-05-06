@@ -58,17 +58,25 @@ export class ValidationRule<T, TProperty> {
     }
 
     apply(input: T): RuleApplicationOutcome {
-        let propertyValue = this.lambdaExpression(input);
+        const propertyValue = this.lambdaExpressionResultWith(input);
 
         if (this.isValid(input, propertyValue)) {
             return successfulOutcome;
         }
 
-        let failure = this.createValidationFailure(input, propertyValue);
+        const failure = this.createValidationFailure(input, propertyValue);
 
         this.invokeCallbackWith(failure);
 
         return new RuleApplicationOutcome(failure);
+    }
+
+    private lambdaExpressionResultWith(input: T): TProperty {
+        try {
+            return this.lambdaExpression(input);
+        } catch (e) {
+            return undefined;
+        }
     }
 
     protected isValid(input: T, propertyValue: TProperty): boolean {
