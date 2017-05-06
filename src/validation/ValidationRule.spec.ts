@@ -140,6 +140,15 @@ describe("ValidationRule", () => {
 
             expect(failure.propertyName).toBe(undefined);
         });
+
+        it("should return failure in case exception occurs during lambda execution (due to undefined inner property)", () => {
+            const rule = new ValidationRule((input: TestClass) => input.innerProp.property);
+            rule.addValidator(getPositiveValidator());
+
+            const result = rule.apply(new TestClass("foo"));
+
+            expect(result.isFailure());
+        });
     });
 
     describe("onFailure()", () => {
@@ -242,10 +251,15 @@ describe("ValidationRule", () => {
 class TestClass {
     readonly property: string;
     readonly leOtherProperty1: number = 0;
+    innerProp: InnerClass;
 
     constructor(property: string) {
         this.property = property;
     }
+}
+
+class InnerClass {
+    property: string;
 }
 
 function getPositiveValidator<T>(): PropertyValidator<T> {

@@ -83,6 +83,38 @@ describe("Integration Tests for Validators", () => {
             });
         });
     });
+
+    describe("ExceptionResistantValidator1", () => {
+        let validator: ExceptionResistantValidator1;
+
+        beforeEach(() => {
+            validator = new ExceptionResistantValidator1();
+        });
+
+        describe("validate", () => {
+            it("should return invalid result since innerProp is undefined", () => {
+                const result = validator.validate(testInstance);
+
+                expect(result.isValid()).toBe(false);
+            });
+        });
+    });
+
+    describe("ExceptionResistantValidator2", () => {
+        let validator: ExceptionResistantValidator2;
+
+        beforeEach(() => {
+            validator = new ExceptionResistantValidator2();
+        });
+
+        describe("validate", () => {
+            it("should return valid result (although innerProp is undefined) since no rule should be applied due to validation conditions", () => {
+                const result = validator.validate(testInstance);
+
+                expect(result.isValid()).toBe(true);
+            });
+        });
+    });
 });
 
 class TestClass {
@@ -90,6 +122,11 @@ class TestClass {
     stringProp1: string;
     stringProp2: string;
     booleanProp: boolean;
+    innerProp: InnerClass;
+}
+
+class InnerClass {
+    property: string;
 }
 
 class MultipleConditionsValidator extends AbstractValidator<TestClass> {
@@ -107,5 +144,19 @@ class WhenNotEmptyConditionValidator extends AbstractValidator<TestClass> {
         this.validateIfAny(t => t.anyProp).isString().isEmail()
             .whenNotEmpty()
             .when(t => t.booleanProp);
+    }
+}
+
+class ExceptionResistantValidator1 extends AbstractValidator<TestClass> {
+    constructor() {
+        super();
+        this.validateIfString(t => t.innerProp.property).isUppercase();
+    }
+}
+class ExceptionResistantValidator2 extends AbstractValidator<TestClass> {
+    constructor() {
+        super();
+        this.validateIfString(t => t.innerProp.property).isUppercase().whenDefined();
+        this.validateIfString(t => t.innerProp.property).isUppercase().whenNotNull();
     }
 }
