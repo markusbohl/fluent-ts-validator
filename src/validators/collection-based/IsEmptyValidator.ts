@@ -1,6 +1,6 @@
-import {PropertyValidator} from '../PropertyValidator';
-import {CommonCollection} from '../../shared/CommonCollection';
-import {hasLength, hasSize} from './CollectionGuard';
+import {PropertyValidator} from "../PropertyValidator";
+import {CommonCollection} from "../../shared/CommonCollection";
+import {hasLength, hasSize} from "./CollectionGuard";
 
 export class IsEmptyValidator implements PropertyValidator<CommonCollection> {
 
