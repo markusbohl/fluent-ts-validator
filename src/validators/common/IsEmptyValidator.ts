@@ -1,5 +1,5 @@
 import {PropertyValidator} from "../PropertyValidator";
-import {hasLength, hasSize} from '../../shared/';
+import {hasLength, hasSize} from "../../shared/";
 
 /**
  *  Validates if given value is empty (=== '', === null, === undefined)
