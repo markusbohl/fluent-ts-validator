@@ -363,10 +363,11 @@ class IterablePropClass {
     aSet: Set<string>;
     aMap: Map<string, string>;
     aReadonlyArray: ReadonlyArray<boolean>;
-    aSecondSet: Set<number>;
-    aSecondMap: Map<string, string>;
-    aReadonlySet: ReadonlySet<number>;
-    aReadonlyMap: ReadonlyMap<string, string>;
+    // aReadonlySet: ReadonlySet<number>;
+    aReadonlySet: Set<number>;
+    // aReadonlyMap: ReadonlyMap<string, string>;
+    aReadonlyMap: Map<string, string>;
+    iterableWithoutSize: Iterable<number>;
 }
 
 class IterableValidator extends AbstractValidator<IterablePropClass> {
@@ -376,8 +377,10 @@ class IterableValidator extends AbstractValidator<IterablePropClass> {
         this.validateIfIterable(i => i.aSet).isNotEmpty();
         this.validateIfIterable(i => i.aMap).hasNumberOfElements(1);
         this.validateIfIterable(i => i.aReadonlyArray).hasMinNumberOfElements(1);
-        this.validateIfIterable(i => i.aSecondSet).hasMaxNumberOfElements(2);
-        this.validateIfIterable(i => i.aSecondMap).hasNumberOfElementsBetween(2, 4);
+        this.validateIfIterable(i => i.aReadonlySet).hasMaxNumberOfElements(2);
+        this.validateIfIterable(i => i.aReadonlyMap).hasNumberOfElementsBetween(2, 4);
+        this.validateIfIterable(i => i.iterableWithoutSize).contains(2);
+        this.validateIfIterable(i => i.iterableWithoutSize).doesNotContain(3);
     }
 }
 
@@ -392,8 +395,12 @@ describe("IterableValidator", () => {
         testInstance.aSet = new Set("foo");
         testInstance.aMap = new Map([["foo", "bar"]]);
         testInstance.aReadonlyArray = [true, false];
-        testInstance.aSecondSet = new Set([1, 2]);
-        testInstance.aSecondMap = new Map([["foo", "bar"], ["bar", "foo"], ["foobar", "foobar"]]);
+        testInstance.aReadonlySet = new Set([1, 2]);
+        testInstance.aReadonlyMap = new Map([["foo", "bar"], ["bar", "foo"], ["foobar", "foobar"]]);
+        testInstance.iterableWithoutSize = <Iterable<number>>{};
+        testInstance.iterableWithoutSize[Symbol.iterator] = function* gen() {
+            yield* [1, 2];
+        };
     });
 
     describe("validate()", () => {
@@ -445,16 +452,38 @@ describe("IterableValidator", () => {
             expect(result.isValid()).toBe(false);
         });
 
-        it("should return negative result if aSecondSet has more than two elements", () => {
-            testInstance.aSecondSet = new Set([1, 2, 3]);
+        it("should return negative result if aReadonlySet has more than two elements", () => {
+            testInstance.aReadonlySet = new Set([1, 2, 3]);
 
             const result = validator.validate(testInstance);
 
             expect(result.isValid()).toBe(false);
         });
 
-        it("should return negative result if aSecondMap has less than two or more than four elements", () => {
-            testInstance.aSecondMap = new Map([["foo", "bar"]]);
+        it("should return negative result if aReadonlyMap has less than two or more than four elements", () => {
+            testInstance.aReadonlyMap = new Map([["foo", "bar"]]);
+
+            const result = validator.validate(testInstance);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if iterableWithoutSize does not contain a 2", () => {
+            testInstance.iterableWithoutSize = <Iterable<number>>{};
+            testInstance.iterableWithoutSize[Symbol.iterator] = function* gen() {
+                yield* [0, 1];
+            };
+
+            const result = validator.validate(testInstance);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return negative result if iterableWithoutSize does contain a 3", () => {
+            testInstance.iterableWithoutSize = <Iterable<number>>{};
+            testInstance.iterableWithoutSize[Symbol.iterator] = function* gen() {
+                yield* [1, 2, 3];
+            };
 
             const result = validator.validate(testInstance);
 

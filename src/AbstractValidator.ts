@@ -91,8 +91,8 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
 
     protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => SizedIterable<TProperty>): SizedIterableValidatorBuilder<T, TProperty>;
     protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty>): IterableValidatorBuilder<T, TProperty>;
-    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => SizedIterable<TProperty>): SizedIterableValidatorBuilder<T, TProperty> {
-        const rule: ValidationRule<T, SizedIterable<TProperty>> = this.registerRule(new ValidationRule(lambdaExpression));
+    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty>): SizedIterableValidatorBuilder<T, TProperty> {
+        const rule: ValidationRule<T, Iterable<TProperty>> = this.registerRule(new ValidationRule(lambdaExpression));
 
         return new SizedIterableValidatorBuilderImpl(rule);
     }
