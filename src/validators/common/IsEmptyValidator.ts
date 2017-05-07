@@ -3,7 +3,7 @@ import {hasLength, hasSize} from "../../shared/";
 
 /**
  *  Validates if given value is empty (=== '', === null, === undefined)
- *  or in case of collections (Array, Set, Map) if they do not contain any element
+ *  or in case of certain iterables if they do not contain any element
  *  (length === 0, size === 0).
  *
  * @export
