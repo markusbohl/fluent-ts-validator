@@ -1,9 +1,4 @@
-export interface HasSize {
-    size: number;
-}
-
-export interface HasLength {
-    length: number;
-}
+import {HasLength} from "./HasLength";
+import {HasSize} from "./HasSize";
 
 export type SizedIterable<T> = (Iterable<T> & HasLength) | (Iterable<T> & HasSize);

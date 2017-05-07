@@ -1,6 +1,7 @@
 import {PropertyValidator} from "../PropertyValidator";
 import {SizedIterable} from "../../shared/SizedIterable";
-import {hasLength, hasSize} from "./CollectionGuard";
+import {hasLength} from "../../shared/HasLength";
+import {hasSize} from "../../shared/HasSize";
 
 export class HasMinNumberOfElementsValidator implements PropertyValidator<SizedIterable<any>> {
 

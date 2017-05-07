@@ -11,3 +11,5 @@ export * from "./CurrencyOptions";
 export * from "./FqdnOptions";
 export * from "./UrlOptions";
 export * from "./SizedIterable";
+export * from "./HasLength";
+export * from "./HasSize";
