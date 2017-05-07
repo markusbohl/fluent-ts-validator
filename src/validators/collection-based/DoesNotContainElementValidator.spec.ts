@@ -1,4 +1,4 @@
-import {DoesNotContainElementValidator} from './DoesNotContainElementValidator';
+import {DoesNotContainElementValidator} from "./DoesNotContainElementValidator";
 
 describe("DoesNotContainElementValidator", () => {
     let validator: DoesNotContainElementValidator<string>;

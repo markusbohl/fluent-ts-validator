@@ -1,4 +1,4 @@
-import {PropertyValidator} from '../PropertyValidator';
+import {PropertyValidator} from "../PropertyValidator";
 
 export class DoesNotContainElementValidator<TProperty> implements PropertyValidator<Iterable<TProperty>> {
 
