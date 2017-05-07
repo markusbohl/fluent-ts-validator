@@ -1,4 +1,5 @@
 import {PropertyValidator} from "../PropertyValidator";
+import {hasLength, hasSize} from '../../shared/';
 
 /**
  *  Validates if given value is empty (=== '', === null, === undefined)
@@ -17,8 +18,17 @@ export class IsEmptyValidator implements PropertyValidator<any> {
     }
 
     private isEmptyCollection(input: any): boolean {
-        return (input instanceof Array && input.length === 0) ||
-            (input instanceof Set && input.size === 0) ||
-            (input instanceof Map && input.size === 0);
+        if (this.isIterable(input)) {
+            if (hasLength(input)) {
+                return input.length === 0;
+            } else if (hasSize(input)) {
+                return input.size === 0;
+            }
+        }
+        return false;
+    }
+
+    private isIterable(input: any): input is Iterable<any> {
+        return input[Symbol.iterator] !== undefined;
     }
 }

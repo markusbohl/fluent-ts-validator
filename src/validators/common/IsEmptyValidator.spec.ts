@@ -1,101 +1,106 @@
 import {IsEmptyValidator} from "./IsEmptyValidator";
 
 describe("IsEmptyValidator", () => {
+    let isEmptyValidator: IsEmptyValidator;
+
+    beforeEach(() => {
+        isEmptyValidator = new IsEmptyValidator();
+    });
+
     describe("isValid()", () => {
         it("should return false if given string value is not null", () => {
-            let isEmptyValidator = new IsEmptyValidator();
+            const result = isEmptyValidator.isValid("non-empty");
 
-            let result = isEmptyValidator.isValid("non-empty");
-
-            expect(result).toBeFalsy();
+            expect(result).toBe(false);
         });
 
         it("should return true if given string is empty", () => {
-            let isEmptyValidator = new IsEmptyValidator();
 
-            let result = isEmptyValidator.isValid("");
+            const result = isEmptyValidator.isValid("");
 
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
 
         it("should return false if given number has a value", () => {
-            let isEmptyValidator = new IsEmptyValidator();
 
-            let result = isEmptyValidator.isValid(1);
+            const result = isEmptyValidator.isValid(1);
 
-            expect(result).toBeFalsy();
+            expect(result).toBe(false);
         });
 
         it("should return false if given array has elements", () => {
-            let isEmptyValidator = new IsEmptyValidator();
-            let numbers = [1, 2, 3, 4];
+            const numbers = [1, 2, 3, 4];
 
-            let result = isEmptyValidator.isValid(numbers);
+            const result = isEmptyValidator.isValid(numbers);
 
-            expect(result).toBeFalsy();
+            expect(result).toBe(false);
         });
 
         it("should return true if given array has no elements", () => {
-            let isEmptyValidator = new IsEmptyValidator();
-            let emptyArray: number[] = [];
+            const emptyArray: number[] = [];
 
-            let result = isEmptyValidator.isValid(emptyArray);
+            const result = isEmptyValidator.isValid(emptyArray);
 
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
 
         it("should return true if given value is null", () => {
-            let isEmptyValidator = new IsEmptyValidator();
 
-            let result = isEmptyValidator.isValid(null);
+            const result = isEmptyValidator.isValid(null);
 
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
 
         it("should return true if given value is undefined", () => {
-            let isEmptyValidator = new IsEmptyValidator();
             let notDefined: string;
 
-            let result = isEmptyValidator.isValid(notDefined);
+            const result = isEmptyValidator.isValid(notDefined);
 
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
 
         it("should return false if given set instance contains elements", () => {
-            let isEmptyValidator = new IsEmptyValidator();
-            let set: Set<string> = new Set(["foo"]);
+            const set: Set<string> = new Set(["foo"]);
 
-            let result = isEmptyValidator.isValid(set);
+            const result = isEmptyValidator.isValid(set);
 
-            expect(result).toBeFalsy();
+            expect(result).toBe(false);
         });
 
         it("should return true if given set instance does not contain any elements", () => {
-            let isEmptyValidator = new IsEmptyValidator();
-            let emptySet: Set<string> = new Set();
+            const emptySet: Set<string> = new Set();
 
-            let result = isEmptyValidator.isValid(emptySet);
+            const result = isEmptyValidator.isValid(emptySet);
 
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
 
         it("should return true if given map instance does not contain any elements", () => {
-            let isEmptyValidator = new IsEmptyValidator();
-            let emptyMap: Map<number, string> = new Map();
+            const emptyMap: Map<number, string> = new Map();
 
-            let result = isEmptyValidator.isValid(emptyMap);
+            const result = isEmptyValidator.isValid(emptyMap);
 
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
 
         it("should return false if given map instance does contain elements", () => {
-            let isEmptyValidator = new IsEmptyValidator();
-            let map: Map<number, string> = new Map();
+            const map: Map<number, string> = new Map();
             map.set(42, "foo");
 
-            let result = isEmptyValidator.isValid(map);
+            const result = isEmptyValidator.isValid(map);
 
-            expect(result).toBeFalsy();
+            expect(result).toBe(false);
+        });
+
+        it("should return false if given instance is not an iterable although having length and size fiels with value 0", () => {
+            const result = isEmptyValidator.isValid(new NotAnIterable());
+
+            expect(result).toBe(false);
         });
     });
 });
+
+class NotAnIterable {
+    length: number = 0;
+    size: number = 0;
+}
