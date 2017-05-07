@@ -1,4 +1,5 @@
 export * from "./ContainsElementValidator";
+export * from "./DoesNotContainElementValidator";
 export * from "./IsEmptyValidator";
 export * from "./IsNotEmptyValidator";
 export * from "./HasNumberOfElementsValidator";
