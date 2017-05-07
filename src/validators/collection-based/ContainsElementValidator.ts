@@ -11,8 +11,7 @@ export class ContainsElementValidator<TProperty> implements PropertyValidator<It
                     return true;
                 }
             }
-        } else {
-            return false;
         }
+        return false;
     }
 }

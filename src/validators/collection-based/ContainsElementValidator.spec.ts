@@ -31,4 +31,12 @@ describe("ContainsElementValidator", () => {
 
         expect(result).toBe(true);
     });
+
+    it("should return false if iterable does not contain given element", () => {
+        anArray = ["foo", "bar"];
+
+        const result = validator.isValid(anArray);
+
+        expect(result).toBe(false);
+    });
 });
