@@ -3,9 +3,9 @@ import {SizedIterable} from "../../shared/SizedIterable";
 import {hasLength} from "../../shared/HasLength";
 import {hasSize} from "../../shared/HasSize";
 
-export class IsEmptyValidator implements PropertyValidator<SizedIterable<any>> {
+export class IsEmptyValidator implements PropertyValidator<Iterable<any>> {
 
-    isValid(input: SizedIterable<any>): boolean {
+    isValid(input: Iterable<any>): boolean {
         if (hasLength(input)) {
             return input.length === 0;
         } else if (hasSize(input)) {

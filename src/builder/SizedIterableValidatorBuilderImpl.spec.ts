@@ -1,13 +1,13 @@
 import {ValidationRule} from "../validation/ValidationRule";
-import {HasNumberOfElementsValidator} from "../validators/collection-based/HasNumberOfElementsValidator";
+import {ContainsElementValidator} from "../validators/collection-based/ContainsElementValidator";
+import {DoesNotContainElementValidator} from "../validators/collection-based/DoesNotContainElementValidator";
 import {SizedIterableValidatorBuilderImpl} from "./SizedIterableValidatorBuilderImpl";
-import {
-    IsEmptyValidator,
-    IsNotEmptyValidator,
-    HasMaxNumberOfElementsValidator,
-    HasMinMaxNumberOfElementsValidator,
-    HasMinNumberOfElementsValidator
-} from "../validators/collection-based/index";
+import {IsEmptyValidator} from "../validators/collection-based/IsEmptyValidator";
+import {IsNotEmptyValidator} from "../validators/collection-based/IsNotEmptyValidator";
+import {HasNumberOfElementsValidator} from "../validators/collection-based/HasNumberOfElementsValidator";
+import {HasMinNumberOfElementsValidator} from "../validators/collection-based/HasMinNumberOfElementsValidator";
+import {HasMaxNumberOfElementsValidator} from "../validators/collection-based/HasMaxNumberOfElementsValidator";
+import {HasMinMaxNumberOfElementsValidator} from "../validators/collection-based/HasMinMaxNumberOfElementsValidator";
 
 describe("SizedIterableValidatorBuilderImpl", () => {
     let builder: SizedIterableValidatorBuilderImpl<TestClass, string>;
@@ -17,6 +17,34 @@ describe("SizedIterableValidatorBuilderImpl", () => {
         validationRule = new ValidationRule((input: TestClass) => input.anArray);
         spyOn(validationRule, "addValidator");
         builder = new SizedIterableValidatorBuilderImpl<TestClass, string>(validationRule);
+    });
+
+    describe("contains()", () => {
+        it("should set IsEmptyValidator to validation rule", () => {
+            builder.contains("foo");
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(ContainsElementValidator));
+        });
+
+        it("should return builder itself", () => {
+            const result = builder.contains("foo");
+
+            expect(result).toBe(builder);
+        });
+    });
+
+    describe("doesNotContain()()", () => {
+        it("should set IsEmptyValidator to validation rule", () => {
+            builder.doesNotContain("foo");
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(DoesNotContainElementValidator));
+        });
+
+        it("should return builder itself", () => {
+            const result = builder.doesNotContain("foo");
+
+            expect(result).toBe(builder);
+        });
     });
 
     describe("isEmpty()", () => {
@@ -105,5 +133,5 @@ describe("SizedIterableValidatorBuilderImpl", () => {
 });
 
 class TestClass {
-    anArray: string[];
+    anArray: string[] = [];
 }

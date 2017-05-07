@@ -1,20 +1,21 @@
-import {Validatable, ValidationResult} from "./shared";
-import {ValidationRule, CollectionValidationRule, RuleApplicationOutcome} from "./validation";
 import {
-    SizedIterableValidatorBuilder,
-    SizedIterableValidatorBuilderImpl,
     CommonValidatorBuilder,
     CommonValidatorBuilderImpl,
     DateValidatorBuilder,
     DateValidatorBuilderImpl,
+    IterableValidatorBuilder,
+    SizedIterableValidatorBuilderImpl,
     NumberValidatorBuilder,
     NumberValidatorBuilderImpl,
+    SizedIterableValidatorBuilder,
     StringValidatorBuilder,
     StringValidatorBuilderImpl,
     TypeValidatorBuilder,
     TypeValidatorBuilderImpl
 } from "./builder";
+import {Validatable, ValidationResult} from "./shared";
 import {SizedIterable} from "./shared/SizedIterable";
+import {CollectionValidationRule, RuleApplicationOutcome, ValidationRule} from "./validation";
 
 /**
  * Abstract base class for all custom validators.
@@ -88,6 +89,8 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
         return new StringValidatorBuilderImpl(rule);
     }
 
+    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => SizedIterable<TProperty>): SizedIterableValidatorBuilder<T, TProperty>;
+    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty>): IterableValidatorBuilder<T, TProperty>;
     protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => SizedIterable<TProperty>): SizedIterableValidatorBuilder<T, TProperty> {
         const rule: ValidationRule<T, SizedIterable<TProperty>> = this.registerRule(new ValidationRule(lambdaExpression));
 

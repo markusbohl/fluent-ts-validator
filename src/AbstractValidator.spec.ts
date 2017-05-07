@@ -267,7 +267,7 @@ describe("AddressbookValidator", () => {
     });
 });
 
-class IterablesPropClass {
+class CollectionPropClass {
     names: string[];
     dates: Date[];
     numbers: number[];
@@ -275,7 +275,7 @@ class IterablesPropClass {
     anything: any[];
 }
 
-class IterablesValidator extends AbstractValidator<IterablesPropClass> {
+class CollectionValidator extends AbstractValidator<CollectionPropClass> {
     constructor() {
         super();
         this.validateIfEachDate(i => i.dates).isAfter(new Date(2000, 0, 1));
@@ -286,17 +286,17 @@ class IterablesValidator extends AbstractValidator<IterablesPropClass> {
     }
 }
 
-describe("IterablesValidator", () => {
-    let validator: IterablesValidator;
-    let testInstance: IterablesPropClass;
+describe("CollectionValidator", () => {
+    let validator: CollectionValidator;
+    let testInstance: CollectionPropClass;
     beforeEach(() => {
-        testInstance = new IterablesPropClass();
+        testInstance = new CollectionPropClass();
         testInstance.names = ["foo"];
         testInstance.dates = [new Date(2001, 0, 1)];
         testInstance.numbers = [1];
         testInstance.people = [new TestPerson()];
         testInstance.anything = ["foobar"];
-        validator = new IterablesValidator();
+        validator = new CollectionValidator();
     });
 
     describe("validate()", () => {
@@ -358,42 +358,42 @@ describe("IterablesValidator", () => {
     });
 });
 
-class CollectionsPropClass {
+class IterablePropClass {
     anArray: number[];
     aSet: Set<string>;
     aMap: Map<string, string>;
     aReadonlyArray: ReadonlyArray<boolean>;
-    // aReadonlySet: ReadonlySet<number>;
-    aReadonlySet: Set<number>;
-    // aReadonlyMap: ReadonlyMap<string, string>;
-    aReadonlyMap: Map<string, string>;
+    aSecondSet: Set<number>;
+    aSecondMap: Map<string, string>;
+    aReadonlySet: ReadonlySet<number>;
+    aReadonlyMap: ReadonlyMap<string, string>;
 }
 
-class CollectionValidator extends AbstractValidator<CollectionsPropClass> {
+class IterableValidator extends AbstractValidator<IterablePropClass> {
     constructor() {
         super();
         this.validateIfIterable(i => i.anArray).isEmpty();
         this.validateIfIterable(i => i.aSet).isNotEmpty();
         this.validateIfIterable(i => i.aMap).hasNumberOfElements(1);
         this.validateIfIterable(i => i.aReadonlyArray).hasMinNumberOfElements(1);
-        this.validateIfIterable(i => i.aReadonlySet).hasMaxNumberOfElements(2);
-        this.validateIfIterable(i => i.aReadonlyMap).hasNumberOfElementsBetween(2, 4);
+        this.validateIfIterable(i => i.aSecondSet).hasMaxNumberOfElements(2);
+        this.validateIfIterable(i => i.aSecondMap).hasNumberOfElementsBetween(2, 4);
     }
 }
 
-describe("CollectionValidator", () => {
-    let validator: CollectionValidator;
-    let testInstance: CollectionsPropClass;
+describe("IterableValidator", () => {
+    let validator: IterableValidator;
+    let testInstance: IterablePropClass;
 
     beforeEach(() => {
-        validator = new CollectionValidator();
-        testInstance = new CollectionsPropClass();
+        validator = new IterableValidator();
+        testInstance = new IterablePropClass();
         testInstance.anArray = [];
         testInstance.aSet = new Set("foo");
         testInstance.aMap = new Map([["foo", "bar"]]);
         testInstance.aReadonlyArray = [true, false];
-        testInstance.aReadonlySet = new Set([1, 2]);
-        testInstance.aReadonlyMap = new Map([["foo", "bar"], ["bar", "foo"], ["foobar", "foobar"]]);
+        testInstance.aSecondSet = new Set([1, 2]);
+        testInstance.aSecondMap = new Map([["foo", "bar"], ["bar", "foo"], ["foobar", "foobar"]]);
     });
 
     describe("validate()", () => {
@@ -445,16 +445,16 @@ describe("CollectionValidator", () => {
             expect(result.isValid()).toBe(false);
         });
 
-        it("should return negative result if aReadonlySet has more than two elements", () => {
-            testInstance.aReadonlySet = new Set([1, 2, 3]);
+        it("should return negative result if aSecondSet has more than two elements", () => {
+            testInstance.aSecondSet = new Set([1, 2, 3]);
 
             const result = validator.validate(testInstance);
 
             expect(result.isValid()).toBe(false);
         });
 
-        it("should return negative result if aReadonlyMap has less than two or more than four elements", () => {
-            testInstance.aReadonlyMap = new Map([["foo", "bar"]]);
+        it("should return negative result if aSecondMap has less than two or more than four elements", () => {
+            testInstance.aSecondMap = new Map([["foo", "bar"]]);
 
             const result = validator.validate(testInstance);
 

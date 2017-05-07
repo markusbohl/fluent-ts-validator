@@ -1,23 +1,37 @@
 import {ValidationRule} from "../validation/ValidationRule";
 import {
-    IsEmptyValidator,
-    IsNotEmptyValidator,
+    ContainsElementValidator,
+    DoesNotContainElementValidator,
     HasMaxNumberOfElementsValidator,
     HasMinMaxNumberOfElementsValidator,
     HasMinNumberOfElementsValidator,
-    HasNumberOfElementsValidator
-} from "../validators/collection-based/index";
-import {SizedIterableValidatorBuilder} from "./SizedIterableValidatorBuilder";
+    HasNumberOfElementsValidator,
+    IsEmptyValidator,
+    IsNotEmptyValidator
+} from "../validators/collection-based";
 import {CommonValidatorBuilderImpl} from "./CommonValidatorBuilderImpl";
+import {SizedIterableValidatorBuilder} from "./SizedIterableValidatorBuilder";
 import {ValidationOptionsBuilder} from "./ValidationOptionsBuilder";
-import {SizedIterable} from "../shared/SizedIterable";
+
 
 export class SizedIterableValidatorBuilderImpl<T, TProperty>
-    extends CommonValidatorBuilderImpl<T, SizedIterable<TProperty>>
+    extends CommonValidatorBuilderImpl<T, Iterable<TProperty>>
     implements SizedIterableValidatorBuilder<T, TProperty> {
 
-    constructor(validationRule: ValidationRule<T, SizedIterable<TProperty>>) {
+    constructor(validationRule: ValidationRule<T, Iterable<TProperty>>) {
         super(validationRule);
+    }
+
+    contains(element: TProperty): this & ValidationOptionsBuilder<T> {
+        this.validationRule.addValidator(new ContainsElementValidator(element));
+
+        return this;
+    }
+
+    doesNotContain(element: TProperty): this & ValidationOptionsBuilder<T> {
+        this.validationRule.addValidator(new DoesNotContainElementValidator(element));
+
+        return this;
     }
 
     isEmpty(): this & ValidationOptionsBuilder<T> {

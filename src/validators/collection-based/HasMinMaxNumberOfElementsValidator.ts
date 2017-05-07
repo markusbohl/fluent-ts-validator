@@ -3,7 +3,7 @@ import {SizedIterable} from "../../shared/SizedIterable";
 import {HasMinNumberOfElementsValidator} from "./HasMinNumberOfElementsValidator";
 import {HasMaxNumberOfElementsValidator} from "./HasMaxNumberOfElementsValidator";
 
-export class HasMinMaxNumberOfElementsValidator implements PropertyValidator<SizedIterable<any>> {
+export class HasMinMaxNumberOfElementsValidator implements PropertyValidator<Iterable<any>> {
 
     private minValidator: HasMinNumberOfElementsValidator;
     private maxValidator: HasMaxNumberOfElementsValidator;
@@ -13,7 +13,7 @@ export class HasMinMaxNumberOfElementsValidator implements PropertyValidator<Siz
         this.maxValidator = new HasMaxNumberOfElementsValidator(maxElementCount);
     }
 
-    isValid(input: SizedIterable<any>): boolean {
+    isValid(input: Iterable<any>): boolean {
         return this.minValidator.isValid(input) && this.maxValidator.isValid(input);
     }
 }

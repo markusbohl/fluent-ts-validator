@@ -3,12 +3,12 @@ import {SizedIterable} from "../../shared/SizedIterable";
 import {hasLength} from "../../shared/HasLength";
 import {hasSize} from "../../shared/HasSize";
 
-export class HasNumberOfElementsValidator implements PropertyValidator<SizedIterable<any>> {
+export class HasNumberOfElementsValidator implements PropertyValidator<Iterable<any>> {
 
     constructor(private numberOfElements: number) {
     }
 
-    isValid(input: SizedIterable<any>): boolean {
+    isValid(input: Iterable<any>): boolean {
         if (hasLength(input)) {
             return input.length === this.numberOfElements;
         } else if (hasSize(input)) {
