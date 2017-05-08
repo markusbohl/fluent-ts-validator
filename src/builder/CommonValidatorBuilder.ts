@@ -53,18 +53,18 @@ export interface CommonValidatorBuilder<T, TProperty> {
     isNotEqualTo(comparison: TProperty): this & ValidationOptionsBuilder<T>;
 
     /**
-     * Checks if a property or an equal value is an element of the provided array (===).
+     * Checks if a property or an equal value is an element of the provided iterable (===).
      *
-     * @param array:
+     * @param iterable
      */
-    isIn(array: Array<TProperty>): this & ValidationOptionsBuilder<T>;
+    isIn(iterable: Iterable<TProperty>): this & ValidationOptionsBuilder<T>;
 
     /**
-     * Checks if a property or an equal value is not an element of the provided array (!==).
+     * Checks if a property or an equal value is not an element of the provided iterable (!==).
      *
-     * @param array
+     * @param iterable
      */
-    isNotIn(array: Array<TProperty>): this & ValidationOptionsBuilder<T>;
+    isNotIn(iterable: Iterable<TProperty>): this & ValidationOptionsBuilder<T>;
 
     /**
      * Checks if a property can successfully be validated by the provided validator.
