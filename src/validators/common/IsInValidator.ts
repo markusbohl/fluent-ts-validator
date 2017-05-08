@@ -10,10 +10,15 @@ import {PropertyValidator} from "../PropertyValidator";
  */
 export class IsInValidator<T> implements PropertyValidator<T> {
 
-    constructor(private array: Array<T>) {
+    constructor(private iterable: Iterable<T>) {
     }
 
     isValid(input: T): boolean {
-        return this.array.some((value => value === input));
+        for (let element of this.iterable) {
+            if (element === input) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,7 +1,7 @@
 import {PropertyValidator} from "../PropertyValidator";
 
 /**
- * Validates if given value is not in the array of allowed valuesl
+ * Validates if given value is not in the array of allowed values.
  *
  * @export
  * @class IsNotInValidator
@@ -10,10 +10,15 @@ import {PropertyValidator} from "../PropertyValidator";
  */
 export class IsNotInValidator<T> implements PropertyValidator<T> {
 
-    constructor(private array: Array<T>) {
+    constructor(private iterable: Iterable<T>) {
     }
 
     isValid(input: T): boolean {
-        return !this.array.some(value => value === input);
+        for (let element of this.iterable) {
+            if (element === input) {
+                return false;
+            }
+        }
+        return true;
     }
 }

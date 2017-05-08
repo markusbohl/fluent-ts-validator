@@ -10,8 +10,8 @@ export interface CommonValidatorBuilder<T, TProperty> {
     isNotEmpty(): this & ValidationOptionsBuilder<T>;
     isEqualTo(comparison: TProperty): this & ValidationOptionsBuilder<T>;
     isNotEqualTo(comparison: TProperty): this & ValidationOptionsBuilder<T>;
-    isIn(array: Array<TProperty>): this & ValidationOptionsBuilder<T>;
-    isNotIn(array: Array<TProperty>): this & ValidationOptionsBuilder<T>;
+    isIn(array: Iterable<TProperty>): this & ValidationOptionsBuilder<T>;
+    isNotIn(array: Iterable<TProperty>): this & ValidationOptionsBuilder<T>;
     fulfills(validator: Validatable<TProperty>): this & ValidationOptionsBuilder<T>;
     fulfills(validationExpression: (input: TProperty) => boolean): this & ValidationOptionsBuilder<T>;
 }
