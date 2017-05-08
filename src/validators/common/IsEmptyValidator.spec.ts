@@ -92,10 +92,32 @@ describe("IsEmptyValidator", () => {
             expect(result).toBe(false);
         });
 
-        it("should return false if given instance is not an iterable although having length and size fiels with value 0", () => {
+        it("should return false if given instance is not an iterable although having length and size fields with value 0", () => {
             const result = isEmptyValidator.isValid(new NotAnIterable());
 
             expect(result).toBe(false);
+        });
+
+        it("should return false if given instance is a non-empty iterable without length or size fields", () => {
+            let nonEmptyIterable = <Iterable<number>>{};
+            nonEmptyIterable[Symbol.iterator] = function* gen() {
+                yield* [1, 2];
+            };
+
+            const result = isEmptyValidator.isValid(nonEmptyIterable);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return true if given instance is an empty iterable without length or size fields", () => {
+            let nonEmptyIterable = <Iterable<number>>{};
+            nonEmptyIterable[Symbol.iterator] = function* gen() {
+                yield* [];
+            };
+
+            const result = isEmptyValidator.isValid(nonEmptyIterable);
+
+            expect(result).toBe(true);
         });
     });
 });

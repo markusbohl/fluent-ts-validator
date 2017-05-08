@@ -23,6 +23,8 @@ export class IsEmptyValidator implements PropertyValidator<any> {
                 return input.length === 0;
             } else if (hasSize(input)) {
                 return input.size === 0;
+            } else {
+                return this.isIterableEmtpy(input);
             }
         }
         return false;
@@ -30,5 +32,12 @@ export class IsEmptyValidator implements PropertyValidator<any> {
 
     private isIterable(input: any): input is Iterable<any> {
         return input[Symbol.iterator] !== undefined;
+    }
+
+    private isIterableEmtpy(iterable: Iterable<any>): boolean {
+        for (let element of iterable) {
+            return false;
+        }
+        return true;
     }
 }
