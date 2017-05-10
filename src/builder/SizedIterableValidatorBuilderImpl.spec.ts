@@ -8,7 +8,7 @@ import {HasNumberOfElementsValidator} from "../validators/collection-based/HasNu
 import {HasMinNumberOfElementsValidator} from "../validators/collection-based/HasMinNumberOfElementsValidator";
 import {HasMaxNumberOfElementsValidator} from "../validators/collection-based/HasMaxNumberOfElementsValidator";
 import {HasMinMaxNumberOfElementsValidator} from "../validators/collection-based/HasMinMaxNumberOfElementsValidator";
-import {WhenNotEmptyCondition} from '../validation/WhenNotEmptyCondition';
+import {WhenNotEmptyCondition} from "../validation/WhenNotEmptyCondition";
 
 describe("SizedIterableValidatorBuilderImpl", () => {
     let builder: SizedIterableValidatorBuilderImpl<TestClass, string>;

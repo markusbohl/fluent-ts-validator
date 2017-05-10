@@ -1,5 +1,5 @@
-import {isIterable, isIterableEmtpy} from '../shared/';
-import {ValidationCondition} from './ValidationCondition';
+import {isIterable, isIterableEmtpy} from "../shared/";
+import {ValidationCondition} from "./ValidationCondition";
 
 export class WhenNotEmptyCondition<T> implements ValidationCondition<T> {
 
@@ -8,7 +8,7 @@ export class WhenNotEmptyCondition<T> implements ValidationCondition<T> {
 
     shouldDoValidation(input: T): boolean {
         const result = this.lambdaExprResultFor(input);
-        
+
         if (isIterable(result)) {
             return !isIterableEmtpy(result);
         } else {

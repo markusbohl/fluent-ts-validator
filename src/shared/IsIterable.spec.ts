@@ -1,4 +1,4 @@
-import {isIterable} from './IsIterable';
+import {isIterable} from "./IsIterable";
 
 describe("isIterable()", () => {
     it("should return true, if input is an Iterable", () => {

@@ -12,8 +12,8 @@ import {
 import {CommonValidatorBuilderImpl} from "./CommonValidatorBuilderImpl";
 import {SizedIterableValidatorBuilder} from "./SizedIterableValidatorBuilder";
 import {ValidationOptionsBuilder} from "./ValidationOptionsBuilder";
-import {IterableValidationOptionsBuilder} from './IterableValidationOptionsBuilder';
-import {WhenNotEmptyCondition} from '../validation/WhenNotEmptyCondition';
+import {IterableValidationOptionsBuilder} from "./IterableValidationOptionsBuilder";
+import {WhenNotEmptyCondition} from "../validation/WhenNotEmptyCondition";
 
 
 export class SizedIterableValidatorBuilderImpl<T, TProperty>
