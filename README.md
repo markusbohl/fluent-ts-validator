@@ -31,6 +31,24 @@ yarn add fluent-ts-validator
 ```
 
 
+## Content
+- [Usage](#usage)
+    - [Basic Validation Example](#basic-validation-example)
+    - [Rule Building](#rule-building)
+        - [Rule Concatenation](#rule-concatenation)
+        - [Validation Failure Configuration](#validation-failure-configuration)
+- [Validation Rules](#validation-rules)
+    - [Common Validation Rules](#common-validation-rules)
+    - [String Validation Rules](#string-validation-rules)
+    - [Number Validation Rules](#number-validation-rules)
+    - [Date Validation Rules](#date-validation-rules)
+    - [Type Validation Rules](#type-validation-rules)
+- [Custom Validators and Validation Expressions](#custom-validators-and-validation-expressions)
+- [Validation Result & Validation Failures](#validation-result--validation-failures)
+- [Asynchronous Validation](#asynchronous-validation)
+- [Callbacks](#callbacks)
+
+
 ## Usage
 
 Creating a validator for your needs is simply done by extending the `AbstractValidator<T>` 
@@ -49,7 +67,7 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
     constructor() {
         super();
         this.validateIfString(hero => hero.name)
-            .isAlphanumeric()
+            .isAlphanumeric().hasMinLength(3)
             .withFailureMessage("C'mon! At least some pronounceable name.");
 
         this.validateIf(hero => hero.superpowers)
