@@ -8,6 +8,7 @@ import {HasNumberOfElementsValidator} from "../validators/collection-based/HasNu
 import {HasMinNumberOfElementsValidator} from "../validators/collection-based/HasMinNumberOfElementsValidator";
 import {HasMaxNumberOfElementsValidator} from "../validators/collection-based/HasMaxNumberOfElementsValidator";
 import {HasMinMaxNumberOfElementsValidator} from "../validators/collection-based/HasMinMaxNumberOfElementsValidator";
+import {WhenNotEmptyCondition} from '../validation/WhenNotEmptyCondition';
 
 describe("SizedIterableValidatorBuilderImpl", () => {
     let builder: SizedIterableValidatorBuilderImpl<TestClass, string>;
@@ -16,7 +17,22 @@ describe("SizedIterableValidatorBuilderImpl", () => {
     beforeEach(() => {
         validationRule = new ValidationRule((input: TestClass) => input.anArray);
         spyOn(validationRule, "addValidator");
+        spyOn(validationRule, "addCondition");
         builder = new SizedIterableValidatorBuilderImpl<TestClass, string>(validationRule);
+    });
+
+    describe("whenNotEmpty()", () => {
+        it("should set WhenNotEmptyCondition to validation rule", () => {
+            builder.whenNotEmpty();
+
+            expect(validationRule.addCondition).toHaveBeenCalledWith(jasmine.any(WhenNotEmptyCondition));
+        });
+
+        it("should return builder itself", () => {
+            const result = builder.whenNotEmpty();
+
+            expect(result).toBe(builder);
+        });
     });
 
     describe("contains()", () => {

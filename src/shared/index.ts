@@ -13,3 +13,5 @@ export * from "./UrlOptions";
 export * from "./SizedIterable";
 export * from "./HasLength";
 export * from "./HasSize";
+export * from "./IsIterable";
+export * from "./IsIterableEmpty";

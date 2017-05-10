@@ -1,5 +1,5 @@
 import {PropertyValidator} from "../PropertyValidator";
-import {hasLength, hasSize} from "../../shared/";
+import {isIterable, isIterableEmtpy} from "../../shared/";
 
 /**
  *  Validates if given value is empty (=== '', === null, === undefined)
@@ -18,26 +18,9 @@ export class IsEmptyValidator implements PropertyValidator<any> {
     }
 
     private isEmptyCollection(input: any): boolean {
-        if (this.isIterable(input)) {
-            if (hasLength(input)) {
-                return input.length === 0;
-            } else if (hasSize(input)) {
-                return input.size === 0;
-            } else {
-                return this.isIterableEmtpy(input);
-            }
+        if (isIterable(input)) {
+            return isIterableEmtpy(input);
         }
         return false;
-    }
-
-    private isIterable(input: any): input is Iterable<any> {
-        return input[Symbol.iterator] !== undefined;
-    }
-
-    private isIterableEmtpy(iterable: Iterable<any>): boolean {
-        for (let element of iterable) {
-            return false;
-        }
-        return true;
     }
 }

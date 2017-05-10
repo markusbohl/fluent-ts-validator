@@ -12,14 +12,22 @@ import {
 import {CommonValidatorBuilderImpl} from "./CommonValidatorBuilderImpl";
 import {SizedIterableValidatorBuilder} from "./SizedIterableValidatorBuilder";
 import {ValidationOptionsBuilder} from "./ValidationOptionsBuilder";
+import {IterableValidationOptionsBuilder} from './IterableValidationOptionsBuilder';
+import {WhenNotEmptyCondition} from '../validation/WhenNotEmptyCondition';
 
 
 export class SizedIterableValidatorBuilderImpl<T, TProperty>
     extends CommonValidatorBuilderImpl<T, Iterable<TProperty>>
-    implements SizedIterableValidatorBuilder<T, TProperty> {
+    implements SizedIterableValidatorBuilder<T, TProperty>, IterableValidationOptionsBuilder<T> {
 
     constructor(validationRule: ValidationRule<T, Iterable<TProperty>>) {
         super(validationRule);
+    }
+
+    whenNotEmpty(): IterableValidationOptionsBuilder<T> {
+        this.validationRule.addCondition(new WhenNotEmptyCondition(this.validationRule.lambdaExpression));
+
+        return this;
     }
 
     contains(element: TProperty): this & ValidationOptionsBuilder<T> {
