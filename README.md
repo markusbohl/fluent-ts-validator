@@ -120,6 +120,7 @@ type-based `validateIf` or `validateIfEach` kind of methods. These variants are 
 - `validateIfNumber`: for _number_-based validation rules
 - `validateIfDate`: for _Date_-based validation rules
 - `validateIfString`: for _String_-based validation rules
+- `validateIfIterable`: for _Iterable_-based validation rules
 - `validateIfEach`: same as `validateIf` but for `Iterables`
 - `validateIfEachAny`: same as `validateIfAny` but for `Iterables`
 - `validateIfEachNumber`: same as `validateIfNumber` but for `Iterables`
@@ -159,6 +160,8 @@ available validation options can be found in the [Validation Rules](#validation-
 below.
 
 #### Building Blocks
+
+`validateIf...(` lambda-expression `).`validation-rules`.`validation-conditions/failure-configuration
 
 
 #### Rule Concatencation
@@ -273,10 +276,10 @@ collections (`Array`, `Set`, `Map`) that they do not contain any element (`lengt
  parameter. 
 - `isNotEqualTo(comparison: TProperty)`: Checks if a property is not equal to (`!==`) the 
 `comparison` parameter.
-- `isIn(array: Array<TProperty>)`: Checks if a property or an equal value is an element of the 
-provided array (`===`).
-- `isNotIn(array: Array<TProperty>)`: Checks if a property or an equal value is not an element 
-of the provided array (`!==`).
+- `isIn(interabe: Iterable<TProperty>)`: Checks if a property or an equal value is an element of the 
+provided interabe (`===`).
+- `isNotIn(iterable: Iterable<TProperty>)`: Checks if a property or an equal value is not an element 
+of the provided iterable (`!==`).
 
 
 
@@ -402,7 +405,18 @@ Validation rules to check for certain types.
 
 ### Iterable Validation Rules
 
+Validation rules for iterable properties.
+
 #### Methods
+
+- `isEmpty()`: Checks if an `Iterable` does not have an element.
+- `isNotEmpty()`: Checks if an `Iterable` has at least one element.
+- `hasNumberOfElements(elementCount: number)`: Checks if an `Iterable` has exact `elementCount` elements.
+- `hasMinNumberOfElements(min: number)`: Checks if an `Iterable` has at least `min` elements.
+- `hasMaxNumberOfElements(max: number)`: Checks if an `Iterable` has at most `max` elements.
+- `hasNumberOfElementsBetween(min: number, max: number)`: Checks if an `Iterable` has at least `min` and at most `max` elements.
+- `contains(element: TProperty)`: Checks if an `Iterable` contains the specified `element`.
+- `doesNotContain(element: TProperty)`: Checks if an `Iterable` does not contain the specified `element`.
 
 ### Custom Validation Rules
 
