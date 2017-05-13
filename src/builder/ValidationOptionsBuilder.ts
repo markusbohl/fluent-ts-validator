@@ -23,7 +23,7 @@ export interface ValidationOptionsBuilder<T> {
     /**
      * In case validation fails, `severity` will be available in a corresponding @{ValidationFailure} instance.
      *
-     * Defaults to @type{Severity.ERROR} if not set.
+     * Defaults to Severity.ERROR if not set.
      *
      * @param severity
      */
@@ -65,7 +65,7 @@ export interface ValidationOptionsBuilder<T> {
     unless(expression: (input: T) => boolean): ValidationOptionsBuilder<T>;
 
     /**
-     * In case validation fails, invoke `callback` with ${ValidationFailure} as parameter.
+     * In case validation fails, invoke `callback` with ValidationFailure as parameter.
      *
      * @param callback
      */

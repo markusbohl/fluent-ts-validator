@@ -22,14 +22,14 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
     /**
      * Checks if a string is alphanumeric.
      *
-     * @param locale: @type{AlphanumericLocale}
+     * @param locale: AlphanumericLocale
      */
     isAlphanumeric(locale?: AlphanumericLocale): this & ValidationOptionsBuilder<T>;
 
     /**
      * Checks if a string contains only letters (a-zA-Z).
      *
-     * @param locale: @type{AlphLocale}
+     * @param locale: AlphLocale
      */
     isAlpha(locale?: AlphaLocale): this & ValidationOptionsBuilder<T>;
 
@@ -53,7 +53,7 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
      *
      * The optional parameter defaults to `CurrencyOptions: { symbol: '$', require_symbol: false, allow_space_after_symbol: false, symbol_after_digits: false, allow_negatives: true, parens_for_negatives: false, negative_sign_before_digits: false, negative_sign_after_digits: false, allow_negative_sign_placeholder: false, thousands_separator: ',', decimal_separator: '.', allow_space_after_digits: false }`.
      *
-     * @param options: @type{CurrencyOptions}
+     * @param options: CurrencyOptions
      */
     isCurrency(options?: CurrencyOptions): this & ValidationOptionsBuilder<T>;
 
@@ -67,7 +67,7 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
      *
      * The optional parameter defaults to `EmailOptions: { allow_display_name: false, require_display_name: false, allow_utf8_local_part: true, require_tld: true }`.
      *
-     * @param options: @type{EmailOptions}
+     * @param options: EmailOptions
      */
     isEmail(options?: EmailOptions): this & ValidationOptionsBuilder<T>;
 
@@ -78,7 +78,7 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
      *
      * If `allow_display_name` is set to `true`, the validator will also match `Display Name <email-address>`. If `require_display_name` is set to `true`, the validator will reject strings without the format `Display Name <email-address>`. If `allow_utf8_local_part` is set to `false`, the validator will not allow any non-English UTF8 character in email address' local part. If `require_tld` is set to `false`, e-mail addresses without having TLD in their domain will also be matched.
      *
-     * @param options: @type{FqdnOptions}
+     * @param options: FqdnOptions
      */
     isFqdn(options?: FqdnOptions): this & ValidationOptionsBuilder<T>;
 
@@ -129,7 +129,7 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
     /**
      * Checks if a string is a mobile phone number.
      *
-     * @param locale: @type{MobilePhoneLocale}
+     * @param locale: MobilePhoneLocale
      */
     isMobilePhoneNo(locale: MobilePhoneLocale): this & ValidationOptionsBuilder<T>;
 
@@ -143,7 +143,7 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
      *
      * The optional parameter defaults to `UrlOptions: { protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, require_host: true, require_valid_protocol: true, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false, allow_protocol_relative_urls: false }`.
      *
-     * @param options: @type{UrlOptions}
+     * @param options: UrlOptions
      */
     isUrl(options?: UrlOptions): this & ValidationOptionsBuilder<T>;
 
@@ -157,7 +157,7 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
      *
      * Optional `version` is one value of UuidVersion = "3" | "4" | "5" | "all"; Defaults to "all".
      *
-     * @param version: @type{UuidVersion}
+     * @param version: UuidVersion
      */
     isUuid(version?: UuidVersion): this & ValidationOptionsBuilder<T>;
 
