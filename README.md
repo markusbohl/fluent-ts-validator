@@ -15,8 +15,7 @@ makes use of the mature string validation library [validator.js](https://github.
 
 In this respect, special thanks go to these two projects.
 
-The fluent-ts-validator library is licensed under [MIT](https://opensource.org/licenses/MIT).
-
+The fluent-ts-validator library is licensed under [MIT](https://opensource.org/licenses/MIT). For past, current, and maybe upcomming changes take a look at the [Change Log](https://github.com/markusbohl/fluent-ts-validator/blob/master/CHANGELOG.md).
 
 ## Installation
 
@@ -35,6 +34,7 @@ yarn add fluent-ts-validator
 - [Usage](#usage)
     - [Basic Validation Example](#basic-validation-example)
     - [Rule Building](#rule-building)
+        - [Building Blocks](#building-blocks)
         - [Rule Concatenation](#rule-concatenation)
         - [Validation Failure Configuration](#validation-failure-configuration)
 - [Validation Rules](#validation-rules)
@@ -43,7 +43,8 @@ yarn add fluent-ts-validator
     - [Number Validation Rules](#number-validation-rules)
     - [Date Validation Rules](#date-validation-rules)
     - [Type Validation Rules](#type-validation-rules)
-- [Custom Validators and Validation Expressions](#custom-validators-and-validation-expressions)
+    - [Iterable Validation Rules](#iterable-validation-rules)
+    - [Custom Validation Rules](#custom-validation-rules)
 - [Validation Result & Validation Failures](#validation-result--validation-failures)
 - [Asynchronous Validation](#asynchronous-validation)
 - [Callbacks](#callbacks)
@@ -156,6 +157,8 @@ Only the types of validation rules that make sense for the attributes you are ab
 will be available. And that is an _epic_ win for auto completion. A detailed overview of all 
 available validation options can be found in the [Validation Rules](#validation-rules) section 
 below.
+
+#### Building Blocks
 
 
 #### Rule Concatencation
@@ -397,7 +400,11 @@ Validation rules to check for certain types.
 - `isString()`: Checks if a property is a real `string`.
 
 
-## Custom Validators and Validation Expressions
+### Iterable Validation Rules
+
+#### Methods
+
+### Custom Validation Rules
 
 Sometimes it is useful to reuse one of your validators within a different validator. This is 
 where the `fulfills` method comes in handy:
