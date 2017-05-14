@@ -1,8 +1,9 @@
 import {PropertyValidator} from "../PropertyValidator";
+import {isIterable, isIterableEmtpy} from "../../shared/";
 
 /**
  *  Validates if given value is empty (=== '', === null, === undefined)
- *  or in case of collections (Array, Set, Map) if they do not contain any element
+ *  or in case of certain iterables if they do not contain any element
  *  (length === 0, size === 0).
  *
  * @export
@@ -17,8 +18,9 @@ export class IsEmptyValidator implements PropertyValidator<any> {
     }
 
     private isEmptyCollection(input: any): boolean {
-        return (input instanceof Array && input.length === 0) ||
-            (input instanceof Set && input.size === 0) ||
-            (input instanceof Map && input.size === 0);
+        if (isIterable(input)) {
+            return isIterableEmtpy(input);
+        }
+        return false;
     }
 }

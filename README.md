@@ -15,8 +15,7 @@ makes use of the mature string validation library [validator.js](https://github.
 
 In this respect, special thanks go to these two projects.
 
-The fluent-ts-validator library is licensed under [MIT](https://opensource.org/licenses/MIT).
-
+The fluent-ts-validator library is licensed under [MIT](https://opensource.org/licenses/MIT). For past, current, and maybe upcomming changes take a look at the [Change Log](https://github.com/markusbohl/fluent-ts-validator/blob/master/CHANGELOG.md).
 
 ## Installation
 
@@ -29,6 +28,26 @@ or:
 ```bash
 yarn add fluent-ts-validator
 ```
+
+
+## Content
+- [Usage](#usage)
+    - [Basic Validation Example](#basic-validation-example)
+    - [Rule Building](#rule-building)
+        - [Building Blocks](#building-blocks)
+        - [Rule Concatenation](#rule-concatenation)
+        - [Validation Failure Configuration](#validation-failure-configuration)
+- [Validation Rules](#validation-rules)
+    - [Common Validation Rules](#common-validation-rules)
+    - [String Validation Rules](#string-validation-rules)
+    - [Number Validation Rules](#number-validation-rules)
+    - [Date Validation Rules](#date-validation-rules)
+    - [Type Validation Rules](#type-validation-rules)
+    - [Iterable Validation Rules](#iterable-validation-rules)
+    - [Custom Validation Rules](#custom-validation-rules)
+- [Validation Result & Validation Failures](#validation-result--validation-failures)
+- [Asynchronous Validation](#asynchronous-validation)
+- [Callbacks](#callbacks)
 
 
 ## Usage
@@ -49,7 +68,7 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
     constructor() {
         super();
         this.validateIfString(hero => hero.name)
-            .isAlphanumeric()
+            .isAlphanumeric().hasMinLength(3)
             .withFailureMessage("C'mon! At least some pronounceable name.");
 
         this.validateIf(hero => hero.superpowers)
@@ -101,6 +120,7 @@ type-based `validateIf` or `validateIfEach` kind of methods. These variants are 
 - `validateIfNumber`: for _number_-based validation rules
 - `validateIfDate`: for _Date_-based validation rules
 - `validateIfString`: for _String_-based validation rules
+- `validateIfIterable`: for _Iterable_-based validation rules
 - `validateIfEach`: same as `validateIf` but for `Iterables`
 - `validateIfEachAny`: same as `validateIfAny` but for `Iterables`
 - `validateIfEachNumber`: same as `validateIfNumber` but for `Iterables`
@@ -139,8 +159,33 @@ will be available. And that is an _epic_ win for auto completion. A detailed ove
 available validation options can be found in the [Validation Rules](#validation-rules) section 
 below.
 
+#### Building Blocks
 
-#### Rule Concatencation
+Okay, to create your own validator start by subclassing the `AbstractValidator<T>` and specify the type `T` of objects you want to validate with it.
+Within the constructor of your validator define the relevant validation steps:
+
+```typescript
+export class SuperheroValidator extends AbstractValidator<Superhero> {
+    constructor() {
+        super();
+        this.validateIfString(hero => hero.name) // specify which property of which type needs validation
+            .isAlphanumeric().hasMinLength(3)    // validation rules to apply to the property
+            .whenNotNull()                       // validation conditions that might prevent validation
+            .withFailureCode("NAME-01");         // configure parts of the failure object you receive upon failed validation
+    }
+}
+```
+
+The building blocks of a validation step are:
+- `validateIf...()`-method which takes a lamba expression as parameter
+    - the lambda expression obviously maps from an object to a property. The property is eventually the thing you want to validate. 
+- one or more validation rules (which depend on the type of the property)
+- optional validation conditions (to define under which circumstances the validation should be performed or omitted)
+- optional failure configurations (e.g. failure messages or codes you want to receive in case validation fails)
+
+Validation conditions and failure configurations can only be added after validation rules have been specified.
+
+#### Rule Concatenation
 
 Validation rules can also be concatenated.
 
@@ -227,8 +272,7 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
 ## Validation Rules
 
 On the one hand this library provides validation rules that are specific to a property's type 
-([String](#string-validation-rules), [Number](#number-validation-rules), and [Date Validation 
-Rules](#date-validation-rules)). 
+([String](#string-validation-rules), [Number](#number-validation-rules), [Date](#date-validation-rules), and [Iterable Validation Rules](#iterable-validation-rules)). 
 On the other hand there are rules that can be applied irrespectively of a property's type ([Common](#common-validation-rules) and [Type Validation Rules](#type-validation-rules)). 
 
 ### Common Validation Rules
@@ -252,10 +296,10 @@ collections (`Array`, `Set`, `Map`) that they do not contain any element (`lengt
  parameter. 
 - `isNotEqualTo(comparison: TProperty)`: Checks if a property is not equal to (`!==`) the 
 `comparison` parameter.
-- `isIn(array: Array<TProperty>)`: Checks if a property or an equal value is an element of the 
-provided array (`===`).
-- `isNotIn(array: Array<TProperty>)`: Checks if a property or an equal value is not an element 
-of the provided array (`!==`).
+- `isIn(interabe: Iterable<TProperty>)`: Checks if a property or an equal value is an element of the 
+provided interabe (`===`).
+- `isNotIn(iterable: Iterable<TProperty>)`: Checks if a property or an equal value is not an element 
+of the provided iterable (`!==`).
 
 
 
@@ -379,7 +423,22 @@ Validation rules to check for certain types.
 - `isString()`: Checks if a property is a real `string`.
 
 
-## Custom Validators and Validation Expressions
+### Iterable Validation Rules
+
+Validation rules for iterable properties.
+
+#### Methods
+
+- `isEmpty()`: Checks if an `Iterable` does not have an element.
+- `isNotEmpty()`: Checks if an `Iterable` has at least one element.
+- `hasNumberOfElements(elementCount: number)`: Checks if an `Iterable` has exact `elementCount` elements.
+- `hasMinNumberOfElements(min: number)`: Checks if an `Iterable` has at least `min` elements.
+- `hasMaxNumberOfElements(max: number)`: Checks if an `Iterable` has at most `max` elements.
+- `hasNumberOfElementsBetween(min: number, max: number)`: Checks if an `Iterable` has at least `min` and at most `max` elements.
+- `contains(element: TProperty)`: Checks if an `Iterable` contains the specified `element`.
+- `doesNotContain(element: TProperty)`: Checks if an `Iterable` does not contain the specified `element`.
+
+### Custom Validation Rules
 
 Sometimes it is useful to reuse one of your validators within a different validator. This is 
 where the `fulfills` method comes in handy:

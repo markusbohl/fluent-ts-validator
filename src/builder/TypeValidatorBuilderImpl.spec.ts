@@ -19,7 +19,7 @@ class TestClass {
 describe("TypeValidatorBuilderImpl", () => {
     let validatorBuilder: TypeValidatorBuilder<TestClass>;
 
-    describe("isArray()", () => {
+    describe("hasLength()", () => {
         let validationRule: ValidationRule<TestClass, string[]>;
 
         beforeEach(() => {

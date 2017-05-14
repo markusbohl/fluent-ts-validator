@@ -1,3 +1,6 @@
+export * from "./IterableValidatorBuilder";
+export * from "./SizedIterableValidatorBuilderImpl";
+export * from "./SizedIterableValidatorBuilder";
 export * from "./CommonValidatorBuilder";
 export * from "./CommonValidatorBuilderImpl";
 export * from "./DateValidatorBuilder";
