@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
     - `doesNotContain(element)`
     - as well as all common validation rules (`isDefined()`, `isIn()`, etc.)
 - JSDoc for all public methods.
+- Descriptions of added features to `README.md`.
 - This Change Log.
 
 ### Changed
@@ -60,13 +61,13 @@ and aborting the validation process. This could even happen despite validation c
 When added to a rule, the validation is only performed when the property to validate is _defined_, _not `null`_, or _not empty_, respectively.
 - Convenient `getFailureMessages(): string[]` and `getFailureCodes(): string[]` methods for `ValidationResult`.
 Instead of iterating over all `ValidationFailure`s to access each failure message and/or code the new methods allow to directly access these information.
+- Descriptions of added features to `README.md`.
 
 ### Changed
 
 - More than one validation condition can be defined per validation rule now. The conditions are logically ANDed. 
 Meaning, all conditions must evaluate to `true` in order to perform the corresponding validation step. 
 Before, only one validation rule could be set.
-- Add descriptions of added features to README.md.
 
 
 
