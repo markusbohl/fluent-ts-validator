@@ -161,10 +161,31 @@ below.
 
 #### Building Blocks
 
-`validateIf...(` lambda-expression `).`validation-rules`.`validation-conditions/failure-configuration
+Okay, to create your own validator start by subclassing the `AbstractValidator<T>` and specify the type `T` of objects you want to validate with it.
+Within the constructor of your validator define the relevant validation steps:
 
+```typescript
+export class SuperheroValidator extends AbstractValidator<Superhero> {
+    constructor() {
+        super();
+        this.validateIfString(hero => hero.name) // specify which property of which type needs validation
+            .isAlphanumeric().hasMinLength(3)    // validation rules to apply to the property
+            .whenNotNull()                       // validation conditions that might prevent validation
+            .withFailureCode("NAME-01");         // configure parts of the failure object you receive upon failed validation
+    }
+}
+```
 
-#### Rule Concatencation
+The building blocks of a validation step are:
+- `validateIf...()`-method which takes a lamba expression as parameter
+    - the lambda expression obviously maps from an object to a property. The property is eventually the thing you want to validate. 
+- one or more validation rules (which depend on the type of the property)
+- optional validation conditions (to define under which circumstances the validation should be performed or omitted)
+- optional failure configurations (e.g. failure messages or codes you want to receive in case validation fails)
+
+Validation conditions and failure configurations can only be added after validation rules have been specified.
+
+#### Rule Concatenation
 
 Validation rules can also be concatenated.
 
