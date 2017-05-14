@@ -272,8 +272,7 @@ export class SuperheroValidator extends AbstractValidator<Superhero> {
 ## Validation Rules
 
 On the one hand this library provides validation rules that are specific to a property's type 
-([String](#string-validation-rules), [Number](#number-validation-rules), and [Date Validation 
-Rules](#date-validation-rules)). 
+([String](#string-validation-rules), [Number](#number-validation-rules), [Date](#date-validation-rules), and [Iterable Validation Rules](#iterable-validation-rules)). 
 On the other hand there are rules that can be applied irrespectively of a property's type ([Common](#common-validation-rules) and [Type Validation Rules](#type-validation-rules)). 
 
 ### Common Validation Rules
