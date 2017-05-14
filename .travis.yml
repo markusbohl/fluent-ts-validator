@@ -9,7 +9,7 @@ script:
   - npm run test:snyk
   - npm run lint
   - npm run build
-  - npm run test:ci
+  - npm run test
 
 after_success:
   - npm run test:coverage && npm run codecov

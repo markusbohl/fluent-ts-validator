@@ -33,7 +33,6 @@
     "tdd": "nodemon --watch src --ext ts --exec 'npm test'",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
     "test:coverage": "ts-node node_modules/.bin/istanbul cover -e .ts -x '*.spec.ts' node_modules/.bin/jasmine",
-    "test:ci": "JASMINE_CONFIG_PATH=./spec/support/jasmine-ci.json jasmine",
     "test:snyk": "snyk test",
     "test:snyk:dev": "snyk test --dev",
     "codecov": "node_modules/.bin/codecov",
