@@ -12,7 +12,7 @@
   "devDependencies": {
     "@types/jasmine": "2.5.47",
     "@types/validator": "6.2.0",
-    "codecov": "2.1.0",
+    "codecov": "2.2.0",
     "copyfiles": "1.2.0",
     "istanbul": "1.1.0-alpha.1",
     "jasmine": "2.6.0",
@@ -20,11 +20,11 @@
     "jasmine-core": "2.6.1",
     "jasmine-ts": "0.1.2",
     "nodemon": "1.11.0",
-    "npm-check": "5.4.0",
+    "npm-check": "5.4.4",
     "rimraf": "2.6.1",
-    "snyk": "1.29.0",
-    "ts-node": "3.0.2",
-    "tslint": "5.1.0",
+    "snyk": "1.30.0",
+    "ts-node": "3.0.4",
+    "tslint": "5.2.0",
     "typescript": "2.3.2"
   },
   "scripts": {
