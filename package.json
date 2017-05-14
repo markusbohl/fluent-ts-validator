@@ -28,7 +28,7 @@
     "typescript": "2.3.2"
   },
   "scripts": {
-    "build": "rimraf build && tsc && copyfiles package.json README.md build",
+    "build": "rimraf build && tsc && copyfiles package.json README.md CHANGELOG.md build",
     "lint": "tslint --config ./tslint.json --project ./tsconfig.json",
     "tdd": "nodemon --watch src --ext ts --exec 'npm test'",
     "test": "jasmine-ts 'src/**/*.spec.ts'",
