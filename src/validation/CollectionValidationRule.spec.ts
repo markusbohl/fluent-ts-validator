@@ -1,8 +1,6 @@
 import {Severity} from '../shared';
 import {PropertyValidator} from '../validators/PropertyValidator';
 import {CollectionValidationRule, ValidationCondition} from './';
-import {ValidationRule} from './ValidationRule';
-
 
 class TestClass {
     readonly array: string[];
