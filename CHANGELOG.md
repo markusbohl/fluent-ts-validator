@@ -18,6 +18,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ~~Security~~
 
+## [2.0.1](https://github.com/markusbohl/fluent-ts-validator/releases/tag/2.0.1) - 2017-05-22
+
+### Fixed
+
+- Invokation of lambda expressions with `undefined` or `null` values in a `validateIfEachX()` function could led to an error being thrown
+and aborting the validation process. This could even happen despite validation conditions that should rather prevent conducting the validation entirely. 
+
+
 ## [2.0.0](https://github.com/markusbohl/fluent-ts-validator/releases/tag/2.0.0) - 2017-05-14
 
 ### Added

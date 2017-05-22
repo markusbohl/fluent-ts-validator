@@ -4,26 +4,23 @@ import {RuleApplicationOutcome} from "./RuleApplicationOutcome";
 export class CollectionValidationRule<T, TProperty extends Iterable<any>> extends ValidationRule<T, TProperty> {
 
     apply(input: T): RuleApplicationOutcome {
-        let outcome = new RuleApplicationOutcome();
+        const outcome = new RuleApplicationOutcome();
+        const collection = this.lambdaExpressionResultWith(input);
 
-        if (this.isNoValidationRequired(input) || this.isIterableNotDefined(input)) {
+        if (this.isNoValidationRequired(input) || collection == null) {
             return outcome;
         }
 
-        for (let element of this.lambdaExpression(input)) {
+        for (let element of collection) {
             this.processElementValidation(input, element, outcome);
         }
 
         return outcome;
     }
 
-    private isIterableNotDefined(input: T): boolean {
-        return this.lambdaExpression(input) == null;
-    }
-
     private processElementValidation(input: T, element: any, outcome: RuleApplicationOutcome) {
         if (this.validators.some(validator => validator.isValid(element) === false)) {
-            let failure = this.createValidationFailure(input, element);
+            const failure = this.createValidationFailure(input, element);
             this.invokeCallbackWith(failure);
             outcome.addValidationFailure(failure);
         }
