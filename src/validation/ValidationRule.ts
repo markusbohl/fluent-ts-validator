@@ -71,7 +71,7 @@ export class ValidationRule<T, TProperty> {
         return new RuleApplicationOutcome(failure);
     }
 
-    private lambdaExpressionResultWith(input: T): TProperty {
+    protected lambdaExpressionResultWith(input: T): TProperty {
         try {
             return this.lambdaExpression(input);
         } catch (e) {
