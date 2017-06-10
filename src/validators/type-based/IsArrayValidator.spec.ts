@@ -15,14 +15,6 @@ describe("IsArrayValidator", () => {
             expect(result).toBeTruthy();
         });
 
-        it("should return false if given value is null", () => {
-            let value: Array<number> = null;
-
-            let result = isArrayValidator.isValid(value);
-
-            expect(result).toBeFalsy();
-        });
-
         it("should return false if given value is not an Array instance", () => {
             let result = isArrayValidator.isValid("not an array");
 

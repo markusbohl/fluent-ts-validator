@@ -7,7 +7,7 @@ export class IsCurrencyValidator implements PropertyValidator<string> {
     constructor(private options?: CurrencyOptions) {
     }
 
-    isValid(input: string): boolean {
+    isValid(input: string | undefined): boolean {
         if (input) {
             return validatorJS.isCurrency(input, this.options);
         }

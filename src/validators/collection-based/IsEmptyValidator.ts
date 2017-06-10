@@ -5,7 +5,7 @@ import {hasSize} from "../../shared/HasSize";
 
 export class IsEmptyValidator implements PropertyValidator<Iterable<any>> {
 
-    isValid(input: Iterable<any>): boolean {
+    isValid(input: Iterable<any> | undefined): boolean {
         if (hasLength(input)) {
             return input.length === 0;
         } else if (hasSize(input)) {

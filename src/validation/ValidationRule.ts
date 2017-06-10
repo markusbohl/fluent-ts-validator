@@ -15,7 +15,7 @@ export class ValidationRule<T, TProperty> {
     protected conditions: ValidationCondition<T>[];
     protected callback: (failure: ValidationFailure) => void;
 
-    constructor(public lambdaExpression: (input: T) => TProperty) {
+    constructor(public lambdaExpression: (input: T) => TProperty | undefined) {
         this.validators = [];
         this.conditions = [];
         // the best way I could think of to get hold of the propertyName was via regex
@@ -23,7 +23,7 @@ export class ValidationRule<T, TProperty> {
         // obviously, something like a native nameof-function in TypeScript would be way nicer
         // unfortunately, it does not exist yet
         let regexArray = lambdaExpression.toString().match("\\s+\\w+\\.(\\w+(\\.\\w+)*)");
-        this.propertyName = regexArray && regexArray.length > 1 ? regexArray[1] : undefined;
+        this.propertyName = regexArray && regexArray.length > 1 ? regexArray[1] : lambdaExpression.toString();
         this.errorMessage = `${this.propertyName} is invalid`;
     }
 
@@ -71,7 +71,7 @@ export class ValidationRule<T, TProperty> {
         return new RuleApplicationOutcome(failure);
     }
 
-    protected lambdaExpressionResultWith(input: T): TProperty {
+    protected lambdaExpressionResultWith(input: T): TProperty | undefined {
         try {
             return this.lambdaExpression(input);
         } catch (e) {
@@ -79,7 +79,7 @@ export class ValidationRule<T, TProperty> {
         }
     }
 
-    protected isValid(input: T, propertyValue: TProperty): boolean {
+    protected isValid(input: T, propertyValue: TProperty | undefined): boolean {
         return this.isNoValidationRequired(input) || this.allValidatorsAreValid(propertyValue);
     }
 
@@ -91,11 +91,11 @@ export class ValidationRule<T, TProperty> {
         return this.conditions.length === 0 || this.conditions.every(cond => cond.shouldDoValidation(input));
     }
 
-    private allValidatorsAreValid(propertyValue: TProperty): boolean {
+    private allValidatorsAreValid(propertyValue: TProperty | undefined): boolean {
         return this.validators.every(validator => validator.isValid(propertyValue));
     }
 
-    protected createValidationFailure(input: T, propertyValue: TProperty): ValidationFailure {
+    protected createValidationFailure(input: T, propertyValue: TProperty | undefined): ValidationFailure {
         return new ValidationFailure(input, this.propertyName, propertyValue, this.errorCode, this.errorMessage, this.severity);
     }
 

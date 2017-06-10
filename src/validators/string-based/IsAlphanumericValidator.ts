@@ -7,7 +7,7 @@ export class IsAlphanumericValidator implements PropertyValidator<string> {
     constructor(private locale?: AlphanumericLocale) {
     }
 
-    isValid(input: string): boolean {
+    isValid(input: string | undefined): boolean {
         if (input) {
             return validatorJS.isAlphanumeric(input, this.locale);
         }

@@ -2,7 +2,7 @@ import {IsNotInValidator} from "./IsNotInValidator";
 
 describe("IsNotInValidator", () => {
     let elements = ["one", "two", "three", null];
-    let isNotInValidator: IsNotInValidator<string>;
+    let isNotInValidator: IsNotInValidator<string | null>;
 
     beforeEach(() => {
         isNotInValidator = new IsNotInValidator(elements);

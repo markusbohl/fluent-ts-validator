@@ -52,9 +52,7 @@ describe("IsEmptyValidator", () => {
         });
 
         it("should return true if given value is undefined", () => {
-            let notDefined: string;
-
-            const result = isEmptyValidator.isValid(notDefined);
+            const result = isEmptyValidator.isValid(undefined);
 
             expect(result).toBe(true);
         });

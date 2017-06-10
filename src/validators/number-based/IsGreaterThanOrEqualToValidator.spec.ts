@@ -32,11 +32,5 @@ describe("IsGreaterThanOrEqualToValidator", () => {
 
             expect(result).toBeFalsy();
         });
-
-        it("should return false if input is null", () => {
-            let result = validator.isValid(null);
-
-            expect(result).toBeFalsy();
-        });
     });
 });

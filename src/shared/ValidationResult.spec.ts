@@ -7,7 +7,7 @@ describe("ValidationResult", () => {
 
     beforeEach(() => {
         result = new ValidationResult();
-        failure = new ValidationFailure(null, null, null);
+        failure = new ValidationFailure(null, 'property', null);
         failures = [failure];
     });
 
@@ -67,13 +67,6 @@ describe("ValidationResult", () => {
             result.addFailures(failures);
 
             expect(result.getFailures()).toContain(failure);
-        });
-
-        it("should not add a null to the result", () => {
-            result.addFailures(null);
-
-            expect(result.getFailures().length).toBe(0);
-            expect(result.getFailures()).not.toContain(null);
         });
     });
 

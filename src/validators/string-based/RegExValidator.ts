@@ -6,7 +6,7 @@ export class RegExValidator implements PropertyValidator<string> {
     constructor(private pattern: RegExp, private modifiers?: string) {
     }
 
-    isValid(input: string): boolean {
+    isValid(input: string | undefined): boolean {
         if (typeof input === "undefined" || input === null) {
             return false;
         }

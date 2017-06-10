@@ -7,7 +7,7 @@ export class HasMaxNumberOfElementsValidator implements PropertyValidator<Iterab
 
     constructor(private maxElementCount: number) {}
 
-    isValid(input: Iterable<any>): boolean {
+    isValid(input: Iterable<any> | undefined): boolean {
         if (hasLength(input)) {
             return input.length <= this.maxElementCount;
         } else if (hasSize(input)) {

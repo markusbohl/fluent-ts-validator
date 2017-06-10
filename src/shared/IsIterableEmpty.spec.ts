@@ -7,12 +7,6 @@ describe("isIterableEmpty", () => {
         expect(result).toBe(true);
     });
 
-    it("should return true if iterable is null", () => {
-        const result = isIterableEmtpy(null);
-
-        expect(result).toBe(true);
-    });
-
     it("should return true if iterable is empty", () => {
         const result = isIterableEmtpy([]);
 

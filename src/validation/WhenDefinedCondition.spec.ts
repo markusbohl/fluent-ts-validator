@@ -51,7 +51,7 @@ describe("WhenDefinedCondition", () => {
 });
 
 class TestClass {
-    property: string;
+    property: string | null;
     innerProp: InnerClass;
 }
 

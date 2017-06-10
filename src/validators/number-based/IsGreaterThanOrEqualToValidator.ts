@@ -12,7 +12,10 @@ export class IsGreaterThanOrEqualToValidator implements PropertyValidator<number
     constructor(private threshold: number) {
     }
 
-    isValid(input: number): boolean {
-        return input >= this.threshold;
+    isValid(input: number | undefined): boolean {
+        if (input) {
+            return input >= this.threshold;
+        }
+        return false;
     }
 }

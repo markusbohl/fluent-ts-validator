@@ -31,13 +31,5 @@ describe("IsLengthValdiator", () => {
 
             expect(result).toBe(false);
         });
-
-        it("should return false if input is null", () => {
-            let validator = new HasLengthValidator(options);
-
-            let result = validator.isValid(null);
-
-            expect(result).toBe(false);
-        });
     });
 });

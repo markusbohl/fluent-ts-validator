@@ -28,6 +28,12 @@ describe("IsStringValidator", () => {
             expect(result).toBeFalsy();
         });
 
+        it("should return false if value is undefined", () => {
+            let result = isStringValidator.isValid(undefined);
+
+            expect(result).toBeFalsy();
+        });
+
         it("should return false if value is not of type string", () => {
             let result = isStringValidator.isValid(1);
 

@@ -119,7 +119,7 @@ describe("ValidationRule", () => {
             expect(failure.message).toBe("leOtherProperty1 is invalid");
         });
 
-        it("should provide given provide property name in validation failure in case of invalid input", () => {
+        it("should provide given property name in validation failure in case of invalid input", () => {
             let rule: ValidationRule<TestClass, number> = new ValidationRule((input: TestClass) => input.leOtherProperty1);
             let toBeValidated = new TestClass("invalid property value");
             rule.addValidator(getNegativeValidator());
@@ -130,7 +130,7 @@ describe("ValidationRule", () => {
             expect(failure.propertyName).toBe("you know what I'm talking about");
         });
 
-        it("should provide undefined for property name in case of 'flat' input", () => {
+        it("should provide lambda-expression for property name in case of 'flat' input", () => {
             let rule: ValidationRule<number, number> = new ValidationRule((input: number) => {
                 return input;
             });
@@ -138,7 +138,9 @@ describe("ValidationRule", () => {
 
             let failure = rule.apply(42).getValidationFailures()[0];
 
-            expect(failure.propertyName).toBe(undefined);
+            expect(failure.propertyName).toBe(`(input) => {
+                return input;
+            }`);
         });
 
         it("should return failure in case exception occurs during lambda execution (due to undefined inner property)", () => {
@@ -207,7 +209,6 @@ describe("ValidationRule", () => {
             let validator: PropertyValidator<string> = getPositiveValidator();
             spyOn(validator, "isValid");
             rule.addValidator(validator);
-            rule.addCondition(null);
 
             rule.apply(new TestClass("some value"));
 

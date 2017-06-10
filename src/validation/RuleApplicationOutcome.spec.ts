@@ -6,7 +6,7 @@ describe("RuleApplicationOutcome", () => {
     let failure: ValidationFailure;
 
     beforeEach(() => {
-        failure = new ValidationFailure(null, null, null);
+        failure = new ValidationFailure(null, 'property', null);
     });
 
     describe("RuleApplicationOutcome()", () => {
@@ -17,11 +17,11 @@ describe("RuleApplicationOutcome", () => {
             expect(outcome.getValidationFailures()).toContain(failure);
         });
 
-        it("should not add a null to the internal collection of failures", () => {
-            let outcome = new RuleApplicationOutcome(null);
+        it("should not add an undefined value to the internal collection of failures", () => {
+            let outcome = new RuleApplicationOutcome(undefined);
 
             expect(outcome.isFailure()).toBeFalsy();
-            expect(outcome.getValidationFailures()).not.toContain(null);
+            expect(outcome.getValidationFailures().length).toEqual(0);
         });
     });
 

@@ -13,7 +13,7 @@ export class HasMinMaxNumberOfElementsValidator implements PropertyValidator<Ite
         this.maxValidator = new HasMaxNumberOfElementsValidator(maxElementCount);
     }
 
-    isValid(input: Iterable<any>): boolean {
+    isValid(input: Iterable<any> | undefined): boolean {
         return this.minValidator.isValid(input) && this.maxValidator.isValid(input);
     }
 }

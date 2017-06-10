@@ -3,8 +3,8 @@ import {PropertyValidator} from '../validators/PropertyValidator';
 import {CollectionValidationRule, ValidationCondition} from './';
 
 class TestClass {
-    readonly array: string[];
-    readonly set: Set<number>;
+    readonly array: string[] | undefined;
+    readonly set: Set<number> | undefined;
 
     constructor(array?: string[], set?: Set<number>) {
         this.array = array;
@@ -197,7 +197,7 @@ describe('CollectionValidationRule', () => {
         });
     });
 
-    describe('tests with null and undefined', () => {
+    describe('tests with undefined', () => {
         it('should not throw error if array is undefined', () => {
             const validationRule = new CollectionValidationRule<TestClass, string[]>((input: TestClass) => {
                 return input.array;
@@ -205,19 +205,6 @@ describe('CollectionValidationRule', () => {
 
             try {
                 const result = validationRule.apply(new TestClass());
-                expect(result.isFailure()).toBe(false);
-            } catch (e) {
-                fail(e);
-            }
-        });
-
-        it('should not throw error if array is null', () => {
-            const validationRule = new CollectionValidationRule<TestClass, string[]>((input: TestClass) => {
-                return input.array;
-            });
-
-            try {
-                const result = validationRule.apply(new TestClass(null));
                 expect(result.isFailure()).toBe(false);
             } catch (e) {
                 fail(e);

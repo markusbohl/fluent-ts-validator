@@ -35,7 +35,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {CommonValidatorBuilder}
      */
-    protected validateIf<TProperty>(lambdaExpression: (input: T) => TProperty): CommonValidatorBuilder<T, TProperty> {
+    protected validateIf<TProperty>(lambdaExpression: (input: T) => TProperty | undefined): CommonValidatorBuilder<T, TProperty> {
         const rule: ValidationRule<T, TProperty> = this.registerRule(new ValidationRule(lambdaExpression));
 
         return new CommonValidatorBuilderImpl(rule);
@@ -47,7 +47,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {TypeValidatorBuilder}
      */
-    protected validateIfAny(lambdaExpression: (input: T) => any): TypeValidatorBuilder<T> {
+    protected validateIfAny(lambdaExpression: (input: T) => any | undefined): TypeValidatorBuilder<T> {
         const rule: ValidationRule<T, any> = this.registerRule(new ValidationRule(lambdaExpression));
 
         return new TypeValidatorBuilderImpl(rule);
@@ -59,7 +59,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {NumberValidatorBuilder}
      */
-    protected validateIfNumber(lambdaExpression: (input: T) => number): NumberValidatorBuilder<T> {
+    protected validateIfNumber(lambdaExpression: (input: T) => number | undefined): NumberValidatorBuilder<T> {
         const rule: ValidationRule<T, number> = this.registerRule(new ValidationRule(lambdaExpression));
 
         return new NumberValidatorBuilderImpl(rule);
@@ -71,7 +71,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {DateValidatorBuilder}
      */
-    protected validateIfDate(lambdaExpression: (input: T) => Date): DateValidatorBuilder<T> {
+    protected validateIfDate(lambdaExpression: (input: T) => Date | undefined): DateValidatorBuilder<T> {
         const rule: ValidationRule<T, Date> = this.registerRule(new ValidationRule(lambdaExpression));
 
         return new DateValidatorBuilderImpl(rule);
@@ -83,7 +83,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {StringValidatorBuilder}
      */
-    protected validateIfString(lambdaExpression: (input: T) => string): StringValidatorBuilder<T> {
+    protected validateIfString(lambdaExpression: (input: T) => string | undefined): StringValidatorBuilder<T> {
         const rule: ValidationRule<T, string> = this.registerRule(new ValidationRule(lambdaExpression));
 
         return new StringValidatorBuilderImpl(rule);
@@ -95,7 +95,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {CommonValidatorBuilder}
      */
-    protected validateIfEach<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty>): CommonValidatorBuilder<T, TProperty> {
+    protected validateIfEach<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty> | undefined): CommonValidatorBuilder<T, TProperty> {
         const rule: ValidationRule<T, Iterable<TProperty>> = this.registerRule(new CollectionValidationRule(lambdaExpression));
 
         return new CommonValidatorBuilderImpl(rule);
@@ -107,7 +107,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {TypeValidatorBuilder}
      */
-    protected validateIfEachAny(lambdaExpression: (input: T) => Iterable<any>): TypeValidatorBuilder<T> {
+    protected validateIfEachAny(lambdaExpression: (input: T) => Iterable<any> | undefined): TypeValidatorBuilder<T> {
         const rule: ValidationRule<T, Iterable<any>> = this.registerRule(new CollectionValidationRule(lambdaExpression));
 
         return new TypeValidatorBuilderImpl(rule);
@@ -119,7 +119,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {NumberValidatorBuilder}
      */
-    protected validateIfEachNumber(lambdaExpression: (input: T) => Iterable<number>): NumberValidatorBuilder<T> {
+    protected validateIfEachNumber(lambdaExpression: (input: T) => Iterable<number> | undefined): NumberValidatorBuilder<T> {
         const rule: ValidationRule<T, Iterable<number>> = this.registerRule(new CollectionValidationRule(lambdaExpression));
 
         return new NumberValidatorBuilderImpl(rule);
@@ -131,7 +131,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {DateValidatorBuilder}
      */
-    protected validateIfEachDate(lambdaExpression: (input: T) => Iterable<Date>): DateValidatorBuilder<T> {
+    protected validateIfEachDate(lambdaExpression: (input: T) => Iterable<Date> | undefined): DateValidatorBuilder<T> {
         const rule: ValidationRule<T, Iterable<Date>> = this.registerRule(new CollectionValidationRule(lambdaExpression));
 
         return new DateValidatorBuilderImpl(rule);
@@ -143,7 +143,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {StringValidatorBuilder}
      */
-    protected validateIfEachString(lambdaExpression: (input: T) => Iterable<string>): StringValidatorBuilder<T> {
+    protected validateIfEachString(lambdaExpression: (input: T) => Iterable<string> | undefined): StringValidatorBuilder<T> {
         const rule: ValidationRule<T, Iterable<string>> = this.registerRule(new CollectionValidationRule(lambdaExpression));
 
         return new StringValidatorBuilderImpl(rule);
@@ -154,9 +154,9 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      *
      * @param lambdaExpression
      */
-    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => SizedIterable<TProperty>): SizedIterableValidatorBuilder<T, TProperty>;
-    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty>): IterableValidatorBuilder<T, TProperty>;
-    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty>): SizedIterableValidatorBuilder<T, TProperty> {
+    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => SizedIterable<TProperty> | undefined): SizedIterableValidatorBuilder<T, TProperty>;
+    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty> | undefined): IterableValidatorBuilder<T, TProperty>;
+    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty> | undefined): SizedIterableValidatorBuilder<T, TProperty> {
         const rule: ValidationRule<T, Iterable<TProperty>> = this.registerRule(new ValidationRule(lambdaExpression));
 
         return new SizedIterableValidatorBuilderImpl(rule);

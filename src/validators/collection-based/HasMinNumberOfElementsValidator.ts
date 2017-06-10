@@ -7,7 +7,7 @@ export class HasMinNumberOfElementsValidator implements PropertyValidator<Iterab
 
     constructor(private minElementCount: number) {}
 
-    isValid(input: Iterable<any>): boolean {
+    isValid(input: Iterable<any> | undefined): boolean {
         if (hasLength(input)) {
             return input.length >= this.minElementCount;
         } else if (hasSize(input)) {

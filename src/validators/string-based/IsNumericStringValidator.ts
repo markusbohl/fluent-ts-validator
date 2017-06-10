@@ -3,7 +3,7 @@ import * as validatorJS from "validator";
 
 export class IsNumericStringValidator implements PropertyValidator<string> {
 
-    isValid(input: string): boolean {
+    isValid(input: string | undefined): boolean {
         if (input) {
             return validatorJS.isNumeric(input);
         }

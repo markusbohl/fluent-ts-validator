@@ -8,9 +8,7 @@ describe("IsUndefinedValidator", () => {
 
     describe("isValid()", () => {
         it("should return true if given value is undefined", () => {
-            let notDefined;
-
-            expect(validator.isValid(notDefined)).toBe(true);
+            expect(validator.isValid(undefined)).toBe(true);
         });
 
         it("should return false if given value is defined", () => {
