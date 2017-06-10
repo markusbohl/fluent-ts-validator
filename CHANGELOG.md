@@ -18,6 +18,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ~~Security~~
 
+## [2.1.0](https://github.com/markusbohl/fluent-ts-validator/releases/tag/2.1.0) - 2017-06-11
+
+### Changed
+
+- Validation rules can be defined for optional properties without the TypeScript compiler complaining 
+when having the `strict` or `strictNullChecks` options activated in the `tsconfig.json` file. 
+Before, warnings like `Type 'number | undefined' is not assignable to type 'number' because validateIfNumber() must have a number not a number | undefined`
+prevented compiling a validator with rules for optional properties.
+
 ## [2.0.1](https://github.com/markusbohl/fluent-ts-validator/releases/tag/2.0.1) - 2017-05-22
 
 ### Fixed
