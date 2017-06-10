@@ -29,11 +29,5 @@ describe("IsDecimalStringValidator", () => {
 
             expect(result).toBe(false);
         });
-
-        it("should return false if input is null", () => {
-            let result = validator.isValid(null);
-
-            expect(result).toBe(false);
-        });
     });
 });

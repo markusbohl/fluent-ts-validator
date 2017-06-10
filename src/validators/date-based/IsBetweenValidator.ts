@@ -21,7 +21,7 @@ export class IsBetweenValidator implements PropertyValidator<Date> {
     constructor(private lowerDate: Date, private upperDate: Date, private lowerBoundary: "(" | "[" = "(", private upperBoundary: ")" | "]" = ")") {
     }
 
-    isValid(input: Date): boolean {
+    isValid(input: Date | undefined): boolean {
         if (typeof input === "undefined" || input === null) {
             return false;
         } else if (this.lowerBoundary === "[" && this.upperBoundary === "]") {

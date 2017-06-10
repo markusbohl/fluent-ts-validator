@@ -9,17 +9,7 @@ describe("IsNotEmptyValidator", () => {
 
     describe("isValid()", () => {
         it("should return false if collection is undefined", () => {
-            let undefinedArray: string[];
-
-            const result = validator.isValid(undefinedArray);
-
-            expect(result).toBe(false);
-        });
-
-        it("should return false if collection is null", () => {
-            let nullArray: string[] = null;
-
-            const result = validator.isValid(nullArray);
+            const result = validator.isValid(undefined);
 
             expect(result).toBe(false);
         });

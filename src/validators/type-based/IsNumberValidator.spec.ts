@@ -22,10 +22,8 @@ describe("IsNumberValidator", () => {
             expect(result).toBeTruthy();
         });
 
-        it("should return false if given value is null", () => {
-            let value: Number = null;
-
-            let result = isNumberValidator.isValid(value);
+        it("should return false if given value is undefined", () => {
+            let result = isNumberValidator.isValid(undefined);
 
             expect(result).toBeFalsy();
         });

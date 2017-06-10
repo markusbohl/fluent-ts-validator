@@ -7,7 +7,7 @@ export class IsAlphaValidator implements PropertyValidator<string> {
     constructor(private locale?: AlphaLocale) {
     }
 
-    isValid(input: string): boolean {
+    isValid(input: string | undefined): boolean {
         if (input) {
             return validatorJS.isAlpha(input, this.locale);
         }

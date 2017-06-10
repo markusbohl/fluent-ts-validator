@@ -9,7 +9,10 @@ import {PropertyValidator} from "../PropertyValidator";
  */
 export class IsPositiveValidator implements PropertyValidator<number> {
 
-    isValid(input: number): boolean {
-        return input > 0;
+    isValid(input: number | undefined): boolean {
+        if (input) {
+            return input > 0;
+        }
+        return false;
     }
 }

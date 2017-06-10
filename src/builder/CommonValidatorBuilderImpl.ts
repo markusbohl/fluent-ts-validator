@@ -4,7 +4,6 @@ import {
     ValidationRule,
     WhenCondition,
     WhenDefinedCondition,
-    WhenNotEmptyCondition,
     WhenNotNullCondition
 } from "../validation";
 import {

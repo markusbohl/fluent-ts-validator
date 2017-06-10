@@ -2,8 +2,8 @@ import {
     CommonValidatorBuilder,
     DateValidatorBuilder,
     NumberValidatorBuilder,
-    StringValidatorBuilder,
     StringValidationOptionsBuilder,
+    StringValidatorBuilder,
     ValidationOptionsBuilder
 } from "./";
 

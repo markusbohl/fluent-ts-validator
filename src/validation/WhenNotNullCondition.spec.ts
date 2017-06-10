@@ -51,7 +51,7 @@ describe("WhenNotNullCondition", () => {
 });
 
 class TestClass {
-    property: string;
+    property: string | null;
     innerProp: InnerClass;
 }
 

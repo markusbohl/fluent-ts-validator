@@ -5,9 +5,9 @@ import {
     DateValidatorBuilderImpl,
     NumberValidatorBuilder,
     NumberValidatorBuilderImpl,
+    StringValidationOptionsBuilder,
     StringValidatorBuilder,
     StringValidatorBuilderImpl,
-    StringValidationOptionsBuilder,
     TypeValidatorBuilder,
     ValidationOptionsBuilder
 } from "./";

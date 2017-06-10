@@ -18,9 +18,7 @@ describe("IsDefinedValidator", () => {
         });
 
         it("should return false if given value is not defined", () => {
-            let notDefined: string;
-
-            let result = isDefinedValidator.isValid(notDefined);
+            let result = isDefinedValidator.isValid(undefined);
 
             expect(result).toBeFalsy();
         });

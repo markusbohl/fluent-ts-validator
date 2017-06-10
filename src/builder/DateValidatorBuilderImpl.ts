@@ -2,12 +2,12 @@ import {CommonValidatorBuilderImpl, DateValidatorBuilder, ValidationOptionsBuild
 import {ValidationRule} from "../validation";
 import {PropertyValidator} from "../validators/PropertyValidator";
 import {
-    IsBeforeValidator,
-    IsSameAsValidator,
     IsAfterValidator,
-    IsSameOrBeforeValidator,
+    IsBeforeValidator,
+    IsBetweenValidator,
+    IsSameAsValidator,
     IsSameOrAfterValidator,
-    IsBetweenValidator
+    IsSameOrBeforeValidator
 } from "../validators/date-based";
 
 export class DateValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, Date> implements DateValidatorBuilder<T> {

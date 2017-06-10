@@ -11,11 +11,10 @@ describe("IsDateValidator", () => {
             expect(result).toBeTruthy();
         });
 
-        it("should return false if input is null", () => {
+        it("should return false if input is undefined", () => {
             let isDateValidator = new IsDateValidator();
-            let date: Date = null;
 
-            let result = isDateValidator.isValid(date);
+            let result = isDateValidator.isValid(undefined);
 
             expect(result).toBeFalsy();
         });

@@ -95,8 +95,8 @@ describe("WhenNotEmptyCondition", () => {
 });
 
 class TestClass {
-    property: string;
-    anArray: number[];
+    property?: string | null;
+    anArray?: number[] | null;
     inner: InnerClass;
 }
 

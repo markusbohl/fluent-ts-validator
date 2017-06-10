@@ -9,20 +9,11 @@ describe("HasNumberOfElementsValidator", () => {
 
     describe("isValid()", () => {
         it("should return false if collection is undefined", () => {
-            let undefinedArray: string[];
-
-            const result = validator.isValid(undefinedArray);
+            const result = validator.isValid(undefined);
 
             expect(result).toBe(false);
         });
 
-        it("should return false if collection is null", () => {
-            let nullArray: string[] = null;
-
-            const result = validator.isValid(nullArray);
-
-            expect(result).toBe(false);
-        });
     });
 
     describe("Array", () => {

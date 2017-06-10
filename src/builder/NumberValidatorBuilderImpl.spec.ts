@@ -1,11 +1,11 @@
 import {ValidationRule} from "../validation";
 import {
-    IsPositiveValidator,
-    IsNegativeValidator,
-    IsGreaterThanValidator,
     IsGreaterThanOrEqualToValidator,
+    IsGreaterThanValidator,
+    IsLessThanOrEqualToValidator,
     IsLessThanValidator,
-    IsLessThanOrEqualToValidator
+    IsNegativeValidator,
+    IsPositiveValidator
 } from "../validators/number-based";
 import {NumberValidatorBuilder, NumberValidatorBuilderImpl} from "./";
 

@@ -24,25 +24,13 @@ export class ValidationResult {
 
     getFailureMessages(): string[] {
         return this.failures
-            .filter(failure => {
-                if (failure.message) {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
-            .map(failure => failure.message);
+            .filter(failure => failure.message)
+            .map(failure => <string>failure.message);
     }
 
     getFailureCodes(): string[] {
         return this.failures
-            .filter(failure => {
-                if (failure.code) {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
-            .map(failure => failure.code);
+            .filter(failure => failure.code)
+            .map(failure => <string>failure.code);
     }
 }

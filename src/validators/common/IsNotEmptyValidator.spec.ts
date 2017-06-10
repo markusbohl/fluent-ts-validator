@@ -45,9 +45,7 @@ describe("IsNotEmptyValidator", () => {
         });
 
         it("should return false if given value is undefined", () => {
-            let notDefined: string;
-
-            let result = isNotEmptyValidator.isValid(notDefined);
+            let result = isNotEmptyValidator.isValid(undefined);
 
             expect(result).toBeFalsy();
         });

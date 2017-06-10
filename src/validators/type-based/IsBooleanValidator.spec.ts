@@ -22,10 +22,8 @@ describe("IsBooleanValidator", () => {
             expect(result).toBeTruthy();
         });
 
-        it("should return false for a null value", () => {
-            let value: Boolean = null;
-
-            let result = isBooleanValidator.isValid(value);
+        it("should return false for an undefined value", () => {
+            let result = isBooleanValidator.isValid(undefined);
 
             expect(result).toBeFalsy();
         });

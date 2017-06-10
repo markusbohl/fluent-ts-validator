@@ -20,9 +20,8 @@ describe("IsNullValidator", () => {
 
         it("should return false if the given value is undefined", () => {
             let isNullValidator = new IsNullValidator();
-            let notDefined: string;
 
-            let result = isNullValidator.isValid(notDefined);
+            let result = isNullValidator.isValid(undefined);
 
             expect(result).toBeFalsy();
         });

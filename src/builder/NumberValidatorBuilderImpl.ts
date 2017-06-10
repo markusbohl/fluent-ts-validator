@@ -2,12 +2,12 @@ import {CommonValidatorBuilderImpl, NumberValidatorBuilder, ValidationOptionsBui
 import {ValidationRule} from "../validation";
 import {PropertyValidator} from "../validators/PropertyValidator";
 import {
-    IsPositiveValidator,
-    IsNegativeValidator,
-    IsGreaterThanValidator,
     IsGreaterThanOrEqualToValidator,
+    IsGreaterThanValidator,
+    IsLessThanOrEqualToValidator,
     IsLessThanValidator,
-    IsLessThanOrEqualToValidator
+    IsNegativeValidator,
+    IsPositiveValidator
 } from "../validators/number-based";
 
 export class NumberValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, number> implements NumberValidatorBuilder<T> {

@@ -50,13 +50,5 @@ describe("IsEmailValidator", () => {
 
             expect(result).toBeFalsy();
         });
-
-        it("should return false for null", () => {
-            let validator = new IsEmailValidator();
-
-            let result = validator.isValid(null);
-
-            expect(result).toBeFalsy();
-        });
     });
 });

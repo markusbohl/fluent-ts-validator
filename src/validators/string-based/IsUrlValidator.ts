@@ -7,7 +7,7 @@ export class IsUrlValidator implements PropertyValidator<string> {
     constructor(private urlOptions?: UrlOptions) {
     }
 
-    isValid(input: string): boolean {
+    isValid(input: string | undefined): boolean {
         if (input) {
             return validatorJS.isURL(input, this.urlOptions);
         }

@@ -3,7 +3,7 @@ import {PropertyValidator} from "../PropertyValidator";
 
 export class IsDecimalStringValidator implements PropertyValidator<string> {
 
-    isValid(input: string): boolean {
+    isValid(input: string | undefined): boolean {
         if (input) {
             return validatorJS.isDecimal(input);
         }
