@@ -5,7 +5,7 @@ export class ContainsElementValidator<TProperty> implements PropertyValidator<It
     constructor(private seed: TProperty) {
     }
 
-    isValid(input: Iterable<TProperty>): boolean {
+    isValid(input: Iterable<TProperty> | undefined): boolean {
         if (input) {
             for (let element of input) {
                 if (element === this.seed) {

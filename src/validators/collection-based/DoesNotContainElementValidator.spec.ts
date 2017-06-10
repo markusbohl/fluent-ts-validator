@@ -9,7 +9,7 @@ describe("DoesNotContainElementValidator", () => {
     });
 
     it("should return false if iterable is undefined", () => {
-        const result = validator.isValid(anArray);
+        const result = validator.isValid(undefined);
 
         expect(result).toBe(false);
     });
