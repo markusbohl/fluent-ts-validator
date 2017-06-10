@@ -3,7 +3,7 @@ import * as validatorJS from "validator";
 
 export class HasLengthValidator implements PropertyValidator<string> {
 
-    constructor(private options: {min?: number, max?: number}) {
+    constructor(private options: { min?: number, max?: number }) {
     }
 
     isValid(input: string | undefined): boolean {

@@ -6,7 +6,7 @@ describe("RuleApplicationOutcome", () => {
     let failure: ValidationFailure;
 
     beforeEach(() => {
-        failure = new ValidationFailure(null, 'property', null);
+        failure = new ValidationFailure(null, "property", null);
     });
 
     describe("RuleApplicationOutcome()", () => {

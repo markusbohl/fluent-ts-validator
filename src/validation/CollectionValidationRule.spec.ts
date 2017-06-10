@@ -1,6 +1,6 @@
-import {Severity} from '../shared';
-import {PropertyValidator} from '../validators/PropertyValidator';
-import {CollectionValidationRule, ValidationCondition} from './';
+import {Severity} from "../shared";
+import {PropertyValidator} from "../validators/PropertyValidator";
+import {CollectionValidationRule, ValidationCondition} from "./";
 
 class TestClass {
     readonly array: string[] | undefined;
@@ -17,14 +17,14 @@ class DeepTestClass {
     notAnIterator: number;
 }
 
-describe('CollectionValidationRule', () => {
+describe("CollectionValidationRule", () => {
     let testClass: TestClass;
 
     beforeEach(() => {
-        testClass = new TestClass(['foo', 'bar'], new Set([1, 2, 3]));
+        testClass = new TestClass(["foo", "bar"], new Set([1, 2, 3]));
     });
 
-    describe('tests with an array', () => {
+    describe("tests with an array", () => {
         let validationRule: CollectionValidationRule<TestClass, string[]>;
 
         beforeEach(() => {
@@ -33,19 +33,19 @@ describe('CollectionValidationRule', () => {
             });
         });
 
-        describe('apply()', () => {
-            it('should validate every element of the array', () => {
+        describe("apply()", () => {
+            it("should validate every element of the array", () => {
                 let validator = getPositiveValidator();
-                spyOn(validator, 'isValid');
+                spyOn(validator, "isValid");
                 validationRule.addValidator(validator);
 
                 validationRule.apply(testClass);
 
-                expect(validator.isValid).toHaveBeenCalledWith('foo');
-                expect(validator.isValid).toHaveBeenCalledWith('bar');
+                expect(validator.isValid).toHaveBeenCalledWith("foo");
+                expect(validator.isValid).toHaveBeenCalledWith("bar");
             });
 
-            it('should return a postive outcome if every element is valid', () => {
+            it("should return a postive outcome if every element is valid", () => {
                 validationRule.addValidator(getPositiveValidator());
 
                 let result = validationRule.apply(testClass);
@@ -53,7 +53,7 @@ describe('CollectionValidationRule', () => {
                 expect(result.isSuccess()).toBeTruthy();
             });
 
-            it('should return a negative outcome if element are invalid', () => {
+            it("should return a negative outcome if element are invalid", () => {
                 validationRule.addValidator(getNegativeValidator());
 
                 let result = validationRule.apply(testClass);
@@ -61,7 +61,7 @@ describe('CollectionValidationRule', () => {
                 expect(result.isSuccess()).toBeFalsy();
             });
 
-            it('should return a positive outcome if every element is validated successfully with every validator', () => {
+            it("should return a positive outcome if every element is validated successfully with every validator", () => {
                 validationRule.addValidator(getPositiveValidator());
                 validationRule.addValidator(getPositiveValidator());
                 validationRule.addValidator(getPositiveValidator());
@@ -71,7 +71,7 @@ describe('CollectionValidationRule', () => {
                 expect(result.isSuccess()).toBeTruthy();
             });
 
-            it('should return a negative outcome if not all validators validate successfully - test 1', () => {
+            it("should return a negative outcome if not all validators validate successfully - test 1", () => {
                 validationRule.addValidator(getPositiveValidator());
                 validationRule.addValidator(getPositiveValidator());
                 validationRule.addValidator(getNegativeValidator());
@@ -81,7 +81,7 @@ describe('CollectionValidationRule', () => {
                 expect(result.isSuccess()).toBeFalsy();
             });
 
-            it('should return a negative outcome if not all validators validate successfully - test 2', () => {
+            it("should return a negative outcome if not all validators validate successfully - test 2", () => {
                 validationRule.addValidator(getNegativeValidator());
                 validationRule.addValidator(getPositiveValidator());
                 validationRule.addValidator(getPositiveValidator());
@@ -91,27 +91,27 @@ describe('CollectionValidationRule', () => {
                 expect(result.isSuccess()).toBeFalsy();
             });
 
-            it('should return a negative outcome with detailed validation failures if element are invalid', () => {
+            it("should return a negative outcome with detailed validation failures if element are invalid", () => {
                 validationRule.addValidator(getNegativeValidator());
 
                 let result = validationRule.apply(testClass);
 
                 expect(result.getValidationFailures()[0]).toEqual(jasmine.objectContaining({
                     target: testClass,
-                    propertyName: 'array',
-                    attemptedValue: 'foo',
+                    propertyName: "array",
+                    attemptedValue: "foo",
                     severity: Severity[Severity.ERROR]
                 }));
                 expect(result.getValidationFailures()[1]).toEqual(jasmine.objectContaining({
                     target: testClass,
-                    propertyName: 'array',
-                    attemptedValue: 'bar',
+                    propertyName: "array",
+                    attemptedValue: "bar",
                     severity: Severity[Severity.ERROR]
                 }));
             });
 
-            it('should invoke callbacks in case of failures', () => {
-                let callback = jasmine.createSpy('callback');
+            it("should invoke callbacks in case of failures", () => {
+                let callback = jasmine.createSpy("callback");
                 validationRule.onFailure(callback);
                 validationRule.addValidator(getNegativeValidator());
 
@@ -119,21 +119,21 @@ describe('CollectionValidationRule', () => {
 
                 expect(callback).toHaveBeenCalledWith(jasmine.objectContaining({
                     target: testClass,
-                    propertyName: 'array',
-                    attemptedValue: 'foo',
+                    propertyName: "array",
+                    attemptedValue: "foo",
                     severity: Severity[Severity.ERROR]
                 }));
                 expect(callback).toHaveBeenCalledWith(jasmine.objectContaining({
                     target: testClass,
-                    propertyName: 'array',
-                    attemptedValue: 'bar',
+                    propertyName: "array",
+                    attemptedValue: "bar",
                     severity: Severity[Severity.ERROR]
                 }));
             });
 
-            it('should not invoke validator if specified condition omits validation', () => {
+            it("should not invoke validator if specified condition omits validation", () => {
                 let validator = getNegativeValidator();
-                spyOn(validator, 'isValid').and.callThrough();
+                spyOn(validator, "isValid").and.callThrough();
                 validationRule.addValidator(validator);
                 validationRule.addCondition(getNegativeCondition());
 
@@ -143,9 +143,9 @@ describe('CollectionValidationRule', () => {
                 expect(validator.isValid).not.toHaveBeenCalled();
             });
 
-            it('should invoke validator if specified condition does not omits validation', () => {
+            it("should invoke validator if specified condition does not omits validation", () => {
                 let validator = getNegativeValidator();
-                spyOn(validator, 'isValid').and.callThrough();
+                spyOn(validator, "isValid").and.callThrough();
                 validationRule.addValidator(validator);
                 validationRule.addCondition(getPositiveCondition());
 
@@ -157,7 +157,7 @@ describe('CollectionValidationRule', () => {
         });
     });
 
-    describe('tests with a set', () => {
+    describe("tests with a set", () => {
         let validationRule: CollectionValidationRule<TestClass, Set<number>>;
 
         beforeEach(() => {
@@ -166,10 +166,10 @@ describe('CollectionValidationRule', () => {
             });
         });
 
-        describe('apply()', () => {
-            it('should validate every element of the array', () => {
+        describe("apply()", () => {
+            it("should validate every element of the array", () => {
                 let validator = getPositiveValidator();
-                spyOn(validator, 'isValid');
+                spyOn(validator, "isValid");
                 validationRule.addValidator(validator);
 
                 validationRule.apply(testClass);
@@ -179,7 +179,7 @@ describe('CollectionValidationRule', () => {
                 expect(validator.isValid).toHaveBeenCalledWith(3);
             });
 
-            it('should return a postive outcome if every element is valid', () => {
+            it("should return a postive outcome if every element is valid", () => {
                 validationRule.addValidator(getPositiveValidator());
 
                 let result = validationRule.apply(testClass);
@@ -187,7 +187,7 @@ describe('CollectionValidationRule', () => {
                 expect(result.isSuccess()).toBeTruthy();
             });
 
-            it('should return a negative outcome if element are invalid', () => {
+            it("should return a negative outcome if element are invalid", () => {
                 validationRule.addValidator(getNegativeValidator());
 
                 let result = validationRule.apply(testClass);
@@ -197,8 +197,8 @@ describe('CollectionValidationRule', () => {
         });
     });
 
-    describe('tests with undefined', () => {
-        it('should not throw error if array is undefined', () => {
+    describe("tests with undefined", () => {
+        it("should not throw error if array is undefined", () => {
             const validationRule = new CollectionValidationRule<TestClass, string[]>((input: TestClass) => {
                 return input.array;
             });
@@ -212,8 +212,8 @@ describe('CollectionValidationRule', () => {
         });
     });
 
-    describe('tests with a nested class', () => {
-        it('should not throw error if lambda-expression cannot be evaluated', () => {
+    describe("tests with a nested class", () => {
+        it("should not throw error if lambda-expression cannot be evaluated", () => {
             const validationRule = new CollectionValidationRule<DeepTestClass, string[]>((input: DeepTestClass) => input.property.array);
 
             try {
@@ -224,10 +224,10 @@ describe('CollectionValidationRule', () => {
             }
         });
 
-        it('should throw an error if property is not an iterable', () => {
+        it("should throw an error if property is not an iterable", () => {
             const validationRule = new CollectionValidationRule<DeepTestClass, any>((input: DeepTestClass) => input.notAnIterator);
-                let input = new DeepTestClass();
-                input.notAnIterator = 1;
+            let input = new DeepTestClass();
+            input.notAnIterator = 1;
 
             try {
                 const result = validationRule.apply(input);

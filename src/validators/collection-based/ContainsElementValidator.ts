@@ -2,7 +2,8 @@ import {PropertyValidator} from "../PropertyValidator";
 
 export class ContainsElementValidator<TProperty> implements PropertyValidator<Iterable<TProperty>> {
 
-    constructor(private seed: TProperty) {}
+    constructor(private seed: TProperty) {
+    }
 
     isValid(input: Iterable<TProperty>): boolean {
         if (input) {

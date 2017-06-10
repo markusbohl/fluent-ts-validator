@@ -1,11 +1,11 @@
 import {PropertyValidator} from "../PropertyValidator";
-import {SizedIterable} from "../../shared/SizedIterable";
 import {hasLength} from "../../shared/HasLength";
 import {hasSize} from "../../shared/HasSize";
 
 export class HasMinNumberOfElementsValidator implements PropertyValidator<Iterable<any>> {
 
-    constructor(private minElementCount: number) {}
+    constructor(private minElementCount: number) {
+    }
 
     isValid(input: Iterable<any> | undefined): boolean {
         if (hasLength(input)) {

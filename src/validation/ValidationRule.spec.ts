@@ -1,6 +1,6 @@
 import {Severity} from "../shared";
 import {PropertyValidator} from "../validators/PropertyValidator";
-import {ValidationRule, ValidationCondition} from "./";
+import {ValidationCondition, ValidationRule} from "./";
 
 describe("ValidationRule", () => {
     let rule: ValidationRule<TestClass, string>;

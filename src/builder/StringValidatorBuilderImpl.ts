@@ -1,13 +1,10 @@
 import {
     CommonValidatorBuilderImpl,
+    StringValidationOptionsBuilder,
     StringValidatorBuilder,
-    ValidationOptionsBuilder,
-    StringValidationOptionsBuilder
+    ValidationOptionsBuilder
 } from "./";
-import {
-    ValidationRule,
-    WhenNotEmptyCondition
-} from "../validation";
+import {ValidationRule, WhenNotEmptyCondition} from "../validation";
 import {
     AlphaLocale,
     AlphanumericLocale,
@@ -21,12 +18,12 @@ import {
 import {PropertyValidator} from "../validators/PropertyValidator";
 import {
     ContainsValidator,
-    IsBooleanStringValidator,
-    IsNumericStringValidator,
-    IsAlphaValidator,
+    HasLengthValidator,
     IsAlphanumericValidator,
+    IsAlphaValidator,
     IsAsciiValidator,
     IsBase64Validator,
+    IsBooleanStringValidator,
     IsCurrencyValidator,
     IsDecimalStringValidator,
     IsEmailValidator,
@@ -34,11 +31,11 @@ import {
     IsHexadecimalValidator,
     IsIso8601Validator,
     IsJsonValidator,
-    HasLengthValidator,
     IsLowercaseValidator,
     IsMobilePhoneValidator,
-    IsUrlValidator,
+    IsNumericStringValidator,
     IsUppercaseValidator,
+    IsUrlValidator,
     IsUuidValidator,
     RegExValidator
 } from "../validators/string-based";

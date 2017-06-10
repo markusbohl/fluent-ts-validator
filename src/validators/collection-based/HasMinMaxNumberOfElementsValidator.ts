@@ -1,5 +1,4 @@
 import {PropertyValidator} from "../PropertyValidator";
-import {SizedIterable} from "../../shared/SizedIterable";
 import {HasMinNumberOfElementsValidator} from "./HasMinNumberOfElementsValidator";
 import {HasMaxNumberOfElementsValidator} from "./HasMaxNumberOfElementsValidator";
 

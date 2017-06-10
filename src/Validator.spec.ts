@@ -1,5 +1,5 @@
 import {AbstractValidator} from "./AbstractValidator";
-import isEmail = require('validator/lib/isEmail');
+import isEmail = require("validator/lib/isEmail");
 
 describe("Integration Tests for Validators", () => {
     let testInstance: TestClass;
@@ -26,7 +26,7 @@ describe("Integration Tests for Validators", () => {
                 expect(result.isInvalid()).toBe(true);
             });
 
-            it("should not validate when the 'unless'-condition is not met", () => {
+            it("should not validate when the \"unless\"-condition is not met", () => {
                 testInstance.stringProp1 = "1";
                 testInstance.stringProp2 = "a value";
                 testInstance.booleanProp = true;
@@ -36,7 +36,7 @@ describe("Integration Tests for Validators", () => {
                 expect(result.isValid()).toBe(true);
             });
 
-            it("should not validate when the 'when'-condition is not met", () => {
+            it("should not validate when the \"when\"-condition is not met", () => {
                 testInstance.stringProp1 = "1";
                 testInstance.stringProp2 = undefined;
                 testInstance.booleanProp = false;

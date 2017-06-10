@@ -1,4 +1,4 @@
-import {ValidationResult, ValidationFailure} from "./";
+import {ValidationFailure, ValidationResult} from "./";
 
 describe("ValidationResult", () => {
     let result: ValidationResult;
@@ -7,7 +7,7 @@ describe("ValidationResult", () => {
 
     beforeEach(() => {
         result = new ValidationResult();
-        failure = new ValidationFailure(null, 'property', null);
+        failure = new ValidationFailure(null, "property", null);
         failures = [failure];
     });
 
@@ -133,7 +133,7 @@ function validationFailuresWithMessage(...messages: string[]): ValidationFailure
     const failures: ValidationFailure[] = [];
 
     for (let message of messages) {
-        failures.push(new ValidationFailure("target", "property", "attemptedValue", "code",  message));
+        failures.push(new ValidationFailure("target", "property", "attemptedValue", "code", message));
     }
 
     return failures;

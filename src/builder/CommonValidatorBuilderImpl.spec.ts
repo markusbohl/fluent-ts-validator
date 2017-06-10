@@ -1,32 +1,24 @@
 import {AbstractValidator} from "../";
-import {
-    ValidationOptionsBuilder,
-    CommonValidatorBuilder,
-    CommonValidatorBuilderImpl
-} from "./";
-import {
-    Severity,
-    ValidationFailure
-} from "../shared";
+import {CommonValidatorBuilder, CommonValidatorBuilderImpl, ValidationOptionsBuilder} from "./";
+import {Severity, ValidationFailure} from "../shared";
 import {
     UnlessCondition,
     ValidationRule,
     WhenCondition,
     WhenDefinedCondition,
-    WhenNotEmptyCondition,
     WhenNotNullCondition
 } from "../validation";
 import {
     IsDefinedValidator,
-    IsUndefinedValidator,
-    IsNullValidator,
-    IsNotNullValidator,
     IsEmptyValidator,
-    IsNotEmptyValidator,
     IsEqualValidator,
-    IsNotEqualValidator,
     IsInValidator,
-    IsNotInValidator
+    IsNotEmptyValidator,
+    IsNotEqualValidator,
+    IsNotInValidator,
+    IsNotNullValidator,
+    IsNullValidator,
+    IsUndefinedValidator
 } from "../validators/common";
 
 class TestClass {

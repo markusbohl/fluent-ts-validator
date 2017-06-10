@@ -23,7 +23,7 @@ describe("ValidationFailure", () => {
         });
 
         it("should set ERROR-severity by default", () => {
-            let failure = new ValidationFailure('target', 'propertyName');
+            let failure = new ValidationFailure("target", "propertyName");
 
             expect(failure.severity).toBe(Severity[Severity.ERROR]);
         });

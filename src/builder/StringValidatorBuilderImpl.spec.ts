@@ -1,6 +1,7 @@
 import {ValidationRule, WhenNotEmptyCondition} from "../validation";
 import {
     ContainsValidator,
+    HasLengthValidator,
     IsAlphanumericValidator,
     IsAlphaValidator,
     IsAsciiValidator,
@@ -12,17 +13,16 @@ import {
     IsFqdnValidator,
     IsHexadecimalValidator,
     IsIso8601Validator,
-    HasLengthValidator,
-    IsLowercaseValidator,
     IsJsonValidator,
+    IsLowercaseValidator,
     IsMobilePhoneValidator,
     IsNumericStringValidator,
-    IsUrlValidator,
     IsUppercaseValidator,
+    IsUrlValidator,
     IsUuidValidator,
     RegExValidator
 } from "../validators/string-based";
-import {StringValidatorBuilder, StringValidatorBuilderImpl} from "./";
+import {StringValidatorBuilderImpl} from "./";
 
 class TestClass {
     property: string;

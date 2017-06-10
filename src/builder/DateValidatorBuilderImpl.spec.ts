@@ -1,11 +1,11 @@
 import {ValidationRule} from "../validation";
 import {
-    IsBeforeValidator,
-    IsSameAsValidator,
     IsAfterValidator,
-    IsSameOrBeforeValidator,
+    IsBeforeValidator,
+    IsBetweenValidator,
+    IsSameAsValidator,
     IsSameOrAfterValidator,
-    IsBetweenValidator
+    IsSameOrBeforeValidator
 } from "../validators/date-based";
 import {DateValidatorBuilder, DateValidatorBuilderImpl} from "./";
 
