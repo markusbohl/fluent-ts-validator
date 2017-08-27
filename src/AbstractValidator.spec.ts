@@ -245,29 +245,6 @@ describe("AddressbookValidator", () => {
 
             expect(result.isValid()).toBeFalsy();
         });
-
-        // it("should return a negative result if at least one of the elements in the given array is null", () => {
-        //     addressbook.contacts = [person1, person2, null];
-        //
-        //     let result = validator.validate(addressbook);
-        //
-        //     expect(result.isValid()).toBeFalsy();
-        // });
-        //
-        // it("should return a detailed result if at least one of the elements in the given array is null", () => {
-        //     addressbook.contacts = [person1, person2, null];
-        //
-        //     let result = validator.validate(addressbook);
-        //
-        //     expect(result.getFailures()[0]).toEqual(jasmine.objectContaining({
-        //         target: addressbook,
-        //         propertyName: "contacts",
-        //         attemptedValue: null,
-        //         code: undefined,
-        //         message: "contacts is invalid",
-        //         severity: Severity[Severity.ERROR]
-        //     }));
-        // });
     });
 });
 
@@ -343,14 +320,6 @@ describe("CollectionValidator", () => {
 
             expect(result.isValid()).toBe(false);
         });
-
-        // it("should return negative result if a person is undefined", () => {
-        //     testInstance.people.push(undefined);
-        //
-        //     const result = validator.validate(testInstance);
-        //
-        //     expect(result.isValid()).toBe(false);
-        // });
 
         it("should return negative result if anything is not a string", () => {
             testInstance.anything.push(0);

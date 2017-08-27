@@ -16,6 +16,8 @@ import {
 import {Validatable, ValidationResult} from "./shared";
 import {SizedIterable} from "./shared/SizedIterable";
 import {CollectionValidationRule, RuleApplicationOutcome, ValidationRule} from "./validation";
+import {StringValidationOptionsBuilder} from "./builder/StringValidationOptionsBuilder";
+import {IterableValidationOptionsBuilder} from "./builder/IterableValidationOptionsBuilder";
 
 /**
  * Abstract base class for all custom validators.
@@ -83,7 +85,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {StringValidatorBuilder}
      */
-    protected validateIfString(lambdaExpression: (input: T) => string | undefined): StringValidatorBuilder<T> {
+    protected validateIfString(lambdaExpression: (input: T) => string | undefined): StringValidatorBuilder<T> & StringValidationOptionsBuilder<T> {
         const rule: ValidationRule<T, string> = this.registerRule(new ValidationRule(lambdaExpression));
 
         return new StringValidatorBuilderImpl(rule);
@@ -154,9 +156,9 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      *
      * @param lambdaExpression
      */
-    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => SizedIterable<TProperty> | undefined): SizedIterableValidatorBuilder<T, TProperty>;
-    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty> | undefined): IterableValidatorBuilder<T, TProperty>;
-    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty> | undefined): SizedIterableValidatorBuilder<T, TProperty> {
+    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => SizedIterable<TProperty> | undefined): SizedIterableValidatorBuilder<T, TProperty> & IterableValidationOptionsBuilder<T>;
+    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty> | undefined): IterableValidatorBuilder<T, TProperty> & IterableValidationOptionsBuilder<T>;
+    protected validateIfIterable<TProperty>(lambdaExpression: (input: T) => Iterable<TProperty> | undefined): SizedIterableValidatorBuilder<T, TProperty> & IterableValidationOptionsBuilder<T> {
         const rule: ValidationRule<T, Iterable<TProperty>> = this.registerRule(new ValidationRule(lambdaExpression));
 
         return new SizedIterableValidatorBuilderImpl(rule);

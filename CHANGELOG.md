@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ~~Security~~
 
+## [2.1.1](https://github.com/markusbohl/fluent-ts-validator/releases/tag/2.1.1) - 2017-08-27
+
+### Fixed
+- [Issue 4](https://github.com/markusbohl/fluent-ts-validator/issues/4) `whenNotEmpty()` option was not available after `validateIfString()`. The same problem occurred after `validateIfIterable()`.
+
+
 ## [2.1.0](https://github.com/markusbohl/fluent-ts-validator/releases/tag/2.1.0) - 2017-06-11
 
 ### Changed
