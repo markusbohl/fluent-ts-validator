@@ -29,7 +29,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ~~Removed~~
 
-~~Fixed~~
+### Fixed
+- In addition to [issue 4](https://github.com/markusbohl/fluent-ts-validator/issues/4): `whenNotEmpty()` option was also not available after `validateIfEachString()`.
 
 ~~Security~~
 

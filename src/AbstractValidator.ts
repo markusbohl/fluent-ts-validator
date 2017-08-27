@@ -145,7 +145,7 @@ export abstract class AbstractValidator<T> implements Validatable<T> {
      * @param lambdaExpression
      * @returns {StringValidatorBuilder}
      */
-    protected validateIfEachString(lambdaExpression: (input: T) => Iterable<string> | undefined): StringValidatorBuilder<T> {
+    protected validateIfEachString(lambdaExpression: (input: T) => Iterable<string> | undefined): StringValidatorBuilder<T> & StringValidationOptionsBuilder<T> {
         const rule: ValidationRule<T, Iterable<string>> = this.registerRule(new CollectionValidationRule(lambdaExpression));
 
         return new StringValidatorBuilderImpl(rule);
