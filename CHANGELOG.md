@@ -12,19 +12,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - `dependencies` have been updated as follows:
     - `validator` from `7.0.0` to `8.1.0`
-- `devDependencies` have been updated as follows:
-    - `@types/jasmine` from `2.5.51` to `2.5.54`
-    - `@types/validator` from `6.2.0` to `6.2.2`
-    - `codecov` from `2.2.0` to `2.3.0`
-    - `jasmine` from `2.6.0` to `2.8.0`
-    - `jasmine-console-reporter` from `1.2.7` to `2.0.1`
-    - `jasmine-core` from `2.6.3` to `2.8.0`
-    - `jasmine-ts` from `0.1.3` to `0.2.1`
-    - `npm-check` from `5.4.4` to `5.4.5`
-    - `snyk` from `1.34.3` to `1.40.1`
-    - `ts-node` from `3.0.6` to `3.3.0`
-    - `tslint` from `5.4.3` to `5.7.0`
-    - `typescript` from `2.3.4` to `2.4.2`
 
 ~~Deprecated~~
 
