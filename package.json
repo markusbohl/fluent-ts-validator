@@ -1,6 +1,6 @@
 {
   "name": "fluent-ts-validator",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A fluent validator written in TypeScript",
   "author": "Markus Bohl <markus.bohl@gmail.com>",
   "repository": {
