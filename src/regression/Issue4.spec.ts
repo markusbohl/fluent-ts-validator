@@ -2,7 +2,7 @@
  * Regression tests for https://github.com/markusbohl/fluent-ts-validator/issues/4
  */
 
-import {AbstractValidator} from "./AbstractValidator";
+import {AbstractValidator} from "../AbstractValidator";
 
 describe("Issue 4", () => {
     let validator: AbstractValidator<ClassA>;
