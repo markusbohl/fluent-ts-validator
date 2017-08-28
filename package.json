@@ -11,7 +11,6 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jasmine": "2.5.54",
-    "@types/validator": "6.2.2",
     "codecov": "2.3.0",
     "copyfiles": "1.2.0",
     "istanbul": "1.1.0-alpha.1",
