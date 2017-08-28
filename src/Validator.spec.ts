@@ -1,5 +1,4 @@
 import {AbstractValidator} from "./AbstractValidator";
-import isEmail = require("validator/lib/isEmail");
 
 describe("Integration Tests for Validators", () => {
     let testInstance: TestClass;

@@ -39,6 +39,8 @@ import {
     IsUuidValidator,
     RegExValidator
 } from "../validators/string-based";
+import {PostalCodeLocale} from "../shared/PostalCodeLocale";
+import {IsPostalCodeValidator} from "../validators/string-based/IsPostalCodeValidator";
 
 export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, string> implements StringValidatorBuilder<T>, StringValidationOptionsBuilder<T> {
 
@@ -122,6 +124,10 @@ export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
 
     isJson(): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new IsJsonValidator());
+    }
+
+    isPostalCode(locale: PostalCodeLocale): this & ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsPostalCodeValidator(locale));
     }
 
     hasLengthBetween(min: number, max: number): this & ValidationOptionsBuilder<T> {

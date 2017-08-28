@@ -1,0 +1,36 @@
+export type PostalCodeLocale =
+    "any" |
+    "AT" |
+    "AU" |
+    "BE" |
+    "CA" |
+    "CH" |
+    "CZ" |
+    "DE" |
+    "DK" |
+    "DZ" |
+    "ES" |
+    "FI" |
+    "FR" |
+    "GB" |
+    "GR" |
+    "IL" |
+    "IN" |
+    "IS" |
+    "IT" |
+    "JP" |
+    "KE" |
+    "LI" |
+    "MX" |
+    "NL" |
+    "NO" |
+    "PL" |
+    "PT" |
+    "RO" |
+    "RU" |
+    "SA" |
+    "SE" |
+    "TW" |
+    "US" |
+    "ZA" |
+    "ZM";
