@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - `dependencies` have been updated as follows:
-    - `validator` from `7.0.0` to `8.1.0`
+    - `validator` from `7.0.0` to `8.1.0` ([Changelog](https://github.com/chriso/validator.js/blob/master/CHANGELOG.md))
 
 ~~Deprecated~~
 
