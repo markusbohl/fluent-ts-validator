@@ -34,6 +34,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ~~Security~~
 
+## [2.1.2](https://github.com/markusbohl/fluent-ts-validator/releases/tag/2.1.2) - 2017-08-28
+
+### Fixed
+- Publishing error: Wrong folder published to npm for version `2.1.1`. Issue reported here: [Problems with version 2.1.1](https://github.com/markusbohl/fluent-ts-validator/issues/6)
+
 ## [2.1.1](https://github.com/markusbohl/fluent-ts-validator/releases/tag/2.1.1) - 2017-08-27
 
 ### Fixed
