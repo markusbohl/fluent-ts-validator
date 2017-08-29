@@ -17,14 +17,13 @@ import {
     IsLowercaseValidator,
     IsMobilePhoneValidator,
     IsNumericStringValidator,
+    IsPostalCodeValidator,
     IsUppercaseValidator,
     IsUrlValidator,
     IsUuidValidator,
     RegExValidator
 } from "../validators/string-based";
 import {StringValidatorBuilderImpl} from "./";
-import {PostalCodeLocale} from "../shared/PostalCodeLocale";
-import {IsPostalCodeValidator} from "../validators/string-based/IsPostalCodeValidator";
 
 class TestClass {
     property: string;

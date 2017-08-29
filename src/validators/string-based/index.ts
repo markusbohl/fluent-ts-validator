@@ -19,3 +19,4 @@ export * from "./IsUrlValidator";
 export * from "./IsUppercaseValidator";
 export * from "./IsUuidValidator";
 export * from "./RegExValidator";
+export * from "./IsPostalCodeValidator";

@@ -12,6 +12,7 @@ import {
     EmailOptions,
     FqdnOptions,
     MobilePhoneLocale,
+    PostalCodeLocale,
     UrlOptions,
     UuidVersion
 } from "../shared";
@@ -34,13 +35,12 @@ import {
     IsLowercaseValidator,
     IsMobilePhoneValidator,
     IsNumericStringValidator,
+    IsPostalCodeValidator,
     IsUppercaseValidator,
     IsUrlValidator,
     IsUuidValidator,
     RegExValidator
 } from "../validators/string-based";
-import {PostalCodeLocale} from "../shared/PostalCodeLocale";
-import {IsPostalCodeValidator} from "../validators/string-based/IsPostalCodeValidator";
 
 export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, string> implements StringValidatorBuilder<T>, StringValidationOptionsBuilder<T> {
 
