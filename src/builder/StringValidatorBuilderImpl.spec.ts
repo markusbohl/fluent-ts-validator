@@ -299,6 +299,20 @@ describe("StringValidatorBuilderImpl", () => {
         });
     });
 
+    describe("hasLength()", () => {
+        it("should set hasLengthValidator to validation rule", () => {
+            validatorBuilder.hasLength(5);
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(HasLengthValidator));
+        });
+
+        it("should return reference to builder to adhere to fluent pattern", () => {
+            let result = validatorBuilder.hasLength(5);
+
+            expect(result).toBe(validatorBuilder);
+        });
+    });
+
     describe("hasMinLength()", () => {
         it("should set hasLengthValidator to validation rule", () => {
             validatorBuilder.hasMinLength(4);

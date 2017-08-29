@@ -130,6 +130,10 @@ export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
         return this.buildRuleWith(new IsPostalCodeValidator(locale));
     }
 
+    hasLength(length: number): this & ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new HasLengthValidator({min: length, max: length}));
+    }
+
     hasLengthBetween(min: number, max: number): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new HasLengthValidator({min: min, max: max}));
     }

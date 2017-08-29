@@ -101,9 +101,18 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
     /**
      * Checks if a string is a postal code.
      *
+     * If `locale` is set to `"any"`, will check if any of the locales match.
+     *
      * @param locale: PostalCodeLocale
      */
     isPostalCode(locale: PostalCodeLocale): this & ValidationOptionsBuilder<T>;
+
+    /**
+     * Checks if a string has exactly the given `length`.
+     *
+     * @param length
+     */
+    hasLength(length: number): this & ValidationOptionsBuilder<T>;
 
     /**
      * Checks if a string falls in a the `min` - `max` range.

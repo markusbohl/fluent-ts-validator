@@ -357,6 +357,7 @@ domain.com).
 - `isHexadecimal()`: Checks if a string is a hexadecimal number.
 - `isIso8601()`: Checks if a string is a valid ISO 8601 date.
 - `isJson()`: Check if a string is valid JSON (note: uses JSON.parse).
+- `hasLength(length: number)`: Checks if a string has exactly the length `length`.
 - `hasLengthBetween(min: number, max: number)`: Checks if a string falls in a the `min` - `max` 
 range. 
 - `hasMinLength(min: number)`: Checks if a string has at least `min` length.
