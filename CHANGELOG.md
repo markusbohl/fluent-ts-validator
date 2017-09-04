@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/markusbohl/fluent-ts-validator/branches/all?utf8=%E2%9C%93&query=feature)
 
-~~Added~~
+### Added
+- Additionally to checking if a certain value/object is an element of an iterable, 
+`isIn()` can now validate if a given object has a field with a certain value. ([Issue 5](https://github.com/markusbohl/fluent-ts-validator/issues/5))
 
 ### Changed
 - `dependencies` have been updated as follows:
