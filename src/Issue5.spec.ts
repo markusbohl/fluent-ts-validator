@@ -13,39 +13,63 @@ describe("Issue 5 - Enum Validation", () => {
     });
 
     describe("AbstractValidator.validate()", () => {
-        it("should return valid result for enum value Species.none", () => {
+        it("should return valid result for enum value Colors.Red", () => {
             let dto = new AClass();
+            dto.colorEnum = Colors.Red;
+            dto.colorString = "RED";
 
             const result = validator.validate(dto);
 
             expect(result.isValid()).toBe(true);
         });
 
-        it("should return valid result for enum value Species.cattle", () => {
+        it("should return invalid result for undefined enum value", () => {
             let dto = new AClass();
-            dto.species = Species.cattle;
+            dto.colorString = "RED";
 
             const result = validator.validate(dto);
 
-            expect(result.isValid()).toBe(true);
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return invalid result for undefined string value", () => {
+            let dto = new AClass();
+            dto.colorEnum = Colors.Blue;
+
+            const result = validator.validate(dto);
+
+            expect(result.isValid()).toBe(false);
+        });
+
+        it("should return invalid result for invalid string value", () => {
+            let dto = new AClass();
+            dto.colorEnum = Colors.Green;
+            dto.colorString = "not_a_color";
+
+            const result = validator.validate(dto);
+
+            expect(result.isValid()).toBe(false);
         });
     });
 });
 
-enum Species {
-    none = "",
-    cattle = "cattle",
-    deer = "deer"
+enum Colors {
+    Red = "RED",
+    Green = "GREEN",
+    Blue = "BLUE",
 }
 
 class AClass{
-    species: Species = Species.none;
+    colorEnum: Colors;
+    colorString: string;
 }
 
 class MyValidator extends AbstractValidator<AClass> {
     constructor() {
         super();
-        this.validateIf(dto => dto.species)
-            .isIn(Species);
+        this.validateIf(dto => dto.colorEnum)
+            .isIn(Colors);
+        this.validateIf(dto => dto.colorString)
+            .isIn(Colors);
     }
 }

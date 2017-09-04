@@ -1,7 +1,8 @@
 import {PropertyValidator} from "../PropertyValidator";
+import {isIterable} from "../../shared/IsIterable";
 
 /**
- * Validates if given value is in array of allowed values.
+ * Validates if given value is in a collection of allowed values.
  *
  * @export
  * @class IsInValidator
@@ -10,15 +11,27 @@ import {PropertyValidator} from "../PropertyValidator";
  */
 export class IsInValidator<T> implements PropertyValidator<T> {
 
-    constructor(private iterable: Iterable<T>) {
+    constructor(private obj: Iterable<T> | any) {
     }
 
-    isValid(input: T): boolean {
-        for (let element of this.iterable) {
+    isValid(input: any): boolean {
+        if (isIterable(this.obj)) {
+            return this.isElementOfIterable(input);
+        } else {
+            return this.isValueInObject(input);
+        }
+    }
+
+    private isElementOfIterable(input: any): boolean {
+        for (let element of this.obj) {
             if (element === input) {
                 return true;
             }
         }
         return false;
+    }
+
+    private isValueInObject(input: any) {
+        return Object.keys(this.obj).find(key => this.obj[key] === input) != null;
     }
 }
