@@ -24,6 +24,7 @@ import {
     RegExValidator
 } from "../validators/string-based";
 import {StringValidatorBuilderImpl} from "./";
+import {IsLatLongValidator} from "../validators/string-based/IsLatLongValidator";
 
 class TestClass {
     property: string;
@@ -340,8 +341,22 @@ describe("StringValidatorBuilderImpl", () => {
         });
     });
 
+    describe("isLatLong()", () => {
+        it("should set IsLatLongValidator to validation rule", () => {
+            validatorBuilder.isLatLong();
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsLatLongValidator));
+        });
+
+        it("should return reference to builder to adhere to fluent pattern", () => {
+            let result = validatorBuilder.isLatLong();
+
+            expect(result).toBe(validatorBuilder);
+        });
+    });
+
     describe("isLowercase()", () => {
-        it("should set isLowercaseValidator to validation rule", () => {
+        it("should set IsLowercaseValidator to validation rule", () => {
             validatorBuilder.isLowercase();
 
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsLowercaseValidator));

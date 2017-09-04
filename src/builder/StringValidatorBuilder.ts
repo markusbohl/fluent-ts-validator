@@ -108,6 +108,11 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
     isPostalCode(locale: PostalCodeLocale): this & ValidationOptionsBuilder<T>;
 
     /**
+     * Checks if a string is a valid latitude-longitude coordinate.
+     */
+    isLatLong(): this & ValidationOptionsBuilder<T>;
+
+    /**
      * Checks if a string has exactly the given `length`.
      *
      * @param length

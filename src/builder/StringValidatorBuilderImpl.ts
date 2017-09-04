@@ -41,6 +41,7 @@ import {
     IsUuidValidator,
     RegExValidator
 } from "../validators/string-based";
+import {IsLatLongValidator} from "../validators/string-based/IsLatLongValidator";
 
 export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T, string> implements StringValidatorBuilder<T>, StringValidationOptionsBuilder<T> {
 
@@ -144,6 +145,10 @@ export class StringValidatorBuilderImpl<T> extends CommonValidatorBuilderImpl<T,
 
     hasMaxLength(max: number): this & ValidationOptionsBuilder<T> {
         return this.buildRuleWith(new HasLengthValidator({max: max}));
+    }
+
+    isLatLong(): this & ValidationOptionsBuilder<T> {
+        return this.buildRuleWith(new IsLatLongValidator());
     }
 
     isLowercase(): this & ValidationOptionsBuilder<T> {
