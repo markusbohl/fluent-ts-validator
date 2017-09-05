@@ -7,10 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased](https://github.com/markusbohl/fluent-ts-validator/branches/all?utf8=%E2%9C%93&query=feature)
 
 ### Added
+- `hasLength()`-validation. Compared to the already existing methods `hasLengthBetween(min, max)`, `hasMinLength(min)`, or `hasMaxLength(max)` a more convenient way of checking for exact lengths.
 - `isLatLong()`-validation. With the new `validator.js` version `8.1.0` strings can be checked for valid latitude-longitude coordinates.
 - `isPostalCode()`-validation. With the new `validator.js` version `8.1.0` validation of postal codes can be performed for several different locales.
-- `hasLength()`-validation. Compared to the already existing methods `hasLengthBetween(min, max)`, `hasMinLength(min)`, or `hasMaxLength(max)` a more convenient way of checking for exact lengths. 
 - Norwegian locales `nb-NO` and `nn-NO` are now supported for `isAlpha()` and `isAlphanumeric()` validations.
+- `isMobilePhone()` now supports locales for Kenya `en-KE`, Rwanda `en-RW`, Tanzania `en-TZ`, and Uganda `en-UG`.
 
 ### Changed
 - `dependencies` have been updated as follows:
