@@ -2,7 +2,7 @@ import {PropertyValidator} from "../PropertyValidator";
 import {isIterable} from "../../shared/IsIterable";
 
 /**
- * Validates if given value is in a collection of allowed values.
+ * Validates if given value is in a collection of allowed values or in an object/enum.
  *
  * @export
  * @class IsInValidator
