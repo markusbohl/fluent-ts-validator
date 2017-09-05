@@ -18,13 +18,13 @@
     "jasmine-console-reporter": "2.0.1",
     "jasmine-core": "2.8.0",
     "jasmine-ts": "0.2.1",
-    "nodemon": "1.11.0",
+    "nodemon": "1.12.0",
     "npm-check": "5.4.5",
     "rimraf": "2.6.1",
-    "snyk": "1.40.1",
+    "snyk": "1.40.2",
     "ts-node": "3.3.0",
     "tslint": "5.7.0",
-    "typescript": "2.4.2"
+    "typescript": "2.5.2"
   },
   "scripts": {
     "build": "rimraf build && tsc && copyfiles package.json README.md CHANGELOG.md build",
