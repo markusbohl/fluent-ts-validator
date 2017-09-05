@@ -364,7 +364,7 @@ range.
 - `hasMaxLength(max: number)`: Checks if a string has at most `max` length.
 - `isLowercase()`: Checks if a string is all lowercase.
 - `isMobilePhoneNo(locale: MobilePhoneLocale)`: Checks if a string is a mobile phone number.
-    - the `locale` is one of `MobilePhoneLocale = "ar-DZ" | "ar-SA" | "ar-SY" | "cs-CZ" | "da-DK" | "de-DE" | "el-GR" | "en-AU" | "en-CA" | "en-GB" | "en-HK" | "en-IN" | "en-KE" | "en-NZ" | "en-RW" | "en-TZ" | "en-UG" | "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fi-FI" | "fr-FR" | "hu-HU" | "it-IT" | "ja-JP" | "ms-MY" | "nb-NO" | "nn-NO" | "pl-PL" | "pt-PT" | "ru-RU" | "sr-RS" | "tr-TR" | "vi-VN" | "zh-CN" | "zh-TW";`
+    - the `locale` is one of `MobilePhoneLocale = "ar-DZ" | "ar-SA" | "ar-SY" | "cs-CZ" | "da-DK" | "de-DE" | "el-GR" | "en-AU" | "en-CA" | "en-GB" | "en-HK" | "en-IN" | "en-KE" | "en-NZ" | "en-RW" | "en-TZ" | "en-UG" | "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fa-IR" | "fi-FI" | "fr-FR" | "hu-HU" | "id-ID" | "it-IT" | "ja-JP" | "lt-LT" | "ms-MY" | "nb-NO" | "nn-NO" | "pl-PL" | "pt-PT" | "ru-RU" | "sr-RS" | "tr-TR" | "vi-VN" | "zh-CN" | "zh-TW";`
 - `isNumericString()`: Checks if a string contains only numbers.
 - `isPostalCode(locale: PostalCodeLocale)`: Checks if a string is a postal code.
     - the `locale` is one of `PostalCodeLocale = "AT" | "AU" | "BE" | "CA" | "CH" | "CZ" | "DE" | "DK" | "DZ" | "ES" | "FI" | "FR" | "GB" | "GR" | "IL" | "IN" | "IS" | "IT" | "JP" | "KE" | "LI" | "MX" | "NL" | "NO" | "PL" | "PT" | "RO" | "RU" | "SA" | "SE" | "TW" | "US" | "ZA" | "ZM";` OR `"any"`. If `"any"` is used, the underlying validator.js library will check if any of the locales match.

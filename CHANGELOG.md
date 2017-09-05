@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - `isLatLong()`-validation. With the new `validator.js` version `8.1.0` strings can be checked for valid latitude-longitude coordinates.
 - `isPostalCode()`-validation. With the new `validator.js` version `8.1.0` validation of postal codes can be performed for several different locales.
 - Norwegian locales `nb-NO` and `nn-NO` are now supported for `isAlpha()` and `isAlphanumeric()` validations.
-- `isMobilePhone()` now supports locales for Kenya `en-KE`, Rwanda `en-RW`, Tanzania `en-TZ`, and Uganda `en-UG`.
+- `isMobilePhone()` now supports locales for Kenya `en-KE`, Rwanda `en-RW`, Tanzania `en-TZ`, Uganda `en-UG`, Indonesia `id-ID`, Iran `fa-IR`, and Lithuania `lt-LT`.
 
 ### Changed
 - `dependencies` have been updated as follows:
