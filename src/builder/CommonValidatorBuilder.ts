@@ -64,7 +64,7 @@ export interface CommonValidatorBuilder<T, TProperty> {
      *
      * @param iterable
      */
-    isNotIn(iterable: Iterable<TProperty>): this & ValidationOptionsBuilder<T>;
+    isNotIn(iterable: Iterable<TProperty> | object): this & ValidationOptionsBuilder<T>;
 
     /**
      * Checks if a property can successfully be validated by the provided validator.
