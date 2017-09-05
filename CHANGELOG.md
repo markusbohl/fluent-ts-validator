@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - `isLatLong()`-validation. With the new `validator.js` version `8.1.0` strings can be checked for valid latitude-longitude coordinates.
 - `isPostalCode()`-validation. With the new `validator.js` version `8.1.0` validation of postal codes can be performed for several different locales.
 - `hasLength()`-validation. Compared to the already existing methods `hasLengthBetween(min, max)`, `hasMinLength(min)`, or `hasMaxLength(max)` a more convenient way of checking for exact lengths. 
+- Norwegian locales `nb-NO` and `nn-NO` are now supported for `isAlpha()` and `isAlphanumeric()` validations.
 
 ### Changed
 - `dependencies` have been updated as follows:
