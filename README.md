@@ -297,36 +297,9 @@ collections (`Array`, `Set`, `Map`) that they do not contain any element (`lengt
 - `isNotEqualTo(comparison: TProperty)`: Checks if a property is not equal to (`!==`) the 
 `comparison` parameter.
 - `isIn(obj: Iterable<TProperty> | object)`: In case an iterable is provided, checks if a property is equal to an element of the 
-iterable (`===`). For non-iterables, checks if a member's value is equal to the property under validation. This might be useful for enums as shown in the example below.
+iterable (`===`). For non-iterables, checks if a member's value is equal to the property under validation.
 - `isNotIn(obj: Iterable<TProperty> | object)`: In case an iterable is provided, checks if a property is not equal to an element 
 of the iterable (`!==`). For non-iterables, checks if no member's value is equal to the property under validation.
-
-
-**Example: `isIn()` with enum**
-```typescript
-enum SuperheroColors {
-    Red = "RED",        // enum members with string initializers
-    Green = "GREEN",
-    Black = "BLACK"
-}
-
-class Superhero {
-    colorOfCape: string; // mind the type
-    ...
-}
-
-class SuperheroValidator extends AbstractValidator<Superhero> {
-    constructor() {
-        super();
-        this.validateIf(hero => hero.colorOfCape).isIn(SuperheroColors);
-    }
-}
-
-const superhero = new Superhero();
-superhero.colorOfCape = "BLACK";
-
-validator.validate(superhero); // valid
-```
 
 
 ### String Validation Rules
