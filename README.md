@@ -318,7 +318,7 @@ delegate the actual validation to the internal [validator.js](https://github.com
     "ar-TN" | "ar-YE" | "cs-CZ" | "de-DE" | "en-AU" | "en-GB" | "en-HK" | "en-IN" | "en-NZ" | 
     "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fr-FR" | "fr-BE" | "hu-HU" | "nl-BE" | "nb-NO" | "nl-NL" | 
     "nn-NO" | "pl-PL" | "pt-BR" | "pt-PT" | "ru-RU" | "sr-RS" | "sr-RS@latin" | "tr-TR";` defaults to `en-US`
-- `isAlpha(locale?: AlphaLocale)`: Checks if a string contains only letters (a-zA-Z). 
+- `isAlpha(locale?: AlphaLocale)`: Checks if a string contains letters (a-zA-Z) only. 
     - an optional locale can be set, which is  one of `AlphaLocale = "ar" | "ar-AE" | "ar-BH" | 
     "ar-DZ" | "ar-EG" |
   "ar-IQ" | "ar-JO" | "ar-KW" | "ar-LB" | "ar-LY" | "ar-MA" | "ar-QA" | "ar-QM" | "ar-SA" | 
