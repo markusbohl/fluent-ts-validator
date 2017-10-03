@@ -310,13 +310,11 @@ delegate the actual validation to the internal [validator.js](https://github.com
 #### Methods
 
 - `contains(seed: string)`: Checks if a string contains a substring or `seed`.
-- `isAlphanumeric(locale?: AlphanumericLocale)`: Checks if a string is alphanumeric.
-    - an optional locale can be set. It accepts a locale of
-    `AlphanumericLocale = "ar" | "ar-AE" | "ar-BH" | "ar-DZ" | "ar-EG" | "ar-IQ" | "ar-JO" | 
-    "ar-KW" | "ar-LB" | "ar-LY" | "ar-MA" | "ar-QA" | "ar-QM" | "ar-SA" | "ar-SD" | "ar-SY" | 
-    "ar-TN" | "ar-YE" | "cs-CZ" | "de-DE" | "en-AU" | "en-GB" | "en-HK" | "en-IN" | "en-NZ" | 
-    "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fr-FR" | "fr-BE" | "hu-HU" | "nl-BE" | "nb-NO" | "nl-NL" | 
-    "nn-NO" | "pl-PL" | "pt-BR" | "pt-PT" | "ru-RU" | "sr-RS" | "sr-RS@latin" | "tr-TR";` defaults to `en-US`
+- `hasLength(length: number)`: Checks if a string has exactly the length `length`.
+- `hasLengthBetween(min: number, max: number)`: Checks if a string falls in a the `min` - `max` 
+range. 
+- `hasMinLength(min: number)`: Checks if a string has at least `min` length.
+- `hasMaxLength(max: number)`: Checks if a string has at most `max` length.
 - `isAlpha(locale?: AlphaLocale)`: Checks if a string contains letters (a-zA-Z) only. 
     - an optional locale can be set, which is  one of `AlphaLocale = "ar" | "ar-AE" | "ar-BH" | 
     "ar-DZ" | "ar-EG" |
@@ -325,6 +323,13 @@ delegate the actual validation to the internal [validator.js](https://github.com
   "en-IN" | "en-NZ" | "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fr-FR" | "hu-HU" | "nb-NO" | "nl-NL" | 
   "nn-NO" | "pl-PL" | "pt-BR" | "pt-PT" | "ru-RU" | "sr-RS" | "sr-RS@latin" | "tr-TR";` if not set, defaults
    to `en-US`.
+- `isAlphanumeric(locale?: AlphanumericLocale)`: Checks if a string is alphanumeric.
+    - an optional locale can be set. It accepts a locale of
+    `AlphanumericLocale = "ar" | "ar-AE" | "ar-BH" | "ar-DZ" | "ar-EG" | "ar-IQ" | "ar-JO" | 
+    "ar-KW" | "ar-LB" | "ar-LY" | "ar-MA" | "ar-QA" | "ar-QM" | "ar-SA" | "ar-SD" | "ar-SY" | 
+    "ar-TN" | "ar-YE" | "cs-CZ" | "de-DE" | "en-AU" | "en-GB" | "en-HK" | "en-IN" | "en-NZ" | 
+    "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fr-FR" | "fr-BE" | "hu-HU" | "nl-BE" | "nb-NO" | "nl-NL" | 
+    "nn-NO" | "pl-PL" | "pt-BR" | "pt-PT" | "ru-RU" | "sr-RS" | "sr-RS@latin" | "tr-TR";` defaults to `en-US`
 - `isAscii()`: Checks if a string contains ASCII chars only.
 - `isBase64()`: Checks if a string is Base64 encoded.
 - `isBooleanString()`: Checks if a string is a boolean.
@@ -356,20 +361,16 @@ domain.com).
 - `isHexadecimal()`: Checks if a string is a hexadecimal number.
 - `isIso8601()`: Checks if a string is a valid ISO 8601 date.
 - `isJson()`: Check if a string is valid JSON (note: uses JSON.parse).
-- `hasLength(length: number)`: Checks if a string has exactly the length `length`.
-- `hasLengthBetween(min: number, max: number)`: Checks if a string falls in a the `min` - `max` 
-range. 
-- `hasMinLength(min: number)`: Checks if a string has at least `min` length.
-- `hasMaxLength(max: number)`: Checks if a string has at most `max` length.
+- `isLatLong()`: Checks if a string represents valid latitude-longitude coordinates.
 - `isLowercase()`: Checks if a string is all lowercase.
 - `isMobilePhoneNo(locale: MobilePhoneLocale)`: Checks if a string is a mobile phone number.
     - the `locale` is one of `MobilePhoneLocale = "ar-DZ" | "ar-SA" | "ar-SY" | "cs-CZ" | "da-DK" | "de-DE" | "el-GR" | "en-AU" | "en-CA" | "en-GB" | "en-HK" | "en-IN" | "en-KE" | "en-NZ" | "en-RW" | "en-TZ" | "en-UG" | "en-US" | "en-ZA" | "en-ZM" | "es-ES" | "fa-IR" | "fi-FI" | "fr-FR" | "hu-HU" | "id-ID" | "it-IT" | "ja-JP" | "lt-LT" | "ms-MY" | "nb-NO" | "nn-NO" | "pl-PL" | "pt-PT" | "ru-RU" | "sr-RS" | "tr-TR" | "vi-VN" | "zh-CN" | "zh-TW";`
 - `isNumericString()`: Checks if a string contains only numbers.
 - `isPostalCode(locale: PostalCodeLocale)`: Checks if a string is a postal code.
     - the `locale` is one of `PostalCodeLocale = "AT" | "AU" | "BE" | "CA" | "CH" | "CZ" | "DE" | "DK" | "DZ" | "ES" | "FI" | "FR" | "GB" | "GR" | "IL" | "IN" | "IS" | "IT" | "JP" | "KE" | "LI" | "MX" | "NL" | "NO" | "PL" | "PT" | "RO" | "RU" | "SA" | "SE" | "TW" | "US" | "ZA" | "ZM";` OR `"any"`. If `"any"` is used, the underlying validator.js library will check if any of the locales match.
+- `isUppercase()`: Checks if a string is all uppercase.
 - `isUrl(options?: UrlOptions)`: Checks if a string is a URL.
     - the optional parameter defaults to `UrlOptions: { protocols: ['http','https','ftp'], require_tld: true, require_protocol: false, require_host: true, require_valid_protocol: true, allow_underscores: false, host_whitelist: false, host_blacklist: false, allow_trailing_dot: false, allow_protocol_relative_urls: false }`
-- `isUppercase()`: Checks if a string is all uppercase.
 - `isUuid(version?: UuidVersion)`: Checks if a string is a UUID.
     - Optional `version` is one value of `UuidVersion = "3" | "4" | "5" | "all";`
     - defaults to `all`
