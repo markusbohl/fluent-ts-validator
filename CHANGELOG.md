@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ~~Security~~
 
 
-## [3.0.0](https://github.com/markusbohl/fluent-ts-validator/releases/tag/3.0.0)
+## [3.0.0](https://github.com/markusbohl/fluent-ts-validator/releases/tag/3.0.0) - 2017-10-03
 
 ### Added
 - `hasLength()`-validation. Compared to the already existing methods `hasLengthBetween(min, max)`, `hasMinLength(min)`, or `hasMaxLength(max)` a more convenient way of checking for exact lengths.
