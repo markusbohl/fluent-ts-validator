@@ -9,6 +9,7 @@ import {
     UrlOptions,
     UuidVersion
 } from "../shared";
+import {PostalCodeLocale} from "../shared/PostalCodeLocale";
 
 export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, string> {
 
@@ -29,7 +30,7 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
     /**
      * Checks if a string contains only letters (a-zA-Z).
      *
-     * @param locale: AlphLocale
+     * @param locale: AlphaLocale
      */
     isAlpha(locale?: AlphaLocale): this & ValidationOptionsBuilder<T>;
 
@@ -93,9 +94,30 @@ export interface StringValidatorBuilder<T> extends CommonValidatorBuilder<T, str
     isIso8601(): this & ValidationOptionsBuilder<T>;
 
     /**
-     * Check if a string is valid JSON (note: uses `JSON.parse`).
+     * Checks if a string is valid JSON (note: uses `JSON.parse`).
      */
     isJson(): this & ValidationOptionsBuilder<T>;
+
+    /**
+     * Checks if a string is a postal code.
+     *
+     * If `locale` is set to `"any"`, will check if any of the locales match.
+     *
+     * @param locale: PostalCodeLocale
+     */
+    isPostalCode(locale: PostalCodeLocale): this & ValidationOptionsBuilder<T>;
+
+    /**
+     * Checks if a string is a valid latitude-longitude coordinate.
+     */
+    isLatLong(): this & ValidationOptionsBuilder<T>;
+
+    /**
+     * Checks if a string has exactly the given `length`.
+     *
+     * @param length
+     */
+    hasLength(length: number): this & ValidationOptionsBuilder<T>;
 
     /**
      * Checks if a string falls in a the `min` - `max` range.

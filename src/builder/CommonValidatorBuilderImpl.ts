@@ -163,13 +163,13 @@ export class CommonValidatorBuilderImpl<T, TProperty> implements ValidationOptio
         return this;
     }
 
-    isIn(iterable: Iterable<TProperty>): this & ValidationOptionsBuilder<T> {
+    isIn(iterable: Iterable<TProperty> | object): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsInValidator(iterable));
 
         return this;
     }
 
-    isNotIn(iterable: Iterable<TProperty>): this & ValidationOptionsBuilder<T> {
+    isNotIn(iterable: Iterable<TProperty> | object): this & ValidationOptionsBuilder<T> {
         this.validationRule.addValidator(new IsNotInValidator(iterable));
 
         return this;

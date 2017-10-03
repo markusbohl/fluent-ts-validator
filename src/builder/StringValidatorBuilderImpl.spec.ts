@@ -17,12 +17,14 @@ import {
     IsLowercaseValidator,
     IsMobilePhoneValidator,
     IsNumericStringValidator,
+    IsPostalCodeValidator,
     IsUppercaseValidator,
     IsUrlValidator,
     IsUuidValidator,
     RegExValidator
 } from "../validators/string-based";
 import {StringValidatorBuilderImpl} from "./";
+import {IsLatLongValidator} from "../validators/string-based/IsLatLongValidator";
 
 class TestClass {
     property: string;
@@ -66,10 +68,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsBooleanStringValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isBooleanString();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -80,10 +82,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsNumericStringValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isNumericString();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -94,10 +96,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsAlphaValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isAlpha();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -108,10 +110,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsAlphanumericValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isAlphanumeric();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -122,10 +124,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(ContainsValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.contains("foo");
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -136,10 +138,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsAsciiValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isAscii();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -150,10 +152,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsBase64Validator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isBase64();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -164,10 +166,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsCurrencyValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isCurrency();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -178,10 +180,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsDecimalStringValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isDecimalString();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -192,10 +194,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsEmailValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isEmail();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -206,10 +208,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsFqdnValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isFqdn();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -220,10 +222,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsHexadecimalValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isHexadecimal();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -234,10 +236,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsIso8601Validator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isIso8601();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -248,10 +250,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsJsonValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isJson();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -262,10 +264,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsMobilePhoneValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isMobilePhoneNo("en-CA");
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -276,10 +278,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsUppercaseValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isUppercase();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -290,10 +292,24 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(HasLengthValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.hasLengthBetween(10, 20);
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
+        });
+    });
+
+    describe("hasLength()", () => {
+        it("should set hasLengthValidator to validation rule", () => {
+            validatorBuilder.hasLength(5);
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(HasLengthValidator));
+        });
+
+        it("should return reference to builder to adhere to fluent pattern", () => {
+            let result = validatorBuilder.hasLength(5);
+
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -304,10 +320,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(HasLengthValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.hasMinLength(10);
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -318,24 +334,38 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(HasLengthValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.hasMaxLength(30);
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
+        });
+    });
+
+    describe("isLatLong()", () => {
+        it("should set IsLatLongValidator to validation rule", () => {
+            validatorBuilder.isLatLong();
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsLatLongValidator));
+        });
+
+        it("should return reference to builder to adhere to fluent pattern", () => {
+            let result = validatorBuilder.isLatLong();
+
+            expect(result).toBe(validatorBuilder);
         });
     });
 
     describe("isLowercase()", () => {
-        it("should set isLowercaseValidator to validation rule", () => {
+        it("should set IsLowercaseValidator to validation rule", () => {
             validatorBuilder.isLowercase();
 
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsLowercaseValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isLowercase();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -346,10 +376,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsUrlValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isUrl();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -360,10 +390,10 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsUuidValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.isUuid();
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
         });
     });
 
@@ -374,10 +404,24 @@ describe("StringValidatorBuilderImpl", () => {
             expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(RegExValidator));
         });
 
-        it("should return new instance of a ValidationOptionsBuilder", () => {
+        it("should return reference to builder to adhere to fluent pattern", () => {
             let result = validatorBuilder.matches(new RegExp("foo"));
 
-            expect(result).not.toBeNull();
+            expect(result).toBe(validatorBuilder);
+        });
+    });
+
+    describe("isPostalCode()", () => {
+        it("should set IsPostalCodeValidator to validation rule", () => {
+            validatorBuilder.isPostalCode("US");
+
+            expect(validationRule.addValidator).toHaveBeenCalledWith(jasmine.any(IsPostalCodeValidator));
+        });
+
+        it("should return reference to builder to adhere to fluent pattern", () => {
+            let result = validatorBuilder.isPostalCode("any");
+
+            expect(result).toBe(validatorBuilder);
         });
     });
 });

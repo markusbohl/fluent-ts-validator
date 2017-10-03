@@ -1,14 +1,15 @@
 import {IsInValidator} from "./IsInValidator";
 
 describe("IsInValidator", () => {
-    let numbers = [1, 2, 3, 4, null];
-    let isInValidator: IsInValidator<number | null>;
+    describe("isValid() - with iterable", () => {
 
-    beforeEach(() => {
-        isInValidator = new IsInValidator(numbers);
-    });
+        let numbers = [1, 2, 3, 4, null];
+        let isInValidator: IsInValidator<number | null>;
 
-    describe("isValid()", () => {
+        beforeEach(() => {
+            isInValidator = new IsInValidator(numbers);
+        });
+
         it("should return true if given value is element of given array", () => {
             let result = isInValidator.isValid(1);
 
@@ -45,4 +46,84 @@ describe("IsInValidator", () => {
             expect(result).toBeFalsy();
         });
     });
+
+    describe("isValid() - with string enum", () => {
+        it("should return true if given value is in enum", () => {
+            const validator = new IsInValidator(StringColors);
+
+            const result = validator.isValid(StringColors.Green);
+
+            expect(result).toBe(true);
+        });
+
+        it("should return true if given value is equals to a value of the enum", () => {
+            const validator = new IsInValidator(StringColors);
+
+            const result = validator.isValid("BLUE");
+
+            expect(result).toBe(true);
+        });
+
+        it("should return false if given value is not equals to a value of the enum", () => {
+            const validator = new IsInValidator(StringColors);
+
+            const result = validator.isValid("foobar");
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if given value is undefined", () => {
+            const validator = new IsInValidator(StringColors);
+
+            const result = validator.isValid(void 0);
+
+            expect(result).toBe(false);
+        });
+    });
+
+    describe("isValid() - with num enum", () => {
+        it("should return true if given value is in enum", () => {
+            const validator = new IsInValidator(NumColors);
+
+            const result = validator.isValid(NumColors.Blue);
+
+            expect(result).toBe(true);
+        });
+
+        it("should return true if given value is equals to a value of the enum", () => {
+            const validator = new IsInValidator(NumColors);
+
+            const result = validator.isValid(2);
+
+            expect(result).toBe(true);
+        });
+
+        it("should return false if given value is not equals to a value of the enum", () => {
+            const validator = new IsInValidator(NumColors);
+
+            const result = validator.isValid(-1);
+
+            expect(result).toBe(false);
+        });
+
+        it("should return false if given value is undefined", () => {
+            const validator = new IsInValidator(NumColors);
+
+            const result = validator.isValid(void 0);
+
+            expect(result).toBe(false);
+        });
+    });
 });
+
+enum StringColors {
+    Red = "RED",
+    Green = "GREEN",
+    Blue = "BLUE",
+}
+
+enum NumColors {
+    Red = 1,
+    Green = 2,
+    Blue = 3,
+}

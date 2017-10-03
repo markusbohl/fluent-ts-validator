@@ -18,6 +18,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ~~Security~~
 
+
+## [3.0.0](https://github.com/markusbohl/fluent-ts-validator/releases/tag/3.0.0) - 2017-10-03
+
+### Added
+- `hasLength()`-validation. Compared to the already existing methods `hasLengthBetween(min, max)`, `hasMinLength(min)`, or `hasMaxLength(max)` a more convenient way of checking for exact lengths.
+- Additionally to checking if a certain value/object is/is not an element of an iterable, 
+`isIn()` and `isNotIn()` can now validate if a given object has/has not a field with a certain value. ([Issue 5](https://github.com/markusbohl/fluent-ts-validator/issues/5))
+- `isLatLong()`-validation. Strings can be checked for valid latitude-longitude coordinates.*
+- `isPostalCode()`-validation. Validation of postal codes can be performed for several different locales.*
+- Norwegian locales `nb-NO` and `nn-NO` are now supported for `isAlpha()` and `isAlphanumeric()` validations.*
+- `isMobilePhone()` now supports locales for Kenya `en-KE`, Rwanda `en-RW`, Tanzania `en-TZ`, Uganda `en-UG`, Indonesia `id-ID`, Iran `fa-IR`, and Lithuania `lt-LT`.*
+
+*) These features have been made possible thanks to the `validator.js` version `8.1.0`.
+
+### Changed
+- `dependencies` have been updated as follows:
+    - `validator` from `7.0.0` to `8.1.0`. Due to this update, the behavior of `isUrl()` validations may change (see their [change log](https://github.com/chriso/validator.js/blob/master/CHANGELOG.md)).
+
+### Fixed
+- In addition to [issue 4](https://github.com/markusbohl/fluent-ts-validator/issues/4): `whenNotEmpty()` option was also not available after `validateIfEachString()`.
+
 ## [2.1.2](https://github.com/markusbohl/fluent-ts-validator/releases/tag/2.1.2) - 2017-08-28
 
 ### Fixed

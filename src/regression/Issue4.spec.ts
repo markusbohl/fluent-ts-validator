@@ -2,7 +2,7 @@
  * Regression tests for https://github.com/markusbohl/fluent-ts-validator/issues/4
  */
 
-import {AbstractValidator} from "./AbstractValidator";
+import {AbstractValidator} from "../AbstractValidator";
 
 describe("Issue 4", () => {
     let validator: AbstractValidator<ClassA>;
@@ -30,7 +30,7 @@ describe("Issue 4", () => {
             expect(result.isValid()).toBe(true);
         });
 
-        it("should fail when array contains numbers less than 6", () => {
+        it("should fail when number array contains numbers less than 6", () => {
             const dto = new ClassA();
             dto.nbrs = [1];
 
@@ -40,8 +40,37 @@ describe("Issue 4", () => {
             expect(result.getFailureMessages()).toContain("must have 2 elements");
         });
 
-        it("should not fail when array is empty due to whenNotEmpty-option", () => {
+        it("should not fail when number array is empty due to whenNotEmpty-option", () => {
             const dto = new ClassA();
+
+            const result = validator.validate(dto);
+
+            expect(result.isValid()).toBe(true);
+        });
+
+        it("should fail when string array contains elements which are not completely uppercase", () => {
+            const dto = new ClassA();
+            dto.strArray = ["ABC", "xyz"];
+
+            const result = validator.validate(dto);
+
+            expect(result.isInvalid()).toBe(true);
+            expect(result.getFailureMessages()).toContain("string must be all uppercase");
+        });
+
+        it("should fail when string array contains elements which are not completely uppercase next to empty element", () => {
+            const dto = new ClassA();
+            dto.strArray = ["", "xyz"];
+
+            const result = validator.validate(dto);
+
+            expect(result.isInvalid()).toBe(true);
+            expect(result.getFailureMessages()).toContain("string must be all uppercase");
+        });
+
+        it("should not fail when string array is empty due to whenNotEmpty-option", () => {
+            const dto = new ClassA();
+            dto.strArray = ["ABC", ""];
 
             const result = validator.validate(dto);
 
@@ -53,6 +82,7 @@ describe("Issue 4", () => {
 class ClassA {
     name: string = "";
     nbrs: number[] = [];
+    strArray: string[] = [];
 }
 
 export class ClassAValidator extends AbstractValidator<ClassA> {
@@ -68,5 +98,10 @@ export class ClassAValidator extends AbstractValidator<ClassA> {
             .hasNumberOfElements(2)
             .whenNotEmpty()
             .withFailureMessage("must have 2 elements");
+
+        this.validateIfEachString(dto => dto.strArray)
+            .isUppercase()
+            .whenNotEmpty()
+            .withFailureMessage("string must be all uppercase");
     }
 }
