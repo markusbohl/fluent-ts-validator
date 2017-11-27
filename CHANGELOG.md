@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ~~Security~~
 
+## [3.0.1](https://github.com/markusbohl/fluent-ts-validator/releases/tag/3.0.1) - 2017-11-27
+
+### Fixed
+- Updates `isGreaterThanOrEqualTo()` to check if `null` or `undefined` similar to `isLessThanOrEqualTo()` to ensure that `0` which is falsy is still compared to the threshold.
+
 
 ## [3.0.0](https://github.com/markusbohl/fluent-ts-validator/releases/tag/3.0.0) - 2017-10-03
 
