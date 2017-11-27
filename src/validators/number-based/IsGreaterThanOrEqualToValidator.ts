@@ -13,9 +13,9 @@ export class IsGreaterThanOrEqualToValidator implements PropertyValidator<number
     }
 
     isValid(input: number | undefined): boolean {
-        if (input) {
-            return input >= this.threshold;
+        if (typeof input === "undefined" || input === null) {
+            return false;
         }
-        return false;
+        return input >= this.threshold;
     }
 }
