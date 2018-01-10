@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ~~Security~~
 
+## [3.0.2](https://github.com/markusbohl/fluent-ts-validator/releases/tag/3.0.2) - 2018-01-10
+
+### Fixed
+- Fixes spelling issue in `README.md`
+
+
 ## [3.0.1](https://github.com/markusbohl/fluent-ts-validator/releases/tag/3.0.1) - 2017-11-27
 
 ### Fixed
