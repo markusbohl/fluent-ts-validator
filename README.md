@@ -15,7 +15,7 @@ makes use of the mature string validation library [validator.js](https://github.
 
 In this respect, special thanks go to these two projects.
 
-The fluent-ts-validator library is licensed under [MIT](https://opensource.org/licenses/MIT). For past, current, and maybe upcomming changes take a look at the [Change Log](https://github.com/markusbohl/fluent-ts-validator/blob/develop/CHANGELOG.md).
+The fluent-ts-validator library is licensed under [MIT](https://opensource.org/licenses/MIT). For past, current, and maybe upcoming changes take a look at the [Change Log](https://github.com/markusbohl/fluent-ts-validator/blob/develop/CHANGELOG.md).
 
 ## Installation
 
