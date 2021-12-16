@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ~~Security~~
 
+## [3.0.3](https://github.com/markusbohl/fluent-ts-validator/releases/tag/3.0.3) - 2021-12-16
+
+### Fixed
+- Npm vulnerability in validator package
+
+
 ## [3.0.2](https://github.com/markusbohl/fluent-ts-validator/releases/tag/3.0.2) - 2018-01-10
 
 ### Fixed
