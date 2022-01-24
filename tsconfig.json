@@ -5,7 +5,7 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "declaration": true,
-        "outDir": "build",
+        "outDir": "dist",
         "target": "ES6",
         "strict": true
     },
