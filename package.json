@@ -44,7 +44,7 @@
     "npm-check": "npm-check --skip-unused"
   },
   "dependencies": {
-    "validator": "13.7.0"
+    "validator": "13.15.20"
   },
   "keywords": [
     "typescript",
